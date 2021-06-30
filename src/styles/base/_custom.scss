@@ -1,0 +1,93 @@
+.styled-checkbox {
+  display: block;
+  position: relative;
+  width: max-content;
+  padding-left: 35px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 16px;
+  line-height: 20px;
+  color: $text-black;
+  font-weight: 600;
+  user-select: none;
+
+  /* Hide the browser's default checkbox  & Radio*/
+  >input[type="checkbox"], >input[type="radio"] {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+  }
+
+  /* Style the checkmark/indicator */
+  .checkmark::after {
+    left: 7px;
+    top: 2px;
+    width: 6px;
+    height: 14px;
+    border: solid $color-white;
+    border-width: 0 2px 2px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+  }
+  /* On mouse-over, add a cream background color  and font bold */
+  &:hover {
+    input ~ .checkmark {
+      background-color: $color-white;
+    }
+  }
+  /* Show the checkmark when checked */
+  input:checked ~ .checkmark::after {
+    display: block;
+  }
+  input[type="checkbox"]:checked ~ span {
+    font-weight: 600;
+  }
+  input[type="checkbox"]:disabled ~ .checkmark {
+    background-color: $text-disabled;
+    border: 1px solid $text-disabled;
+  }
+}
+
+/* Create a custom checkbox */
+.checkmark {
+  position: absolute;
+  top: -2px;
+  left: 0;
+  height: 22px;
+  width: 22px;
+  background-color: #fff;
+  border: 1px solid $color-primary;
+  border-radius: 2px;
+  &.radio {
+    border-radius: 50%;
+  }
+  &.error {
+    border: 1px solid $color-error;
+  }
+}
+
+/* When the checkbox is checked, add a primary background */
+.styled-checkbox input:checked ~ .checkmark,
+.radio-wrapper input:checked ~ .checkmark.radio {
+  background-color: $color-secondary;
+  border: 1px solid $color-secondary;
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.checkmark::after,
+.checkmark.radio::after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* Create the indicator (the dot/circle - hidden when not checked) */
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}

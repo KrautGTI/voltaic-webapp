@@ -1,0 +1,247 @@
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  vertical-align: baseline;
+}
+
+html {
+  font-size: 100%;
+  font-display: swap;
+  scroll-behavior: smooth;
+
+  @include respond(tab-port) {
+    // width < 900?
+    font-size: 90%;
+  }
+}
+
+body {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+main {
+  background: $color-cream;
+}
+.nav-margin {
+  margin-top: 75px !important;
+  padding-top: 1rem;
+}
+.layout{
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+.br-0 {
+  border-radius: 0 !important;
+}
+.overflow-toggle,
+body.overflow-toggle {
+  overflow-x: auto;
+}
+.input-group-text {
+  background-color: #EDF7F8;
+  border-color: $color-input-border;
+  color: $color-secondary;
+}
+
+input[type="button"],
+input[type="submit"],
+input[type="reset"],
+button {
+  display: inline-block;
+  border: none;
+  margin: 0;
+  padding: 5px 10px;
+  background: inherit;
+  font-size: inherit;
+  text-decoration: none;
+  color: inherit;
+  text-align: center;
+  cursor: pointer;
+}
+p {
+  font-size: 16px;
+  line-height: 165%;
+}
+
+::selection {
+  background-color: $color-primary;
+  color: $text-black;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+a:hover,a:active {
+  text-decoration: none;
+  color: inherit;
+}
+a.link:hover {
+  color: $color-secondary;
+}
+
+ul {
+  margin: 0;
+  list-style: none;
+}
+textarea {
+  resize: vertical;
+  position: relative;
+}
+img {
+  max-width: 100%;
+}
+[data-toggle="dropdown"] {
+  cursor: pointer;
+}
+.pointer {
+  cursor: pointer;
+}
+.overflow-x-hidden {
+  overflow: hidden;
+  overflow-y: auto;
+}
+.overflow-y {
+  overflow-x: hidden;
+  overflow-y: auto;
+  height: calc(100vh - 280px);
+}
+.rotate-neg-180 {
+  transform: rotate(-180deg);
+}
+.rotate-45 {
+  transform: rotate(45deg);
+}
+.rotate-180 {
+  transform: rotate(180deg);
+}
+.flex-row {
+  @include flex-row;
+}
+.flex-column {
+ @include flex-column;
+}
+.flex-center {
+  @include flex-center;
+}
+.full-height {
+  height: 100vh;
+}
+.mb-6 {
+  margin-bottom: 120px;
+}
+.text-grey {
+  color: $color-grey-dark;
+}
+.auth-layout--content {
+  position: relative;
+  min-height: calc(100vh - 70px);
+  max-width: calc(100vw - 200px);
+  margin-left: 200px;
+  margin-top: 70px;
+  padding: rem(48);
+  @include respond(tab-land) {
+    padding: 24px;
+    margin-left: 80px;
+    margin-bottom: 4rem;
+  }
+  @include respond(tab-port) {
+    padding: 18px;
+    margin-left: 0;
+    margin-bottom: 3rem;
+  }
+}
+
+.desktop-only {
+  display: block !important;
+  
+  @include respond(tab-land) {
+    display: none !important;
+  }
+  @include respond(tab-port) {
+    display: none;
+  }
+  @include respond(phone) {
+    display: none;
+  }
+}
+
+.mobile-only {
+  display: none !important;
+  @include respond(desktop) {
+    display: none;
+  }
+  @include respond(tab-land) {
+    display: none;
+  }
+  @include respond(tab-port) {
+    display: block !important;
+  }
+  @include respond(phone) {
+    display: block;
+  }
+}
+
+.logo-wrapper {
+  width: 112px;
+  height: auto;
+  cursor: pointer;
+}
+
+// .container-fluid {
+//   width: 100%;
+//   padding-left: 6rem;
+//   padding-right: 6rem;
+//   margin: 0 auto;
+//   @include respond(tab-land) {
+//     padding-left: 3rem;
+//     padding-right: 3rem;
+//   }
+//   @include respond(tab-port) {
+//     padding-left: 2.4rem;
+//     padding-right: 2.4rem;
+//   }
+//   @include respond(phone) {
+//     padding-left: 1.6rem;
+//     padding-right: 1.6rem;
+//   }
+// }
+.modal-content {
+  .container-fluid {
+    width: 100%;
+    padding-left: 1.6rem !important;
+    padding-right: 1.6rem !important;
+    margin: 0 auto;
+  }
+}
+.slick-list {
+  overflow: visible !important;
+}
+.btn-outline-primary:hover {
+  color: $color-white;
+}

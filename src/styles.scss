@@ -15,9 +15,13 @@
 @import "./styles/utils/spacing";
 // @import "~@ng-select/ng-select/themes/default.theme.css";
 
+@font-face {
+  font-family: open-sans;
+  src: url(fonts/OpenSans-Regular.ttf);
+}
 body {
   overflow-x: hidden;
-  font-family: sans-serif!important;
+  font-family: open-sans!important;
 }
 ::-webkit-scrollbar {
   width: 12px;

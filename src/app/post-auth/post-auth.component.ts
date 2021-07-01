@@ -37,6 +37,12 @@ export class PostAuthComponent implements OnInit {
     if(this.router.url.includes('job/reports')) {
       this.urlname = 'Job Reports';
     }
+    if(this.router.url.includes('manage/users')) {
+      this.urlname = 'Manage Users';
+    }
+    if(this.router.url.includes('contact-leads')) {
+      this.urlname = 'Contact Leads';
+    }
   }
 
   toggleHeaderLogo(evnt: any) {

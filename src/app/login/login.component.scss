@@ -1,6 +1,6 @@
 @import "../../styles";
 .footer {
-  background-color:#03478e;
+  background-color:#36699e;
   padding: 0.7rem 0 0.8rem;
   font-size: 13px;
   letter-spacing: 0.4px;
@@ -16,13 +16,13 @@
 //     no-repeat center;
 background-image: url('/assets/images/loginBg.jpeg');
 background-size: cover;
-min-height: calc(100vh - 71px);
+min-height: calc(100vh - 77px);
 }
 .auth-container {
   width: min(380px, 100%);
   background-color: transparent;
   border-radius: 5px;
-  box-shadow: 0px 0px 5px 0px $color-primary;
+  // box-shadow: 0px 0px 5px 0px $color-primary;
   .card {
     width: 94%;
     margin: 0 auto;
@@ -92,18 +92,21 @@ min-height: calc(100vh - 71px);
     }
   }
 }
-
+.login-card-width{
+  width:450px;
+}
 .override-alert {
   padding: 10px 16px !important;
   border-radius: 20px !important;
 }
 
 .btn-primary.loginBtn {
-  background-color: #03478e;
+  background-color: #36699e;
   font-size: 14px;
-    padding-left: 30px;
-    padding-right: 30px;
-    letter-spacing: 0.5px;
+  padding-left: 30px;
+  padding-right: 30px;
+  letter-spacing: 0.5px;
+  border: 0;
 }
 
 .forgotPswrd a{

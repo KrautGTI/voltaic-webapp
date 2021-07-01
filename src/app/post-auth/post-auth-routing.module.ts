@@ -17,6 +17,16 @@ const routes: Routes = [
         loadChildren: () =>
           import('./job/job.module').then((m) => m.JobModule),
       },
+      {
+        path: 'manage',
+        loadChildren: () =>
+          import('./manage/manage.module').then((m) => m.ManageModule),
+      },
+      {
+        path: 'contact-leads',
+        loadChildren: () =>
+          import('./contact-leads/contact-leads.module').then((m) => m.ContactLeadsModule),
+      },
     ]
   },
 ];

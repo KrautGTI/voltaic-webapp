@@ -1,0 +1,29 @@
+@function map-deep-get($map, $keys...) {
+  @each $key in $keys {
+    $map: map-get($map, $key);
+  }
+  @return $map;
+}
+
+/************ For if theme colors or value available it's ok or replace the default value **********/ 
+@function exist($value, $default){
+  @if $value {
+    @return $value;
+  }
+  @return $default;
+}
+
+/********** get rem value with pixel value *******/
+@function rem($pixel) {
+  @return $pixel / 16 + rem;
+}
+
+/***** UrlEncode for COLOR only HEX **********/ 
+@function encodecolor($string) {
+	@if type-of($string) == 'color' {
+        $hex: str-slice(ie-hex-str($string), 4);
+        $string:unquote("#{$hex}");
+    }
+    $string: '%23' + $string;
+	@return $string;
+}

@@ -1,0 +1,13 @@
+@import "../../../styles";
+.footer {
+  background-color:#03478e;
+  padding: 0.7rem 0 0.8rem;
+  font-size: 13px;
+  letter-spacing: 0.4px;
+}
+.line {
+  width: 1px;
+  background-color: $color-white;
+  height: 12px;
+  margin: 0.5rem 0.8rem;
+}

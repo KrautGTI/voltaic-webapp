@@ -1,0 +1,116 @@
+@import "../../styles";
+.footer {
+  background-color:#03478e;
+  padding: 0.7rem 0 0.8rem;
+  font-size: 13px;
+  letter-spacing: 0.4px;
+}
+.line {
+  width: 1px;
+  background-color: $color-white;
+  height: 12px;
+  margin: 0.5rem 0.8rem;
+}
+.auth-bg {
+//   background: linear-gradient(to bottom, $color-primary, $color-secondary)
+//     no-repeat center;
+background-image: url('/assets/images/loginBg.jpeg');
+background-size: cover;
+min-height: calc(100vh - 71px);
+}
+.auth-container {
+  width: min(380px, 100%);
+  background-color: transparent;
+  border-radius: 5px;
+  box-shadow: 0px 0px 5px 0px $color-primary;
+  .card {
+    width: 94%;
+    margin: 0 auto;
+    border-radius: 5px;
+    background-color: $color-cream;
+    margin-bottom: 13px!important;
+    margin-top: 13px!important;
+    .card-header {
+      display: flex;
+      padding: 0;
+      & > * {
+        width: 50%;
+        border-radius: 0;
+        padding: 1rem 0;
+        background-color: $color-border;
+        color: $color-secondary;
+        border-color: $color-border;
+        &.active {
+          background-color: $color-secondary;
+          color: $color-border;
+          border-color: $color-secondary;
+        }
+      }
+    }
+    input {
+        padding-left: 8px;
+        &.focus {
+            box-shadow: none;
+        }
+    } 
+    .form-control {
+      background-color: $color-cream;
+      border-radius: 0 10px 10px 0;
+      border-style: solid;
+      border-color: #9eadbd;
+      border-width: 1px 1px 1px 0;
+    }
+    .input-group-text {
+      border-radius: 10px 0 0 10px;
+      border-style: solid;
+      border-color: #9eadbd;
+      border-width: 1px 0 1px 1px;
+      padding: 0.7rem 0.5rem;
+      background-color: $color-cream;
+      i {
+        border-radius: 50%;
+        width: 1rem;
+        height: 1rem;
+        @include flex-center;
+        background-color: #9eadbd;
+        color: $color-white;
+      }
+    }
+  }
+  .logo-wrapper {
+    position: relative;
+    width: 100px;
+    height: 100px;
+    margin-top: -10%;
+    border-radius: 50%;
+    background-color: $color-white;
+    box-shadow: 0px 0px 5px 0px black;
+    .auth-logo {
+      @include absCenter;
+      width: 70px;
+      height: 70px;
+    }
+  }
+}
+
+.override-alert {
+  padding: 10px 16px !important;
+  border-radius: 20px !important;
+}
+
+.btn-primary.loginBtn {
+  background-color: #03478e;
+  font-size: 14px;
+    padding-left: 30px;
+    padding-right: 30px;
+    letter-spacing: 0.5px;
+}
+
+.forgotPswrd a{
+  color: #248cf9;
+    font-size: 15px;
+}
+
+.titleErrorTxt {
+color: #EF5350;
+}

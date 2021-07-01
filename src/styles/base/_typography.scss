@@ -1,0 +1,313 @@
+body {
+  font-family: $font-primary;
+  font-weight: 400;
+  line-height: 1.6rem;
+  color: $text-black;
+  background-color: $color-white;
+}
+
+%txt {
+  font-family: $font-primary;
+  font-style: normal;
+  font-weight: normal;
+}
+
+.bold, .font-weight-extra-bold {
+  font-weight: 700;
+}
+
+.txt-8--mini {
+  @extend %txt;
+  font-size: 10px;
+  line-height: 13px;
+  letter-spacing: 0.4px;
+  &.bold {
+    font-weight: 700;
+  }
+  &.color-secondary {
+    color: $color-secondary;
+  }
+  &.color-light {
+    color: $color-grey;
+  }
+  &.color-grey {
+    color: $color-grey-dark;
+  }
+}
+
+.txt-12--small {
+  @extend %txt;
+  font-size: $txt-12;
+  line-height: 130%;
+  letter-spacing: 0.4px;
+  color: $text-black;
+  &.bold {
+    font-weight: 700;
+  }
+  &.bolder {
+    font-weight: 600;
+  }
+  &.fw-900 {
+    font-weight: 900;
+  }
+  &.color-grey {
+    color: $text-secondary;
+  }
+  &.color-primary {
+    color: $color-primary;
+  }
+  &.color-secondary {
+    color: $color-secondary;
+  }
+  &.color-success {
+    color: $color-success;
+  }
+  &.lh-20 {
+    line-height: 20px;
+  }
+}
+
+.txt-14--caption {
+  @extend %txt;
+  font-size: $txt-14;
+  line-height: 160%;
+  color: $text-disabled;
+  &.bold {
+    font-weight: 700;
+  }
+  &.color-grey {
+    color: $text-secondary;
+  }
+  &.color-light {
+    color: $color-grey;
+  }
+  &.color-black {
+    color: $text-black;
+  }
+  &.color-primary {
+    color: $color-primary;
+  }
+  &.color-secondary {
+    color: $color-secondary;
+  }
+}
+
+.txt-16--body {
+  @extend %txt;
+  font-size: $txt-16;
+  line-height: 140%;
+  font-weight: 400;
+  color: $text-black;
+  &.bold {
+    font-weight: 700;
+  }
+  &.color-light {
+    color: $color-grey;
+  }
+  &.color-grey {
+    color: $color-grey-dark;
+  }
+  &.color-black {
+    color: $text-black;
+  }
+  &.color-secondary {
+    color: $color-secondary;
+  }
+  &.lh-20 {
+    line-height: 20px;
+  }
+  &.lh-30 {
+    line-height: 30px;
+  }
+  &.ls-2{
+    letter-spacing: 2px;
+  }
+}
+
+.txt-18--body_subtitle {
+  @extend %txt;
+  font-size: $txt-18;
+  line-height: 130%;
+  font-weight: 400;
+  color: $text-secondary;
+  &.bold {
+    font-weight: 700;
+  }
+  &.color-black {
+    color: $text-black;
+  }
+  &.color-grey {
+    color: $text-secondary;
+  }
+  &.color-secondary {
+    color: $color-secondary;
+  }
+}
+
+.txt-18--quote {
+  font-size: $txt-18;
+  line-height: rem(23);
+  letter-spacing: .4px;
+}
+
+.txt-20--body_title, .txt-20--body_title span {
+  @extend %txt;
+  font-size: $txt-20;
+  line-height: 25px;
+  font-weight: 400;
+  &.bold {
+    font-weight: 700;
+  }
+  &.color-black {
+    color: $text-black;
+  }
+  &.color-secondary {
+    color: $color-secondary;
+  }
+  &.color-success{
+    color: $color-success;
+  }
+  &.color-grey {
+    color: $text-secondary;
+  }
+}
+
+.txt-24--subheader {
+  @extend %txt;
+  font-size: $txt-24;
+  line-height: 130%;
+  &.bold {
+    font-weight: 700;
+  }
+  &.color-black {
+    color: $text-black;
+  }
+  &.color-grey {
+    color: $text-secondary;
+  }
+  &.color-light {
+    color: $color-grey;
+  }
+}
+
+.txt-32--title {
+  @extend %txt;
+  font-size: $txt-32;
+  line-height: 130%;
+  font-weight: 200;
+  color: $text-black;
+  &.color-secondary {
+    color: $color-secondary;
+  }
+  &.bold {
+    font-weight: 700;
+  }
+  &.color-grey {
+    color: $text-secondary;
+  }
+}
+
+.txt-36--headline {
+  @extend %txt;
+  font-size: $txt-36;
+  line-height: 130%;
+  font-weight: 700;
+}
+
+.txt-42--display, .txt-42--display p {
+  @extend %txt;
+  font-size: $txt-42;
+  line-height: 130%;
+  font-weight: 200;
+  color: $text-black;
+  @include respond(tab-port){
+    font-size: $txt-32;
+  }
+  &.bold, &.bold p {
+    font-weight: 700;
+  }
+  &.color-secondary {
+    color: $color-secondary;
+  }
+  &.color-white , &.color-white p{
+    color: $color-white;
+  }
+}
+
+.txt-54--jumbo {
+  @extend %txt;
+  font-size: $txt-54;
+  line-height: 100%;
+  font-weight: 200;
+  &.bold {
+    font-weight: 700;
+  }
+  &.color-secondary {
+    color: $color-secondary;
+  }
+  @include respond(tab-port){
+    font-size: $txt-32;
+    line-height: 130%;
+    font-weight: 700;
+  }
+}
+
+.txt-64--mega {
+  @extend %txt;
+  font-size: $txt-64;
+  line-height: 130%;
+  font-weight: 200;
+  &.bold {
+    font-weight: 800;
+  }
+  &.color-secondary {
+    color: $color-secondary;
+  }
+}
+
+// GLOBAL HEADING OVERRIDE
+h1, h2 {
+  @extend %txt;
+  margin-bottom: 0;
+  font-weight: 700;
+}
+
+h3, h4, h5, h6 {
+  @extend %txt;
+  margin-bottom: 0;
+  font-weight: 600;
+}
+
+h1 {
+  font-size: $txt-42;
+  line-height: 135%;
+}
+
+h2 {
+  font-size: $txt-36;
+  line-height: 130%;
+}
+.contact-h2 {
+  @include respond(tab-port){
+    font-size: $txt-24;
+  }
+}
+h3 {
+  font-size: $txt-24;
+  line-height: 130%;
+}
+
+h4 {
+  font-size: $txt-18;
+  line-height: 130%;
+}
+
+h5 {
+  font-size: $txt-16;
+  line-height: 135%;
+}
+
+h6 {
+  font-size: $txt-14;
+  line-height: 140%;
+}

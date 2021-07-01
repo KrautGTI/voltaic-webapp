@@ -6,7 +6,7 @@ $color-primary: exist(
 
 $color-secondary: exist(
   map-get(map-get($variable, "colors"), "secondary"),
-  #03478e
+  #36699e
 );
 $color-secondary-light: exist(
   map-get(map-get($variable, "colors"), "light-secondary"),

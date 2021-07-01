@@ -1,6 +1,6 @@
 
 <div class="midSection">
-    <div class="sidebar">
+    <div class="sidebar shadow">
         <app-sidenav (menuClicked)="toggleHeaderLogo($event)"></app-sidenav> 
     </div>
     <div class="contentDivNew" [ngClass]="{'contentDiv' : toggleLogoEvent}" id="contentDiv">
@@ -16,9 +16,9 @@
         <router-outlet></router-outlet>
         </div>
     </div>
-    </div>
-    <div class="footerDiv">
-        <app-footer></app-footer> 
-    </div>
-    
+</div>
+<div class="footerDiv">
+    <app-footer></app-footer> 
+</div>
+
     

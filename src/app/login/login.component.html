@@ -1,12 +1,14 @@
-<section class="auth-bg">
+<section class="auth-bg d-flex justify-content-center">
     <div class="flex-center mb-3" style="padding-top: 5rem">
-      <div class="auth-container mt-6">
+      <div class="auth-container mt-6 login-card-width">
         <form #loginForm="ngForm">
-          <div class="card mb-5">
+          <div class="card mb-5 shadow-lg pt-2 pb-3">
             <div class="card-body">
               <h4 class="text-center margin-bottom-XS" *ngIf="isForgotPassword">Reset Password</h4>
-              <div class="auth-inputs">
+              <div class="auth-inputs d-flex flex-column">
+                <img src="../../../assets/images/logo_aspire_small_2.png" class="mb-2" alt="logo"/>
                 <div class="input-group mb-3" [ngClass]="{'error-border':!email.value && isLoginClicked}">
+                  
                   <div class="input-group-prepend">
                     <button class="input-group-text" id="email" tabindex="-1">
                       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-envelope" viewBox="0 0 16 16">

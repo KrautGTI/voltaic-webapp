@@ -7,7 +7,8 @@ import { environment } from '../../environments/environment';
   providedIn: 'root',
 })
 export class GenericService {
-  authServiceUrl = environment.apiBaseUrl;
+  //authServiceUrl = environment.apiBaseUrl;
+  authServiceUrl = 'http://voltaic.bigmarvconsulting.com/jsonapi/';
   userDetails: any;
   constructor(private httpClient: HttpClient) {}
 

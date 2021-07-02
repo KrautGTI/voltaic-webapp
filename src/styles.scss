@@ -1,7 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 /* You can add global styles to this file, and also import other style files */
-@import "ag-grid-community/dist/styles/ag-grid.css";
-@import "ag-grid-community/dist/styles/ag-theme-material.css";
+// @import "ag-grid-community/dist/styles/ag-grid.css";
+// @import "ag-grid-community/dist/styles/ag-theme-material.css";
 // @import "~bootstrap/dist/css/bootstrap.css";
 @import "./styles/utils/functions";
 @import "./styles/themes/theme";
@@ -15,13 +15,9 @@
 @import "./styles/utils/spacing";
 // @import "~@ng-select/ng-select/themes/default.theme.css";
 
-@font-face {
-  font-family: open-sans;
-  src: url(fonts/OpenSans-Regular.ttf);
-}
 body {
   overflow-x: hidden;
-  font-family: open-sans!important;
+  font-family: sans-serif!important;
 }
 ::-webkit-scrollbar {
   width: 12px;

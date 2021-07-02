@@ -21,17 +21,15 @@ export class SidenavComponent implements OnInit{
   @Output() menuClicked = new EventEmitter<Event>();
   isNavOpen = true;
   userDetails: any;
-  userId: string;
  // svpRoles = ['Hiring Manager','Hiring Manager 1', 'Hiring Manager 2']
   constructor(
     private router: Router,
     private genericService:GenericService
-  ) { this.userId = '1';}
+  ) { }
 
   ngOnInit(): void {
-    // this.userDetails = sessionStorage.getItem('user')
-    //   ? JSON.parse(sessionStorage.getItem('user'))
-    //   : '';
+    let userData = sessionStorage.getItem('user');
+    this.userDetails = userData ? JSON.parse(userData) : '';
     // this.userId = sessionStorage.getItem('user')
     //   ? (JSON.parse(sessionStorage.getItem('user')).id)
     //   : '';
@@ -54,7 +52,7 @@ export class SidenavComponent implements OnInit{
   }
 
   hasAccess() {
-   // return this.genericService.hasSVPAccess(this.userDetails.role);
+   return this.userDetails.user_role === 'admin' ? true : false;
   }
 }
 

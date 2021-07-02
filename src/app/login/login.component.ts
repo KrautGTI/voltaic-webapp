@@ -13,9 +13,14 @@ import Swal from 'sweetalert2';
 
 export class LoginComponent implements OnInit {
   isForgotPassword = false;
+  isPasswordMatched = false;
   buttonName = '';
   userDetails: any;
   isLoginClicked = false;
+  passwordFormValue : any;
+  loginFormValue : any;
+  loginFormData: any;
+  passwordFormData: any;
   constructor(
     private router: Router,
     private loaderService: LoaderService,
@@ -36,24 +41,75 @@ export class LoginComponent implements OnInit {
 
   loginUser(loginForm: any) {
     this.isLoginClicked = true;
-    const formValue = loginForm.form.value
-    if(!formValue?.email || !formValue?.password) {
-      return;
-    }
 
+    if(this.isForgotPassword) {
+      this.passwordFormValue = loginForm.form.value;
+      console.log(this.passwordFormValue);
+      if(!this.passwordFormValue?.fullname || !this.passwordFormValue?.email || !this.passwordFormValue?.password) {
+        return;
+      } else if(!this.passwordFormValue?.confirmpassword || 
+        (this.passwordFormValue?.confirmpassword !== this.passwordFormValue?.password)) {
+        this.isPasswordMatched = false;
+        return;
+      } else {
+        this.isPasswordMatched = true;
+        this.passwordFormData = {
+          name: this.passwordFormValue?.fullname,
+          email: this.passwordFormValue?.email,
+          password: this.passwordFormValue?.password,
+        }
+      }
+    } else {
+      this.loginFormValue = loginForm.form.value;
+      if(!this.loginFormValue?.email || !this.loginFormValue?.password) {
+        return;
+      } else {
+        this.loginFormData = {
+          email: this.loginFormValue?.email,
+          password: this.loginFormValue?.password
+        }
+      }
+    }
+    console.log('ipsi')
     this.loaderService.show();
     if (this.isForgotPassword) {
-      this.genericService
-        .setPassoword(formValue)
-        .pipe(tap(() => this.loaderService.hide()))
-        .subscribe((data) => {
-          if (data) {
-            this.router.navigate(['login']);
+      this.genericService.generateOTP({email: this.passwordFormValue?.email})
+      .pipe(tap(() => this.loaderService.hide()))
+      .subscribe((data) => {
+        console.log(data);
+        Swal.fire({
+          html: `<p>An OTP Sent to Your Email-id. Please Enter the OTP to Verify.</p><input type="text" id="otp" class="swal2-input" placeholder="Enter OTP">`,
+          confirmButtonText: 'Validate',
+          focusConfirm: false,
+          preConfirm: () => {
+            const otpVal = (<HTMLInputElement>Swal?.getPopup()?.querySelector('#otp')).value
+            if (!otpVal) {
+              Swal.showValidationMessage(`Please enter otp`)
+            }
+            return { otp: otpVal }
           }
+        }).then((result) => {
+          this.passwordFormData['otp'] = result?.value?.otp;
+          console.log(this.passwordFormData);
+          this.genericService
+          .setPassoword(this.passwordFormData)
+          .pipe(tap(() => this.loaderService.hide()))
+          .subscribe((data) => {
+            if (data) {
+              Swal.fire({
+                text: 'Reset Password is Successful.', icon: 'success', confirmButtonColor: '#00bcd4',
+                confirmButtonText: 'OK'
+              }).then(res => {
+                this.router.navigate(['/login']);
+              });;
+            }
+          });
         });
+      });
+      
     } else {
       this.genericService
-        .loginUser(formValue)
+        .loginUser(this.loginFormData)
         .pipe(tap(() => this.loaderService.hide()))
         .subscribe((data: any) => {
           console.log(data);
@@ -86,6 +142,7 @@ export class LoginComponent implements OnInit {
 }
 
 forgotPassword() {
+  this.isForgotPassword = true;
   this.router.navigate(['forgot-password'], {
     state: { formResetPassword: true },
   });

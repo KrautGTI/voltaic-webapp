@@ -20,43 +20,75 @@ export class GenericService {
     return this.httpClient.post(url, loginData, options);
   }
 
+  public generateOTP(email: any) {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+    });
+    const options = { headers: headers };
+    const url = this.authServiceUrl + 'user/otpGen';
+    return this.httpClient.post(url, email, options);
+  }
+
   public setPassoword(resetForm: any) {
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
-     // accesss_token: token,
     });
     const options = { headers: headers };
     const url = this.authServiceUrl + 'user/setPassword';
     return this.httpClient.post(url, resetForm, options);
   }
 
-  public getJobReports(token: string) {
+  public getJobReports(token: string, isAdmin: boolean) {
     const headers = new HttpHeaders({
       Accept: 'application/json',
       authorize_token: token
     });
     const options = { headers: headers };
     const url = this.authServiceUrl + 'masterJob/masterJobs';
-    return this.httpClient.post(url, '', options);
+    // if(isAdmin) {
+    //   return this.httpClient.post(url, {role: 'admin'}, options);
+    // } else {
+      return this.httpClient.post(url, '', options);
+    //}
   }
 
-  public getAllUsers(token: string) {
+  public getAllUsers(token: string, isAdmin: boolean) {
     const headers = new HttpHeaders({
       Accept: 'application/json',
       authorize_token: token
     });
+    
     const options = { headers: headers };
     const url = this.authServiceUrl + 'masterJob/getAllUsers';
-    return this.httpClient.post(url, '', options);
+    // if(isAdmin) {
+    //   return this.httpClient.post(url, {role: 'admin'}, options);
+    // } else {
+      return this.httpClient.post(url, '', options);
+   // }
   }
 
-  public getLeadContacts(token: string) {
+  public getLeadContacts(token: string, isAdmin: boolean) {
+    const headers = new HttpHeaders({
+        Accept: 'application/json',
+        authorize_token: token
+      });
+    const options = { headers: headers };
+    const url = this.authServiceUrl + 'masterJob/getLeadsContacts';
+    if(isAdmin) {
+      return this.httpClient.post(url, {role: 'admin'}, options);
+    } else {
+      return this.httpClient.post(url, '', options);
+    }
+    
+  }
+
+  public logoutApi(token: string) {
     const headers = new HttpHeaders({
       Accept: 'application/json',
       authorize_token: token
     });
     const options = { headers: headers };
-    const url = this.authServiceUrl + 'masterJob/getLeadsContacts';
+    const url = this.authServiceUrl + 'user/logout';
     return this.httpClient.post(url, '', options);
   }
 

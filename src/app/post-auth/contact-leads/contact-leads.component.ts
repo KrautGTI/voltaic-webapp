@@ -6,6 +6,7 @@ import { AllModules } from '@ag-grid-enterprise/all-modules';
 import { LoaderService } from "../../shared/loader/loader.service";
 import { Router } from "@angular/router";
 import Swal from 'sweetalert2';
+import { ThrowStmt } from '@angular/compiler';
 
 @Component({
   selector: 'app-contact-leads',
@@ -37,6 +38,7 @@ export class ContactLeadsComponent implements OnInit {
   paginationNumberFormatter: any;
   sortingOrder: any;
   userDetails: any;
+  isAdmin: boolean = false;
   constructor(
     private genericService: GenericService,
     private loaderService: LoaderService,
@@ -48,26 +50,22 @@ export class ContactLeadsComponent implements OnInit {
     this.userDetails = userData
       ? JSON.parse(userData)
       : null;
+      this.isAdmin = this.userDetails.user_role === 'admin' ? true : false;
     this.loaderService.show();
     this.columnDefs = [
-      {
-        headerName: 'Name',
-        field: 'name',
-        cellStyle: { color: '#212121', 'font-size': '14px', height: '40px', cursor: 'pointer' },
-      },
       {
         headerName: 'City',
         field: 'city',
         cellStyle: { color: '#212121', 'font-size': '14px', height: '40px', cursor: 'pointer' },
       },
       {
-        headerName: 'State',
-        field: 'state',
+        headerName: 'Company',
+        field: 'company',
         cellStyle: { color: '#212121', 'font-size': '14px', height: '40px', cursor: 'pointer' },
       },
       {
-        headerName: 'Zip Code',
-        field: 'zip',
+        headerName: 'Description',
+        field: 'description',
         cellStyle: { color: '#212121', 'font-size': '14px', height: '40px', cursor: 'pointer' },
       },
       {
@@ -76,90 +74,30 @@ export class ContactLeadsComponent implements OnInit {
         cellStyle: { color: '#212121', 'font-size': '14px', height: '40px', cursor: 'pointer' },
       },
       {
-        headerName: 'Office Phone',
-        field: 'office_phone',
+        headerName: 'First Name',
+        field: 'first_name',
         cellStyle: { color: '#212121', 'font-size': '14px', height: '40px', cursor: 'pointer' },
       },
       {
-        headerName: 'SMS Number',
-        field: 'sms_number',
+        headerName: 'Last Name',
+        field: 'last_name',
         cellStyle: { color: '#212121', 'font-size': '14px', height: '40px', cursor: 'pointer' },
       },
       {
-        headerName: 'Candidate Status',
-        field: 'candidate_status',
+        headerName: 'State',
+        field: 'state',
         cellStyle: { color: '#212121', 'font-size': '14px', height: '40px', cursor: 'pointer' },
       },
       {
-        headerName: 'Candidate Source',
-        field: 'candidate_source',
+        headerName: 'Street',
+        field: 'street',
         cellStyle: { color: '#212121', 'font-size': '14px', height: '40px', cursor: 'pointer' },
       },
       {
-        headerName: 'Date Added',
-        field: 'date',
+        headerName: 'Zip Code',
+        field: 'zip_code',
         cellStyle: { color: '#212121', 'font-size': '14px', height: '40px', cursor: 'pointer' },
-      },
-      {
-        headerName: 'APC:Position',
-        field: 'APC_Position',
-        cellStyle: { color: '#212121', 'font-size': '14px', height: '40px', cursor: 'pointer' },
-      },
-      {
-        headerName: 'APS:Position',
-        field: 'APS_Position',
-        cellStyle: { color: '#212121', 'font-size': '14px', height: '40px', cursor: 'pointer' },
-      },
-      {
-        headerName: 'Established Relationship',
-        field: 'Established_Relationships',
-        cellStyle: { color: '#212121', 'font-size': '14px', height: '40px' },
-      },
-      {
-        headerName: 'Last Activity',
-        field: 'Last_Activity',
-        cellStyle: { color: '#212121', 'font-size': '14px', height: '40px' },
-      },
-      {
-        headerName: 'Contact 1 Signed',
-        field: 'Contract_1_Signed',
-        cellStyle: { color: '#212121', 'font-size': '14px', height: '40px' },
-      },
-      {
-        headerName: 'Signature Date Contact 1',
-        field: 'Signature_Date_Contract_1',
-        cellStyle: { color: '#212121', 'font-size': '14px', height: '40px' },
-      },
-      {
-        headerName: 'Contact 2 Signed',
-        field: 'Contract_2_Signature',
-        cellStyle: { color: '#212121', 'font-size': '14px', height: '40px' },
-      },
-      {
-        headerName: 'Signature Date Contact 2',
-        field: 'Signature_Date_Contract_2',
-        cellStyle: { color: '#212121', 'font-size': '14px', height: '40px' },
-      },
-      {
-        headerName: 'APC:Recruit Stage',
-        field: 'APC_Recruit_Stage',
-        cellStyle: { color: '#212121', 'font-size': '14px', height: '40px' },
-      },
-      {
-        headerName: 'APS:Recruit Stage',
-        field: 'APS_Recruit_Stage',
-        cellStyle: { color: '#212121', 'font-size': '14px', height: '40px' },
-      },
-      {
-        headerName: 'APH:Recruit Stage',
-        field: 'APH_Recruit_Stage',
-        cellStyle: { color: '#212121', 'font-size': '14px', height: '40px' },
-      },
-      {
-        headerName: 'Executives Consulting Experience',
-        field: 'Executives_Consulting_Experience',
-        cellStyle: { color: '#212121', 'font-size': '14px', height: '40px' },
-      },
+      }
     ];
     this.defaultColDef = {
       sortable: true,
@@ -228,12 +166,22 @@ export class ContactLeadsComponent implements OnInit {
     //         });
     //     }); 
     // } else {
-      this.genericService.getLeadContacts(this.userDetails.authorize_token).subscribe((userList: any) => {
+      this.genericService.getLeadContacts(this.userDetails.authorize_token, this.isAdmin).subscribe((userList: any) => {
         console.log(userList);
-        this.manageUserList = userList.data;
-        this.rowData = this.manageUserList;
-        this.loaderService.hide();
-        this.sizeToFit();
+        if(userList.message){
+          this.manageUserList = userList.message;
+          this.rowData = this.manageUserList;
+          this.loaderService.hide();
+          this.sizeToFit();
+        } else if(userList.error.name === 'TokenExpiredError'){
+          const errMsg = "Session Expired !! Please login again.";
+          Swal.fire({
+            text: errMsg, icon: 'error', confirmButtonColor: '#00bcd4',
+            confirmButtonText: 'OK'
+          }).then(res => {
+            this.logout();
+          });
+        }
       }, (error) => {
           this.loaderService.hide();
           const errMsg = "Unable To fetch data. Please try again.";
@@ -243,6 +191,13 @@ export class ContactLeadsComponent implements OnInit {
           });
       });
     // }
+  }
+  logout() {
+    this.genericService.logoutApi(this.userDetails.authorize_token).subscribe((data: any) => { 
+      console.log(data);
+      sessionStorage.clear();
+      this.router.navigate(['/login']);
+    });
   }
 }
 

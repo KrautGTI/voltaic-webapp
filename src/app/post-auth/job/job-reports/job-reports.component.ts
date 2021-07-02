@@ -37,6 +37,7 @@ export class JobReportsComponent implements OnInit {
   paginationNumberFormatter: any;
   sortingOrder: any;
   userDetails: any;
+  isAdmin: boolean = false;
   constructor(
     private genericService: GenericService,
     private loaderService: LoaderService,
@@ -48,116 +49,141 @@ export class JobReportsComponent implements OnInit {
     this.userDetails = userData
       ? JSON.parse(userData)
       : null;
+    this.isAdmin = this.userDetails.user_role === 'admin' ? true : false;
     this.loaderService.show();
     this.columnDefs = [
       {
-        headerName: 'Name',
-        field: 'name',
-        cellStyle: { color: '#212121', 'font-size': '14px', height: '40px', cursor: 'pointer' },
-      },
-      {
         headerName: 'City',
-        field: 'city',
+        field: 'address_city',
         cellStyle: { color: '#212121', 'font-size': '14px', height: '40px', cursor: 'pointer' },
       },
       {
-        headerName: 'State',
-        field: 'state',
+        headerName: 'Company',
+        field: 'company',
         cellStyle: { color: '#212121', 'font-size': '14px', height: '40px', cursor: 'pointer' },
       },
       {
-        headerName: 'Zip Code',
-        field: 'zip',
+        headerName: 'Contract Amount',
+        field: 'contract_amount',
         cellStyle: { color: '#212121', 'font-size': '14px', height: '40px', cursor: 'pointer' },
       },
       {
-        headerName: 'Email',
-        field: 'email',
+        headerName: 'CRM',
+        field: 'crm',
         cellStyle: { color: '#212121', 'font-size': '14px', height: '40px', cursor: 'pointer' },
       },
       {
-        headerName: 'Office Phone',
-        field: 'office_phone',
+        headerName: 'Engineering',
+        field: 'engineering',
+        cellStyle: { color: '#212121', 'font-size': '14px', height: '40px', cursor: 'pointer' },
+        cellRenderer: (params: any) => {
+         return params.value;
+        }
+      },
+      {
+        headerName: 'Inspection',
+        field: 'inspection',
+        cellStyle: { color: '#212121', 'font-size': '14px', height: '40px', cursor: 'pointer' },
+        cellRenderer: (params: any) => {
+          return params.value;
+         }
+      },
+      {
+        headerName: 'Installation',
+        field: 'installation',
+        cellStyle: { color: '#212121', 'font-size': '14px', height: '40px', cursor: 'pointer' },
+        cellRenderer: (params: any) => {
+          return params.value;
+         }
+      },
+      {
+        headerName: 'job Acceptance Status',
+        field: 'job_acceptance_status',
+        cellStyle: { color: '#212121', 'font-size': '14px', height: '40px', cursor: 'pointer' },
+        cellRenderer: (params: any) => {
+          return params.value;
+         }
+      },
+      {
+        headerName: 'Job Name',
+        field: 'job_name',
         cellStyle: { color: '#212121', 'font-size': '14px', height: '40px', cursor: 'pointer' },
       },
       {
-        headerName: 'SMS Number',
-        field: 'sms_number',
+        headerName: 'Market',
+        field: 'market',
         cellStyle: { color: '#212121', 'font-size': '14px', height: '40px', cursor: 'pointer' },
       },
       {
-        headerName: 'Candidate Status',
-        field: 'candidate_status',
+        headerName: 'Phone',
+        field: 'phone',
         cellStyle: { color: '#212121', 'font-size': '14px', height: '40px', cursor: 'pointer' },
       },
       {
-        headerName: 'Candidate Source',
-        field: 'candidate_source',
+        headerName: 'PTO',
+        field: 'pto',
         cellStyle: { color: '#212121', 'font-size': '14px', height: '40px', cursor: 'pointer' },
+        cellRenderer: (params: any) => {
+          return params.value;
+         }
       },
+      // {
+      //   headerName: 'PV Planset',
+      //   field: 'pv_planset',
+      //   cellStyle: { color: '#212121', 'font-size': '14px', height: '40px' },
+      // },
       {
-        headerName: 'Date Added',
-        field: 'date',
-        cellStyle: { color: '#212121', 'font-size': '14px', height: '40px', cursor: 'pointer' },
-      },
-      {
-        headerName: 'APC:Position',
-        field: 'APC_Position',
-        cellStyle: { color: '#212121', 'font-size': '14px', height: '40px', cursor: 'pointer' },
-      },
-      {
-        headerName: 'APS:Position',
-        field: 'APS_Position',
-        cellStyle: { color: '#212121', 'font-size': '14px', height: '40px', cursor: 'pointer' },
-      },
-      {
-        headerName: 'Established Relationship',
-        field: 'Established_Relationships',
+        headerName: 'Related Rep',
+        field: 'related_rep',
         cellStyle: { color: '#212121', 'font-size': '14px', height: '40px' },
       },
       {
-        headerName: 'Last Activity',
-        field: 'Last_Activity',
+        headerName: 'Site Inspection',
+        field: 'site_inspection',
+        cellStyle: { color: '#212121', 'font-size': '14px', height: '40px' },
+        cellRenderer: (params: any) => {
+          return params.value;
+         }
+      },
+      {
+        headerName: 'Utility Company',
+        field: 'utility_company',
         cellStyle: { color: '#212121', 'font-size': '14px', height: '40px' },
       },
       {
-        headerName: 'Contact 1 Signed',
-        field: 'Contract_1_Signed',
+        headerName: 'System Size',
+        field: 'system_size',
         cellStyle: { color: '#212121', 'font-size': '14px', height: '40px' },
       },
       {
-        headerName: 'Signature Date Contact 1',
-        field: 'Signature_Date_Contract_1',
+        headerName: 'Team',
+        field: 'team',
         cellStyle: { color: '#212121', 'font-size': '14px', height: '40px' },
       },
       {
-        headerName: 'Contact 2 Signed',
-        field: 'Contract_2_Signature',
+        headerName: 'Phase',
+        field: 'phase',
         cellStyle: { color: '#212121', 'font-size': '14px', height: '40px' },
+        cellRenderer: (params: any) => {
+          return params.value;
+         }
+      },
+      // {
+      //   headerName: 'Permit Card',
+      //   field: 'permit_card',
+      //   cellStyle: { color: '#212121', 'font-size': '14px', height: '40px' },
+      // },
+      {
+        headerName: 'Permit',
+        field: 'permit',
+        cellStyle: { color: '#212121', 'font-size': '14px', height: '40px' },
+        cellRenderer: (params: any) => {
+          return params.value;
+         }
       },
       {
-        headerName: 'Signature Date Contact 2',
-        field: 'Signature_Date_Contract_2',
-        cellStyle: { color: '#212121', 'font-size': '14px', height: '40px' },
-      },
-      {
-        headerName: 'APC:Recruit Stage',
-        field: 'APC_Recruit_Stage',
-        cellStyle: { color: '#212121', 'font-size': '14px', height: '40px' },
-      },
-      {
-        headerName: 'APS:Recruit Stage',
-        field: 'APS_Recruit_Stage',
-        cellStyle: { color: '#212121', 'font-size': '14px', height: '40px' },
-      },
-      {
-        headerName: 'APH:Recruit Stage',
-        field: 'APH_Recruit_Stage',
-        cellStyle: { color: '#212121', 'font-size': '14px', height: '40px' },
-      },
-      {
-        headerName: 'Executives Consulting Experience',
-        field: 'Executives_Consulting_Experience',
+        headerName: 'Lender New',
+        field: 'lender_new',
         cellStyle: { color: '#212121', 'font-size': '14px', height: '40px' },
       },
     ];
@@ -228,12 +254,22 @@ export class JobReportsComponent implements OnInit {
     //         });
     //     }); 
     // } else {
-      this.genericService.getJobReports(this.userDetails.authorize_token).subscribe((reportList: any) => {
+      this.genericService.getJobReports(this.userDetails.authorize_token, this.isAdmin).subscribe((reportList: any) => {
         console.log(reportList);
-        this.jobReportList = reportList.data;
+        if(reportList.message){
+        this.jobReportList = reportList.message;
         this.rowData = this.jobReportList;
         this.loaderService.hide();
         this.sizeToFit();
+      }  else if(reportList.error.name === 'TokenExpiredError'){
+        const errMsg = "Session Expired !! Please login again.";
+        Swal.fire({
+          text: errMsg, icon: 'error', confirmButtonColor: '#00bcd4',
+          confirmButtonText: 'OK'
+        }).then(res => {
+          this.logout();
+        });
+      }
       }, (error) => {
           this.loaderService.hide();
           const errMsg = "Unable To fetch data. Please try again.";
@@ -243,6 +279,14 @@ export class JobReportsComponent implements OnInit {
           });
       });
     // }
+  }
+
+  logout() {
+    this.genericService.logoutApi(this.userDetails.authorize_token).subscribe((data: any) => { 
+      console.log(data);
+      sessionStorage.clear();
+      this.router.navigate(['/login']);
+    });
   }
 }
 

@@ -53,6 +53,11 @@ export class ManageUsersComponent implements OnInit {
     this.loaderService.show();
     this.columnDefs = [
       {
+        headerName: 'Name',
+        field: 'name',
+        cellStyle: { color: '#212121', 'font-size': '14px', height: '40px', cursor: 'pointer' },
+      },
+      {
         headerName: 'Date Of Birth',
         field: 'date_of_birth',
         cellStyle: { color: '#212121', 'font-size': '14px', height: '40px', cursor: 'pointer' },
@@ -65,11 +70,6 @@ export class ManageUsersComponent implements OnInit {
       {
         headerName: 'Mobile No.',
         field: 'mobile',
-        cellStyle: { color: '#212121', 'font-size': '14px', height: '40px', cursor: 'pointer' },
-      },
-      {
-        headerName: 'Name',
-        field: 'name',
         cellStyle: { color: '#212121', 'font-size': '14px', height: '40px', cursor: 'pointer' },
       },
       {
@@ -160,7 +160,7 @@ export class ManageUsersComponent implements OnInit {
         }  else if(userList.error.name === 'TokenExpiredError'){
           const errMsg = "Session Expired !! Please login again.";
           Swal.fire({
-            text: errMsg, icon: 'error', confirmButtonColor: '#00bcd4',
+            text: errMsg, icon: 'error', confirmButtonColor: '#A239CA',
             confirmButtonText: 'OK'
           }).then(res => {
             this.logout();
@@ -170,7 +170,7 @@ export class ManageUsersComponent implements OnInit {
           this.loaderService.hide();
           const errMsg = "Unable To fetch data. Please try again.";
           Swal.fire({
-            text: errMsg, icon: 'error', confirmButtonColor: '#00bcd4',
+            text: errMsg, icon: 'error', confirmButtonColor: '#A239CA',
             confirmButtonText: 'OK'
           });
       });

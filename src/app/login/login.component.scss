@@ -1,6 +1,6 @@
 @import "../../styles";
 .footer {
-  background-color:#36699e;
+  background-color:#0E0B16;
   padding: 0.7rem 0 0.8rem;
   font-size: 13px;
   letter-spacing: 0.4px;
@@ -14,9 +14,9 @@
 .auth-bg {
 //   background: linear-gradient(to bottom, $color-primary, $color-secondary)
 //     no-repeat center;
-background-image: url('/assets/images/loginBg.jpeg');
+background-image: url('/assets/images/loginBG2.png');
 background-size: cover;
-min-height: calc(100vh - 77px);
+min-height: calc(100vh - 52px);
 }
 .auth-container {
   width: min(380px, 100%);
@@ -101,7 +101,7 @@ min-height: calc(100vh - 77px);
 }
 
 .btn-primary.loginBtn {
-  background-color: #36699e;
+  background-color: #A239CA;
   font-size: 14px;
   padding-left: 30px;
   padding-right: 30px;
@@ -110,7 +110,7 @@ min-height: calc(100vh - 77px);
 }
 
 .forgotPswrd a{
-  color: #248cf9;
+  color: #bc51e8;
     font-size: 15px;
 }
 
@@ -120,4 +120,8 @@ color: #EF5350;
 
 .hiddeneField {
   display:none;
+}
+
+.swal2-styled.swal2-confirm {
+  background-color: #A239CA;
 }

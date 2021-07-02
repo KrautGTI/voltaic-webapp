@@ -12,6 +12,7 @@ import { LoaderService } from '../loader/loader.service';
 export class HeaderComponent implements OnInit {
   @Input() toggleLogo: any;
   userDetails: any;
+  isInit: boolean = false;
   constructor(public router: Router, private genericService: GenericService,
     private loaderService: LoaderService) {}
 
@@ -22,7 +23,7 @@ export class HeaderComponent implements OnInit {
 
   logout() {
     Swal.fire({
-      text: 'Do you want to exit?', icon: 'question', confirmButtonColor: '#00bcd4', position: 'center',
+      text: 'Do you want to exit?', icon: 'question', confirmButtonColor: '#A239CA', position: 'center',
       confirmButtonText: 'Yes', showConfirmButton: true, showCancelButton: true, cancelButtonText: 'No'
     }).then(res => {
       if (res.isConfirmed) {

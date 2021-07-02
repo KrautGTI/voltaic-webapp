@@ -53,8 +53,8 @@ export class JobReportsComponent implements OnInit {
     this.loaderService.show();
     this.columnDefs = [
       {
-        headerName: 'City',
-        field: 'address_city',
+        headerName: 'Job Name',
+        field: 'job_name',
         cellStyle: { color: '#212121', 'font-size': '14px', height: '40px', cursor: 'pointer' },
       },
       {
@@ -63,14 +63,27 @@ export class JobReportsComponent implements OnInit {
         cellStyle: { color: '#212121', 'font-size': '14px', height: '40px', cursor: 'pointer' },
       },
       {
-        headerName: 'Contract Amount',
-        field: 'contract_amount',
+        headerName: 'City',
+        field: 'address_city',
         cellStyle: { color: '#212121', 'font-size': '14px', height: '40px', cursor: 'pointer' },
       },
       {
-        headerName: 'CRM',
-        field: 'crm',
+        headerName: 'Phone',
+        field: 'phone',
         cellStyle: { color: '#212121', 'font-size': '14px', height: '40px', cursor: 'pointer' },
+      },
+      {
+        headerName: 'Contract Amount',
+        field: 'contract_amount',
+        cellStyle: { color: '#212121', 'font-size': '14px', height: '40px', cursor: 'pointer' },
+      }, 
+      {
+        headerName: 'Contract Date',
+        field: 'contract_date',
+        cellStyle: { color: '#212121', 'font-size': '14px', height: '40px', cursor: 'pointer' },
+        cellRenderer: (params: any) => {
+          return params.value.toString();
+         }
       },
       {
         headerName: 'Engineering',
@@ -105,8 +118,8 @@ export class JobReportsComponent implements OnInit {
          }
       },
       {
-        headerName: 'Job Name',
-        field: 'job_name',
+        headerName: 'CRM',
+        field: 'crm',
         cellStyle: { color: '#212121', 'font-size': '14px', height: '40px', cursor: 'pointer' },
       },
       {
@@ -115,9 +128,43 @@ export class JobReportsComponent implements OnInit {
         cellStyle: { color: '#212121', 'font-size': '14px', height: '40px', cursor: 'pointer' },
       },
       {
-        headerName: 'Phone',
-        field: 'phone',
-        cellStyle: { color: '#212121', 'font-size': '14px', height: '40px', cursor: 'pointer' },
+        headerName: 'System Size',
+        field: 'system_size',
+        cellStyle: { color: '#212121', 'font-size': '14px', height: '40px' },
+      },
+      {
+        headerName: 'Team',
+        field: 'team',
+        cellStyle: { color: '#212121', 'font-size': '14px', height: '40px' },
+      },
+      {
+        headerName: 'Lender New',
+        field: 'lender_new',
+        cellStyle: { color: '#212121', 'font-size': '14px', height: '40px' },
+      },
+      {
+        headerName: 'Site Inspection',
+        field: 'site_inspection',
+        cellStyle: { color: '#212121', 'font-size': '14px', height: '40px' },
+        cellRenderer: (params: any) => {
+          return params.value;
+         }
+      },
+      {
+        headerName: 'Permit',
+        field: 'permit',
+        cellStyle: { color: '#212121', 'font-size': '14px', height: '40px' },
+        cellRenderer: (params: any) => {
+          return params.value;
+         }
+      },
+      {
+        headerName: 'Phase',
+        field: 'phase',
+        cellStyle: { color: '#212121', 'font-size': '14px', height: '40px' },
+        cellRenderer: (params: any) => {
+          return params.value;
+         }
       },
       {
         headerName: 'PTO',
@@ -138,54 +185,17 @@ export class JobReportsComponent implements OnInit {
         cellStyle: { color: '#212121', 'font-size': '14px', height: '40px' },
       },
       {
-        headerName: 'Site Inspection',
-        field: 'site_inspection',
-        cellStyle: { color: '#212121', 'font-size': '14px', height: '40px' },
-        cellRenderer: (params: any) => {
-          return params.value;
-         }
-      },
-      {
         headerName: 'Utility Company',
         field: 'utility_company',
         cellStyle: { color: '#212121', 'font-size': '14px', height: '40px' },
-      },
-      {
-        headerName: 'System Size',
-        field: 'system_size',
-        cellStyle: { color: '#212121', 'font-size': '14px', height: '40px' },
-      },
-      {
-        headerName: 'Team',
-        field: 'team',
-        cellStyle: { color: '#212121', 'font-size': '14px', height: '40px' },
-      },
-      {
-        headerName: 'Phase',
-        field: 'phase',
-        cellStyle: { color: '#212121', 'font-size': '14px', height: '40px' },
-        cellRenderer: (params: any) => {
-          return params.value;
-         }
       },
       // {
       //   headerName: 'Permit Card',
       //   field: 'permit_card',
       //   cellStyle: { color: '#212121', 'font-size': '14px', height: '40px' },
       // },
-      {
-        headerName: 'Permit',
-        field: 'permit',
-        cellStyle: { color: '#212121', 'font-size': '14px', height: '40px' },
-        cellRenderer: (params: any) => {
-          return params.value;
-         }
-      },
-      {
-        headerName: 'Lender New',
-        field: 'lender_new',
-        cellStyle: { color: '#212121', 'font-size': '14px', height: '40px' },
-      },
+      
+      
     ];
     this.defaultColDef = {
       sortable: true,
@@ -264,7 +274,7 @@ export class JobReportsComponent implements OnInit {
       }  else if(reportList.error.name === 'TokenExpiredError'){
         const errMsg = "Session Expired !! Please login again.";
         Swal.fire({
-          text: errMsg, icon: 'error', confirmButtonColor: '#00bcd4',
+          text: errMsg, icon: 'error', confirmButtonColor: '#A239CA',
           confirmButtonText: 'OK'
         }).then(res => {
           this.logout();
@@ -274,7 +284,7 @@ export class JobReportsComponent implements OnInit {
           this.loaderService.hide();
           const errMsg = "Unable To fetch data. Please try again.";
           Swal.fire({
-            text: errMsg, icon: 'error', confirmButtonColor: '#00bcd4',
+            text: errMsg, icon: 'error', confirmButtonColor: '#A239CA',
             confirmButtonText: 'OK'
           });
       });

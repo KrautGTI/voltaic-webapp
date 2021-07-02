@@ -78,8 +78,9 @@ export class LoginComponent implements OnInit {
       .subscribe((data) => {
         console.log(data);
         Swal.fire({
-          html: `<p>An OTP Sent to Your Email-id. Please Enter the OTP to Verify.</p><input type="text" id="otp" class="swal2-input" placeholder="Enter OTP">`,
+          html: `<p style="color: #bc51e8; font-size: 16px; margin-top: 20px;">An OTP Sent to Your Email-id. Please Enter the OTP to Verify.</p><input type="text" id="otp" class="swal2-input" placeholder="Enter OTP">`,
           confirmButtonText: 'Validate',
+          confirmButtonColor: '#A239CA',
           focusConfirm: false,
           preConfirm: () => {
             const otpVal = (<HTMLInputElement>Swal?.getPopup()?.querySelector('#otp')).value
@@ -97,7 +98,7 @@ export class LoginComponent implements OnInit {
           .subscribe((data) => {
             if (data) {
               Swal.fire({
-                text: 'Reset Password is Successful.', icon: 'success', confirmButtonColor: '#00bcd4',
+                text: 'Reset Password is Successful.', icon: 'success', confirmButtonColor: '#A239CA',
                 confirmButtonText: 'OK'
               }).then(res => {
                 this.router.navigate(['/login']);
@@ -116,7 +117,7 @@ export class LoginComponent implements OnInit {
           this.isLoginClicked = false;
           if(data.error) {
             Swal.fire({
-              text: data.error, icon: 'error', confirmButtonColor: '#00bcd4',
+              text: data.error, icon: 'error', confirmButtonColor: '#A239CA',
               confirmButtonText: 'OK'
             });
           } else {
@@ -126,14 +127,14 @@ export class LoginComponent implements OnInit {
             //     state: { formResetPassword: true },
             //   });
             // } else {
-              this.router.navigate(['post-auth/dashboard', data.user_loginId]);
+              this.router.navigate(['post-auth/dashboard']);
            // }
            }
         }, (error) => {
             this.loaderService.hide();
             const errMsg = "Unable To Login !! Please, try again..";
             Swal.fire({
-              text: errMsg, icon: 'error', confirmButtonColor: '#00bcd4',
+              text: errMsg, icon: 'error', confirmButtonColor: '#A239CA',
               confirmButtonText: 'OK'
             });
         }); 

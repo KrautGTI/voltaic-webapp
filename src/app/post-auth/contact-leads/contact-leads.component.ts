@@ -54,18 +54,13 @@ export class ContactLeadsComponent implements OnInit {
     this.loaderService.show();
     this.columnDefs = [
       {
-        headerName: 'City',
-        field: 'city',
+        headerName: 'First Name',
+        field: 'first_name',
         cellStyle: { color: '#212121', 'font-size': '14px', height: '40px', cursor: 'pointer' },
       },
       {
-        headerName: 'Company',
-        field: 'company',
-        cellStyle: { color: '#212121', 'font-size': '14px', height: '40px', cursor: 'pointer' },
-      },
-      {
-        headerName: 'Description',
-        field: 'description',
+        headerName: 'Last Name',
+        field: 'last_name',
         cellStyle: { color: '#212121', 'font-size': '14px', height: '40px', cursor: 'pointer' },
       },
       {
@@ -74,13 +69,13 @@ export class ContactLeadsComponent implements OnInit {
         cellStyle: { color: '#212121', 'font-size': '14px', height: '40px', cursor: 'pointer' },
       },
       {
-        headerName: 'First Name',
-        field: 'first_name',
+        headerName: 'Phone No.',
+        field: 'phone',
         cellStyle: { color: '#212121', 'font-size': '14px', height: '40px', cursor: 'pointer' },
       },
       {
-        headerName: 'Last Name',
-        field: 'last_name',
+        headerName: 'City',
+        field: 'city',
         cellStyle: { color: '#212121', 'font-size': '14px', height: '40px', cursor: 'pointer' },
       },
       {
@@ -97,7 +92,47 @@ export class ContactLeadsComponent implements OnInit {
         headerName: 'Zip Code',
         field: 'zip_code',
         cellStyle: { color: '#212121', 'font-size': '14px', height: '40px', cursor: 'pointer' },
-      }
+      },
+      {
+        headerName: 'Company',
+        field: 'company',
+        cellStyle: { color: '#212121', 'font-size': '14px', height: '40px', cursor: 'pointer' },
+      },
+      {
+        headerName: 'Avg. Monthly Bill',
+        field: 'average_monthly_bill',
+        cellStyle: { color: '#212121', 'font-size': '14px', height: '40px', cursor: 'pointer' },
+      },  
+      {
+        headerName: 'Description',
+        field: 'description',
+        cellStyle: { color: '#212121', 'font-size': '14px', height: '40px', cursor: 'pointer' },
+      },
+      {
+        headerName: 'Owner',
+        field: 'ownerName',
+        cellStyle: { color: '#212121', 'font-size': '14px', height: '40px', cursor: 'pointer' },
+      },
+      {
+        headerName: 'Owner Email',
+        field: 'ownerEmail',
+        cellStyle: { color: '#212121', 'font-size': '14px', height: '40px', cursor: 'pointer' },
+      },
+      {
+        headerName: 'Lead Source',
+        field: 'master_lead_source_id',
+        cellStyle: { color: '#212121', 'font-size': '14px', height: '40px', cursor: 'pointer' },
+      },
+      {
+        headerName: 'Lead Status',
+        field: 'master_lead_status',
+        cellStyle: { color: '#212121', 'font-size': '14px', height: '40px', cursor: 'pointer' },
+      },
+      {
+        headerName: 'Energy Consultant',
+        field: 'master_energy_consultant_id',
+        cellStyle: { color: '#212121', 'font-size': '14px', height: '40px', cursor: 'pointer' },
+      }   
     ];
     this.defaultColDef = {
       sortable: true,
@@ -176,7 +211,7 @@ export class ContactLeadsComponent implements OnInit {
         } else if(userList.error.name === 'TokenExpiredError'){
           const errMsg = "Session Expired !! Please login again.";
           Swal.fire({
-            text: errMsg, icon: 'error', confirmButtonColor: '#00bcd4',
+            text: errMsg, icon: 'error', confirmButtonColor: '#A239CA',
             confirmButtonText: 'OK'
           }).then(res => {
             this.logout();
@@ -186,7 +221,7 @@ export class ContactLeadsComponent implements OnInit {
           this.loaderService.hide();
           const errMsg = "Unable To fetch data. Please try again.";
           Swal.fire({
-            text: errMsg, icon: 'error', confirmButtonColor: '#00bcd4',
+            text: errMsg, icon: 'error', confirmButtonColor: '#A239CA',
             confirmButtonText: 'OK'
           });
       });

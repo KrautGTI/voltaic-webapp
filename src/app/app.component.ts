@@ -21,7 +21,7 @@ export class AppComponent implements OnInit {
   }
   @HostListener('window:popstate', ['$event'])
   onPopState(event: any) {
-    if(location.href.slice(location.href.length-5,location.href.length)=='login')
+    if (location.href.search('login') > 0)
       history.forward();
   }
 }

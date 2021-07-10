@@ -77,14 +77,14 @@ export class JobReportsComponent implements OnInit {
         field: 'contract_amount',
         cellStyle: { color: '#212121', 'font-size': '14px', height: '40px', cursor: 'pointer' },
       }, 
-      {
-        headerName: 'Contract Date',
-        field: 'contract_date',
-        cellStyle: { color: '#212121', 'font-size': '14px', height: '40px', cursor: 'pointer' },
-        cellRenderer: (params: any) => {
-          return params.value.toString();
-         }
-      },
+      // {
+      //   headerName: 'Contract Date',
+      //   field: 'contract_date',
+      //   cellStyle: { color: '#212121', 'font-size': '14px', height: '40px', cursor: 'pointer' },
+      //   cellRenderer: (params: any) => {
+      //     return params.value.toString();
+      //    }
+      // },
       {
         headerName: 'Engineering',
         field: 'engineering',
@@ -246,24 +246,6 @@ export class JobReportsComponent implements OnInit {
   onGridReady(params: any) {
     this.gridApi = params.api;
     this.gridColumnApi = params.columnApi;
-    // if (this.genericService.hasSVPAccess(this.userDetails.role)) {
-    //   this.genericService
-    //     .contactsByOwner(this.userDetails.id, this.userDetails.access_token)
-    //     .subscribe((clientList: any) => {
-    //       console.log(clientList);
-    //       this.contactList = clientList.data;
-    //       this.rowData = this.contactList;
-    //       this.loaderService.hide();
-    //       this.sizeToFit();
-    //     }, (error) => {
-    //         this.loaderService.hide();
-    //         const errMsg = "Unable To fetch data. Please try again.";
-    //         Swal.fire({
-    //           text: errMsg, icon: 'error', confirmButtonColor: '#00bcd4',
-    //           confirmButtonText: 'OK'
-    //         });
-    //     }); 
-    // } else {
       this.genericService.getJobReports(this.userDetails.authorize_token, this.isAdmin).subscribe((reportList: any) => {
         console.log(reportList);
         if(reportList.message){
@@ -295,7 +277,9 @@ export class JobReportsComponent implements OnInit {
     this.genericService.logoutApi(this.userDetails.authorize_token).subscribe((data: any) => { 
       console.log(data);
       sessionStorage.clear();
-      this.router.navigate(['/login']);
+      this.router.navigate(['/login'], {
+        replaceUrl: true
+      });
     });
   }
 }

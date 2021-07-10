@@ -1,3 +1,4 @@
 export const environment = {
-  production: false
+  production: false,
+  apiBaseUrl: 'https://voltaic.bigmarvconsulting.com/jsonapi/'
 };

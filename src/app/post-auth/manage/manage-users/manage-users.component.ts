@@ -132,24 +132,6 @@ export class ManageUsersComponent implements OnInit {
   onGridReady(params: any) {
     this.gridApi = params.api;
     this.gridColumnApi = params.columnApi;
-    // if (this.genericService.hasSVPAccess(this.userDetails.role)) {
-    //   this.genericService
-    //     .contactsByOwner(this.userDetails.id, this.userDetails.access_token)
-    //     .subscribe((clientList: any) => {
-    //       console.log(clientList);
-    //       this.contactList = clientList.data;
-    //       this.rowData = this.contactList;
-    //       this.loaderService.hide();
-    //       this.sizeToFit();
-    //     }, (error) => {
-    //         this.loaderService.hide();
-    //         const errMsg = "Unable To fetch data. Please try again.";
-    //         Swal.fire({
-    //           text: errMsg, icon: 'error', confirmButtonColor: '#00bcd4',
-    //           confirmButtonText: 'OK'
-    //         });
-    //     }); 
-    // } else {
       this.genericService.getAllUsers(this.userDetails.authorize_token, this.isAdmin).subscribe((userList: any) => {
         console.log(userList);
         if(userList.message){
@@ -181,7 +163,9 @@ export class ManageUsersComponent implements OnInit {
     this.genericService.logoutApi(this.userDetails.authorize_token).subscribe((data: any) => { 
       console.log(data);
       sessionStorage.clear();
-      this.router.navigate(['/login']);
+      this.router.navigate(['/login'], {
+        replaceUrl: true
+      });
     });
   }
 }

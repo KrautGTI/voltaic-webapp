@@ -39,6 +39,7 @@ export class ContactLeadsComponent implements OnInit {
   sortingOrder: any;
   userDetails: any;
   isAdmin: boolean = false;
+  
   constructor(
     private genericService: GenericService,
     private loaderService: LoaderService,
@@ -50,7 +51,7 @@ export class ContactLeadsComponent implements OnInit {
     this.userDetails = userData
       ? JSON.parse(userData)
       : null;
-      this.isAdmin = this.userDetails.user_role === 'admin' ? true : false;
+    this.isAdmin = this.userDetails.user_role === 'admin' ? true : false;
     this.loaderService.show();
     this.columnDefs = [
       {
@@ -183,24 +184,6 @@ export class ContactLeadsComponent implements OnInit {
   onGridReady(params: any) {
     this.gridApi = params.api;
     this.gridColumnApi = params.columnApi;
-    // if (this.genericService.hasSVPAccess(this.userDetails.role)) {
-    //   this.genericService
-    //     .contactsByOwner(this.userDetails.id, this.userDetails.access_token)
-    //     .subscribe((clientList: any) => {
-    //       console.log(clientList);
-    //       this.contactList = clientList.data;
-    //       this.rowData = this.contactList;
-    //       this.loaderService.hide();
-    //       this.sizeToFit();
-    //     }, (error) => {
-    //         this.loaderService.hide();
-    //         const errMsg = "Unable To fetch data. Please try again.";
-    //         Swal.fire({
-    //           text: errMsg, icon: 'error', confirmButtonColor: '#00bcd4',
-    //           confirmButtonText: 'OK'
-    //         });
-    //     }); 
-    // } else {
       this.genericService.getLeadContacts(this.userDetails.authorize_token, this.isAdmin).subscribe((userList: any) => {
         console.log(userList);
         if(userList.message){
@@ -231,7 +214,9 @@ export class ContactLeadsComponent implements OnInit {
     this.genericService.logoutApi(this.userDetails.authorize_token).subscribe((data: any) => { 
       console.log(data);
       sessionStorage.clear();
-      this.router.navigate(['/login']);
+      this.router.navigate(['/login'], {
+        replaceUrl: true
+      });
     });
   }
 }

@@ -7,8 +7,7 @@ import { environment } from '../../environments/environment';
   providedIn: 'root',
 })
 export class GenericService {
-  //authServiceUrl = environment.apiBaseUrl;
-  authServiceUrl = 'http://voltaic.bigmarvconsulting.com/jsonapi/';
+  authServiceUrl = environment.apiBaseUrl;
   userDetails: any;
   constructor(private httpClient: HttpClient) {}
 
@@ -46,11 +45,7 @@ export class GenericService {
     });
     const options = { headers: headers };
     const url = this.authServiceUrl + 'masterJob/masterJobs';
-    // if(isAdmin) {
-    //   return this.httpClient.post(url, {role: 'admin'}, options);
-    // } else {
       return this.httpClient.post(url, '', options);
-    //}
   }
 
   public getAllUsers(token: string, isAdmin: boolean) {
@@ -61,11 +56,7 @@ export class GenericService {
     
     const options = { headers: headers };
     const url = this.authServiceUrl + 'masterJob/getAllUsers';
-    // if(isAdmin) {
-    //   return this.httpClient.post(url, {role: 'admin'}, options);
-    // } else {
       return this.httpClient.post(url, '', options);
-   // }
   }
 
   public getLeadContacts(token: string, isAdmin: boolean) {
@@ -91,6 +82,24 @@ export class GenericService {
     const options = { headers: headers };
     const url = this.authServiceUrl + 'user/logout';
     return this.httpClient.post(url, '', options);
+  }
+
+  public getRoles() {
+    const headers = new HttpHeaders({
+      Accept: 'application/json',
+    });  
+    const options = { headers: headers };
+    const url = this.authServiceUrl + 'user/getRole';
+      return this.httpClient.get(url, options);
+  }
+
+  public registerUser(registerData: any) {
+    const headers = new HttpHeaders({
+      Accept: 'application/json',
+    });
+    const options = { headers: headers };
+    const url = this.authServiceUrl + 'user/addUser';
+    return this.httpClient.post(url, registerData, options);
   }
 
 }

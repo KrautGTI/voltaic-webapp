@@ -32,7 +32,9 @@ export class HeaderComponent implements OnInit {
           .logoutApi(this.userDetails.authorize_token)
           .subscribe((data: any) => {
             sessionStorage.clear();
-            this.router.navigate(['/login']);
+            this.router.navigate(['/login'], {
+              replaceUrl: true
+            });
           },error => {
             this.loaderService.hide();
           });

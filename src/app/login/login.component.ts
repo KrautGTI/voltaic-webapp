@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 import { Router } from '@angular/router';
 import { tap } from 'rxjs/operators';
 import { GenericService } from '../service/generic.service';
 import { LoaderService } from '../shared/loader/loader.service';
 import Swal from 'sweetalert2';
+import { JwtHelperService } from "@auth0/angular-jwt";
 
 @Component({
   selector: 'app-login',
@@ -24,10 +25,14 @@ export class LoginComponent implements OnInit {
   constructor(
     private router: Router,
     private loaderService: LoaderService,
-    private genericService: GenericService
+    private genericService: GenericService,
+    private jwtHelperService : JwtHelperService
   ) {}
 
   ngOnInit(): void {
+    if(this.router.url.includes('login')){
+      history.pushState(false, '', null);
+    }
     this.loaderService.hide();
     this.isForgotPassword = history?.state?.formResetPassword;
     this.buttonName = this.isForgotPassword ? 'Reset Password' : 'Login';
@@ -35,13 +40,12 @@ export class LoginComponent implements OnInit {
      const userData = sessionStorage.getItem('user');
      this.userDetails = userData ? JSON.parse(userData) : null;
     } else {
-      this.router.navigate(['/']);
+     this.router.navigate(['/']);
     }
   }
 
   loginUser(loginForm: any) {
     this.isLoginClicked = true;
-
     if(this.isForgotPassword) {
       this.passwordFormValue = loginForm.form.value;
       console.log(this.passwordFormValue);
@@ -52,6 +56,7 @@ export class LoginComponent implements OnInit {
         this.isPasswordMatched = false;
         return;
       } else {
+        this.loaderService.show();
         this.isPasswordMatched = true;
         this.passwordFormData = {
           name: this.passwordFormValue?.fullname,
@@ -64,14 +69,13 @@ export class LoginComponent implements OnInit {
       if(!this.loginFormValue?.email || !this.loginFormValue?.password) {
         return;
       } else {
+        this.loaderService.show();
         this.loginFormData = {
           email: this.loginFormValue?.email,
           password: this.loginFormValue?.password
         }
       }
     }
-    console.log('ipsi')
-    this.loaderService.show();
     if (this.isForgotPassword) {
       this.genericService.generateOTP({email: this.passwordFormValue?.email})
       .pipe(tap(() => this.loaderService.hide()))
@@ -90,6 +94,7 @@ export class LoginComponent implements OnInit {
             return { otp: otpVal }
           }
         }).then((result) => {
+          this.loaderService.show();
           this.passwordFormData['otp'] = result?.value?.otp;
           console.log(this.passwordFormData);
           this.genericService
@@ -101,8 +106,11 @@ export class LoginComponent implements OnInit {
                 text: 'Reset Password is Successful.', icon: 'success', confirmButtonColor: '#A239CA',
                 confirmButtonText: 'OK'
               }).then(res => {
-                this.router.navigate(['/login']);
-              });;
+                this.loaderService.show();
+                this.router.navigate(['/login'], {
+                  replaceUrl: true
+                });
+              });
             }
           });
         });
@@ -121,14 +129,18 @@ export class LoginComponent implements OnInit {
               confirmButtonText: 'OK'
             });
           } else {
-            sessionStorage.setItem('user', JSON.stringify(data));
-            // if (data.is_first_access === 'Y') {
-            //   this.router.navigate(['reset-password'], {
-            //     state: { formResetPassword: true },
-            //   });
-            // } else {
-              this.router.navigate(['post-auth/dashboard']);
-           // }
+            //sessionStorage.setItem('user', JSON.stringify(data));
+             const decodedToken = this.jwtHelperService.decodeToken(data.enz);
+             const userDetails = {
+              authorize_token: decodedToken.login_id.authorize_token,
+              user_name: decodedToken.login_id.user_name,
+              user_role: decodedToken.login_id.user_role
+             };
+             sessionStorage.setItem('user', JSON.stringify(userDetails));
+            //  sessionStorage.setItem('token', decodedToken.login_id.authorize_token);
+            //  sessionStorage.setItem('userName', decodedToken.login_id.user_name);
+            //  sessionStorage.setItem('role', decodedToken.login_id.user_role);
+             this.router.navigate(['post-auth/dashboard']);
            }
         }, (error) => {
             this.loaderService.hide();
@@ -138,7 +150,6 @@ export class LoginComponent implements OnInit {
               confirmButtonText: 'OK'
             });
         }); 
-    // }
   }
 }
 
@@ -149,4 +160,10 @@ forgotPassword() {
   });
 }
 
+@HostListener('window:popstate', ['$event'])
+onPopState(event: any) {
+  if(this.router.url.includes('login')){
+    history.pushState(null, '', null);
+  }
+}
 }

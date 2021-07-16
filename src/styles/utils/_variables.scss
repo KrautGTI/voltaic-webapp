@@ -1,0 +1,73 @@
+//COLORS
+$color-primary: exist(
+  map-get(map-get($variable, "colors"), "primary"),
+  #7bcae2
+);
+
+$color-secondary: exist(
+  map-get(map-get($variable, "colors"), "secondary"),
+  #36699e
+);
+$color-secondary-light: exist(
+  map-get(map-get($variable, "colors"), "light-secondary"),
+  #666699
+);
+
+$color-cream: #f2f2f2;
+$color-base: #000c19;
+$color-navbg: #fcfcfc;
+$color-border: #e0e0e0;
+$color-green: #18c671;
+
+$color-white: #ffffff;
+$color-white-trans-2: rgba(255, 255, 255, 0.2);
+$color-black-trans-1: rgba(0, 0, 0, 0.1);
+$color-black-trans-2: rgba(0, 0, 0, 0.2);
+$color-black-trans-4: rgba(0, 0, 0, 0.4);
+$color-grey-dark: exist(
+  map-get(map-get($variable, "colors"), "dark-grey"),
+  #6f6f6f
+);
+$color-grey: exist(map-get(map-get($variable, "colors"), "gray"), #adadad);
+$color-grey-light: exist(
+  map-get(map-get($variable, "colors"), "light-grey"),
+  #336666
+);
+// e6efef
+
+$text-black: exist(map-get(map-get($variable, "colors"), text-black), #333333);
+$text-secondary: exist(
+  map-get(map-get($variable, "colors"), "dark-grey"),
+  #6f6f6f
+);
+$text-disabled: #adadad;
+$disabled-control: #e9ecef;
+
+$color-success: exist(
+  map-get(map-get($variable, "colors"), "success"),
+  #388e3c
+);
+$color-success-light: #d6ffd7;
+$color-error: exist(map-get(map-get($variable, "colors"), "error"), #ef5350);
+$color-error-light: #fbd9d9;
+
+$color-secondary-menu: #294874;
+$color-menu-border: rgba(255, 255, 255, 0.2);
+$color-input-border: #7ecce4;
+$color-input-backgrnd: #f6fcfe;
+
+// FONT
+$font-primary: exist(map-get($variable, "font-primary"), sans-serif);
+
+$txt-8: rem(11);
+$txt-12: rem(12);
+$txt-14: rem(14);
+$txt-16: rem(16);
+$txt-18: rem(18);
+$txt-20: rem(20);
+$txt-24: rem(24);
+$txt-32: rem(32);
+$txt-36: rem(36);
+$txt-42: rem(42);
+$txt-54: rem(52);
+$txt-64: rem(64);

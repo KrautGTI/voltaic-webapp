@@ -1,0 +1,24 @@
+
+<div class="midSection">
+    <div class="sidebar shadow">
+        <app-sidenav (menuClicked)="toggleHeaderLogo($event)"></app-sidenav> 
+    </div>
+    <div class="contentDivNew" [ngClass]="{'contentDiv' : toggleLogoEvent}" id="contentDiv">
+        <app-header [toggleLogo]="toggleLogoEvent"></app-header>
+        <div class="rightContentDiv">
+            <div class="breadcrumbDiv" *ngIf="!isDashboard">
+                <ul class="breadcrumb">
+                    <li><a>Dashboard</a></li>
+                    <li><a>{{urlname}}</a></li>
+                    <li></li>
+                </ul>
+            </div>
+        <router-outlet></router-outlet>
+        </div>
+    </div>
+</div>
+<div class="footerDiv">
+    <app-footer></app-footer> 
+</div>
+
+    

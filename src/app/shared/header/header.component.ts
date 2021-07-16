@@ -28,7 +28,13 @@ export class HeaderComponent implements OnInit {
     }).then(res => {
       if (res.isConfirmed) {
         this.loaderService.show();
-        this.genericService
+        if(!this.userDetails?.authorize_token) {
+          sessionStorage.clear();
+            this.router.navigate(['/login'], {
+              replaceUrl: true
+            });
+        } else {
+          this.genericService
           .logoutApi(this.userDetails.authorize_token)
           .subscribe((data: any) => {
             sessionStorage.clear();
@@ -38,6 +44,8 @@ export class HeaderComponent implements OnInit {
           },error => {
             this.loaderService.hide();
           });
+        }
+        
         }
     });
   }

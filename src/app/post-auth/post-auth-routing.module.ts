@@ -23,9 +23,19 @@ const routes: Routes = [
           import('./manage/manage.module').then((m) => m.ManageModule),
       },
       {
-        path: 'contact-leads',
+        path: 'leads',
         loadChildren: () =>
           import('./contact-leads/contact-leads.module').then((m) => m.ContactLeadsModule),
+      },
+      {
+        path: 'contacts',
+        loadChildren: () =>
+          import('./contacts/contacts.module').then((m) => m.ContactsModule),
+      },
+      {
+        path: 'accounts',
+        loadChildren: () =>
+          import('./account/account.module').then((m) => m.AccountModule),
       },
     ]
   },

@@ -11,33 +11,41 @@ import { LoaderService } from '../loader/loader.service';
 })
 export class HeaderComponent implements OnInit {
   @Input() toggleLogo: any;
-  //userDetails;
+  userDetails: any;
+  isInit: boolean = false;
   constructor(public router: Router, private genericService: GenericService,
     private loaderService: LoaderService) {}
 
   ngOnInit(): void {
-    // const details = sessionStorage.getItem('user');
-    // this.userDetails = details ? JSON.parse(details) : '';
+    let userData = sessionStorage.getItem('user');
+    this.userDetails = userData ? JSON.parse(userData) : '';
   }
 
   logout() {
     Swal.fire({
-      text: 'Do you want to exit?', icon: 'question', confirmButtonColor: '#00bcd4', position: 'center',
+      text: 'Do you want to exit?', icon: 'question', confirmButtonColor: '#A239CA', position: 'center',
       confirmButtonText: 'Yes', showConfirmButton: true, showCancelButton: true, cancelButtonText: 'No'
     }).then(res => {
       if (res.isConfirmed) {
-        // this.loaderService.show();
-        // const loginId = {
-        //   login_id: this.userDetails.login_id,
-        // };
-        // this.genericService
-        //   .logoutUser(loginId, this.userDetails.access_token)
-        //   .subscribe((data: any) => {
-        //     sessionStorage.clear();
-        //     this.router.navigate(['logout']);
-        //   },error => {
-        //     this.loaderService.hide();
-        //   });
+        this.loaderService.show();
+        if(!this.userDetails?.authorize_token) {
+          sessionStorage.clear();
+            this.router.navigate(['/login'], {
+              replaceUrl: true
+            });
+        } else {
+          this.genericService
+          .logoutApi(this.userDetails.authorize_token)
+          .subscribe((data: any) => {
+            sessionStorage.clear();
+            this.router.navigate(['/login'], {
+              replaceUrl: true
+            });
+          },error => {
+            this.loaderService.hide();
+          });
+        }
+        
         }
     });
   }

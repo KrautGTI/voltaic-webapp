@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { LoaderService } from '../../shared/loader/loader.service';
+import { JwtHelperService } from "@auth0/angular-jwt";
 
 @Component({
   selector: 'app-dashboard',
@@ -6,10 +8,18 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent implements OnInit {
-
-  constructor() { }
+  userDetails: any;
+  
+  constructor(private loaderService : LoaderService, private jwtHelperService : JwtHelperService) { }
 
   ngOnInit(): void {
-  }
+    const userData = sessionStorage.getItem('user');
+    this.userDetails = userData
+      ? JSON.parse(userData)
+      : null;
 
-}
+      // const decodedToken = this.jwtHelperService.decodeToken(this.userDetails.enz);
+      // const expirationDate = this.jwtHelperService.getTokenExpirationDate(this.userDetails.enz);
+      // const isExpired = this.jwtHelperService.isTokenExpired(this.userDetails.enz);
+  }
+  }

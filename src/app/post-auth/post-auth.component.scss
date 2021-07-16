@@ -43,7 +43,7 @@ margin-bottom: 50px;
     position: relative; 
     display: block;
     float: left;
-    background:  #005d78 !important
+    background: #6943f1 !important
   }
   .breadcrumb li a:after { 
     content: " ";
@@ -52,7 +52,7 @@ margin-bottom: 50px;
     height: 0;
     border-top: 50px solid transparent;
     border-bottom: 50px solid transparent;
-    border-left: 30px solid #005d78;
+    border-left: 30px solid #6943f1;
     position: absolute;
     top: 50%;
     margin-top: -50px;
@@ -79,8 +79,8 @@ margin-bottom: 50px;
     margin-left: 10px;
 
   }
-  .breadcrumb li:nth-child(2) a       {background:  #98acb3 !important }
-  .breadcrumb li:nth-child(2) a:after { border-left-color: #98acb3!important }
+  .breadcrumb li:nth-child(2) a       {background:  #A239CA !important }
+  .breadcrumb li:nth-child(2) a:after { border-left-color: #A239CA!important }
   .breadcrumb li:nth-child(3) a       { background:        hsla(34,85%,55%,1); }
   .breadcrumb li:nth-child(3) a:after { border-left-color: hsla(34,85%,55%,1); }
   .breadcrumb li:nth-child(4) a       { background:        hsla(34,85%,65%,1); }
@@ -95,7 +95,7 @@ margin-bottom: 50px;
   }
   .breadcrumb li:last-child a:after { border: 0; }
   .breadcrumb li a:hover { background: hsla(34,85%,25%,1); }
-  .breadcrumb li a:hover:after { border-left-color: #005d78; }
+  .breadcrumb li a:hover:after { border-left-color: #6943f1; }
   
   
   .steps {

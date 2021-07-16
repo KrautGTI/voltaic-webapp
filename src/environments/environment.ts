@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  apiBaseUrl:'http://voltaic.bigmarvconsulting.com/jsonapi/'
+  apiBaseUrl: 'http://voltaic.bigmarvconsulting.com/jsonapi/'
 };
 
 /*

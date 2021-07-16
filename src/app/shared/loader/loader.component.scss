@@ -1,4 +1,4 @@
-@import "../../../styles";
+@import "../../../styles.scss";
 #loader-container {
   position: fixed;
   top: 0;
@@ -31,7 +31,7 @@
   }
   .circle {
     border-radius: 50%;
-    background-color: #03478e;
+    background-color: #A239CA;
     width: 150px;
     height: 150px;
     position: absolute;

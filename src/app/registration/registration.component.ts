@@ -61,7 +61,7 @@ registerUser(registerForm: any) {
       .subscribe((data) => {
         console.log(data);
         Swal.fire({
-          html: `<p style="color: #bc51e8; font-size: 16px; margin-top: 20px;">An OTP Sent to Your Email-id. Please Enter the OTP to Verify.</p><input type="text" id="otp" class="swal2-input" placeholder="Enter OTP">`,
+          html: `<p style="color: #bc51e8; font-size: 16px; margin-top: 20px;">An OTP Sent to Your Email-id. Please Enter the OTP to Verify.</p><input type="password" id="otp" class="swal2-input" placeholder="Enter OTP">`,
           confirmButtonText: 'Validate',
           confirmButtonColor: '#A239CA',
           focusConfirm: false,
@@ -81,14 +81,14 @@ registerUser(registerForm: any) {
             .subscribe((data: any) => {
               console.log(data);
               this.isButtonClicked = false;
-              if(data?.message?.message) {
+              if(data?.message?.message == 'OTP Not Verified') {
                 Swal.fire({
                   text: data?.message?.message, icon: 'error', confirmButtonColor: '#A239CA',
                   confirmButtonText: 'OK'
                 });
               } else {
                Swal.fire({
-                text: 'User Registration is Succesful.', icon: 'success', confirmButtonColor: '#A239CA',
+                text: data?.message?.message, icon: 'success', confirmButtonColor: '#A239CA',
                 confirmButtonText: 'OK'
               }).then(res => {
                 this.loaderService.show();

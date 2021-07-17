@@ -9,11 +9,11 @@ import Swal from 'sweetalert2';
 import { ThrowStmt } from '@angular/compiler';
 
 @Component({
-  selector: 'app-contact-leads',
-  templateUrl: './contact-leads.component.html',
-  styleUrls: ['./contact-leads.component.scss']
+  selector: 'app-account',
+  templateUrl: './account.component.html',
+  styleUrls: ['./account.component.scss']
 })
-export class ContactLeadsComponent implements OnInit {
+export class AccountComponent implements OnInit {
 
   modules: any[] = AllModules;
   gridApi: any;
@@ -39,12 +39,10 @@ export class ContactLeadsComponent implements OnInit {
   sortingOrder: any;
   userDetails: any;
   isAdmin: boolean = false;
-  
-  constructor(
-    private genericService: GenericService,
+
+  constructor(private genericService: GenericService,
     private loaderService: LoaderService,
-    private router: Router
-  ) {}
+    private router: Router) { }
 
   ngOnInit(): void {
     const userData = sessionStorage.getItem('user');
@@ -55,85 +53,25 @@ export class ContactLeadsComponent implements OnInit {
     this.loaderService.show();
     this.columnDefs = [
       {
-        headerName: 'First Name',
-        field: 'first_name',
+        headerName: 'Account Name',
+        field: 'Account_Name',
         cellStyle: { color: '#212121', 'font-size': '14px', height: '40px', cursor: 'pointer' },
       },
       {
-        headerName: 'Last Name',
-        field: 'last_name',
+        headerName: 'Phone',
+        field: 'Phone',
         cellStyle: { color: '#212121', 'font-size': '14px', height: '40px', cursor: 'pointer' },
       },
       {
-        headerName: 'Email',
-        field: 'email',
+        headerName: 'Website',
+        field: 'Website',
         cellStyle: { color: '#212121', 'font-size': '14px', height: '40px', cursor: 'pointer' },
       },
       {
-        headerName: 'Phone No.',
-        field: 'phone',
-        cellStyle: { color: '#212121', 'font-size': '14px', height: '40px', cursor: 'pointer' },
-      },
-      {
-        headerName: 'City',
-        field: 'city',
-        cellStyle: { color: '#212121', 'font-size': '14px', height: '40px', cursor: 'pointer' },
-      },
-      {
-        headerName: 'State',
-        field: 'state',
-        cellStyle: { color: '#212121', 'font-size': '14px', height: '40px', cursor: 'pointer' },
-      },
-      {
-        headerName: 'Street',
-        field: 'street',
-        cellStyle: { color: '#212121', 'font-size': '14px', height: '40px', cursor: 'pointer' },
-      },
-      {
-        headerName: 'Zip Code',
-        field: 'zip_code',
-        cellStyle: { color: '#212121', 'font-size': '14px', height: '40px', cursor: 'pointer' },
-      },
-      {
-        headerName: 'Company',
-        field: 'company',
-        cellStyle: { color: '#212121', 'font-size': '14px', height: '40px', cursor: 'pointer' },
-      },
-      {
-        headerName: 'Avg. Monthly Bill',
-        field: 'average_monthly_bill',
-        cellStyle: { color: '#212121', 'font-size': '14px', height: '40px', cursor: 'pointer' },
-      },  
-      {
-        headerName: 'Description',
-        field: 'description',
-        cellStyle: { color: '#212121', 'font-size': '14px', height: '40px', cursor: 'pointer' },
-      },
-      {
-        headerName: 'Owner',
+        headerName: 'Account Owner',
         field: 'ownerName',
         cellStyle: { color: '#212121', 'font-size': '14px', height: '40px', cursor: 'pointer' },
-      },
-      {
-        headerName: 'Owner Email',
-        field: 'ownerEmail',
-        cellStyle: { color: '#212121', 'font-size': '14px', height: '40px', cursor: 'pointer' },
-      },
-      {
-        headerName: 'Lead Source',
-        field: 'master_lead_source_id',
-        cellStyle: { color: '#212121', 'font-size': '14px', height: '40px', cursor: 'pointer' },
-      },
-      {
-        headerName: 'Lead Status',
-        field: 'master_lead_status',
-        cellStyle: { color: '#212121', 'font-size': '14px', height: '40px', cursor: 'pointer' },
-      },
-      {
-        headerName: 'Energy Consultant',
-        field: 'master_energy_consultant_id',
-        cellStyle: { color: '#212121', 'font-size': '14px', height: '40px', cursor: 'pointer' },
-      }   
+      }
     ];
     this.defaultColDef = {
       sortable: true,
@@ -184,7 +122,7 @@ export class ContactLeadsComponent implements OnInit {
   onGridReady(params: any) {
     this.gridApi = params.api;
     this.gridColumnApi = params.columnApi;
-      this.genericService.getLeads(this.userDetails.authorize_token, this.isAdmin).subscribe((userList: any) => {
+      this.genericService.getAccounts(this.userDetails.authorize_token, this.isAdmin).subscribe((userList: any) => {
         console.log(userList);
         if(userList?.message != 'Server Error' && userList?.error?.name != 'TokenExpiredError'){
           this.manageUserList = userList.message;
@@ -219,6 +157,5 @@ export class ContactLeadsComponent implements OnInit {
       });
     });
   }
+
 }
-
-

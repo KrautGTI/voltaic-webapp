@@ -248,12 +248,12 @@ export class JobReportsComponent implements OnInit {
     this.gridColumnApi = params.columnApi;
       this.genericService.getJobReports(this.userDetails.authorize_token, this.isAdmin).subscribe((reportList: any) => {
         console.log(reportList);
-        if(reportList.message){
+        if(reportList?.message != 'Server Error' && reportList?.error?.name != 'TokenExpiredError'){
         this.jobReportList = reportList.message;
         this.rowData = this.jobReportList;
         this.loaderService.hide();
         this.sizeToFit();
-      }  else if(reportList.error.name === 'TokenExpiredError'){
+      }  else if(reportList?.error?.name === 'TokenExpiredError'){
         const errMsg = "Session Expired !! Please login again.";
         Swal.fire({
           text: errMsg, icon: 'error', confirmButtonColor: '#A239CA',

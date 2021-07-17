@@ -58,11 +58,6 @@ export class ManageUsersComponent implements OnInit {
         cellStyle: { color: '#212121', 'font-size': '14px', height: '40px', cursor: 'pointer' },
       },
       {
-        headerName: 'Date Of Birth',
-        field: 'date_of_birth',
-        cellStyle: { color: '#212121', 'font-size': '14px', height: '40px', cursor: 'pointer' },
-      },
-      {
         headerName: 'Email',
         field: 'email',
         cellStyle: { color: '#212121', 'font-size': '14px', height: '40px', cursor: 'pointer' },
@@ -72,16 +67,6 @@ export class ManageUsersComponent implements OnInit {
         field: 'mobile',
         cellStyle: { color: '#212121', 'font-size': '14px', height: '40px', cursor: 'pointer' },
       },
-      {
-        headerName: 'Phone No.',
-        field: 'phone',
-        cellStyle: { color: '#212121', 'font-size': '14px', height: '40px', cursor: 'pointer' },
-      },
-      {
-        headerName: 'Website',
-        field: 'website',
-        cellStyle: { color: '#212121', 'font-size': '14px', height: '40px', cursor: 'pointer' },
-      }
     ];
     this.defaultColDef = {
       sortable: true,
@@ -134,12 +119,12 @@ export class ManageUsersComponent implements OnInit {
     this.gridColumnApi = params.columnApi;
       this.genericService.getAllUsers(this.userDetails.authorize_token, this.isAdmin).subscribe((userList: any) => {
         console.log(userList);
-        if(userList.message){
+        if(userList?.message != 'Server Error' && userList?.error?.name != 'TokenExpiredError'){
           this.manageUserList = userList.message;
           this.rowData = this.manageUserList;
           this.loaderService.hide();
           this.sizeToFit();
-        }  else if(userList.error.name === 'TokenExpiredError'){
+        }  else if(userList?.error?.name === 'TokenExpiredError'){
           const errMsg = "Session Expired !! Please login again.";
           Swal.fire({
             text: errMsg, icon: 'error', confirmButtonColor: '#A239CA',

@@ -74,6 +74,20 @@ export class GenericService {
     
   }
 
+  public getDeals(token: string, isAdmin: boolean) {
+    const headers = new HttpHeaders({
+        Accept: 'application/json',
+        authorize_token: token
+      });
+    const options = { headers: headers };
+    const url = this.authServiceUrl + 'deals/getDealsDashboard';
+    if(isAdmin) {
+      return this.httpClient.post(url, {role: 'admin'}, options);
+    } else {
+      return this.httpClient.post(url, '', options);
+    }
+    
+  }
   public logoutApi(token: string) {
     const headers = new HttpHeaders({
       Accept: 'application/json',

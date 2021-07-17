@@ -115,8 +115,8 @@ export class ContactsComponent implements OnInit {
     }
   
     onRowClick(event:any) {
-     // console.log(event.data.id);
-     // this.router.navigate(['post-auth/contact/details'], { queryParams: { contactId: event.data.id } });
+     console.log(event.data.Contact_ID);
+     this.router.navigate(['post-auth/contact-details'], { queryParams: { contactId: event.data.Contact_ID } });
     }
   
     onRowGroupOpeneds(params: any) {}

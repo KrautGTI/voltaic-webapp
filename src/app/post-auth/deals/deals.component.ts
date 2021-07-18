@@ -29,11 +29,11 @@ export class DealsComponent implements OnInit {
     this.isAdmin = this.userDetails.user_role === 'admin' ? true : false;
     this.loaderService.show();
     this.genericService.getDeals(this.userDetails.authorize_token, this.isAdmin).subscribe((userList: any) => {
-      console.log(userList.message);
-      if(userList.message){  
+      console.log(userList);
+      if(userList?.message != 'Server Error' && userList?.error?.name != 'TokenExpiredError'){  
         this.opportunityDetails = userList.message;
         this.loaderService.hide();
-      } else if(userList.error.name === 'TokenExpiredError'){
+      } else if(userList?.error?.name === 'TokenExpiredError'){
         const errMsg = "Session Expired !! Please login again.";
         Swal.fire({
           text: errMsg, icon: 'error', confirmButtonColor: '#A239CA',

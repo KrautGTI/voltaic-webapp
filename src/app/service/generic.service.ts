@@ -145,4 +145,49 @@ export class GenericService {
     
   }
 
+  public getMentors() {
+    const headers = new HttpHeaders({
+      Accept: 'application/json',
+    });  
+    const options = { headers: headers };
+    const url = this.authServiceUrl + 'master/getAllMentors';
+      return this.httpClient.get(url, options);
+  }
+
+  public getMarketers() {
+    const headers = new HttpHeaders({
+      Accept: 'application/json',
+    });  
+    const options = { headers: headers };
+    const url = this.authServiceUrl + 'master/getAllMarketers';
+      return this.httpClient.get(url, options);
+  }
+
+  public getStages() {
+    const headers = new HttpHeaders({
+      Accept: 'application/json',
+    });  
+    const options = { headers: headers };
+    const url = this.authServiceUrl + 'master/getStages';
+      return this.httpClient.get(url, options);
+  }
+
+  public getSources() {
+    const headers = new HttpHeaders({
+      Accept: 'application/json',
+    });  
+    const options = { headers: headers };
+    const url = this.authServiceUrl + 'master/getSources';
+      return this.httpClient.get(url, options);
+  }
+
+  public getEnergyConsultant() {
+    const headers = new HttpHeaders({
+      Accept: 'application/json',
+    });  
+    const options = { headers: headers };
+    const url = this.authServiceUrl + 'master/getEnergyConsultant';
+      return this.httpClient.get(url, options);
+  }
+
 }

@@ -11,10 +11,17 @@
             <span></span>
         </div> -->
         <div class="w-100 d-flex flex-column">
-            <div class="m-2 p-2 shadow border rounded my-2 d-flex flex-column w-100" style="overflow-x: auto;" *ngFor="let opportunity of opportunityDetails; let i = index">
+            <div class="m-2 p-2 shadow border rounded my-2 d-flex flex-column w-100"*ngFor="let opportunity of opportunityDetails; let i = index">
                 <span>{{ opportunity?.name }} <span>({{opportunity?.deatils?.count}})</span></span>
-                <div class="d-flex m-2 justify-content-between col-4 border shadow p-4 rounded" *ngFor="let item of opportunity?.deatils?.dataList">
-                    <span>{{item.Contact_Name}}</span><span>{{item.email}}</span>
+                <div class="w-100 d-flex" style="overflow-x: auto;" >
+                    <div class="d-flex m-2 justify-content-start col-3 border shadow p-4 rounded flex-column" *ngFor="let item of opportunity?.deatils?.dataList">
+                        <div class="w-100">Deal Name: {{item.Deal_Name}}</div>
+                        <div class="w-100">Closing Date: {{item.Closing_Date | date }}</div>
+                        <div class="w-100">Deal_Owner Name: {{item.Deal_Owner}}</div>
+                        <div class="w-100">Chanel Partner: {{item.Channel_Partner}}</div>
+                        <div class="w-100">SS Date: {{item.SS_Date | date}}</div>
+                        <div class="w-100">SS Date: {{item.SS_Date | date}}</div>
+                    </div>
                 </div>
             </div>
         </div>

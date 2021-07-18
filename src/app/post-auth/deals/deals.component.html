@@ -1,0 +1,66 @@
+<!-- <p>deals works!</p> -->
+<div class="w-100">
+    <div class="d-flex flex-column w-100 mb-2">
+        <!-- <div class="p-2 d-flex w-100 flex">
+            <div class="text-size-1.5rem text-blue px-2 font-weight-700">Interview Scheduled</div>
+            <div class="status bg-teal">
+                <span>{{ opportunityDetails?.InterviewScheduled?.data?.length || 0 }}
+                    Leads
+                </span>
+            </div>
+            <span></span>
+        </div> -->
+        <div class="w-100 d-flex flex-column">
+            <div class="m-2 p-2 shadow border rounded my-2 d-flex flex-column w-100" style="overflow-x: auto;" *ngFor="let opportunity of opportunityDetails; let i = index">
+                <span>{{ opportunity?.name }} <span>({{opportunity?.deatils?.count}})</span></span>
+                <div class="d-flex m-2 justify-content-between col-4 border shadow p-4 rounded" *ngFor="let item of opportunity?.deatils?.dataList">
+                    <span>{{item.Contact_Name}}</span><span>{{item.email}}</span>
+                </div>
+            </div>
+        </div>
+        <!-- <ul class="card-wrapper" cdkDropList #interviewSchedule="cdkDropList"
+            [cdkDropListData]="opportunityDetails?.InterviewScheduled?.data" [cdkDropListConnectedTo]="[
+            newCandidate,
+            candidate,
+            canaidateWithdrew,
+            qualified,
+            notQualified,
+            onHold,
+            qualifiedNoResponse,
+            qualifiedWithdrew,
+            interviewReSchedule,
+            positionOffered,
+            poNotOffered,
+            poWithdrew,
+            poNoResponse,
+            inTraining,
+            trainingDeclined,
+            trainingNoResponse,
+            trainingComplete,
+            approvedToRefer,
+            atrInactive
+          ]" (cdkDropListDropped)="drop($event, 'Interview Scheduled')" class="d-flex w-100 overflow-x-scroll">
+            <li class="card-base margin-bottom-XS margin-right-XS col-3" cdkDrag [cdkDragData]="interviewSchedule"
+                *ngFor="
+              let interview of opportunityDetails?.InterviewScheduled?.data
+            ">
+                <div class="card card-height border shadow">
+                    <div class="card-body">
+                        <div class="flex-start">
+                            <img class="avatar--sm" [src]="
+                      'https://ui-avatars.com/api/?name=' + interview?.name
+                    " />
+                            <div class="card-title font-bold margin-left-XS" style="margin-top: 7px">
+                                {{ interview?.name }}
+                            </div>
+                        </div>
+                        <p class="card-text"></p>
+                        <div class="flex-end">
+                            <a class="btn btn-light btn-xs taskBtn"><span class="plusTask">+</span> Task</a>
+                        </div>
+                    </div>
+                </div>
+            </li>
+        </ul> -->
+    </div>
+</div>

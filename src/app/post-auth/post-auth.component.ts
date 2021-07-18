@@ -50,8 +50,14 @@ export class PostAuthComponent implements OnInit {
     if (this.router.url.includes('contacts')) {
       this.urlname = 'Contacts';
     }
+    if (this.router.url.includes('contact-details')) {
+      this.urlname = 'Contact Details';
+    }
     if (this.router.url.includes('accounts')) {
       this.urlname = 'Accounts';
+    }
+    if (this.router.url.includes('deals')) {
+      this.urlname = 'Deals';
     }
   }
 

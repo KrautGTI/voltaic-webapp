@@ -4,7 +4,7 @@ import '@ag-grid-community/all-modules/dist/styles/ag-grid.css';
 import '@ag-grid-community/core/dist/styles/ag-theme-balham.css';
 import { AllModules } from '@ag-grid-enterprise/all-modules';
 import { LoaderService } from "../../shared/loader/loader.service";
-import { Router } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 import Swal from 'sweetalert2';
 import { ThrowStmt } from '@angular/compiler';
 
@@ -42,7 +42,7 @@ export class ContactsComponent implements OnInit {
 
   constructor(private genericService: GenericService,
     private loaderService: LoaderService,
-    private router: Router) { }
+    private router: Router, private route: ActivatedRoute) { }
 
     ngOnInit(): void {
       const userData = sessionStorage.getItem('user');
@@ -53,12 +53,26 @@ export class ContactsComponent implements OnInit {
       this.loaderService.show();
       this.columnDefs = [
         {
-          headerName: 'Contact Name',
+          headerName: 'First Name',
           cellStyle: { color: '#212121', 'font-size': '14px', height: '40px', cursor: 'pointer' },
-          valueGetter: (params:any) => {
-            return params.data.First_Name + ' ' + params.data.Last_Name;
-          }
+          field: 'First_Name',
         },
+        {
+          headerName: 'Last Name',
+          cellStyle: { color: '#212121', 'font-size': '14px', height: '40px', cursor: 'pointer' },
+          field: 'Last_Name',
+        },
+        // {
+        //   headerName: 'Contact Name',
+        //   cellStyle: { color: '#212121', 'font-size': '14px', height: '40px', cursor: 'pointer' },
+        //   field: 'First_Name&Last_Name',
+        //   valueGetter: (params:any) => {
+        //     return params.data.First_Name + ' ' + params.data.Last_Name;
+        //   },
+        //   filterValueGetter: (params:any) => {
+        //     return params.data.First_Name + ' ' + params.data.Last_Name;
+        //   }
+        // },
         {
           headerName: 'Email',
           field: 'Email',
@@ -159,5 +173,9 @@ export class ContactsComponent implements OnInit {
         });
       });
     }
+
+    // goToCreateContact() {
+    //   this.router.navigate(['create-contact'], {relativeTo:this.route});
+    // }
 
 }

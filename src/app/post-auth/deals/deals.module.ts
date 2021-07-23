@@ -4,10 +4,15 @@ import { DealsComponent } from './deals.component';
 import { DealsRoutingModule } from "./deals-routing.module";
 import { JwtModule, JWT_OPTIONS } from '@auth0/angular-jwt';
 import { DragDropModule } from '@angular/cdk/drag-drop';
+import { CreateDealComponent } from './create-deal/create-deal.component';
+import { ReactiveFormsModule, FormsModule } from "@angular/forms";
+import { DealDetailsComponent } from './deal-details/deal-details.component';
 
 @NgModule({
   declarations: [
-    DealsComponent
+    DealsComponent,
+    CreateDealComponent,
+    DealDetailsComponent
   ],
   imports: [
     CommonModule, DealsRoutingModule, JwtModule.forRoot({
@@ -17,7 +22,7 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
       //   disallowedRoutes: ["http://example.com/examplebadroute/"],
       // },
     }), 
-    DragDropModule,
+    DragDropModule, ReactiveFormsModule, FormsModule
   ]
 })
 export class DealsModule { }

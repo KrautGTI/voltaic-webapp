@@ -52,6 +52,12 @@ export class DealsComponent implements OnInit {
     });
     
   }
+
+  onDealsClick(dealid:any) {
+    console.log(dealid);
+    this.router.navigate(['post-auth/deals/deal-details'], { queryParams: { dealId: dealid } });
+   }
+
   logout() {
     this.genericService.logoutApi(this.userDetails.authorize_token).subscribe((data: any) => { 
       console.log(data);

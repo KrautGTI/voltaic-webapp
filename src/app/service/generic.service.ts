@@ -190,4 +190,42 @@ export class GenericService {
       return this.httpClient.get(url, options);
   }
 
+  public getSecondMarketers() {
+    const headers = new HttpHeaders({
+      Accept: 'application/json',
+    });  
+    const options = { headers: headers };
+    const url = this.authServiceUrl + 'master/getSecondMarketers';
+      return this.httpClient.get(url, options);
+  }
+
+  public getLeadOwners() {
+    const headers = new HttpHeaders({
+      Accept: 'application/json',
+    });  
+    const options = { headers: headers };
+    const url = this.authServiceUrl + 'master/getLeadOwner';
+      return this.httpClient.get(url, options);
+  }
+
+  public getDealsById(token: string, dealid: string) {
+    const headers = new HttpHeaders({
+        Accept: 'application/json',
+        authorize_token: token
+      });
+    const options = { headers: headers };
+    const url = this.authServiceUrl + 'deals/getDealsById';
+    return this.httpClient.post(url, {dealId: dealid}, options);   
+  }
+
+  public getDealsFromContact(token: string, contactid: string) {
+    const headers = new HttpHeaders({
+        Accept: 'application/json',
+        authorize_token: token
+      });
+    const options = { headers: headers };
+    const url = this.authServiceUrl + 'contacts/getDealsFromContact';
+    return this.httpClient.post(url, {contact_id: contactid}, options);   
+  }
+
 }

@@ -8,13 +8,22 @@
                 <div class="mb-4 eachInfoDiv">
                     <div class="row">
                         <div class="col-3 titleTxt">Contact Owner: </div>
-                        <div class="col-7 eachInfo" (click)="editSaveField('ownerName')">
+                        <!-- <div class="col-7 eachInfo" (click)="editSaveField('ownerName')">
                             <div class="blueTxt">
                                 <input type="text"
                                 class="form-control" formControlName="ownerName"
                                 id="ownerName" [value]="contactDetails?.ownerName == null ? '-' : contactDetails?.ownerName" readonly autocomplete="off"/>
+                            
                             </div>
                             <div class="textBoxIcon"></div>
+                        </div> -->
+                        <div class="col-7 eachInfo selectDiv">                        
+                            <div class="blueTxt">
+                                <select formControlName="ownerName">
+                                    <option value="-1">Select None</option>
+                                    <option *ngFor="let leadOwner of leadOwners" [value]="leadOwner.id">{{leadOwner.name}}</option>
+                                </select>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -217,13 +226,13 @@
                             <div class="mb-4 eachInfoDiv">
                                 <div class="row">
                                     <div class="col-4 titleTxt">2nd Marketer: </div>
-                                    <div class="col-8 eachInfo" (click)="editSaveField('second_Marketer')">                        
+                                    <div class="col-8 eachInfo selectDiv">                        
                                         <div class="blueTxt">
-                                            <input type="text"
-                                            class="form-control" formControlName="second_Marketer"
-                                            id="second_Marketer" [value]="contactDetails?.second_Marketer == null ? '-' : contactDetails?.second_Marketer" readonly autocomplete="off"/>
+                                            <select formControlName="Second_Marketer">
+                                                <option value="-1">Select None</option>
+                                                <option *ngFor="let secondMarketer of secondMarketers" [value]="secondMarketer.id">{{secondMarketer.name}}</option>
+                                            </select>
                                         </div>
-                                        <div class="textBoxIcon"></div>
                                     </div>
                                 </div>
                             </div>       
@@ -345,7 +354,7 @@
                                         <div class="blueTxt">
                                             <input type="text"
                                             class="form-control" formControlName="Mailing_City"
-                                            id="Mailing_City" [value]="contactDetails?.Mailing_City == null ? '-' : contactDetails?.Mailing_City" readonly/>
+                                            id="Mailing_City" [value]="contactDetails?.Mailing_City == null ? '-' : contactDetails?.Mailing_City" readonly autocomplete="off"/>
                                         </div>
                                     </div>
                                 </div>
@@ -376,7 +385,7 @@
                                         <div class="blueTxt">
                                             <input type="text"
                                             class="form-control" formControlName="Mailing_Zip"
-                                            id="Mailing_Zip" [value]="contactDetails?.Mailing_Zip == null ? '-' : contactDetails?.Mailing_Zip" readonly/>
+                                            id="Mailing_Zip" [value]="contactDetails?.Mailing_Zip == null ? '-' : contactDetails?.Mailing_Zip" readonly autocomplete="off"/>
                                         </div>
                                     </div>
                                 </div>
@@ -575,10 +584,10 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td class="dealname">Mark Isomaki (back house)</td>
-                                <td>SS Scheduled</td>
-                                <td>Jul 15, 2021</td>
+                            <tr *ngFor="let deals of dealsList">
+                                <td class="dealname">{{deals.Deal_Name}}</td>
+                                <td>{{deals.Stage_Name}}</td>
+                                <td>{{(deals.Closing_Date == null) ? '-' : deals.Closing_Date}}</td>
                             </tr>
                         </tbody>  
                     </table>

@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { Router, Event, NavigationStart, NavigationEnd, NavigationError } from '@angular/router';
+import { Router, Event, NavigationStart, NavigationEnd, NavigationError, ActivatedRoute } from '@angular/router';
 import { HeaderComponent } from '../shared/header/header.component';
 import { LocationStrategy } from '@angular/common';
 
@@ -14,7 +14,7 @@ export class PostAuthComponent implements OnInit {
   public toggleLogoEvent = false;
   isDashboard = false;
   urlname = '';
-  constructor(private router: Router) {
+  constructor(public router: Router, private route: ActivatedRoute) {
     this.router.events.subscribe((event: Event) => {
       if (event instanceof NavigationStart) {// Show loading indicator
       }
@@ -50,6 +50,9 @@ export class PostAuthComponent implements OnInit {
     if (this.router.url.includes('contacts')) {
       this.urlname = 'Contacts';
     }
+    if(this.router.url.includes('contacts/create-contact')) {
+      this.urlname = 'Create Contact';
+    }
     if (this.router.url.includes('contact-details')) {
       this.urlname = 'Contact Details';
     }
@@ -63,6 +66,14 @@ export class PostAuthComponent implements OnInit {
 
   toggleHeaderLogo(evnt: any) {
     this.toggleLogoEvent = evnt.isShowLogo;
+  }
+
+  goToCreateContact() {
+    this.router.navigate(['post-auth/contacts/create-contact']);
+  }
+
+  goToCreateDeal() {
+    this.router.navigate(['post-auth/deals/create-deal']);
   }
 
 }

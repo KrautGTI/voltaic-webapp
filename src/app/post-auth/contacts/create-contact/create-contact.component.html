@@ -1,0 +1,378 @@
+<div class="container-fluid" style="margin-top: 30px">
+    <form [formGroup]="contactForm">
+        <div class="card shadow">
+            <div class="card-body contactInfo contactDetails">
+                <div class="p-3 font-size-15rem font-weight-600 d-flex justify-content-between cardHeader">
+                    Contact Information
+                </div>
+                <div class="col-12 pr-3">
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="mb-4 eachInfoDiv">
+                                <div class="row">
+                                    <div class="col-4 titleTxt">Contact Owner: </div>
+                                    <div class="col-8 eachInfo selectDiv">                        
+                                        <div class="blueTxt">
+                                            <select formControlName="ownerName" class="form-control">
+                                                <option value="-1">Select None</option>
+                                                <option *ngFor="let leadOwner of leadOwners" [value]="leadOwner.id">{{leadOwner.name}}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>       
+                        </div>
+                        <div class="col-6">
+                            <div class="mb-4 eachInfoDiv">
+                                <div class="row">
+                                    <div class="col-4 titleTxt">Home Sq Ft: </div>
+                                    <div class="col-8 eachInfo">                        
+                                        <div class="blueTxt">
+                                            <input type="text"
+                                            class="form-control" formControlName="Home_Sq_Ft"
+                                            id="Home_Sq_Ft" autocomplete="off"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>       
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="mb-4 eachInfoDiv">
+                                <div class="row">
+                                    <div class="col-4 titleTxt">First Name: </div>
+                                    <div class="col-8 eachInfo">                        
+                                        <div class="blueTxt">
+                                            <input type="text"
+                                            class="form-control" formControlName="First_Name"
+                                            id="First_Name" autocomplete="off"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>       
+                        </div>
+                        <div class="col-6">
+                            <div class="mb-4 eachInfoDiv">
+                                <div class="row">
+                                    <div class="col-4 titleTxt">Last Name: </div>
+                                    <div class="col-8 eachInfo">                        
+                                        <div class="blueTxt">
+                                            <input type="text"
+                                            class="form-control" formControlName="Last_Name"
+                                            id="Last_Name"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>       
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="mb-4 eachInfoDiv">
+                                <div class="row">
+                                    <div class="col-4 titleTxt">Spouse Name: </div>
+                                    <div class="col-8 eachInfo">                        
+                                        <div class="blueTxt">
+                                            <input type="text"
+                                            class="form-control" formControlName="Spouse_Name"
+                                            id="Spouse_Name" autocomplete="off"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>       
+                        </div>
+                        <div class="col-6">
+                            <div class="mb-4 eachInfoDiv">
+                                <div class="row">
+                                    <div class="col-4 titleTxt">Freedom ID: </div>
+                                    <div class="col-8 eachInfo">                        
+                                        <div class="blueTxt">
+                                            <input type="text"
+                                            class="form-control" formControlName="Freedom_ID"
+                                            id="Freedom_ID" autocomplete="off"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>       
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="mb-4 eachInfoDiv">
+                                <div class="row">
+                                    <div class="col-4 titleTxt">Email: </div>
+                                    <div class="col-8 eachInfo">
+                                        <div class="blueTxt">
+                                            <input type="text"
+                                            class="form-control" formControlName="Email"
+                                            id="Email" autocomplete="off"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>       
+                        </div>
+                        <div class="col-6">
+                            <div class="mb-4 eachInfoDiv">
+                                <div class="row">
+                                    <div class="col-4 titleTxt">Phone: </div>
+                                    <div class="col-8 eachInfo">                        
+                                        <div class="blueTxt">
+                                            <input type="text"
+                                            class="form-control" formControlName="Phone"
+                                            id="Phone" autocomplete="off"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>       
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="mb-4 eachInfoDiv">
+                                <div class="row">
+                                    <div class="col-4 titleTxt">Average Bill: </div>
+                                    <div class="col-8 eachInfo">                        
+                                        <div class="blueTxt">
+                                            <input type="text"
+                                            class="form-control" formControlName="Average_Bill"
+                                            id="Average_Bill" autocomplete="off"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>       
+                        </div>
+                        <div class="col-6">
+                            <div class="mb-4 eachInfoDiv">
+                                <div class="row">
+                                    <div class="col-4 titleTxt">LeadIdCPY: </div>
+                                    <div class="col-8 eachInfo">                        
+                                        <div class="blueTxt">
+                                            <input type="text"
+                                            class="form-control" formControlName="LeadIdCPY"
+                                            id="LeadIdCPY" autocomplete="off"/>
+                                        </div>
+                                        
+                                    </div>
+                                </div>
+                            </div>       
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="mb-4 eachInfoDiv">
+                                <div class="row">
+                                    <div class="col-4 titleTxt">Date Created: </div>
+                                    <div class="col-8 eachInfo">                        
+                                        <div class="blueTxt">
+                                            <input type="text"
+                                            class="form-control" formControlName="Date_Created"
+                                            id="Date_Created" autocomplete="off"/>
+                                        </div>
+                                        
+                                    </div>
+                                </div>
+                            </div>       
+                        </div>
+                        <div class="col-6">
+                            <div class="mb-4 eachInfoDiv">
+                                <div class="row">
+                                    <div class="col-4 titleTxt">2nd Marketer: </div>
+                                    <div class="col-8 eachInfo selectDiv">                        
+                                        <div class="blueTxt">
+                                            <select formControlName="Second_Marketer" class="form-control">
+                                                <option value="-1">Select None</option>
+                                                <option *ngFor="let secondMarketer of secondMarketers" [value]="secondMarketer.id">{{secondMarketer.name}}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>       
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="mb-4 eachInfoDiv">
+                                <div class="row">
+                                    <div class="col-4 titleTxt">Lead Source: </div>
+                                    <div class="col-8 eachInfo selectDiv">                        
+                                        <div class="blueTxt">
+                                            <select formControlName="Lead_Source" class="form-control">
+                                                <option value="-1">Select None</option>
+                                                <option *ngFor="let leadSrc of leadSources" [value]="leadSrc.id">{{leadSrc.name}}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>       
+                        </div>
+                        <div class="col-6">
+                            <div class="mb-4 eachInfoDiv">
+                                <div class="row">
+                                    <div class="col-4 titleTxt">Date/Time Scheduled: </div>
+                                    <div class="col-8 eachInfo">                        
+                                        <div class="blueTxt">
+                                            <input type="text"
+                                            class="form-control" formControlName="DateTime_Scheduled"
+                                            id="DateTime_Scheduled" autocomplete="off"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>       
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="mb-4 eachInfoDiv">
+                                <div class="row">
+                                    <div class="col-4 titleTxt">Energy Consultant: </div>
+                                    <div class="col-8 eachInfo selectDiv">                        
+                                        <div class="blueTxt">
+                                            <select formControlName="Energy_Consultant" class="form-control">
+                                                <option value="-1">Select None</option>
+                                                <option *ngFor="let ec of energyConsultant" [value]="ec.id">{{ec.name}}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>       
+                        </div>
+                        <div class="col-6">
+                            <div class="mb-4 eachInfoDiv">
+                                <div class="row">
+                                    <div class="col-4 titleTxt">Qualified By: </div>
+                                    <div class="col-8 eachInfo">                        
+                                        <div class="blueTxt">
+                                            <input type="text"
+                                            class="form-control" formControlName="Qualified_By"
+                                            id="Qualified_By" autocomplete="off"/>
+                                        </div>
+                                    </div> 
+                                </div>
+                            </div>       
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="mb-4 eachInfoDiv">
+                                <div class="row">
+                                    <div class="col-4 titleTxt">Marketer: </div>
+                                    <div class="col-8 eachInfo selectDiv">                        
+                                        <div class="blueTxt">
+                                            <select formControlName="Marketer" class="form-control">
+                                                <option value="-1">Select None</option>
+                                                <option *ngFor="let markets of marketers" [value]="markets.id">{{markets.name}}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>       
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card-body contactInfo contactDetails">
+                <div class="p-3 font-size-15rem font-weight-600 d-flex justify-content-between cardHeader">
+                    Address Information
+                </div>
+                <div class="col-12 pr-3">
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="mb-4 eachInfoDiv">
+                                <div class="row">
+                                    <div class="col-4 titleTxt">Mailing Street: </div>
+                                    <div class="col-8 eachInfo">                        
+                                        <div class="blueTxt">
+                                            <input type="text"
+                                            class="form-control" formControlName="Mailing_Street"
+                                            id="Mailing_Street" autocomplete="off"/>
+                                        </div>
+                                        
+                                    </div>
+                                </div>
+                            </div>       
+                        </div>
+                        <div class="col-6">
+                            <div class="mb-4 eachInfoDiv">
+                                <div class="row">
+                                    <div class="col-4 titleTxt">Mailing City: </div>
+                                    <div class="col-8 eachInfo">                        
+                                        <div class="blueTxt">
+                                            <input type="text"
+                                            class="form-control" formControlName="Mailing_City"
+                                            id="Mailing_City" autocomplete="off"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>       
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="mb-4 eachInfoDiv">
+                                <div class="row">
+                                    <div class="col-4 titleTxt">Mailing State: </div>
+                                    <div class="col-8 eachInfo">                        
+                                        <div class="blueTxt">
+                                            <input type="text"
+                                            class="form-control" formControlName="Mailing_State"
+                                            id="Mailing_State" autocomplete="off"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>       
+                        </div>
+                        <div class="col-6">
+                            <div class="mb-4 eachInfoDiv">
+                                <div class="row">
+                                    <div class="col-4 titleTxt">Mailing Zip: </div>
+                                    <div class="col-8 eachInfo">                        
+                                        <div class="blueTxt">
+                                            <input type="text"
+                                            class="form-control" formControlName="Mailing_Zip"
+                                            id="Mailing_Zip" autocomplete="off"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>       
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body contactInfo contactDetails">
+                <div class="p-3 font-size-15rem font-weight-600 d-flex justify-content-between cardHeader">
+                    Description Information
+                </div>
+                <div class="col-12 pr-3">
+                    <div class="row">
+                        <div class="col-11">
+                            <div class="mb-4 eachInfoDiv">
+                                <div class="row">
+                                    <div class="col-2 titleTxt">Description: </div>
+                                    <div class="col-9 eachInfo">                        
+                                        <div class="blueTxt">
+                                            <input type="text"
+                                            class="form-control" formControlName="Description"
+                                            id="Description" autocomplete="off"/>
+                                        </div>    
+                                    </div>
+                                </div>
+                            </div>       
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+
+

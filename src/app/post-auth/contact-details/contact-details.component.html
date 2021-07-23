@@ -1,0 +1,599 @@
+<div class="container-fluid" style="margin-top: 30px">
+    <form [formGroup]="contactDetailsForm">
+        <div class="card shadow">
+            <!-- <div class="p-3 text-blue font-size-15rem font-weight-600 d-flex justify-content-between" (click)="toggle('Owner Information')">
+            Contact Information<span class="text-grey" style="font-size: .8rem;" *ngIf="ownerInfoVisible">&#8743;&nbsp;</span><span class="text-grey" style="font-size: .8rem;" *ngIf="!ownerInfoVisible">&#8744;&nbsp;</span> 
+            </div> -->
+            <div class="card-body contactInfo">
+                <div class="mb-4 eachInfoDiv">
+                    <div class="row">
+                        <div class="col-3 titleTxt">Contact Owner: </div>
+                        <!-- <div class="col-7 eachInfo" (click)="editSaveField('ownerName')">
+                            <div class="blueTxt">
+                                <input type="text"
+                                class="form-control" formControlName="ownerName"
+                                id="ownerName" [value]="contactDetails?.ownerName == null ? '-' : contactDetails?.ownerName" readonly autocomplete="off"/>
+                            
+                            </div>
+                            <div class="textBoxIcon"></div>
+                        </div> -->
+                        <div class="col-7 eachInfo selectDiv">                        
+                            <div class="blueTxt">
+                                <select formControlName="ownerName">
+                                    <option value="-1">Select None</option>
+                                    <option *ngFor="let leadOwner of leadOwners" [value]="leadOwner.id">{{leadOwner.name}}</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="mb-4 eachInfoDiv">
+                    <div class="row">
+                        <div class="col-3 titleTxt">Email: </div>
+                        <div class="col-7 eachInfo" (click)="editSaveField('Email')">
+                            <div class="blueTxt">
+                                <input type="text"
+                                class="form-control" formControlName="Email"
+                                id="Email" [value]="contactDetails?.Email == null ? '-' : contactDetails?.Email" readonly autocomplete="off"/>
+                            </div>
+                            <div class="textBoxIcon"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="mb-4 eachInfoDiv">
+                    <div class="row">
+                        <div class="col-3 titleTxt">Phone: </div>
+                        <div class="col-7 eachInfo" (click)="editSaveField('Phone')">                        
+                            <div class="blueTxt">
+                                <input type="text"
+                                class="form-control" formControlName="Phone"
+                                id="Phone" [value]="contactDetails?.Phone == null ? '-' : contactDetails?.Phone" readonly autocomplete="off"/>
+                            </div>
+                            <div class="textBoxIcon"></div>
+                        </div>
+                    </div>
+                </div>           
+            </div>
+        </div>
+
+        <div class="card shadow">
+            <div class="p-3 text-blue font-size-15rem font-weight-600 d-flex justify-content-between cardHeader">
+            Deals
+            </div>
+            <div class="card-body dealsInfo">   
+                <p class="">Mark Isomaki (back house)</p>
+                <p>SS Scheduled Jul 15, 2021</p>
+            </div>
+        </div>
+
+        <div class="card shadow">
+            <div class="p-3 text-blue font-size-15rem font-weight-600 d-flex justify-content-between cardHeader contactDiv" (click)="toggle('Contact Information')">
+                Hide Details<span class="text-grey" style="font-size: .8rem;" *ngIf="contactInfoVisible">&#8743;&nbsp;</span><span class="text-grey" style="font-size: .8rem;" *ngIf="!contactInfoVisible">&#8744;&nbsp;</span> 
+            </div>
+
+            <div class="card-body contactInfo contactDetails" *ngIf="contactInfoVisible">
+                <div class="p-3 font-size-15rem font-weight-600 d-flex justify-content-between cardHeader">
+                    Contact Information
+                </div>
+                <div class="col-12 pr-3">
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="mb-4 eachInfoDiv">
+                                <div class="row">
+                                    <div class="col-4 titleTxt">Contact Name: </div>
+                                    <div class="col-8 eachInfo" (click)="editSaveField('contactName')">                        
+                                        <div class="blueTxt">
+                                            <input type="text"
+                                            class="form-control" formControlName="contactName"
+                                            id="contactName" [value]="contactDetails?.First_Name + ' ' + contactDetails?.Last_Name" readonly autocomplete="off"/>
+                                        </div>
+                                        <div class="textBoxIcon"></div>
+                                    </div>
+                                </div>
+                            </div>       
+                        </div>
+                        <div class="col-6">
+                            <div class="mb-4 eachInfoDiv">
+                                <div class="row">
+                                    <div class="col-4 titleTxt">Created By: </div>
+                                    <div class="col-8 eachInfo">                        
+                                        <div class="blueTxt">
+                                            <input type="text"
+                                            class="form-control"
+                                            id="Created_By" [value]="contactDetails?.Created_By == null ? '-' : contactDetails?.Created_By" readonly/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>       
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="mb-4 eachInfoDiv">
+                                <div class="row">
+                                    <div class="col-4 titleTxt">Spouse Name: </div>
+                                    <div class="col-8 eachInfo" (click)="editSaveField('Spouse_Name')">                        
+                                        <div class="blueTxt">
+                                            <input type="text"
+                                            class="form-control" formControlName="Spouse_Name"
+                                            id="Spouse_Name" [value]="contactDetails?.Spouse_Name == null ? '-' : contactDetails?.Spouse_Name" readonly autocomplete="off"/>
+                                        </div>
+                                        <div class="textBoxIcon"></div>
+                                    </div>
+                                </div>
+                            </div>       
+                        </div>
+                        <div class="col-6">
+                            <div class="mb-4 eachInfoDiv">
+                                <div class="row">
+                                    <div class="col-4 titleTxt">Modified By: </div>
+                                    <div class="col-8 eachInfo">                        
+                                        <div class="blueTxt">
+                                            <input type="text"
+                                            class="form-control"
+                                            id="Modified_By" [value]="contactDetails?.Modified_By == null ? '-' : contactDetails?.Modified_By" readonly/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>       
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="mb-4 eachInfoDiv">
+                                <div class="row">
+                                    <div class="col-4 titleTxt">Freedom ID: </div>
+                                    <div class="col-8 eachInfo" (click)="editSaveField('Freedom_ID')">                        
+                                        <div class="blueTxt">
+                                            <input type="text"
+                                            class="form-control" formControlName="Freedom_ID"
+                                            id="Freedom_ID" [value]="contactDetails?.Freedom_ID == null ? '-' : contactDetails?.Freedom_ID" readonly autocomplete="off"/>
+                                        </div>
+                                        <div class="textBoxIcon"></div>
+                                    </div>
+                                </div>
+                            </div>       
+                        </div>
+                        <div class="col-6">
+                            <div class="mb-4 eachInfoDiv">
+                                <div class="row">
+                                    <div class="col-4 titleTxt">Home Sq Ft: </div>
+                                    <div class="col-8 eachInfo" (click)="editSaveField('Home_Sq_Ft')">                        
+                                        <div class="blueTxt">
+                                            <input type="text"
+                                            class="form-control" formControlName="Home_Sq_Ft"
+                                            id="Home_Sq_Ft" [value]="contactDetails?.Home_Sq_Ft == null ? '-' : contactDetails?.Home_Sq_Ft" readonly autocomplete="off"/>
+                                        </div>
+                                        <div class="textBoxIcon"></div>
+                                    </div>
+                                </div>
+                            </div>       
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="mb-4 eachInfoDiv">
+                                <div class="row">
+                                    <div class="col-4 titleTxt">Average Bill: </div>
+                                    <div class="col-8 eachInfo" (click)="editSaveField('Average_Bill')">                        
+                                        <div class="blueTxt">
+                                            <input type="text"
+                                            class="form-control" formControlName="Average_Bill"
+                                            id="Average_Bill" [value]="contactDetails?.Average_Bill == null ? '-' : contactDetails?.Average_Bill" readonly autocomplete="off"/>
+                                        </div>
+                                        <div class="textBoxIcon"></div>
+                                    </div>
+                                </div>
+                            </div>       
+                        </div>
+                        <div class="col-6">
+                            <div class="mb-4 eachInfoDiv">
+                                <div class="row">
+                                    <div class="col-4 titleTxt">LeadIdCPY: </div>
+                                    <div class="col-8 eachInfo" (click)="editSaveField('LeadIdCPY')">                        
+                                        <div class="blueTxt">
+                                            <input type="text"
+                                            class="form-control" formControlName="LeadIdCPY"
+                                            id="LeadIdCPY" [value]="contactDetails?.LeadIdCPY == null ? '-' : contactDetails?.LeadIdCPY " readonly autocomplete="off"/>
+                                        </div>
+                                        <div class="textBoxIcon"></div>
+                                    </div>
+                                </div>
+                            </div>       
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="mb-4 eachInfoDiv">
+                                <div class="row">
+                                    <div class="col-4 titleTxt">Date Created: </div>
+                                    <div class="col-8 eachInfo" (click)="editSaveField('Date_Created')">                        
+                                        <div class="blueTxt">
+                                            <input type="text"
+                                            class="form-control" formControlName="Date_Created"
+                                            id="Date_Created" [value]="contactDetails?.Date_Created == null ? '-' : contactDetails?.Date_Created" readonly autocomplete="off"/>
+                                        </div>
+                                        <div class="textBoxIcon"></div>
+                                    </div>
+                                </div>
+                            </div>       
+                        </div>
+                        <div class="col-6">
+                            <div class="mb-4 eachInfoDiv">
+                                <div class="row">
+                                    <div class="col-4 titleTxt">2nd Marketer: </div>
+                                    <div class="col-8 eachInfo selectDiv">                        
+                                        <div class="blueTxt">
+                                            <select formControlName="Second_Marketer">
+                                                <option value="-1">Select None</option>
+                                                <option *ngFor="let secondMarketer of secondMarketers" [value]="secondMarketer.id">{{secondMarketer.name}}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>       
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="mb-4 eachInfoDiv">
+                                <div class="row">
+                                    <div class="col-4 titleTxt">Lead Source: </div>
+                                    <div class="col-8 eachInfo selectDiv">                        
+                                        <div class="blueTxt">
+                                            <select formControlName="Lead_Source">
+                                                <option value="-1">Select None</option>
+                                                <option *ngFor="let leadSrc of leadSources" [value]="leadSrc.id">{{leadSrc.name}}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>       
+                        </div>
+                        <div class="col-6">
+                            <div class="mb-4 eachInfoDiv">
+                                <div class="row">
+                                    <div class="col-4 titleTxt">Date/Time Scheduled: </div>
+                                    <div class="col-8 eachInfo" (click)="editSaveField('DateTime_Scheduled')">                        
+                                        <div class="blueTxt">
+                                            <input type="text"
+                                            class="form-control" formControlName="DateTime_Scheduled"
+                                            id="DateTime_Scheduled" [value]="contactDetails?.DateTime_Scheduled == null ? '-' : contactDetails?.DateTime_Scheduled" readonly autocomplete="off"/>
+                                        </div>
+                                        <div class="textBoxIcon"></div>
+                                    </div>
+                                </div>
+                            </div>       
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="mb-4 eachInfoDiv">
+                                <div class="row">
+                                    <div class="col-4 titleTxt">Energy Consultant: </div>
+                                    <div class="col-8 eachInfo selectDiv">                        
+                                        <div class="blueTxt">
+                                            <select formControlName="Energy_Consultant">
+                                                <option value="-1">Select None</option>
+                                                <option *ngFor="let ec of energyConsultant" [value]="ec.id">{{ec.name}}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>       
+                        </div>
+                        <div class="col-6">
+                            <div class="mb-4 eachInfoDiv">
+                                <div class="row">
+                                    <div class="col-4 titleTxt">Qualified By: </div>
+                                    <div class="col-8 eachInfo" (click)="editSaveField('Qualified_By')">                        
+                                        <div class="blueTxt">
+                                            <input type="text"
+                                            class="form-control" formControlName="Qualified_By"
+                                            id="Qualified_By" [value]="contactDetails?.Qualified_By == null ? '-' : contactDetails?.Qualified_By" readonly autocomplete="off"/>
+                                        </div>
+                                        <div class="textBoxIcon"></div>
+                                    </div>
+                                </div>
+                            </div>       
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="mb-4 eachInfoDiv">
+                                <div class="row">
+                                    <div class="col-4 titleTxt">Marketer: </div>
+                                    <div class="col-8 eachInfo selectDiv">                        
+                                        <div class="blueTxt">
+                                            <select formControlName="Marketer">
+                                                <option value="-1">Select None</option>
+                                                <option *ngFor="let markets of marketers" [value]="markets.id">{{markets.name}}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>       
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card-body contactInfo contactDetails" *ngIf="contactInfoVisible">
+                <div class="p-3 font-size-15rem font-weight-600 d-flex justify-content-between cardHeader">
+                    Address Information
+                </div>
+                <div class="col-12 pr-3">
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="mb-4 eachInfoDiv">
+                                <div class="row">
+                                    <div class="col-4 titleTxt">Mailing Street: </div>
+                                    <div class="col-8 eachInfo" (click)="editSaveField('Mailing_Street')">                        
+                                        <div class="blueTxt">
+                                            <input type="text"
+                                            class="form-control" formControlName="Mailing_Street"
+                                            id="Mailing_Street" [value]="contactDetails?.Mailing_Street == null ? '-' : contactDetails?.Mailing_Street" readonly autocomplete="off"/>
+                                        </div>
+                                        <div class="textBoxIcon"></div>
+                                    </div>
+                                </div>
+                            </div>       
+                        </div>
+                        <div class="col-6">
+                            <div class="mb-4 eachInfoDiv">
+                                <div class="row">
+                                    <div class="col-4 titleTxt">Mailing City: </div>
+                                    <div class="col-8 eachInfo" (click)="editSaveField('Mailing_City')">                        
+                                        <div class="blueTxt">
+                                            <input type="text"
+                                            class="form-control" formControlName="Mailing_City"
+                                            id="Mailing_City" [value]="contactDetails?.Mailing_City == null ? '-' : contactDetails?.Mailing_City" readonly autocomplete="off"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>       
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="mb-4 eachInfoDiv">
+                                <div class="row">
+                                    <div class="col-4 titleTxt">Mailing State: </div>
+                                    <div class="col-8 eachInfo" (click)="editSaveField('Mailing_State')">                        
+                                        <div class="blueTxt">
+                                            <input type="text"
+                                            class="form-control" formControlName="Mailing_State"
+                                            id="Mailing_State" [value]="contactDetails?.Mailing_State == null ? '-' : contactDetails?.Mailing_State" readonly autocomplete="off"/>
+                                        </div>
+                                        <div class="textBoxIcon"></div>
+                                    </div>
+                                </div>
+                            </div>       
+                        </div>
+                        <div class="col-6">
+                            <div class="mb-4 eachInfoDiv">
+                                <div class="row">
+                                    <div class="col-4 titleTxt">Mailing Zip: </div>
+                                    <div class="col-8 eachInfo" (click)="editSaveField('Mailing_Zip')">                        
+                                        <div class="blueTxt">
+                                            <input type="text"
+                                            class="form-control" formControlName="Mailing_Zip"
+                                            id="Mailing_Zip" [value]="contactDetails?.Mailing_Zip == null ? '-' : contactDetails?.Mailing_Zip" readonly autocomplete="off"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>       
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body contactInfo contactDetails" *ngIf="contactInfoVisible">
+                <div class="p-3 font-size-15rem font-weight-600 d-flex justify-content-between cardHeader">
+                    Description Information
+                </div>
+                <div class="col-12 pr-3">
+                    <div class="row">
+                        <div class="col-8">
+                            <div class="mb-4 eachInfoDiv">
+                                <div class="row">
+                                    <div class="col-3 titleTxt">Description: </div>
+                                    <div class="col-9 eachInfo" (click)="editSaveField('Description')">                        
+                                        <div class="blueTxt">
+                                            <input type="text"
+                                            class="form-control" formControlName="Description"
+                                            id="Description" [value]="contactDetails?.Description == null ? '-' : contactDetails?.Description" readonly autocomplete="off"/>
+                                        </div>
+                                        <div class="textBoxIcon"></div>
+                                    </div>
+                                </div>
+                            </div>       
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body contactInfo contactDetails" *ngIf="contactInfoVisible">
+                <div class="p-3 font-size-15rem font-weight-600 d-flex justify-content-between cardHeader">
+                    Visit Summary
+                </div>
+                <div class="col-12 pr-3">
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="mb-4 eachInfoDiv">
+                                <div class="row">
+                                    <div class="col-4 titleTxt">First Visit: </div>
+                                    <div class="col-8 eachInfo">                        
+                                        <div class="blueTxt">
+                                            <input type="text"
+                                            class="form-control"
+                                            id="First_Visit" [value]="contactDetails?.First_Visit == null ? '-' : contactDetails?.First_Visit" readonly autocomplete="off"/>
+                                        </div>
+                                        <div class="textBoxIcon"></div>
+                                    </div>
+                                </div>
+                            </div>       
+                        </div>
+                        <div class="col-6">
+                            <div class="mb-4 eachInfoDiv">
+                                <div class="row">
+                                    <div class="col-4 titleTxt">Visitor Score: </div>
+                                    <div class="col-8 eachInfo">                        
+                                        <div class="blueTxt">
+                                            <input type="text"
+                                            class="form-control"
+                                            id="Visitor_Score" [value]="contactDetails?.Visitor_Score == null ? '-' : contactDetails?.Visitor_Score" readonly/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>       
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="mb-4 eachInfoDiv">
+                                <div class="row">
+                                    <div class="col-4 titleTxt">Referrer: </div>
+                                    <div class="col-8 eachInfo">                        
+                                        <div class="blueTxt">
+                                            <input type="text"
+                                            class="form-control"
+                                            id="Referrer" [value]="contactDetails?.Referrer == null ? '-' : contactDetails?.Referrer" readonly autocomplete="off"/>
+                                        </div>
+                                        <div class="textBoxIcon"></div>
+                                    </div>
+                                </div>
+                            </div>       
+                        </div>
+                        <div class="col-6">
+                            <div class="mb-4 eachInfoDiv">
+                                <div class="row">
+                                    <div class="col-4 titleTxt">Average Time Spent (Minutes): </div>
+                                    <div class="col-8 eachInfo">                        
+                                        <div class="blueTxt">
+                                            <input type="text"
+                                            class="form-control"
+                                            id="Average_Time_Spent_Minutes" [value]="contactDetails?.Average_Time_Spent_Minutes == null ? '-' : contactDetails?.Average_Time_Spent_Minutes" readonly/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>       
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="mb-4 eachInfoDiv">
+                                <div class="row">
+                                    <div class="col-4 titleTxt">Most Recent Visit: </div>
+                                    <div class="col-8 eachInfo">                        
+                                        <div class="blueTxt">
+                                            <input type="text"
+                                            class="form-control"
+                                            id="Most_Recent_Visit" [value]="contactDetails?.Most_Recent_Visit == null ? '-' : contactDetails?.Most_Recent_Visit" readonly autocomplete="off"/>
+                                        </div>
+                                        <div class="textBoxIcon"></div>
+                                    </div>
+                                </div>
+                            </div>       
+                        </div>
+                        <div class="col-6">
+                            <div class="mb-4 eachInfoDiv">
+                                <div class="row">
+                                    <div class="col-4 titleTxt">First Page Visited: </div>
+                                    <div class="col-8 eachInfo">                        
+                                        <div class="blueTxt">
+                                            <input type="text"
+                                            class="form-control"
+                                            id="First_Page_Visited" [value]="contactDetails?.First_Page_Visited == null ? '-' : contactDetails?.First_Page_Visited" readonly/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>       
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="mb-4 eachInfoDiv">
+                                <div class="row">
+                                    <div class="col-4 titleTxt">Number Of Chats: </div>
+                                    <div class="col-8 eachInfo">                        
+                                        <div class="blueTxt">
+                                            <input type="text"
+                                            class="form-control"
+                                            id="Number_Of_Chats" [value]="contactDetails?.Number_Of_Chats == null ? '-' : contactDetails?.Number_Of_Chats" readonly autocomplete="off"/>
+                                        </div>
+                                        <div class="textBoxIcon"></div>
+                                    </div>
+                                </div>
+                            </div>       
+                        </div>
+                        <div class="col-6">
+                            <div class="mb-4 eachInfoDiv">
+                                <div class="row">
+                                    <div class="col-4 titleTxt">Days Visited: </div>
+                                    <div class="col-8 eachInfo">                        
+                                        <div class="blueTxt">
+                                            <input type="text"
+                                            class="form-control"
+                                            id="Days_Visited" [value]="contactDetails?.Days_Visited == null ? '-' : contactDetails?.Days_Visited" readonly/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>       
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card shadow">
+            <div class="p-3 text-blue font-size-15rem font-weight-600 d-flex justify-content-between cardHeader">
+                Notes
+                </div>
+                <div class="card-body dealsInfo">   
+                    <textarea placeholder="Add a note..." class="form-control"></textarea>
+                </div>
+        </div>
+        <div class="card shadow">
+            <div class="p-3 text-blue font-size-15rem font-weight-600 d-flex justify-content-between cardHeader">
+                Attachments
+                </div>
+                <div class="card-body dealsInfo">   
+                    <p>No Attachment</p>
+                </div>
+        </div>
+        <div class="card shadow">
+            <div class="p-3 text-blue font-size-15rem font-weight-600 d-flex justify-content-between cardHeader">
+                Deals
+                </div>
+                <div class="card-body dealsInfo">   
+                    <table class="dealTable">
+                        <thead>
+                            <tr>
+                                <td>Deal Name</td>
+                                <td>Stage</td>
+                                <td>Closing Date</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let deals of dealsList">
+                                <td class="dealname">{{deals.Deal_Name}}</td>
+                                <td>{{deals.Stage_Name}}</td>
+                                <td>{{(deals.Closing_Date == null) ? '-' : deals.Closing_Date}}</td>
+                            </tr>
+                        </tbody>  
+                    </table>
+                </div>
+        </div>
+    </form>
+</div>
+
+

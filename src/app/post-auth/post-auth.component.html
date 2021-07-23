@@ -6,12 +6,26 @@
     <div class="contentDivNew" [ngClass]="{'contentDiv' : toggleLogoEvent}" id="contentDiv">
         <app-header [toggleLogo]="toggleLogoEvent"></app-header>
         <div class="rightContentDiv">
-            <div class="breadcrumbDiv" *ngIf="!isDashboard">
-                <ul class="breadcrumb">
-                    <li><a>Dashboard</a></li>
-                    <li><a>{{urlname}}</a></li>
-                    <li></li>
-                </ul>
+            <div class="rightMarginDiv">
+                <div class="breadcrumbDiv" *ngIf="!isDashboard">
+                    <ul class="breadcrumb">
+                        <li><a>Dashboard</a></li>
+                        <li><a>{{urlname}}</a></li>
+                        <li></li>
+                    </ul>
+                </div>
+                <div class="createBtnDiv">
+                    <div *ngIf="router.url.includes('contacts') && !router.url.includes('create-contact')">
+                        <button class="btn btn-primary createBtn" type="submit" (click)="goToCreateContact()">
+                            Create Contact
+                        </button>
+                    </div>  
+                    <div *ngIf="router.url.includes('deals') && !router.url.includes('create-deal')">
+                        <button class="btn btn-primary createBtn" type="submit" (click)="goToCreateDeal()">
+                            Create Deal
+                        </button>
+                    </div> 
+                </div> 
             </div>
         <router-outlet></router-outlet>
         </div>

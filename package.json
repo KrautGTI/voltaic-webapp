@@ -30,7 +30,8 @@
     "sweetalert2": "^11.0.18",
     "tslib": "^2.1.0",
     "url-polyfill": "^1.1.12",
-    "zone.js": "~0.11.4"
+    "zone.js": "~0.11.4",
+    "@angular/cdk": "^12.0.5"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~12.0.1",

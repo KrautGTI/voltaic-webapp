@@ -3,18 +3,17 @@ import { GenericService } from '../../service/generic.service';
 import '@ag-grid-community/all-modules/dist/styles/ag-grid.css';
 import '@ag-grid-community/core/dist/styles/ag-theme-balham.css';
 import { AllModules } from '@ag-grid-enterprise/all-modules';
-import { LoaderService } from "../../shared/loader/loader.service";
-import { Router } from "@angular/router";
+import { LoaderService } from '../../shared/loader/loader.service';
+import { ActivatedRoute, Router } from '@angular/router';
 import Swal from 'sweetalert2';
 import { ThrowStmt } from '@angular/compiler';
 
 @Component({
   selector: 'app-account',
   templateUrl: './account.component.html',
-  styleUrls: ['./account.component.scss']
+  styleUrls: ['./account.component.scss'],
 })
 export class AccountComponent implements OnInit {
-
   modules: any[] = AllModules;
   gridApi: any;
   gridColumnApi: any;
@@ -40,38 +39,59 @@ export class AccountComponent implements OnInit {
   userDetails: any;
   isAdmin: boolean = false;
 
-  constructor(private genericService: GenericService,
+  constructor(
+    private genericService: GenericService,
     private loaderService: LoaderService,
-    private router: Router) { }
+    private router: Router,
+    private route: ActivatedRoute
+  ) {}
 
   ngOnInit(): void {
     const userData = sessionStorage.getItem('user');
-    this.userDetails = userData
-      ? JSON.parse(userData)
-      : null;
+    this.userDetails = userData ? JSON.parse(userData) : null;
     this.isAdmin = this.userDetails.user_role === 'admin' ? true : false;
     this.loaderService.show();
     this.columnDefs = [
       {
         headerName: 'Account Name',
         field: 'Account_Name',
-        cellStyle: { color: '#212121', 'font-size': '14px', height: '40px', cursor: 'pointer' },
+        cellStyle: {
+          color: '#212121',
+          'font-size': '14px',
+          height: '40px',
+          cursor: 'pointer',
+        },
       },
       {
         headerName: 'Phone',
         field: 'Phone',
-        cellStyle: { color: '#212121', 'font-size': '14px', height: '40px', cursor: 'pointer' },
+        cellStyle: {
+          color: '#212121',
+          'font-size': '14px',
+          height: '40px',
+          cursor: 'pointer',
+        },
       },
       {
         headerName: 'Website',
         field: 'Website',
-        cellStyle: { color: '#212121', 'font-size': '14px', height: '40px', cursor: 'pointer' },
+        cellStyle: {
+          color: '#212121',
+          'font-size': '14px',
+          height: '40px',
+          cursor: 'pointer',
+        },
       },
       {
         headerName: 'Account Owner',
         field: 'ownerName',
-        cellStyle: { color: '#212121', 'font-size': '14px', height: '40px', cursor: 'pointer' },
-      }
+        cellStyle: {
+          color: '#212121',
+          'font-size': '14px',
+          height: '40px',
+          cursor: 'pointer',
+        },
+      },
     ];
     this.defaultColDef = {
       sortable: true,
@@ -112,9 +132,11 @@ export class AccountComponent implements OnInit {
     this.gridApi?.sizeColumnsToFit();
   }
 
-  onRowClick(event:any) {
-   // console.log(event.data.id);
-   // this.router.navigate(['post-auth/contact/details'], { queryParams: { contactId: event.data.id } });
+  public onRowClick(event: any): void {
+    console.log(event.data.Account_ID);
+    this.router.navigate(['post-auth/account-details'], {
+      queryParams: { accountId: event.data.Account_ID },
+    });
   }
 
   onRowGroupOpeneds(params: any) {}
@@ -122,40 +144,53 @@ export class AccountComponent implements OnInit {
   onGridReady(params: any) {
     this.gridApi = params.api;
     this.gridColumnApi = params.columnApi;
-      this.genericService.getAccounts(this.userDetails.authorize_token, this.isAdmin).subscribe((userList: any) => {
-        console.log(userList);
-        if(userList?.message != 'Server Error' && userList?.error?.name != 'TokenExpiredError'){
-          this.manageUserList = userList.message;
-          this.rowData = this.manageUserList;
+    this.genericService
+      .getAccounts(this.userDetails.authorize_token, this.isAdmin)
+      .subscribe(
+        (userList: any) => {
+          console.log(userList);
+          if (
+            userList?.message != 'Server Error' &&
+            userList?.error?.name != 'TokenExpiredError'
+          ) {
+            this.manageUserList = userList.message;
+            this.rowData = this.manageUserList;
+            this.loaderService.hide();
+            this.sizeToFit();
+          } else if (userList?.error?.name === 'TokenExpiredError') {
+            const errMsg = 'Session Expired !! Please login again.';
+            Swal.fire({
+              text: errMsg,
+              icon: 'error',
+              confirmButtonColor: '#A239CA',
+              confirmButtonText: 'OK',
+            }).then((res) => {
+              this.logout();
+            });
+          }
+        },
+        (error) => {
           this.loaderService.hide();
-          this.sizeToFit();
-        } else if(userList?.error?.name === 'TokenExpiredError'){
-          const errMsg = "Session Expired !! Please login again.";
+          const errMsg = 'Unable To fetch data. Please try again.';
           Swal.fire({
-            text: errMsg, icon: 'error', confirmButtonColor: '#A239CA',
-            confirmButtonText: 'OK'
-          }).then(res => {
-            this.logout();
+            text: errMsg,
+            icon: 'error',
+            confirmButtonColor: '#A239CA',
+            confirmButtonText: 'OK',
           });
         }
-      }, (error) => {
-          this.loaderService.hide();
-          const errMsg = "Unable To fetch data. Please try again.";
-          Swal.fire({
-            text: errMsg, icon: 'error', confirmButtonColor: '#A239CA',
-            confirmButtonText: 'OK'
-          });
-      });
+      );
     // }
   }
   logout() {
-    this.genericService.logoutApi(this.userDetails.authorize_token).subscribe((data: any) => { 
-      console.log(data);
-      sessionStorage.clear();
-      this.router.navigate(['/login'], {
-        replaceUrl: true
+    this.genericService
+      .logoutApi(this.userDetails.authorize_token)
+      .subscribe((data: any) => {
+        console.log(data);
+        sessionStorage.clear();
+        this.router.navigate(['/login'], {
+          replaceUrl: true,
+        });
       });
-    });
   }
-
 }

@@ -4,12 +4,14 @@ import { AccountComponent } from './account.component';
 import { AccountRoutingModule } from './account-routing.module';
 import { AgGridModule } from 'ag-grid-angular';
 import { ReactiveFormsModule, FormsModule } from "@angular/forms";
+import { AccountCreateComponent } from './account-create/account-create.component';
 
 
 
 @NgModule({
   declarations: [
-    AccountComponent
+    AccountComponent,
+    AccountCreateComponent
   ],
   imports: [
     CommonModule, AccountRoutingModule, AgGridModule, ReactiveFormsModule, FormsModule

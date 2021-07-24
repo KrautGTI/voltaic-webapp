@@ -1,0 +1,214 @@
+.boldTxt {
+  font-weight: 600;
+}
+
+.card {
+  margin-top: 30px;
+}
+
+.cardHeader {
+  font-weight: 600;
+}
+
+.eachInfo {
+  border-bottom: 1px solid #bec5d4;
+  padding-bottom: 1px;
+  cursor: pointer;
+  padding-left: 2px;
+
+  input,
+  select {
+    cursor: pointer;
+  }
+}
+.dealsInfo {
+  .left-deals-card {
+    border-right: 1px solid #d9d9d9;
+  }
+  .labelText {
+    font-weight: 500;
+    color: #797e88 !important;
+  }
+  .labelValue {
+    color: #797e88 !important;
+  }
+  .subLabelValue {
+    padding-left: 5px;
+  }
+}
+.common-card-header {
+  padding-bottom: 0 !important;
+}
+
+.dealTable {
+  width: 100%;
+  thead tr td {
+    color: #797e88;
+  }
+  .dealname {
+    color: #338cf0 !important;
+  }
+}
+
+// .eachInfoDiv {
+//     padding-right:30px;
+// }
+
+.titleTxt {
+  font-weight: 500;
+  font-size: 16px;
+  display: inline-block;
+  color: #616e88;
+  vertical-align: top;
+  text-align: right;
+  padding-right: 30px;
+}
+
+.textBoxIcon {
+  display: inline-block;
+  float: right;
+  cursor: pointer;
+  background-size: cover;
+  background-image: url("../../../assets/images/pencil-fill.svg");
+  height: 18px;
+  width: 18px;
+}
+
+.checkIcon {
+  background-image: url("../../../assets/images/check-square-fill.svg");
+  height: 25px;
+  width: 25px;
+}
+
+.accountInfo .blueTxt {
+  width: 85%;
+}
+
+.selectDiv .blueTxt {
+  width: 100%;
+}
+
+.blueTxt {
+  display: inline-block;
+  font-size: 16px;
+  font-weight: 500;
+  color: #000;
+  vertical-align: top;
+  input,
+  select,
+  textarea {
+    padding: 0;
+    border: none;
+    font-size: 16px;
+    font-weight: 500;
+    color: #000;
+    width: 100%;
+  }
+
+  input:focus,
+  select:focus,
+  textarea:focus {
+    box-shadow: none;
+  }
+
+  input:focus-visible,
+  select:focus-visible,
+  textarea:focus-visible {
+    outline: none;
+  }
+
+  .form-control:disabled,
+  .form-control[readonly] {
+    background-color: transparent;
+  }
+}
+
+textarea {
+  resize: none;
+}
+
+.twoColumnSec .blueTxt {
+  padding-left: 40px;
+}
+
+.card-header {
+  font-weight: 600;
+  font-size: 18px;
+  background-color: #005d78;
+  color: #fff;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  text-transform: capitalize;
+}
+
+.card-body {
+  padding-top: 20px;
+}
+
+.hideAddBtn {
+  display: none;
+}
+
+.hideSelect {
+  display: none;
+}
+
+.selectedDataList {
+  ul {
+    padding: 0;
+    li {
+      background-color: #fff;
+      border-bottom: 2px solid #4994e2;
+      padding-bottom: 8px;
+      padding-top: 8px;
+      font-size: 16px;
+      font-weight: 600;
+      text-align: left;
+      padding-left: 15px;
+      padding-right: 15px;
+
+      div {
+        display: inline-block;
+      }
+      .crossBtn {
+        float: right;
+        cursor: pointer;
+      }
+    }
+  }
+}
+
+.saveBtn {
+  background-color: #03478e;
+  border-color: #03478e;
+}
+
+.btnDiv .eachInfo {
+  text-align: center;
+  margin-top: 20px;
+  border-bottom: none;
+
+  button {
+    width: 250px;
+    font-size: 18px;
+  }
+}
+
+.contactDiv {
+  border-bottom: 1px solid #eff0f5;
+}
+
+.accountDetails {
+  padding-top: 5px !important;
+  .cardHeader {
+    padding-left: 0rem !important;
+    padding-right: 1rem !important;
+  }
+}
+.eachInfoWraper {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid #bec5d4;
+  padding-bottom: 1px;
+  cursor: pointer;
+}

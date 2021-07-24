@@ -56,6 +56,9 @@ export class PostAuthComponent implements OnInit {
     if (this.router.url.includes('contact-details')) {
       this.urlname = 'Contact Details';
     }
+    if (this.router.url.includes('account-details')) {
+      this.urlname = 'Account Details';
+    }
     if (this.router.url.includes('accounts')) {
       this.urlname = 'Accounts';
     }
@@ -74,6 +77,9 @@ export class PostAuthComponent implements OnInit {
 
   goToCreateDeal() {
     this.router.navigate(['post-auth/deals/create-deal']);
+  }
+  public goToCreateAccount(): void {
+    this.router.navigate(['post-auth/accounts/create-account']);
   }
 
 }

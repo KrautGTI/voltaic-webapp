@@ -1,1 +1,43 @@
-<p>input-integer works!</p>
+<div class="input-number" [formGroup]="group">
+  <div class="row">
+    <label class="form-label col-4" *ngIf="label">
+      {{ label }}
+      <span *ngIf="isRequired" class="mandatory-style">*</span>
+    </label>
+
+    <div class="col-8 eachInfo">
+      <div class="blueTxt">
+        <input
+          [type]="'number'"
+          [placeholder]="placeholder"
+          [name]="fieldName"
+          [class]="'text-input form-control ' + class"
+          [ngClass]="{
+            'input-error':
+              groupControl!.invalid &&
+              (groupControl!.dirty || groupControl!.touched)
+          }"
+          [formControlName]="fieldName"
+          autocomplete="off"
+          maxlength="250"
+          (keypress)="onKeypress($event)"
+          (blur)="onBlur($event)"
+          (input)="onChange($event)"
+        />
+        <div
+          class="form-error"
+          *ngIf="
+            groupControl!.invalid &&
+            (groupControl!.dirty || groupControl!.touched)
+          "
+        >
+          <div *ngFor="let err of errors">
+            <label *ngIf="groupControl!.errors![err.type]">{{
+              err.message
+            }}</label>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

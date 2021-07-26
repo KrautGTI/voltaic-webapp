@@ -1,5 +1,15 @@
-<div class="progress-bar" [hidden]="!loading">
+<div class="progress-loader" [hidden]="!loading">
   <div class="loading-spinner">
-    <div class="loader">Loading....</div>
+    <!-- <div class="loader">Loading....</div> -->
+
+    <div id="container">
+      <div class="item">
+        <!-- <img src="assets/images/logo_small.png" alt="logo"/> -->
+      </div>
+      <div class="circle" style="animation-delay: -3s"></div>
+      <div class="circle" style="animation-delay: -2s"></div>
+      <div class="circle" style="animation-delay: -1s"></div>
+      <div class="circle" style="animation-delay: 0s"></div>
+    </div>
   </div>
 </div>

@@ -15,7 +15,16 @@ export class FormField {
   placeholder = '';
   fieldType = '';
   isRequired = false;
+  isDisabled? = false;
+  options? = [];
   errors: FormFieldError[] = [];
+}
+
+export class FormFieldGroup {
+  gorupId = '';
+  gorupName = '';
+  gorupType = 'static';
+  groupDetails: FormField[] = [];
 }
 
 export enum FieldTypes {

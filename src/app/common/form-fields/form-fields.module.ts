@@ -16,6 +16,7 @@ import { RadioGroupComponent } from './radio-group/radio-group.component';
 import { SelectComponent } from './select/select.component';
 import { SwitchComponent } from './switch/switch.component';
 import { TextareaComponent } from './textarea/textarea.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -39,7 +40,9 @@ import { TextareaComponent } from './textarea/textarea.component';
     TextareaComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   exports: [
     BtnPrimaryComponent,

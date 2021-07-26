@@ -624,6 +624,366 @@
           </div>
         </div>
       </div>
+      <div class="card-body accountDetails">
+        <div
+          class="
+            p-3
+            font-size-15rem font-weight-600
+            d-flex
+            justify-content-between
+            cardHeader
+          "
+        >
+          Address Information
+        </div>
+        <div>
+          <div class="row">
+            <div class="col-12">
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="row mb-4 eachInfoDiv">
+                    <div class="col-4 titleTxt">Billing Street:</div>
+                    <div
+                      class="col-8"
+                      (click)="editSaveField('Billing_Street')"
+                    >
+                      <div class="eachInfoWraper">
+                        <div class="blueTxt">
+                          <input
+                            type="text"
+                            class="form-control"
+                            formControlName="Billing_Street"
+                            id="billingStreet"
+                            [placeholder]="'-'"
+                            readonly
+                            autocomplete="off"
+                          />
+                        </div>
+                        <div class="textBoxIcon"></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="row mb-4 eachInfoDiv">
+                    <div class="col-4 titleTxt">Shipping Street:</div>
+                    <div
+                      class="col-8"
+                      (click)="editSaveField('Shipping_Street')"
+                    >
+                      <div class="eachInfoWraper">
+                        <div class="blueTxt">
+                          <input
+                            type="text"
+                            class="form-control"
+                            id="shippingStreet"
+                            [placeholder]="'-'"
+                            formControlName="Shipping_Street"
+                            readonly
+                            autocomplete="off"
+                          />
+                        </div>
+                        <div class="textBoxIcon"></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="row mb-4 eachInfoDiv">
+                    <div class="col-4 titleTxt">Billing City:</div>
+                    <div class="col-8" (click)="editSaveField('Billing_City')">
+                      <div class="eachInfoWraper">
+                        <div class="blueTxt">
+                          <input
+                            type="text"
+                            class="form-control"
+                            formControlName="Billing_City"
+                            id="billingCity"
+                            [placeholder]="'-'"
+                            readonly
+                            autocomplete="off"
+                          />
+                        </div>
+                        <div class="textBoxIcon"></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="row mb-4 eachInfoDiv">
+                    <div class="col-4 titleTxt">Shipping City:</div>
+                    <div class="col-8" (click)="editSaveField('Shipping_City')">
+                      <div class="eachInfoWraper">
+                        <div class="blueTxt">
+                          <input
+                            type="text"
+                            class="form-control"
+                            id="shippingCity"
+                            [placeholder]="'-'"
+                            formControlName="Shipping_City"
+                            readonly
+                            autocomplete="off"
+                          />
+                        </div>
+                        <div class="textBoxIcon"></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="row mb-4 eachInfoDiv">
+                    <div class="col-4 titleTxt">Billing State:</div>
+                    <div class="col-8" (click)="editSaveField('Billing_State')">
+                      <div class="eachInfoWraper">
+                        <div class="blueTxt">
+                          <input
+                            type="text"
+                            class="form-control"
+                            formControlName="Billing_State"
+                            id="billingState"
+                            [placeholder]="'-'"
+                            readonly
+                            autocomplete="off"
+                          />
+                        </div>
+                        <div class="textBoxIcon"></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="row mb-4 eachInfoDiv">
+                    <div class="col-4 titleTxt">Shipping State:</div>
+                    <div
+                      class="col-8"
+                      (click)="editSaveField('Shipping_State')"
+                    >
+                      <div class="eachInfoWraper">
+                        <div class="blueTxt">
+                          <input
+                            type="text"
+                            class="form-control"
+                            id="shippingState"
+                            [placeholder]="'-'"
+                            formControlName="Shipping_State"
+                            readonly
+                            autocomplete="off"
+                          />
+                        </div>
+                        <div class="textBoxIcon"></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="row mb-4 eachInfoDiv">
+                    <div class="col-4 titleTxt">Billing Code:</div>
+                    <div class="col-8" (click)="editSaveField('Billing_Code')">
+                      <div class="eachInfoWraper">
+                        <div class="blueTxt">
+                          <input
+                            type="text"
+                            class="form-control"
+                            formControlName="Billing_Code"
+                            id="billingCode"
+                            [placeholder]="'-'"
+                            readonly
+                            autocomplete="off"
+                          />
+                        </div>
+                        <div class="textBoxIcon"></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="row mb-4 eachInfoDiv">
+                    <div class="col-4 titleTxt">Shipping Code:</div>
+                    <div class="col-8" (click)="editSaveField('Shipping_Code')">
+                      <div class="eachInfoWraper">
+                        <div class="blueTxt">
+                          <input
+                            type="text"
+                            class="form-control"
+                            id="shippingCode"
+                            [placeholder]="'-'"
+                            formControlName="Shipping_Code"
+                            readonly
+                            autocomplete="off"
+                          />
+                        </div>
+                        <div class="textBoxIcon"></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="row mb-4 eachInfoDiv">
+                    <div class="col-4 titleTxt">Billing Country:</div>
+                    <div
+                      class="col-8"
+                      (click)="editSaveField('Billing_Country')"
+                    >
+                      <div class="eachInfoWraper">
+                        <div class="blueTxt">
+                          <input
+                            type="text"
+                            class="form-control"
+                            formControlName="Billing_Country"
+                            id="billingCountry"
+                            [placeholder]="'-'"
+                            readonly
+                            autocomplete="off"
+                          />
+                        </div>
+                        <div class="textBoxIcon"></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="row mb-4 eachInfoDiv">
+                    <div class="col-4 titleTxt">Shipping Country:</div>
+                    <div
+                      class="col-8"
+                      (click)="editSaveField('Shipping_Country')"
+                    >
+                      <div class="eachInfoWraper">
+                        <div class="blueTxt">
+                          <input
+                            type="text"
+                            class="form-control"
+                            id="shippingCountry"
+                            [placeholder]="'-'"
+                            formControlName="Shipping_Country"
+                            readonly
+                            autocomplete="off"
+                          />
+                        </div>
+                        <div class="textBoxIcon"></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card-body accountDetails">
+        <div
+          class="
+            p-3
+            font-size-15rem font-weight-600
+            d-flex
+            justify-content-between
+            cardHeader
+          "
+        >
+          Description Information
+        </div>
+        <div>
+          <div class="row">
+            <div class="col-12">
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="row mb-4 eachInfoDiv">
+                    <div class="col-4 titleTxt">Description:</div>
+                    <div class="col-8" (click)="editSaveField('Description')">
+                      <div class="eachInfoWraper">
+                        <div class="blueTxt">
+                          <input
+                            type="text"
+                            class="form-control"
+                            formControlName="Description"
+                            id="description"
+                            [placeholder]="'-'"
+                            readonly
+                            autocomplete="off"
+                          />
+                        </div>
+                        <div class="textBoxIcon"></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card shadow">
+      <div
+        class="
+          p-3
+          text-blue
+          font-size-15rem font-weight-600
+          d-flex
+          justify-content-between
+          cardHeader
+        "
+      >
+        Notes
+      </div>
+      <div class="card-body dealsInfo">
+        <textarea
+          placeholder="Add a note..."
+          class="form-control"
+          formControlName="Notes"
+        ></textarea>
+      </div>
+    </div>
+    <div class="card shadow">
+      <div
+        class="
+          p-3
+          text-blue
+          font-size-15rem font-weight-600
+          d-flex
+          justify-content-between
+          cardHeader
+        "
+      >
+        Attachments
+      </div>
+      <div class="card-body dealsInfo">
+        <p>No Attachment</p>
+      </div>
+    </div>
+    <div class="card shadow">
+      <div
+        class="
+          p-3
+          text-blue
+          font-size-15rem font-weight-600
+          d-flex
+          justify-content-between
+          cardHeader
+        "
+      >
+        Deals
+      </div>
+      <div class="card-body dealsInfo">
+        <table class="dealTable">
+          <thead>
+            <tr>
+              <td>Deal Name</td>
+              <td>Stage</td>
+              <td>Closing Date</td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let deals of dealsList">
+              <td class="dealname">{{ deals.Deal_Name }}</td>
+              <td>{{ deals.Stage_Name }}</td>
+              <td>
+                {{ deals.Closing_Date == null ? "-" : deals.Closing_Date }}
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
   </form>
 </div>

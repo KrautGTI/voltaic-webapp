@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, ElementRef, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { forkJoin, Observable, Subject } from 'rxjs';
@@ -26,7 +26,9 @@ export class AccountDetailsComponent implements OnInit, OnDestroy {
   private secondMarketers: any = '';
   private energyConsultant: any = '';
   private stages: any = '';
+  public dealsList: any = '';
   private accountList: any = [];
+  private targetField: string = '';
   private unsubscribe$: Subject<boolean> = new Subject();
 
   constructor(
@@ -35,7 +37,8 @@ export class AccountDetailsComponent implements OnInit, OnDestroy {
     private authService: AuthService,
     private fb: FormBuilder,
     private genericService: GenericService,
-    private loaderService: LoaderService
+    private loaderService: LoaderService,
+    private elementRef: ElementRef
   ) {
     this.accountDetailsForm = this.fb.group({});
     this.userDetails = this.authService.getUserDetails();
@@ -76,6 +79,18 @@ export class AccountDetailsComponent implements OnInit, OnDestroy {
       Ownership: [''],
       SIC_Code: [''],
       Reschedule_Cycle_Time: [''],
+      Billing_Street: [''],
+      Shipping_Street: [''],
+      Billing_City: [''],
+      Shipping_City: [''],
+      Billing_State: [''],
+      Shipping_State: [''],
+      Billing_Code: [''],
+      Shipping_Code: [''],
+      Billing_Country: [''],
+      Shipping_Country: [''],
+      Description: [''],
+      Notes: [''],
     });
   }
   private fetchRequiredDetails(): void {
@@ -89,12 +104,17 @@ export class AccountDetailsComponent implements OnInit, OnDestroy {
     const getLeadOwners$ = this.genericService.getLeadOwners();
     const getEnergyConsultant$ = this.genericService.getEnergyConsultant();
     const getStages$ = this.genericService.getStages();
+    const getDealsFromContact$ = this.genericService.getDealsFromContact(
+      '',
+      this.accountId
+    );
     reqs.push(getSource$);
     reqs.push(getMarketers$);
     reqs.push(getSecondMarketers$);
     reqs.push(getLeadOwners$);
     reqs.push(getEnergyConsultant$);
     reqs.push(getStages$);
+    // reqs.push(getDealsFromContact$);
     if (authorize_token) {
       const getAccounts$ = this.genericService.getAccounts(
         authorize_token,
@@ -130,6 +150,22 @@ export class AccountDetailsComponent implements OnInit, OnDestroy {
             if (results[5]) {
               this.stages = results[5].message ? results[5].message : '';
             }
+            // if (results[6]) {
+            //   this.dealsList =
+            //     results[6].message && results[6].message.data
+            //       ? results[6].message.data
+            //       : '';
+            //   this.dealsList.forEach((element: any) => {
+            //     element.Stage_Name = '-';
+            //     if (this.stages && Array.isArray(this.stages)) {
+            //       this.stages.forEach((ele: any) => {
+            //         if (element.Stage_ID == ele.id) {
+            //           element.Stage_Name = ele.name;
+            //         }
+            //       });
+            //     }
+            //   });
+            // }
             if (results[6]) {
               const accountList = results[6];
               if (
@@ -206,5 +242,26 @@ export class AccountDetailsComponent implements OnInit, OnDestroy {
       });
     }
   }
-  public editSaveField(fieldName: string) {}
+  public editSaveField(fieldName: string) {
+    if (this.targetField && this.targetField !== fieldName) {
+      let prevTargetControl = this.elementRef.nativeElement.querySelector(
+        '[formcontrolname="' + this.targetField + '"]'
+      );
+      if (!prevTargetControl.readOnly) {
+        prevTargetControl.readOnly = true;
+        prevTargetControl.parentNode.nextSibling.classList.remove('checkIcon');
+      }
+    }
+    let targetControl = this.elementRef.nativeElement.querySelector(
+      '[formcontrolname="' + fieldName + '"]'
+    );
+    this.targetField = fieldName;
+    targetControl.readOnly = !targetControl.readOnly;
+    if (!targetControl.readOnly) {
+      targetControl.parentNode.nextSibling.classList.add('checkIcon');
+      targetControl.focus();
+    } else {
+      targetControl.parentNode.nextSibling.classList.remove('checkIcon');
+    }
+  }
 }

@@ -70,10 +70,18 @@
 }
 
 .contactInfo .blueTxt {
-    width: 85%;
+    width: 90%;
 }
 
 .selectDiv .blueTxt {
+    width: 100%;
+}
+
+.contactInfo .blueTxt.dateDiv{
+    width: auto;
+}
+.contactInfo .blueTxt.dateDivFull, .contactInfo .blueTxt.dateDivFull .customDatePicker,
+::ng-deep .contactInfo .blueTxt.dateDivFull .customDatePicker input{
     width: 100%;
 }
 
@@ -189,4 +197,20 @@ textarea {
     .pr-3 {
         padding-right:1rem!important;
     }
+}
+
+.customDatePicker input {
+    border: none;
+}
+
+.borderRight{
+    border-right: 1px solid #bec5d4;
+}
+
+::ng-deep .customDatePicker input {
+    border:none;
+}
+
+::ng-deep .dp-input-container input:focus-visible{
+    outline: 0;
 }

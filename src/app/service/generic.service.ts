@@ -133,4 +133,9 @@ export class GenericService {
     const url = this.authServiceUrl + 'accounts/addModifyAccounts';
     return this.httpClient.post(url, data);
   }
+
+  public addModifyContact(contactDetails: any, token: string) {
+    const url = this.authServiceUrl + 'contacts/addModifyContacts';
+    return this.httpClient.post(url, contactDetails);
+  }
 }

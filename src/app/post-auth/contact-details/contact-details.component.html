@@ -8,18 +8,9 @@
                 <div class="mb-4 eachInfoDiv">
                     <div class="row">
                         <div class="col-3 titleTxt">Contact Owner: </div>
-                        <!-- <div class="col-7 eachInfo" (click)="editSaveField('ownerName')">
-                            <div class="blueTxt">
-                                <input type="text"
-                                class="form-control" formControlName="ownerName"
-                                id="ownerName" [value]="contactDetails?.ownerName == null ? '-' : contactDetails?.ownerName" readonly autocomplete="off"/>
-                            
-                            </div>
-                            <div class="textBoxIcon"></div>
-                        </div> -->
                         <div class="col-7 eachInfo selectDiv">                        
                             <div class="blueTxt">
-                                <select formControlName="ownerName">
+                                <select formControlName="ownerName" [disabled]="!isAdmin">
                                     <option value="-1">Select None</option>
                                     <option *ngFor="let leadOwner of leadOwners" [value]="leadOwner.id">{{leadOwner.name}}</option>
                                 </select>
@@ -56,13 +47,13 @@
             </div>
         </div>
 
-        <div class="card shadow">
+        <div class="card shadow" *ngIf="dealsList?.length > 0">
             <div class="p-3 text-blue font-size-15rem font-weight-600 d-flex justify-content-between cardHeader">
             Deals
             </div>
-            <div class="card-body dealsInfo">   
-                <p class="">Mark Isomaki (back house)</p>
-                <p>SS Scheduled Jul 15, 2021</p>
+            <div class="card-body dealsInfo" *ngFor="let deals of dealsList">   
+                <p class="">{{deals?.Deal_Name}}</p>
+                <p>{{deals?.Stage_Name}}</p>
             </div>
         </div>
 
@@ -81,13 +72,13 @@
                             <div class="mb-4 eachInfoDiv">
                                 <div class="row">
                                     <div class="col-4 titleTxt">Contact Name: </div>
-                                    <div class="col-8 eachInfo" (click)="editSaveField('contactName')">                        
+                                    <div class="col-8 eachInfo">                     
                                         <div class="blueTxt">
                                             <input type="text"
                                             class="form-control" formControlName="contactName"
                                             id="contactName" [value]="contactDetails?.First_Name + ' ' + contactDetails?.Last_Name" readonly autocomplete="off"/>
                                         </div>
-                                        <div class="textBoxIcon"></div>
+                                        <!-- <div class="textBoxIcon"></div> -->
                                     </div>
                                 </div>
                             </div>       
@@ -211,13 +202,11 @@
                             <div class="mb-4 eachInfoDiv">
                                 <div class="row">
                                     <div class="col-4 titleTxt">Date Created: </div>
-                                    <div class="col-8 eachInfo" (click)="editSaveField('Date_Created')">                        
-                                        <div class="blueTxt">
-                                            <input type="text"
-                                            class="form-control" formControlName="Date_Created"
-                                            id="Date_Created" [value]="contactDetails?.Date_Created == null ? '-' : contactDetails?.Date_Created" readonly autocomplete="off"/>
+                                    <div class="col-8 eachInfo">                        
+                                        <div class="blueTxt dateDivFull">
+                                            <dp-date-picker formControlName="Date_Created" class="customDatePicker"></dp-date-picker>
                                         </div>
-                                        <div class="textBoxIcon"></div>
+                                        
                                     </div>
                                 </div>
                             </div>       
@@ -259,13 +248,26 @@
                             <div class="mb-4 eachInfoDiv">
                                 <div class="row">
                                     <div class="col-4 titleTxt">Date/Time Scheduled: </div>
-                                    <div class="col-8 eachInfo" (click)="editSaveField('DateTime_Scheduled')">                        
+                                    <!-- <div class="col-8 eachInfo" (click)="editSaveField('DateTime_Scheduled')">                        
                                         <div class="blueTxt">
                                             <input type="text"
                                             class="form-control" formControlName="DateTime_Scheduled"
                                             id="DateTime_Scheduled" [value]="contactDetails?.DateTime_Scheduled == null ? '-' : contactDetails?.DateTime_Scheduled" readonly autocomplete="off"/>
                                         </div>
                                         <div class="textBoxIcon"></div>
+                                    </div> -->
+                                    <div class="col-4 eachInfo">                        
+                                        <div class="blueTxt dateDiv borderRight">
+                                            <dp-date-picker formControlName="Date_Scheduled" class="customDatePicker"></dp-date-picker>            
+                                        </div>
+                                    </div>
+                                    <div class="col-4 eachInfo selectDiv">                        
+                                        <div class="blueTxt">
+                                            <select formControlName="Time_Scheduled">
+                                                <option value="-1">Select time</option>
+                                                <option *ngFor="let timeSch of masterData?.Time" [value]="timeSch?.value">{{timeSch?.value}}</option>
+                                            </select>            
+                                        </div>     
                                     </div>
                                 </div>
                             </div>       
@@ -356,6 +358,7 @@
                                             class="form-control" formControlName="Mailing_City"
                                             id="Mailing_City" [value]="contactDetails?.Mailing_City == null ? '-' : contactDetails?.Mailing_City" readonly autocomplete="off"/>
                                         </div>
+                                        <div class="textBoxIcon"></div>
                                     </div>
                                 </div>
                             </div>       
@@ -387,6 +390,7 @@
                                             class="form-control" formControlName="Mailing_Zip"
                                             id="Mailing_Zip" [value]="contactDetails?.Mailing_Zip == null ? '-' : contactDetails?.Mailing_Zip" readonly autocomplete="off"/>
                                         </div>
+                                        <div class="textBoxIcon"></div>
                                     </div>
                                 </div>
                             </div>       
@@ -434,7 +438,6 @@
                                             class="form-control"
                                             id="First_Visit" [value]="contactDetails?.First_Visit == null ? '-' : contactDetails?.First_Visit" readonly autocomplete="off"/>
                                         </div>
-                                        <div class="textBoxIcon"></div>
                                     </div>
                                 </div>
                             </div>       
@@ -466,7 +469,7 @@
                                             class="form-control"
                                             id="Referrer" [value]="contactDetails?.Referrer == null ? '-' : contactDetails?.Referrer" readonly autocomplete="off"/>
                                         </div>
-                                        <div class="textBoxIcon"></div>
+                                        
                                     </div>
                                 </div>
                             </div>       
@@ -498,7 +501,7 @@
                                             class="form-control"
                                             id="Most_Recent_Visit" [value]="contactDetails?.Most_Recent_Visit == null ? '-' : contactDetails?.Most_Recent_Visit" readonly autocomplete="off"/>
                                         </div>
-                                        <div class="textBoxIcon"></div>
+                                       
                                     </div>
                                 </div>
                             </div>       
@@ -530,7 +533,7 @@
                                             class="form-control"
                                             id="Number_Of_Chats" [value]="contactDetails?.Number_Of_Chats == null ? '-' : contactDetails?.Number_Of_Chats" readonly autocomplete="off"/>
                                         </div>
-                                        <div class="textBoxIcon"></div>
+                                    
                                     </div>
                                 </div>
                             </div>       
@@ -585,13 +588,22 @@
                         </thead>
                         <tbody>
                             <tr *ngFor="let deals of dealsList">
-                                <td class="dealname">{{deals.Deal_Name}}</td>
-                                <td>{{deals.Stage_Name}}</td>
-                                <td>{{(deals.Closing_Date == null) ? '-' : deals.Closing_Date}}</td>
+                                <td class="dealname">{{deals?.Deal_Name}}</td>
+                                <td>{{deals?.Stage_Name}}</td>
+                                <td>{{(deals?.Closing_Date == null) ? '-' : deals?.Closing_Date}}</td>
                             </tr>
                         </tbody>  
                     </table>
                 </div>
+        </div>
+
+        <div class="row mb-4">
+            <div class="col-12 eachInfoDiv btnDiv">
+                <div class="eachInfo">
+                    <button class="btn btn-primary bold saveBtn pl-5 pr-5 mr-2" 
+                    type="submit" (click)="submitContactDetails()">Submit</button>
+                </div>
+            </div>
         </div>
     </form>
 </div>

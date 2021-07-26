@@ -10,10 +10,12 @@
                         <div class="col-6">
                             <div class="mb-4 eachInfoDiv">
                                 <div class="row">
-                                    <div class="col-4 titleTxt">Contact Owner: </div>
+                                    <div class="col-4 titleTxt">Contact Owner: <span class="requireSign">*</span></div>
                                     <div class="col-8 eachInfo selectDiv">                        
                                         <div class="blueTxt">
-                                            <select formControlName="ownerName" class="form-control">
+                                            <select formControlName="ownerName" class="form-control"
+                                            [ngClass]="{'required-border': isSubmitClicked && 
+                                            contactForm.controls['ownerName']?.value == '-1'}" required [disabled]="!isAdmin">
                                                 <option value="-1">Select None</option>
                                                 <option *ngFor="let leadOwner of leadOwners" [value]="leadOwner.id">{{leadOwner.name}}</option>
                                             </select>
@@ -41,12 +43,26 @@
                         <div class="col-6">
                             <div class="mb-4 eachInfoDiv">
                                 <div class="row">
-                                    <div class="col-4 titleTxt">First Name: </div>
-                                    <div class="col-8 eachInfo">                        
+                                    <div class="col-4 titleTxt">First Name: <span class="requireSign">*</span></div>
+                                    <div class="col-2 eachInfo selectDiv dateDiv">
+                                        <select formControlName="Salutation" class="form-control"
+                                        [ngClass]="{
+                                            'required-border':
+                                            isSubmitClicked && contactForm.controls['Salutation']?.value == '-1'
+                                        }"
+                                          required>
+                                            <option value="-1">-None-</option>
+                                            <option *ngFor="let sal of masterData?.Salutation" [value]="sal?.value">{{sal?.value}}</option>
+                                        </select>    
+                                    </div>
+                                    <div class="col-6 eachInfo timeDiv">                        
                                         <div class="blueTxt">
                                             <input type="text"
                                             class="form-control" formControlName="First_Name"
-                                            id="First_Name" autocomplete="off"/>
+                                            id="First_Name" autocomplete="off" [ngClass]="{
+                                                'required-border':
+                                                isSubmitClicked && contactForm?.controls?.First_Name?.errors?.required
+                                            }" required/>
                                         </div>
                                     </div>
                                 </div>
@@ -55,12 +71,15 @@
                         <div class="col-6">
                             <div class="mb-4 eachInfoDiv">
                                 <div class="row">
-                                    <div class="col-4 titleTxt">Last Name: </div>
+                                    <div class="col-4 titleTxt">Last Name: <span class="requireSign">*</span></div>
                                     <div class="col-8 eachInfo">                        
                                         <div class="blueTxt">
                                             <input type="text"
                                             class="form-control" formControlName="Last_Name"
-                                            id="Last_Name"/>
+                                            id="Last_Name" [ngClass]="{
+                                                'required-border':
+                                                isSubmitClicked && contactForm?.controls?.Last_Name?.errors?.required
+                                            }" required/>
                                         </div>
                                     </div>
                                 </div>
@@ -103,12 +122,15 @@
                         <div class="col-6">
                             <div class="mb-4 eachInfoDiv">
                                 <div class="row">
-                                    <div class="col-4 titleTxt">Email: </div>
+                                    <div class="col-4 titleTxt">Email: <span class="requireSign">*</span></div>
                                     <div class="col-8 eachInfo">
                                         <div class="blueTxt">
                                             <input type="text"
                                             class="form-control" formControlName="Email"
-                                            id="Email" autocomplete="off"/>
+                                            id="Email" autocomplete="off" [ngClass]="{
+                                                'required-border':
+                                                isSubmitClicked && contactForm?.controls?.Email?.errors?.required
+                                            }" required/>
                                         </div>
                                     </div>
                                 </div>
@@ -117,12 +139,15 @@
                         <div class="col-6">
                             <div class="mb-4 eachInfoDiv">
                                 <div class="row">
-                                    <div class="col-4 titleTxt">Phone: </div>
+                                    <div class="col-4 titleTxt">Phone: <span class="requireSign">*</span></div>
                                     <div class="col-8 eachInfo">                        
                                         <div class="blueTxt">
                                             <input type="text"
                                             class="form-control" formControlName="Phone"
-                                            id="Phone" autocomplete="off"/>
+                                            id="Phone" autocomplete="off" [ngClass]="{
+                                                'required-border':
+                                                isSubmitClicked && contactForm?.controls?.Phone?.errors?.required
+                                            }" required/>
                                         </div>
                                     </div>
                                 </div>
@@ -134,12 +159,15 @@
                         <div class="col-6">
                             <div class="mb-4 eachInfoDiv">
                                 <div class="row">
-                                    <div class="col-4 titleTxt">Average Bill: </div>
+                                    <div class="col-4 titleTxt">Average Bill: <span class="requireSign">*</span></div>
                                     <div class="col-8 eachInfo">                        
                                         <div class="blueTxt">
                                             <input type="text"
                                             class="form-control" formControlName="Average_Bill"
-                                            id="Average_Bill" autocomplete="off"/>
+                                            id="Average_Bill" autocomplete="off" [ngClass]="{
+                                                'required-border':
+                                                isSubmitClicked && contactForm?.controls?.Average_Bill?.errors?.required
+                                            }" required/>
                                         </div>
                                     </div>
                                 </div>
@@ -169,9 +197,7 @@
                                     <div class="col-4 titleTxt">Date Created: </div>
                                     <div class="col-8 eachInfo">                        
                                         <div class="blueTxt">
-                                            <input type="text"
-                                            class="form-control" formControlName="Date_Created"
-                                            id="Date_Created" autocomplete="off"/>
+                                            <dp-date-picker formControlName="Date_Created" class="customDatePicker"></dp-date-picker>
                                         </div>
                                         
                                     </div>
@@ -214,13 +240,28 @@
                         <div class="col-6">
                             <div class="mb-4 eachInfoDiv">
                                 <div class="row">
-                                    <div class="col-4 titleTxt">Date/Time Scheduled: </div>
-                                    <div class="col-8 eachInfo">                        
+                                    <div class="col-4 titleTxt">Date/Time Scheduled: <span class="requireSign">*</span></div>
+                                    <div class="col-4 eachInfo dateDiv">                        
                                         <div class="blueTxt">
-                                            <input type="text"
-                                            class="form-control" formControlName="DateTime_Scheduled"
-                                            id="DateTime_Scheduled" autocomplete="off"/>
+                                            <dp-date-picker formControlName="Date_Scheduled" class="form-control customDatePicker"
+                                            [ngClass]="{
+                                                'required-border':
+                                                isSubmitClicked && contactForm?.controls?.Date_Scheduled?.errors?.required
+                                            }"></dp-date-picker>            
                                         </div>
+                                    </div>
+                                    <div class="col-4 eachInfo selectDiv timeDiv">                        
+                                        <div class="blueTxt">
+                                            <select formControlName="Time_Scheduled" class="form-control"
+                                            [ngClass]="{
+                                                'required-border':
+                                                isSubmitClicked && contactForm.controls['Time_Scheduled']?.value == '-1'
+                                            }"
+                                              required>
+                                                <option value="-1">Select time</option>
+                                                <option *ngFor="let timeSchdl of masterData?.Time" [value]="timeSchdl?.value">{{timeSchdl?.value}}</option>
+                                            </select>            
+                                        </div>     
                                     </div>
                                 </div>
                             </div>       
@@ -263,10 +304,14 @@
                         <div class="col-6">
                             <div class="mb-4 eachInfoDiv">
                                 <div class="row">
-                                    <div class="col-4 titleTxt">Marketer: </div>
+                                    <div class="col-4 titleTxt">Marketer: <span class="requireSign">*</span></div>
                                     <div class="col-8 eachInfo selectDiv">                        
                                         <div class="blueTxt">
-                                            <select formControlName="Marketer" class="form-control">
+                                            <select formControlName="Marketer" class="form-control"
+                                            [ngClass]="{
+                                                'required-border':
+                                                isSubmitClicked && contactForm.controls['Marketer']?.value == '-1'
+                                            }" required>
                                                 <option value="-1">Select None</option>
                                                 <option *ngFor="let markets of marketers" [value]="markets.id">{{markets.name}}</option>
                                             </select>
@@ -370,7 +415,16 @@
                     </div>
                 </div>
             </div>
+            <div class="row mb-4">
+                <div class="col-12 eachInfoDiv btnDiv">
+                    <div class="eachInfo">
+                        <button class="btn btn-primary bold saveBtn pl-5 pr-5 mr-2" 
+                        type="submit" (click)="createContact()">Submit</button>
+                    </div>
+                </div>
+            </div>
         </div>
+        
     </form>
 </div>
 

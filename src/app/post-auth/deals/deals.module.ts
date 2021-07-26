@@ -7,6 +7,8 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
 import { CreateDealComponent } from './create-deal/create-deal.component';
 import { ReactiveFormsModule, FormsModule } from "@angular/forms";
 import { DealDetailsComponent } from './deal-details/deal-details.component';
+import { NgSelectModule } from "@ng-select/ng-select";
+import {DpDatePickerModule} from 'ng2-date-picker';
 
 @NgModule({
   declarations: [
@@ -22,7 +24,7 @@ import { DealDetailsComponent } from './deal-details/deal-details.component';
       //   disallowedRoutes: ["http://example.com/examplebadroute/"],
       // },
     }), 
-    DragDropModule, ReactiveFormsModule, FormsModule
+    DragDropModule, ReactiveFormsModule, FormsModule, NgSelectModule, DpDatePickerModule
   ]
 })
 export class DealsModule { }

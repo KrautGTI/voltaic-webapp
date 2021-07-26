@@ -27,6 +27,9 @@ export class ContactDetailsComponent implements OnInit {
   secondMarketers:any;
   leadOwners:any;
   dealsList:any;
+  isSubmitClicked = false;
+  querySubscription: any;
+  masterData: any;
 
   constructor(private genericService: GenericService, private loaderService: LoaderService,
     private route: ActivatedRoute, private router: Router, private httpClient: HttpClient,
@@ -45,7 +48,7 @@ export class ContactDetailsComponent implements OnInit {
       Freedom_ID: ["-"],
       Average_Bill: ["-"],
       Spouse_Name: ["-"],
-      Date_Created: ["-"],
+      Date_Created: [""],
       Home_Sq_Ft: ["-"],
       LeadIdCPY: ["-"],
       Qualified_By: ["-"],
@@ -54,7 +57,8 @@ export class ContactDetailsComponent implements OnInit {
       Mailing_Street: ["-"],
       Mailing_Zip: ["-"],
       Description: ["-"],
-      DateTime_Scheduled: ["-"],
+      Date_Scheduled: [""],
+      Time_Scheduled: ["-1"],
 
       ownerName: ["-1"],
       Lead_Source: ["-1"],
@@ -81,13 +85,18 @@ export class ContactDetailsComponent implements OnInit {
       });
       this.genericService.getLeadOwners().subscribe((data: any) => {
        this.leadOwners = data.message;
+       if(!this.isAdmin)
+          this.contactDetailsForm.patchValue({
+            ownerName: this.userDetails.user_loginId
+          });
       });
       this.genericService.getEnergyConsultant().subscribe((data: any) => {
         this.energyConsultant = data.message;
       });
       this.genericService.getDealsFromContact(this.userDetails.authorize_token, this.contactId).subscribe((dealsList: any) => {
         this.dealsList = dealsList.message.data;
-       // console.log(this.dealsList);
+       // console.log('dealsList');
+        //console.log(this.dealsList);
         this.genericService.getStages().subscribe((data: any) => {
         //  console.log(data);
           this.stages = data.message;
@@ -135,15 +144,21 @@ export class ContactDetailsComponent implements OnInit {
       if(userList?.message != 'Server Error' && userList?.error?.name != 'TokenExpiredError'){
         let contactList = userList.message;
         this.contactDetails = contactList.find((ele:any) => ele.Contact_ID == this.contactId);
-        //console.log(this.contactDetails);
-        this.contactDetailsForm.patchValue({
-          Lead_Source: this.contactDetails?.Lead_Source == null ? '-1' : this.contactDetails?.Lead_Source,
-          Energy_Consultant: this.contactDetails?.Energy_Consultant == null ? '-1' : this.contactDetails?.Energy_Consultant,
-          Marketer: this.contactDetails?.Marketer == null ? '-1' : this.contactDetails?.Marketer,
-          Second_Marketer: this.contactDetails?.Second_Marketer == null ? '-1' : this.contactDetails?.Second_Marketer,
-          ownerName : this.contactDetails?.Contact_Owner_ID == null ? '-1' : this.contactDetails?.Contact_Owner_ID
-        }); 
-        this.loaderService.hide();
+        console.log(this.contactDetails);
+        this.httpClient.get("assets/json/master.json").subscribe(masterData => {
+          this.masterData = masterData;
+         // console.log(this.masterData);
+          this.contactDetailsForm.patchValue({
+            Lead_Source: this.contactDetails?.Lead_Source == null ? '-1' : this.contactDetails?.Lead_Source,
+            Energy_Consultant: this.contactDetails?.Energy_Consultant == null ? '-1' : this.contactDetails?.Energy_Consultant,
+            Marketer: this.contactDetails?.Marketer == null ? '-1' : this.contactDetails?.Marketer,
+            Second_Marketer: this.contactDetails?.Second_Marketer == null ? '-1' : this.contactDetails?.Second_Marketer,
+            ownerName : this.contactDetails?.Contact_Owner_ID == null ? '-1' : this.contactDetails?.Contact_Owner_ID,
+            Date_Created: this.contactDetails?.Date_Created == null ? '' : this.contactDetails?.Date_Created,
+            Date_Scheduled: ''
+          }); 
+          this.loaderService.hide();
+        });
       } else if(userList?.error?.name == 'TokenExpiredError'){
         const errMsg = "Session Expired !! Please login again.";
         Swal.fire({
@@ -164,6 +179,75 @@ export class ContactDetailsComponent implements OnInit {
     
   }
 
+  submitContactDetails() {
+    this.isSubmitClicked = true;
+    this.loaderService.show();
+    Swal.fire({
+      text: 'Do You Want To Save Changes?', icon: 'question', confirmButtonColor: '#A239CA', position: 'center',
+      confirmButtonText: 'Yes', showConfirmButton: true, showCancelButton: true, cancelButtonText: 'No'
+    }).then(res => {
+      if (res.isConfirmed) {
+        this.loaderService.show();
+        const contactDetailsData = {
+          Contact_ID: this.contactId,
+          role:this.userDetails.user_role,
+          owner_login_id:this.contactDetails.ownerLoginId,
+          Lead_Source: this.contactDetailsForm.value.Lead_Source == '-1' ? '' : this.contactDetailsForm.value.Lead_Source,
+          First_Name:this.contactDetailsForm.value.contactName == "-" ? 
+              '' : this.contactDetailsForm.value.contactName.split(" ")[0],
+          Last_Name:this.contactDetailsForm.value.contactName == "-" ? 
+          '' : this.contactDetailsForm.value.contactName.split(" ")[1],
+          Email:this.contactDetailsForm.value.Email == '-' ? '' : this.contactDetailsForm.value.Email,
+          Phone:this.contactDetailsForm.value.Phone == '-' ? '' : this.contactDetailsForm.value.Phone,
+          login_id:this.userDetails.user_loginId,
+          Mailing_Street:this.contactDetailsForm.value.Mailing_Street == '-' ? '' : this.contactDetailsForm.value.Mailing_Street,
+          Mailing_City:this.contactDetailsForm.value.Mailing_City == '-' ? '' : this.contactDetailsForm.value.Mailing_City,
+          Mailing_State:this.contactDetailsForm.value.Mailing_State == '-' ? '' : this.contactDetailsForm.value.Mailing_State,
+          Mailing_Zip:this.contactDetailsForm.value.Mailing_Zip == '-' ? '': this.contactDetailsForm.value.Mailing_Zip,
+          Description:this.contactDetailsForm.value.Description == '-' ? '' : this.contactDetailsForm.value.Description,
+          Salutation:"",
+          Tag:"",
+          Average_Bill:this.contactDetailsForm.value.Average_Bill == '-' ? '' : this.contactDetailsForm.value.Average_Bill,
+          Date_Created:this.contactDetailsForm.value.Date_Created,
+          Energy_Consultant:this.contactDetailsForm.value.Energy_Consultant == '-1' ? '' : this.contactDetailsForm.value.Energy_Consultant,
+          Marketer:this.contactDetailsForm.value.Marketer == '-1' ? '' : this.contactDetailsForm.value.Marketer,
+          DateTime_Scheduled:this.contactDetailsForm.value.Date_Scheduled + ' ' + this.contactDetailsForm.value.Time_Scheduled,
+          Spouse_Name:this.contactDetailsForm.value.Spouse_Name == '-' ? '' : this.contactDetailsForm.value.Spouse_Name,
+          Qualified_By:this.contactDetailsForm.value.Qualified_By == '-' ? '' : this.contactDetailsForm.value.Qualified_By,
+          Home_Sq_Ft:this.contactDetailsForm.value.Home_Sq_Ft == '-' ? '' : this.contactDetailsForm.value.Home_Sq_Ft,
+          Second_Marketer:this.contactDetailsForm.value.Second_Marketer == '-1' ? '' : this.contactDetailsForm.value.Second_Marketer,
+          Freedom_ID:this.contactDetailsForm.value.Freedom_ID == '-' ? '' : this.contactDetailsForm.value.Freedom_ID,
+          LeadIdCPY:this.contactDetailsForm.value.LeadIdCPY == '-' ? '' : this.contactDetailsForm.value.LeadIdCPY,
+        }
+       // console.log(contactDetailsData);
+        this.querySubscription = this.genericService
+            .addModifyContact(contactDetailsData, this.userDetails.authorize_token)
+            .subscribe(
+              (dataValue) => {
+                this.loaderService.hide();
+                console.log(dataValue); 
+                const successMsg = "Contact Details Updated Succesfully";
+                Swal.fire({
+                  text: successMsg, icon: 'success', confirmButtonColor: '#A239CA',
+                  confirmButtonText: 'OK'
+                }).then(res => {
+                  window.location.href = '/post-auth/contacts/';
+                });
+              },
+              (error) => {
+                this.loaderService.hide();
+                const errMsg = "Unable To Save Contact Details";
+                Swal.fire({
+                  text: errMsg, icon: 'error', confirmButtonColor: '#A239CA',
+                  confirmButtonText: 'OK'
+                });
+              }
+            );
+      } else {
+        this.loaderService.hide();
+      }
+    });
+  }
   logout() {
     this.genericService.logoutApi(this.userDetails.authorize_token).subscribe((data: any) => { 
       sessionStorage.clear();

@@ -5,9 +5,7 @@ import { forkJoin, Observable, Subject } from 'rxjs';
 import { GenericService } from '../../service/generic.service';
 import { AuthService } from '../../service/auth.service';
 import { takeUntil } from 'rxjs/operators';
-import { LoaderService } from 'src/app/shared/loader/loader.service';
-import Swal from 'sweetalert2';
-import { UserDetailsModel } from 'src/app/shared/models/util.model';
+import { NotificationService } from 'src/app/service/notification.service';
 
 @Component({
   selector: 'app-account-details',
@@ -17,8 +15,6 @@ import { UserDetailsModel } from 'src/app/shared/models/util.model';
 export class AccountDetailsComponent implements OnInit, OnDestroy {
   public accountId: string = '';
   public accountDetails: any = null;
-  private userDetails: UserDetailsModel | null = null;
-  private isAdmin: boolean = false;
   public accountDetailsForm: FormGroup;
   private leadSources: any = '';
   private marketers: any = '';
@@ -35,18 +31,15 @@ export class AccountDetailsComponent implements OnInit, OnDestroy {
     private route: ActivatedRoute,
     private router: Router,
     private authService: AuthService,
+    private notificationService: NotificationService,
     private fb: FormBuilder,
     private genericService: GenericService,
-    private loaderService: LoaderService,
     private elementRef: ElementRef
   ) {
     this.accountDetailsForm = this.fb.group({});
-    this.userDetails = this.authService.getUserDetails();
-    this.isAdmin = this.authService.getIsAdmin();
   }
 
   ngOnInit(): void {
-    this.loaderService.show();
     this.route.queryParams.subscribe((params) => {
       this.accountId = params.accountId;
       this.fetchRequiredDetails();
@@ -95,9 +88,6 @@ export class AccountDetailsComponent implements OnInit, OnDestroy {
   }
   private fetchRequiredDetails(): void {
     const reqs: Observable<any>[] = [];
-    const authorize_token = this.userDetails
-      ? this.userDetails.authorize_token
-      : null;
     const getSource$ = this.genericService.getSources();
     const getMarketers$ = this.genericService.getMarketers();
     const getSecondMarketers$ = this.genericService.getSecondMarketers();
@@ -105,7 +95,6 @@ export class AccountDetailsComponent implements OnInit, OnDestroy {
     const getEnergyConsultant$ = this.genericService.getEnergyConsultant();
     const getStages$ = this.genericService.getStages();
     const getDealsFromContact$ = this.genericService.getDealsFromContact(
-      '',
       this.accountId
     );
     reqs.push(getSource$);
@@ -115,13 +104,8 @@ export class AccountDetailsComponent implements OnInit, OnDestroy {
     reqs.push(getEnergyConsultant$);
     reqs.push(getStages$);
     // reqs.push(getDealsFromContact$);
-    if (authorize_token) {
-      const getAccounts$ = this.genericService.getAccounts(
-        authorize_token,
-        this.isAdmin
-      );
-      reqs.push(getAccounts$);
-    }
+    const getAccounts$ = this.genericService.getAccounts();
+    reqs.push(getAccounts$);
 
     forkJoin(reqs)
       .pipe(takeUntil(this.unsubscribe$))
@@ -183,34 +167,20 @@ export class AccountDetailsComponent implements OnInit, OnDestroy {
                   console.log('accountDetails=', this.accountDetails);
                   this.setFormControlValue();
                 }
-                this.loaderService.hide();
               } else if (accountList?.error?.name === 'TokenExpiredError') {
                 const errMsg = 'Session Expired !! Please login again.';
-                this.invokeErrorModal(errMsg, true);
+                this.notificationService.error(errMsg, true);
               }
             }
           }
         },
         (error) => {
-          this.loaderService.hide();
           const errMsg = 'Unable To fetch data. Please try again.';
-          this.invokeErrorModal(errMsg, false);
+          this.notificationService.error(errMsg, false);
         }
       );
   }
 
-  private invokeErrorModal(errMsg: string, logOutRequired: boolean): void {
-    Swal.fire({
-      text: errMsg,
-      icon: 'error',
-      confirmButtonColor: '#A239CA',
-      confirmButtonText: 'OK',
-    }).then((res) => {
-      if (logOutRequired) {
-        this.authService.logout();
-      }
-    });
-  }
   private getAccountDetails(accountList: any, accountId: string): any {
     const accountDetails = accountList.find(
       (item: any) => parseInt(item.Account_ID) === parseInt(accountId)

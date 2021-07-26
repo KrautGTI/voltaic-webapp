@@ -10,6 +10,7 @@ import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { AuthService } from 'src/app/service/auth.service';
 import { GenericService } from 'src/app/service/generic.service';
+import { NotificationService } from 'src/app/service/notification.service';
 import {
   AccountInformationLabels,
   AddressInformationLabels,
@@ -36,7 +37,8 @@ export class AccountCreateComponent implements OnInit, OnDestroy {
     private fb: FormBuilder,
     private router: Router,
     private authService: AuthService,
-    private genericService: GenericService
+    private genericService: GenericService,
+    private notificationService: NotificationService
   ) {
     this.userDetails = this.authService.getUserDetails();
     this.isAdmin = this.authService.getIsAdmin();
@@ -102,26 +104,14 @@ export class AccountCreateComponent implements OnInit, OnDestroy {
             ) {
             } else if (res?.error?.name === 'TokenExpiredError') {
               const errMsg = 'Session Expired !! Please login again.';
-              this.invokeErrorModal(errMsg, true);
+              this.notificationService.error(errMsg, true);
             }
           },
           (err: any) => {
             const errMsg = 'Unable To fetch data. Please try again.';
-            this.invokeErrorModal(errMsg, false);
+            this.notificationService.error(errMsg, false);
           }
         );
     }
-  }
-  private invokeErrorModal(errMsg: string, logOutRequired: boolean): void {
-    Swal.fire({
-      text: errMsg,
-      icon: 'error',
-      confirmButtonColor: '#A239CA',
-      confirmButtonText: 'OK',
-    }).then((res) => {
-      if (logOutRequired) {
-        this.authService.logout();
-      }
-    });
   }
 }

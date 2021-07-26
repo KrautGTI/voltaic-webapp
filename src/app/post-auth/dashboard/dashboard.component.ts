@@ -1,25 +1,24 @@
 import { Component, OnInit } from '@angular/core';
-import { LoaderService } from '../../shared/loader/loader.service';
-import { JwtHelperService } from "@auth0/angular-jwt";
+import { JwtHelperService } from '@auth0/angular-jwt';
 
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.scss']
+  styleUrls: ['./dashboard.component.scss'],
 })
 export class DashboardComponent implements OnInit {
   userDetails: any;
-  
-  constructor(private loaderService : LoaderService, private jwtHelperService : JwtHelperService) { }
+
+  constructor(
+    private jwtHelperService: JwtHelperService
+  ) {}
 
   ngOnInit(): void {
     const userData = sessionStorage.getItem('user');
-    this.userDetails = userData
-      ? JSON.parse(userData)
-      : null;
+    this.userDetails = userData ? JSON.parse(userData) : null;
 
-      // const decodedToken = this.jwtHelperService.decodeToken(this.userDetails.enz);
-      // const expirationDate = this.jwtHelperService.getTokenExpirationDate(this.userDetails.enz);
-      // const isExpired = this.jwtHelperService.isTokenExpired(this.userDetails.enz);
+    // const decodedToken = this.jwtHelperService.decodeToken(this.userDetails.enz);
+    // const expirationDate = this.jwtHelperService.getTokenExpirationDate(this.userDetails.enz);
+    // const isExpired = this.jwtHelperService.isTokenExpired(this.userDetails.enz);
   }
-  }
+}

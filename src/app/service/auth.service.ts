@@ -3,8 +3,6 @@ import { Router } from '@angular/router';
 import { UserDetailsModel } from '../shared/models/util.model';
 import { GenericService } from './generic.service';
 
-
-
 @Injectable({
   providedIn: 'root',
 })
@@ -55,15 +53,12 @@ export class AuthService {
   }
 
   public logout() {
-    const authorize_token = this.getAccessToken();
-    if (authorize_token) {
-      this.genericService.logoutApi(authorize_token).subscribe((data: any) => {
-        sessionStorage.clear();
-        this.router.navigate(['/login'], {
-          replaceUrl: true,
-        });
+    this.genericService.logoutApi().subscribe((data: any) => {
+      sessionStorage.clear();
+      this.router.navigate(['/login'], {
+        replaceUrl: true,
       });
-    }
+    });
   }
 
   private parseJWT(token: string): any {

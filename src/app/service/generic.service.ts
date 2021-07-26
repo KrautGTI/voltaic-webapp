@@ -1,14 +1,20 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
+import { UserDetailsModel } from '../shared/models/util.model';
+import { AuthService } from './auth.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class GenericService {
   private authServiceUrl = environment.apiBaseUrl;
-  private userDetails: any;
-  constructor(private httpClient: HttpClient) {}
+  private isAdmin: boolean = false;
+
+  constructor(
+    private httpClient: HttpClient,
+    private authService: AuthService
+  ) {}
 
   public loginUser(loginData: any) {
     const url = this.authServiceUrl + 'user/login';
@@ -25,34 +31,36 @@ export class GenericService {
     return this.httpClient.post(url, resetForm);
   }
 
-  public getJobReports(token: string, isAdmin: boolean) {
+  public getJobReports() {
     const url = this.authServiceUrl + 'masterJob/masterJobs';
     return this.httpClient.post(url, '');
   }
 
-  public getAllUsers(token: string, isAdmin: boolean) {
+  public getAllUsers() {
     const url = this.authServiceUrl + 'masterJob/getAllUsers';
     return this.httpClient.post(url, '');
   }
 
-  public getLeads(token: string, isAdmin: boolean) {
+  public getLeads() {
+    this.isAdmin = this.authService.getIsAdmin();
     const url = this.authServiceUrl + 'masterJob/getLeadsContacts';
-    if (isAdmin) {
+    if (this.isAdmin) {
       return this.httpClient.post(url, { role: 'admin' });
     } else {
       return this.httpClient.post(url, '');
     }
   }
 
-  public getDeals(token: string, isAdmin: boolean) {
+  public getDeals() {
+    this.isAdmin = this.authService.getIsAdmin();
     const url = this.authServiceUrl + 'deals/getDealsDashboard';
-    if (isAdmin) {
+    if (this.isAdmin) {
       return this.httpClient.post(url, { role: 'admin' });
     } else {
       return this.httpClient.post(url, '');
     }
   }
-  public logoutApi(token: string) {
+  public logoutApi() {
     const url = this.authServiceUrl + 'user/logout';
     return this.httpClient.post(url, '');
   }
@@ -67,18 +75,20 @@ export class GenericService {
     return this.httpClient.post(url, registerData);
   }
 
-  public getAccounts(token: string, isAdmin: boolean) {
+  public getAccounts() {
+    this.isAdmin = this.authService.getIsAdmin();
     const url = this.authServiceUrl + 'accounts/getAccounts';
-    if (isAdmin) {
+    if (this.isAdmin) {
       return this.httpClient.post(url, { role: 'admin' });
     } else {
       return this.httpClient.post(url, '');
     }
   }
 
-  public getContacts(token: string, isAdmin: boolean) {
+  public getContacts() {
+    this.isAdmin = this.authService.getIsAdmin();
     const url = this.authServiceUrl + 'contacts/getContacts';
-    if (isAdmin) {
+    if (this.isAdmin) {
       return this.httpClient.post(url, { role: 'admin' });
     } else {
       return this.httpClient.post(url, '');
@@ -120,12 +130,12 @@ export class GenericService {
     return this.httpClient.get(url);
   }
 
-  public getDealsById(token: string, dealid: string) {
+  public getDealsById(dealid: string) {
     const url = this.authServiceUrl + 'deals/getDealsById';
     return this.httpClient.post(url, { dealId: dealid });
   }
 
-  public getDealsFromContact(token: string, contactid: string) {
+  public getDealsFromContact(contactid: string) {
     const url = this.authServiceUrl + 'contacts/getDealsFromContact';
     return this.httpClient.post(url, { contact_id: contactid });
   }
@@ -134,7 +144,7 @@ export class GenericService {
     return this.httpClient.post(url, data);
   }
 
-  public addModifyContact(contactDetails: any, token: string) {
+  public addModifyContact(contactDetails: any) {
     const url = this.authServiceUrl + 'contacts/addModifyContacts';
     return this.httpClient.post(url, contactDetails);
   }

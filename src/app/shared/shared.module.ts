@@ -5,7 +5,6 @@ import { ReactiveFormsModule, FormsModule } from "@angular/forms";
 import { HeaderComponent } from "./header/header.component";
 import { FooterComponent } from "./footer/footer.component";
 import { SidenavComponent } from "./sidenav/sidenav.component";
-import { LoaderComponent } from './loader/loader.component';
 
 
 @NgModule({
@@ -13,7 +12,6 @@ import { LoaderComponent } from './loader/loader.component';
     HeaderComponent,
     FooterComponent,
     SidenavComponent,
-    LoaderComponent
   ],
   imports: [
     CommonModule,
@@ -25,7 +23,6 @@ import { LoaderComponent } from './loader/loader.component';
     HeaderComponent,
     FooterComponent,
     SidenavComponent,
-    LoaderComponent
   ],
 })
 export class SharedModule { }

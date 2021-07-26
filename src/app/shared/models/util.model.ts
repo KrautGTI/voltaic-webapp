@@ -2,6 +2,7 @@ export class UserDetailsModel {
   authorize_token: string = '';
   user_name: string = '';
   user_role: string = '';
+  user_loginId: string = '';
 }
 
 export class FormFieldError {

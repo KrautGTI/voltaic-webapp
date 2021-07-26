@@ -228,4 +228,14 @@ export class GenericService {
     return this.httpClient.post(url, {contact_id: contactid}, options);   
   }
 
+  public addModifyContact(contactDetails:any, token: string, ) {
+    const headers = new HttpHeaders({
+        Accept: 'application/json',
+        authorize_token: token
+      });
+    const options = { headers: headers };
+    const url = this.authServiceUrl + 'contacts/addModifyContacts';
+    return this.httpClient.post(url, contactDetails, options);   
+  }
+
 }

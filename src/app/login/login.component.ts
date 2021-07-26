@@ -131,16 +131,18 @@ export class LoginComponent implements OnInit {
           } else {
             //sessionStorage.setItem('user', JSON.stringify(data));
              const decodedToken = this.jwtHelperService.decodeToken(data.enz);
+             console.log(decodedToken);
              const userDetails = {
               authorize_token: decodedToken.login_id.authorize_token,
               user_name: decodedToken.login_id.user_name,
-              user_role: decodedToken.login_id.user_role
+              user_role: decodedToken.login_id.user_role,
+              user_loginId: decodedToken.login_id.user_loginId,
              };
              sessionStorage.setItem('user', JSON.stringify(userDetails));
             //  sessionStorage.setItem('token', decodedToken.login_id.authorize_token);
             //  sessionStorage.setItem('userName', decodedToken.login_id.user_name);
             //  sessionStorage.setItem('role', decodedToken.login_id.user_role);
-             this.router.navigate(['post-auth/dashboard']);
+            this.router.navigate(['post-auth/dashboard']);
            }
         }, (error) => {
             this.loaderService.hide();

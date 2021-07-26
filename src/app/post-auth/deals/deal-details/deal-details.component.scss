@@ -20,7 +20,7 @@
         cursor:pointer;
     }
 }
-.dealsInfo {
+.contactsInfo {
     padding-top:5px!important;
     p:first-child {
         font-weight:600;
@@ -29,12 +29,12 @@
     }
 }
 
-.dealTable {
+.contactTable {
     width:100%;
     thead tr td {
         color:#797e88;
     }
-    .dealname {
+    .contactname {
         color:#338cf0!important;
     }
 }
@@ -69,7 +69,7 @@
     width: 25px; 
 }
 
-.contactInfo .blueTxt {
+.dealInfo .blueTxt {
     width: 85%;
 }
 
@@ -84,7 +84,7 @@
     font-weight: 500;
     color:#000;
     vertical-align: top;
-        input, select, textarea {
+        input, select, textarea{
             padding: 0;
             border: none;
             font-size: 16px;
@@ -177,11 +177,11 @@ textarea {
     }
 }
 
-.contactDiv {
+.dealDiv {
     border-bottom: 1px solid #eff0f5;
 }
 
-.contactDetails {  
+.dealDetails {  
     padding-top: 5px!important;
     .cardHeader {
         padding-left: 0rem!important;
@@ -189,4 +189,28 @@ textarea {
     .pr-3 {
         padding-right:1rem!important;
     }
+}
+
+.borderRight{
+    border-right: 1px solid #bec5d4;
+}
+
+::ng-deep .customDatePicker input {
+    border:none;
+}
+
+::ng-deep .dp-input-container input:focus-visible{
+    outline: 0;
+}
+
+.dealInfo .blueTxt.dateDiv{
+    width: auto;
+}
+.dealInfo .blueTxt.dateDivFull, .dealInfo .blueTxt.dateDivFull .customDatePicker,
+::ng-deep .dealInfo .blueTxt.dateDivFull .customDatePicker input{
+    width: 100%;
+}
+.blueTxt.dateDivFull, .blueTxt.dateDivFull .customDatePicker,
+::ng-deep .blueTxt.dateDivFull .customDatePicker input{
+    width: 100%;
 }

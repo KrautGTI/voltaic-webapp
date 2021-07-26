@@ -4,7 +4,7 @@ import { ContactDetailsComponent } from './contact-details.component';
 import { ContactDetailsRoutingModule } from './contact-details-routing.module';
 import { AgGridModule } from 'ag-grid-angular';
 import { ReactiveFormsModule, FormsModule } from "@angular/forms";
-
+import {DpDatePickerModule} from 'ng2-date-picker';
 
 
 @NgModule({
@@ -12,7 +12,7 @@ import { ReactiveFormsModule, FormsModule } from "@angular/forms";
     ContactDetailsComponent
   ],
   imports: [
-    CommonModule, ContactDetailsRoutingModule, AgGridModule, ReactiveFormsModule, FormsModule
+    CommonModule, ContactDetailsRoutingModule, AgGridModule, ReactiveFormsModule, FormsModule, DpDatePickerModule
   ]
 })
 export class ContactDetailsModule { }

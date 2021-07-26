@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserDetailsModel } from '../shared/models/util.model';
-import { GenericService } from './generic.service';
 
 @Injectable({
   providedIn: 'root',
@@ -10,7 +9,7 @@ export class AuthService {
   private userData: any;
   private userDetails: UserDetailsModel | null = null;
 
-  constructor(private genericService: GenericService, private router: Router) {}
+  constructor(private router: Router) {}
 
   private setUserData(): void {
     this.userData = sessionStorage.getItem('user')
@@ -50,15 +49,6 @@ export class AuthService {
   }
   public isLoggedIn(): boolean {
     return this.isTokenExpired() ? false : true;
-  }
-
-  public logout() {
-    this.genericService.logoutApi().subscribe((data: any) => {
-      sessionStorage.clear();
-      this.router.navigate(['/login'], {
-        replaceUrl: true,
-      });
-    });
   }
 
   private parseJWT(token: string): any {

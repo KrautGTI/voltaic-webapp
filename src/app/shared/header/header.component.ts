@@ -1,7 +1,9 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
-import { GenericService } from './../../service/generic.service';
 import Swal from 'sweetalert2';
+import { AuthService } from 'src/app/service/auth.service';
+import { UserDetailsModel } from '../models/util.model';
+import { NotificationService } from 'src/app/service/notification.service';
 
 @Component({
   selector: 'app-header',
@@ -10,13 +12,16 @@ import Swal from 'sweetalert2';
 })
 export class HeaderComponent implements OnInit {
   @Input() toggleLogo: any;
-  userDetails: any;
+  public userDetails: UserDetailsModel | null = null;
   isInit: boolean = false;
-  constructor(public router: Router, private genericService: GenericService) {}
+  constructor(
+    public router: Router,
+    private authService: AuthService,
+    private notificationService: NotificationService
+  ) {}
 
   ngOnInit(): void {
-    let userData = sessionStorage.getItem('user');
-    this.userDetails = userData ? JSON.parse(userData) : '';
+    this.userDetails = this.authService.getUserDetails();
   }
 
   logout() {
@@ -31,23 +36,13 @@ export class HeaderComponent implements OnInit {
       cancelButtonText: 'No',
     }).then((res) => {
       if (res.isConfirmed) {
-        if (!this.userDetails?.authorize_token) {
+        if (!this.authService.getAccessToken()) {
           sessionStorage.clear();
           this.router.navigate(['/login'], {
             replaceUrl: true,
           });
         } else {
-          this.genericService
-            .logoutApi(this.userDetails.authorize_token)
-            .subscribe(
-              (data: any) => {
-                sessionStorage.clear();
-                this.router.navigate(['/login'], {
-                  replaceUrl: true,
-                });
-              },
-              (error) => {}
-            );
+          this.notificationService.logout();
         }
       }
     });

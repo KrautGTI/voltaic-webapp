@@ -129,4 +129,8 @@ export class GenericService {
     const url = this.authServiceUrl + 'contacts/getDealsFromContact';
     return this.httpClient.post(url, { contact_id: contactid });
   }
+  public addModifyAccounts(data: any): any {
+    const url = this.authServiceUrl + 'accounts/addModifyAccounts';
+    return this.httpClient.post(url, data);
+  }
 }

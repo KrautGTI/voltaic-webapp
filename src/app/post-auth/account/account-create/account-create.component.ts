@@ -7,13 +7,16 @@ import {
 } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 import { AuthService } from 'src/app/service/auth.service';
+import { GenericService } from 'src/app/service/generic.service';
 import {
   AccountInformationLabels,
   AddressInformationLabels,
   DescriptionInformationLabels,
 } from 'src/app/shared/constants/account.constant';
 import { FormField, UserDetailsModel } from 'src/app/shared/models/util.model';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-account-create',
@@ -32,7 +35,8 @@ export class AccountCreateComponent implements OnInit, OnDestroy {
   constructor(
     private fb: FormBuilder,
     private router: Router,
-    private authService: AuthService
+    private authService: AuthService,
+    private genericService: GenericService
   ) {
     this.userDetails = this.authService.getUserDetails();
     this.isAdmin = this.authService.getIsAdmin();
@@ -46,7 +50,10 @@ export class AccountCreateComponent implements OnInit, OnDestroy {
     this.unsubscribe$.complete();
   }
   private createForm(): void {
-    this.accountForm = this.fb.group({});
+    this.accountForm = this.fb.group({
+      Tag: [''],
+      login_id: [''],
+    });
     Object.keys(this.label).forEach((key: string) => {
       const fieldName = this.label[key].fieldName;
       this.accountForm.addControl(
@@ -80,5 +87,41 @@ export class AccountCreateComponent implements OnInit, OnDestroy {
 
   public getControl(name: string): AbstractControl | null {
     return this.accountForm.get(name);
+  }
+
+  public saveAccount(): void {
+    if (this.accountForm.valid) {
+      this.genericService
+        .addModifyAccounts(this.accountForm.value)
+        .pipe(takeUntil(this.unsubscribe$))
+        .subscribe(
+          (res: any) => {
+            if (
+              res?.message != 'Server Error' &&
+              res?.error?.name != 'TokenExpiredError'
+            ) {
+            } else if (res?.error?.name === 'TokenExpiredError') {
+              const errMsg = 'Session Expired !! Please login again.';
+              this.invokeErrorModal(errMsg, true);
+            }
+          },
+          (err: any) => {
+            const errMsg = 'Unable To fetch data. Please try again.';
+            this.invokeErrorModal(errMsg, false);
+          }
+        );
+    }
+  }
+  private invokeErrorModal(errMsg: string, logOutRequired: boolean): void {
+    Swal.fire({
+      text: errMsg,
+      icon: 'error',
+      confirmButtonColor: '#A239CA',
+      confirmButtonText: 'OK',
+    }).then((res) => {
+      if (logOutRequired) {
+        this.authService.logout();
+      }
+    });
   }
 }

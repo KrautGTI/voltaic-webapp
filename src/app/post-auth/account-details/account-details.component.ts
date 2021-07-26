@@ -207,23 +207,9 @@ export class AccountDetailsComponent implements OnInit, OnDestroy {
       confirmButtonText: 'OK',
     }).then((res) => {
       if (logOutRequired) {
-        this.logout();
+        this.authService.logout();
       }
     });
-  }
-  private logout() {
-    const authorize_token = this.userDetails
-      ? this.userDetails.authorize_token
-      : null;
-    if (authorize_token) {
-      this.genericService.logoutApi(authorize_token).subscribe((data: any) => {
-        console.log(data);
-        sessionStorage.clear();
-        this.router.navigate(['/login'], {
-          replaceUrl: true,
-        });
-      });
-    }
   }
   private getAccountDetails(accountList: any, accountId: string): any {
     const accountDetails = accountList.find(

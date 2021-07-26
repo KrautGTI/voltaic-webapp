@@ -3,10 +3,10 @@ import { ErrorType, FieldTypes, FormField } from '../models/util.model';
 export const AccountInformationLabels: { [key: string]: FormField } = {
   accountOwner: {
     fieldLabel: 'Account Owner',
-    fieldName: 'Account_Owner',
+    fieldName: 'Account_Owner_ID',
     placeholder: '',
     fieldType: FieldTypes.SELECT,
-    isRequired: false,
+    isRequired: true,
     isDisabled: false,
     options: [],
     errors: [
@@ -36,7 +36,7 @@ export const AccountInformationLabels: { [key: string]: FormField } = {
     fieldName: 'Account_Name',
     placeholder: '',
     fieldType: FieldTypes.TEXT,
-    isRequired: false,
+    isRequired: true,
     isDisabled: false,
     options: [],
     errors: [
@@ -93,7 +93,7 @@ export const AccountInformationLabels: { [key: string]: FormField } = {
   },
   parentAccount: {
     fieldLabel: 'Parent Account',
-    fieldName: 'Parent_Account',
+    fieldName: 'Parent_Account_ID',
     placeholder: '',
     fieldType: FieldTypes.TEXT,
     isRequired: false,
@@ -138,7 +138,7 @@ export const AccountInformationLabels: { [key: string]: FormField } = {
   },
   tickerSymbol: {
     fieldLabel: 'Ticker Symbol',
-    fieldName: 'Account_Owner',
+    fieldName: 'Ticker_Symbol',
     placeholder: '',
     fieldType: FieldTypes.TEXT,
     isRequired: false,

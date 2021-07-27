@@ -1,0 +1,42 @@
+.form-label {
+  font-weight: 500;
+  font-size: 16px;
+  display: inline-block;
+  color: #616e88;
+  vertical-align: top;
+  text-align: right;
+  padding-right: 30px;
+}
+.mandatory-style {
+  font-size: 16px;
+  color: #ec1616;
+}
+
+.form-error {
+  label {
+    font-size: 14px;
+    color: #ec1616;
+    margin-bottom: 0;
+    margin-top: 5px;
+  }
+}
+.search-wraper {
+  position: relative;
+  .search-container {
+    height: 150px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    width: 100%;
+    position: absolute;
+    border: 1px solid rgba(0, 0, 0, 0.125);
+    border-radius: 0.25rem;
+    background-color: #fff;
+    background-clip: border-box;
+    box-shadow: 0 0.5rem 1rem rgb(0 0 0 / 15%);
+    .search-item {
+      cursor: pointer;
+      padding: 5px 5px;
+      border-top: 1px solid rgba(0, 0, 0, 0.125);
+    }
+  }
+}

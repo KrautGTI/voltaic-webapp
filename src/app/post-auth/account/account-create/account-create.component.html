@@ -20,7 +20,8 @@
                 [isRequired]="label.accountOwner.isRequired"
                 [label]="label.accountOwner.fieldLabel"
                 [fieldName]="label.accountOwner.fieldName"
-                [options]="label.accountOwner.options"
+                [options]="leadOwners"
+                [optionConfig]="label.accountOwner.optionConfig"
                 [errors]="label.accountOwner.errors"
                 [group]="accountForm"
               ></app-select>
@@ -30,7 +31,8 @@
                 [isRequired]="label.rating.isRequired"
                 [label]="label.rating.fieldLabel"
                 [fieldName]="label.rating.fieldName"
-                [options]="label.rating.options"
+                [options]="masterData[label.rating.fieldName]"
+                [optionConfig]="label.rating.optionConfig"
                 [errors]="label.rating.errors"
                 [group]="accountForm"
               ></app-select>
@@ -80,15 +82,18 @@
               ></app-input-number>
             </div>
             <div class="col-md-6 mb-4">
-              <app-input
+              <app-input-search
                 [type]="label.parentAccount.fieldType"
                 [isRequired]="label.parentAccount.isRequired"
                 [label]="label.parentAccount.fieldLabel"
                 [fieldName]="label.parentAccount.fieldName"
                 [placeholder]="label.parentAccount.placeholder"
                 [errors]="label.parentAccount.errors"
+                [searchValues]="searchValues$"
+                [optionConfig]="label.parentAccount.optionConfig"
                 [group]="accountForm"
-              ></app-input>
+                (cstChange)="onChangeParentAccount($event)"
+              ></app-input-search>
             </div>
             <div class="col-md-6 mb-4">
               <app-input
@@ -128,7 +133,8 @@
                 [isRequired]="label.accountType.isRequired"
                 [label]="label.accountType.fieldLabel"
                 [fieldName]="label.accountType.fieldName"
-                [options]="label.accountType.options"
+                [options]="masterData[label.accountType.fieldName]"
+                [optionConfig]="label.accountType.optionConfig"
                 [errors]="label.accountType.errors"
                 [group]="accountForm"
               ></app-select>
@@ -138,7 +144,8 @@
                 [isRequired]="label.ownership.isRequired"
                 [label]="label.ownership.fieldLabel"
                 [fieldName]="label.ownership.fieldName"
-                [options]="label.ownership.options"
+                [options]="masterData[label.ownership.fieldName]"
+                [optionConfig]="label.ownership.optionConfig"
                 [errors]="label.ownership.errors"
                 [group]="accountForm"
               ></app-select>
@@ -148,7 +155,8 @@
                 [isRequired]="label.industry.isRequired"
                 [label]="label.industry.fieldLabel"
                 [fieldName]="label.industry.fieldName"
-                [options]="label.industry.options"
+                [options]="masterData[label.industry.fieldName]"
+                [optionConfig]="label.industry.optionConfig"
                 [errors]="label.industry.errors"
                 [group]="accountForm"
               ></app-select>
@@ -371,6 +379,7 @@
           class="btn btn-primary createBtn"
           type="submit"
           (click)="saveAccount()"
+          [disabled]="accountForm.invalid"
         >
           Create Account
         </button>

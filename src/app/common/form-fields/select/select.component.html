@@ -9,6 +9,7 @@
       <div class="blueTxt">
         <select
           [name]="fieldName"
+          [formControlName]="fieldName"
           [ngClass]="{
             'select-error':
               groupControl!.invalid &&
@@ -18,9 +19,9 @@
           (blur)="onBlur($event)"
           (change)="onChange($event)"
         >
-          <option value="-1">Select None</option>
-          <option *ngFor="let option of options" [value]="options.id">
-            {{ options.name }}
+          <option value="">Select None</option>
+          <option *ngFor="let option of modifiedOptions" [value]="option.value">
+            {{ option.label }}
           </option>
         </select>
         <div

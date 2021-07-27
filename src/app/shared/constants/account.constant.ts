@@ -9,6 +9,7 @@ export const AccountInformationLabels: { [key: string]: FormField } = {
     isRequired: true,
     isDisabled: false,
     options: [],
+    optionConfig: { labelKey: 'name', valueKey: 'id' },
     errors: [
       {
         type: ErrorType.REQUIRED,
@@ -24,6 +25,7 @@ export const AccountInformationLabels: { [key: string]: FormField } = {
     isRequired: false,
     isDisabled: false,
     options: [],
+    optionConfig: { labelKey: 'value', valueKey: 'id' },
     errors: [
       {
         type: ErrorType.REQUIRED,
@@ -95,10 +97,11 @@ export const AccountInformationLabels: { [key: string]: FormField } = {
     fieldLabel: 'Parent Account',
     fieldName: 'Parent_Account_ID',
     placeholder: '',
-    fieldType: FieldTypes.TEXT,
+    fieldType: FieldTypes.AUTOSEARCH,
     isRequired: false,
     isDisabled: false,
     options: [],
+    optionConfig: { labelKey: 'Account_Name', valueKey: 'Account_ID' },
     errors: [
       {
         type: ErrorType.REQUIRED,
@@ -159,6 +162,7 @@ export const AccountInformationLabels: { [key: string]: FormField } = {
     isRequired: false,
     isDisabled: false,
     options: [],
+    optionConfig: { labelKey: 'value', valueKey: 'id' },
     errors: [
       {
         type: ErrorType.REQUIRED,
@@ -174,6 +178,7 @@ export const AccountInformationLabels: { [key: string]: FormField } = {
     isRequired: false,
     isDisabled: false,
     options: [],
+    optionConfig: { labelKey: 'value', valueKey: 'id' },
     errors: [
       {
         type: ErrorType.REQUIRED,
@@ -189,6 +194,7 @@ export const AccountInformationLabels: { [key: string]: FormField } = {
     isRequired: false,
     isDisabled: false,
     options: [],
+    optionConfig: { labelKey: 'value', valueKey: 'id' },
     errors: [
       {
         type: ErrorType.REQUIRED,

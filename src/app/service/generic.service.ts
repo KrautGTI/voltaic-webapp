@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { map } from 'rxjs/operators';
 import { environment } from '../../environments/environment';
 import { AuthService } from './auth.service';
 
@@ -84,6 +85,24 @@ export class GenericService {
     }
   }
 
+  public getAccountsForSearch() {
+    this.isAdmin = this.authService.getIsAdmin();
+    const url = this.authServiceUrl + 'accounts/getAccounts';
+    if (this.isAdmin) {
+      return this.httpClient
+        .post(url, { role: 'admin' })
+        .pipe(
+          map((data: any) =>
+            data && data.message && Array.isArray(data.message)
+              ? data.message
+              : []
+          )
+        );
+    } else {
+      return this.httpClient.post(url, '');
+    }
+  }
+
   public getContacts() {
     this.isAdmin = this.authService.getIsAdmin();
     const url = this.authServiceUrl + 'contacts/getContacts';
@@ -128,6 +147,9 @@ export class GenericService {
     const url = this.authServiceUrl + 'master/getLeadOwner';
     return this.httpClient.get(url);
   }
+  public getMasterData() {
+    return this.httpClient.get('assets/json/master.json');
+  }
 
   public getDealsById(dealid: string) {
     const url = this.authServiceUrl + 'deals/getDealsById';
@@ -137,6 +159,10 @@ export class GenericService {
   public getDealsFromContact(contactid: string) {
     const url = this.authServiceUrl + 'contacts/getDealsFromContact';
     return this.httpClient.post(url, { contact_id: contactid });
+  }
+  public getDealsFromAccount(accountId: string) {
+    const url = this.authServiceUrl + 'accounts/getDealsByAccount';
+    return this.httpClient.post(url, { account_id: accountId });
   }
   public addModifyAccounts(data: any): any {
     const url = this.authServiceUrl + 'accounts/addModifyAccounts';

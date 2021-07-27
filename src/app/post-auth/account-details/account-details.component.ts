@@ -58,6 +58,7 @@ export class AccountDetailsComponent implements OnInit, OnDestroy {
       Annual_Revenue: [''],
       Phone: [''],
       Account_Owner: [''],
+      Rating: [''],
       Account_Name: [''],
       Account_Site: [''],
       Parent_Account_ID: [''],
@@ -94,17 +95,17 @@ export class AccountDetailsComponent implements OnInit, OnDestroy {
     const getLeadOwners$ = this.genericService.getLeadOwners();
     const getEnergyConsultant$ = this.genericService.getEnergyConsultant();
     const getStages$ = this.genericService.getStages();
-    const getDealsFromContact$ = this.genericService.getDealsFromContact(
+    const getDealsFromAccount$ = this.genericService.getDealsFromAccount(
       this.accountId
     );
+    const getAccounts$ = this.genericService.getAccounts();
     reqs.push(getSource$);
     reqs.push(getMarketers$);
     reqs.push(getSecondMarketers$);
     reqs.push(getLeadOwners$);
     reqs.push(getEnergyConsultant$);
     reqs.push(getStages$);
-    // reqs.push(getDealsFromContact$);
-    const getAccounts$ = this.genericService.getAccounts();
+    reqs.push(getDealsFromAccount$);
     reqs.push(getAccounts$);
 
     forkJoin(reqs)
@@ -134,24 +135,29 @@ export class AccountDetailsComponent implements OnInit, OnDestroy {
             if (results[5]) {
               this.stages = results[5].message ? results[5].message : '';
             }
-            // if (results[6]) {
-            //   this.dealsList =
-            //     results[6].message && results[6].message.data
-            //       ? results[6].message.data
-            //       : '';
-            //   this.dealsList.forEach((element: any) => {
-            //     element.Stage_Name = '-';
-            //     if (this.stages && Array.isArray(this.stages)) {
-            //       this.stages.forEach((ele: any) => {
-            //         if (element.Stage_ID == ele.id) {
-            //           element.Stage_Name = ele.name;
-            //         }
-            //       });
-            //     }
-            //   });
-            // }
             if (results[6]) {
-              const accountList = results[6];
+              const dealsList = results[6];
+              if (dealsList?.message !== 'No Record Updated..') {
+                this.dealsList =
+                  dealsList && dealsList.message && dealsList.message.data
+                    ? dealsList.message.data
+                    : [];
+                if (Array.isArray(this.dealsList)) {
+                  this.dealsList.forEach((element: any) => {
+                    element.Stage_Name = '-';
+                    if (this.stages && Array.isArray(this.stages)) {
+                      this.stages.forEach((ele: any) => {
+                        if (element.Stage_ID == ele.id) {
+                          element.Stage_Name = ele.name;
+                        }
+                      });
+                    }
+                  });
+                }
+              }
+            }
+            if (results[7]) {
+              const accountList = results[7];
               if (
                 accountList?.message != 'Server Error' &&
                 accountList?.error?.name != 'TokenExpiredError'

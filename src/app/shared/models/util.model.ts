@@ -18,7 +18,16 @@ export class FormField {
   isRequired = false;
   isDisabled? = false;
   options? = [];
+  optionConfig?: OptionConfig = new OptionConfig();
   errors: FormFieldError[] = [];
+}
+export class OptionConfig {
+  labelKey: string = '';
+  valueKey: string = '';
+}
+export class OptionModel {
+  label: string = '';
+  value: string = '';
 }
 
 export class FormFieldGroup {
@@ -41,6 +50,7 @@ export enum FieldTypes {
   FILE = 'file',
   PASSWORD = 'password',
   SWITCH = 'switch',
+  AUTOSEARCH = 'autosearch',
 }
 
 export enum ErrorType {

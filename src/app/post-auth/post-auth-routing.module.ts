@@ -14,8 +14,7 @@ const routes: Routes = [
       },
       {
         path: 'job',
-        loadChildren: () =>
-          import('./job/job.module').then((m) => m.JobModule),
+        loadChildren: () => import('./job/job.module').then((m) => m.JobModule),
       },
       {
         path: 'manage',
@@ -25,7 +24,9 @@ const routes: Routes = [
       {
         path: 'leads',
         loadChildren: () =>
-          import('./contact-leads/contact-leads.module').then((m) => m.ContactLeadsModule),
+          import('./contact-leads/contact-leads.module').then(
+            (m) => m.ContactLeadsModule
+          ),
       },
       {
         path: 'contacts',
@@ -45,9 +46,18 @@ const routes: Routes = [
       {
         path: 'contact-details',
         loadChildren: () =>
-          import('./contact-details/contact-details.module').then((m) => m.ContactDetailsModule),
-      }
-    ]
+          import('./contact-details/contact-details.module').then(
+            (m) => m.ContactDetailsModule
+          ),
+      },
+      {
+        path: 'account-details',
+        loadChildren: () =>
+          import('./account-details/account-details.module').then(
+            (m) => m.AccountDetailsModule
+          ),
+      },
+    ],
   },
 ];
 

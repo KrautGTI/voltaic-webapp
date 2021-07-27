@@ -1,0 +1,380 @@
+<div class="container-fluid" style="margin-top: 30px">
+  <form [formGroup]="accountForm">
+    <div class="card shadow">
+      <div class="card-body contactInfo accountDetails">
+        <div
+          class="
+            p-3
+            font-size-15rem font-weight-600
+            d-flex
+            justify-content-between
+            cardHeader
+          "
+        >
+          Contact Information
+        </div>
+        <div>
+          <div class="row">
+            <div class="col-md-6 mb-4">
+              <app-select
+                [isRequired]="label.accountOwner.isRequired"
+                [label]="label.accountOwner.fieldLabel"
+                [fieldName]="label.accountOwner.fieldName"
+                [options]="label.accountOwner.options"
+                [errors]="label.accountOwner.errors"
+                [group]="accountForm"
+              ></app-select>
+            </div>
+            <div class="col-md-6 mb-4">
+              <app-select
+                [isRequired]="label.rating.isRequired"
+                [label]="label.rating.fieldLabel"
+                [fieldName]="label.rating.fieldName"
+                [options]="label.rating.options"
+                [errors]="label.rating.errors"
+                [group]="accountForm"
+              ></app-select>
+            </div>
+            <div class="col-md-6 mb-4">
+              <app-input
+                [type]="label.accountName.fieldType"
+                [isRequired]="label.accountName.isRequired"
+                [label]="label.accountName.fieldLabel"
+                [fieldName]="label.accountName.fieldName"
+                [placeholder]="label.accountName.placeholder"
+                [errors]="label.accountName.errors"
+                [group]="accountForm"
+              ></app-input>
+            </div>
+            <div class="col-md-6 mb-4">
+              <app-input-number
+                [type]="label.phone.fieldType"
+                [isRequired]="label.phone.isRequired"
+                [label]="label.phone.fieldLabel"
+                [fieldName]="label.phone.fieldName"
+                [placeholder]="label.phone.placeholder"
+                [errors]="label.phone.errors"
+                [group]="accountForm"
+              ></app-input-number>
+            </div>
+            <div class="col-md-6 mb-4">
+              <app-input
+                [type]="label.accountSite.fieldType"
+                [isRequired]="label.accountSite.isRequired"
+                [label]="label.accountSite.fieldLabel"
+                [fieldName]="label.accountSite.fieldName"
+                [placeholder]="label.accountSite.placeholder"
+                [errors]="label.accountSite.errors"
+                [group]="accountForm"
+              ></app-input>
+            </div>
+            <div class="col-md-6 mb-4">
+              <app-input-number
+                [type]="label.fax.fieldType"
+                [isRequired]="label.fax.isRequired"
+                [label]="label.fax.fieldLabel"
+                [fieldName]="label.fax.fieldName"
+                [placeholder]="label.fax.placeholder"
+                [errors]="label.fax.errors"
+                [group]="accountForm"
+              ></app-input-number>
+            </div>
+            <div class="col-md-6 mb-4">
+              <app-input
+                [type]="label.parentAccount.fieldType"
+                [isRequired]="label.parentAccount.isRequired"
+                [label]="label.parentAccount.fieldLabel"
+                [fieldName]="label.parentAccount.fieldName"
+                [placeholder]="label.parentAccount.placeholder"
+                [errors]="label.parentAccount.errors"
+                [group]="accountForm"
+              ></app-input>
+            </div>
+            <div class="col-md-6 mb-4">
+              <app-input
+                [type]="label.website.fieldType"
+                [isRequired]="label.website.isRequired"
+                [label]="label.website.fieldLabel"
+                [fieldName]="label.website.fieldName"
+                [placeholder]="label.website.placeholder"
+                [errors]="label.website.errors"
+                [group]="accountForm"
+              ></app-input>
+            </div>
+            <div class="col-md-6 mb-4">
+              <app-input-number
+                [type]="label.accountNumber.fieldType"
+                [isRequired]="label.accountNumber.isRequired"
+                [label]="label.accountNumber.fieldLabel"
+                [fieldName]="label.accountNumber.fieldName"
+                [placeholder]="label.accountNumber.placeholder"
+                [errors]="label.accountNumber.errors"
+                [group]="accountForm"
+              ></app-input-number>
+            </div>
+            <div class="col-md-6 mb-4">
+              <app-input
+                [type]="label.tickerSymbol.fieldType"
+                [isRequired]="label.tickerSymbol.isRequired"
+                [label]="label.tickerSymbol.fieldLabel"
+                [fieldName]="label.tickerSymbol.fieldName"
+                [placeholder]="label.tickerSymbol.placeholder"
+                [errors]="label.tickerSymbol.errors"
+                [group]="accountForm"
+              ></app-input>
+            </div>
+            <div class="col-md-6 mb-4">
+              <app-select
+                [isRequired]="label.accountType.isRequired"
+                [label]="label.accountType.fieldLabel"
+                [fieldName]="label.accountType.fieldName"
+                [options]="label.accountType.options"
+                [errors]="label.accountType.errors"
+                [group]="accountForm"
+              ></app-select>
+            </div>
+            <div class="col-md-6 mb-4">
+              <app-select
+                [isRequired]="label.ownership.isRequired"
+                [label]="label.ownership.fieldLabel"
+                [fieldName]="label.ownership.fieldName"
+                [options]="label.ownership.options"
+                [errors]="label.ownership.errors"
+                [group]="accountForm"
+              ></app-select>
+            </div>
+            <div class="col-md-6 mb-4">
+              <app-select
+                [isRequired]="label.industry.isRequired"
+                [label]="label.industry.fieldLabel"
+                [fieldName]="label.industry.fieldName"
+                [options]="label.industry.options"
+                [errors]="label.industry.errors"
+                [group]="accountForm"
+              ></app-select>
+            </div>
+            <div class="col-md-6 mb-4">
+              <app-input
+                [type]="label.employees.fieldType"
+                [isRequired]="label.employees.isRequired"
+                [label]="label.employees.fieldLabel"
+                [fieldName]="label.employees.fieldName"
+                [placeholder]="label.employees.placeholder"
+                [errors]="label.employees.errors"
+                [group]="accountForm"
+              ></app-input>
+            </div>
+            <div class="col-md-6 mb-4">
+              <app-input-number
+                [type]="label.annualRevenue.fieldType"
+                [isRequired]="label.annualRevenue.isRequired"
+                [label]="label.annualRevenue.fieldLabel"
+                [fieldName]="label.annualRevenue.fieldName"
+                [placeholder]="label.annualRevenue.placeholder"
+                [errors]="label.annualRevenue.errors"
+                [group]="accountForm"
+              ></app-input-number>
+            </div>
+            <div class="col-md-6 mb-4">
+              <app-input
+                [type]="label.sICCode.fieldType"
+                [isRequired]="label.sICCode.isRequired"
+                [label]="label.sICCode.fieldLabel"
+                [fieldName]="label.sICCode.fieldName"
+                [placeholder]="label.sICCode.placeholder"
+                [errors]="label.sICCode.errors"
+                [group]="accountForm"
+              ></app-input>
+            </div>
+            <div class="col-md-6 mb-4">
+              <app-input-number
+                [type]="label.averageBill.fieldType"
+                [isRequired]="label.averageBill.isRequired"
+                [label]="label.averageBill.fieldLabel"
+                [fieldName]="label.averageBill.fieldName"
+                [placeholder]="label.averageBill.placeholder"
+                [errors]="label.averageBill.errors"
+                [group]="accountForm"
+              ></app-input-number>
+            </div>
+            <div class="col-md-6 mb-4">
+              <app-input
+                [type]="label.rescheduleCycleTime.fieldType"
+                [isRequired]="label.rescheduleCycleTime.isRequired"
+                [label]="label.rescheduleCycleTime.fieldLabel"
+                [fieldName]="label.rescheduleCycleTime.fieldName"
+                [placeholder]="label.rescheduleCycleTime.placeholder"
+                [errors]="label.rescheduleCycleTime.errors"
+                [group]="accountForm"
+              ></app-input>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card-body contactInfo accountDetails">
+        <div
+          class="
+            p-3
+            font-size-15rem font-weight-600
+            d-flex
+            justify-content-between
+            cardHeader
+          "
+        >
+          Address Information
+        </div>
+        <div>
+          <div class="row">
+            <div class="col-md-6 mb-4">
+              <app-input
+                [type]="addrLabel.billingStreet.fieldType"
+                [isRequired]="addrLabel.billingStreet.isRequired"
+                [label]="addrLabel.billingStreet.fieldLabel"
+                [fieldName]="addrLabel.billingStreet.fieldName"
+                [placeholder]="addrLabel.billingStreet.placeholder"
+                [errors]="addrLabel.billingStreet.errors"
+                [group]="accountForm"
+              ></app-input>
+            </div>
+            <div class="col-md-6 mb-4">
+              <app-input
+                [type]="addrLabel.shippingStreet.fieldType"
+                [isRequired]="addrLabel.shippingStreet.isRequired"
+                [label]="addrLabel.shippingStreet.fieldLabel"
+                [fieldName]="addrLabel.shippingStreet.fieldName"
+                [placeholder]="addrLabel.shippingStreet.placeholder"
+                [errors]="addrLabel.shippingStreet.errors"
+                [group]="accountForm"
+              ></app-input>
+            </div>
+            <div class="col-md-6 mb-4">
+              <app-input
+                [type]="addrLabel.billingCity.fieldType"
+                [isRequired]="addrLabel.billingCity.isRequired"
+                [label]="addrLabel.billingCity.fieldLabel"
+                [fieldName]="addrLabel.billingCity.fieldName"
+                [placeholder]="addrLabel.billingCity.placeholder"
+                [errors]="addrLabel.billingCity.errors"
+                [group]="accountForm"
+              ></app-input>
+            </div>
+            <div class="col-md-6 mb-4">
+              <app-input
+                [type]="addrLabel.shippingCity.fieldType"
+                [isRequired]="addrLabel.shippingCity.isRequired"
+                [label]="addrLabel.shippingCity.fieldLabel"
+                [fieldName]="addrLabel.shippingCity.fieldName"
+                [placeholder]="addrLabel.shippingCity.placeholder"
+                [errors]="addrLabel.shippingCity.errors"
+                [group]="accountForm"
+              ></app-input>
+            </div>
+            <div class="col-md-6 mb-4">
+              <app-input
+                [type]="addrLabel.billingState.fieldType"
+                [isRequired]="addrLabel.billingState.isRequired"
+                [label]="addrLabel.billingState.fieldLabel"
+                [fieldName]="addrLabel.billingState.fieldName"
+                [placeholder]="addrLabel.billingState.placeholder"
+                [errors]="addrLabel.billingState.errors"
+                [group]="accountForm"
+              ></app-input>
+            </div>
+            <div class="col-md-6 mb-4">
+              <app-input
+                [type]="addrLabel.shippingState.fieldType"
+                [isRequired]="addrLabel.shippingState.isRequired"
+                [label]="addrLabel.shippingState.fieldLabel"
+                [fieldName]="addrLabel.shippingState.fieldName"
+                [placeholder]="addrLabel.shippingState.placeholder"
+                [errors]="addrLabel.shippingState.errors"
+                [group]="accountForm"
+              ></app-input>
+            </div>
+            <div class="col-md-6 mb-4">
+              <app-input
+                [type]="addrLabel.billingCode.fieldType"
+                [isRequired]="addrLabel.billingCode.isRequired"
+                [label]="addrLabel.billingCode.fieldLabel"
+                [fieldName]="addrLabel.billingCode.fieldName"
+                [placeholder]="addrLabel.billingCode.placeholder"
+                [errors]="addrLabel.billingCode.errors"
+                [group]="accountForm"
+              ></app-input>
+            </div>
+            <div class="col-md-6 mb-4">
+              <app-input
+                [type]="addrLabel.shippingCode.fieldType"
+                [isRequired]="addrLabel.shippingCode.isRequired"
+                [label]="addrLabel.shippingCode.fieldLabel"
+                [fieldName]="addrLabel.shippingCode.fieldName"
+                [placeholder]="addrLabel.shippingCode.placeholder"
+                [errors]="addrLabel.shippingCode.errors"
+                [group]="accountForm"
+              ></app-input>
+            </div>
+            <div class="col-md-6 mb-4">
+              <app-input
+                [type]="addrLabel.billingCountry.fieldType"
+                [isRequired]="addrLabel.billingCountry.isRequired"
+                [label]="addrLabel.billingCountry.fieldLabel"
+                [fieldName]="addrLabel.billingCountry.fieldName"
+                [placeholder]="addrLabel.billingCountry.placeholder"
+                [errors]="addrLabel.billingCountry.errors"
+                [group]="accountForm"
+              ></app-input>
+            </div>
+            <div class="col-md-6 mb-4">
+              <app-input
+                [type]="addrLabel.shippingCountry.fieldType"
+                [isRequired]="addrLabel.shippingCountry.isRequired"
+                [label]="addrLabel.shippingCountry.fieldLabel"
+                [fieldName]="addrLabel.shippingCountry.fieldName"
+                [placeholder]="addrLabel.shippingCountry.placeholder"
+                [errors]="addrLabel.shippingCountry.errors"
+                [group]="accountForm"
+              ></app-input>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card-body contactInfo accountDetails">
+        <div
+          class="
+            p-3
+            font-size-15rem font-weight-600
+            d-flex
+            justify-content-between
+            cardHeader
+          "
+        >
+          Description Information
+        </div>
+        <div>
+          <div class="row">
+            <div class="col-md-6 mb-4">
+              <app-textarea
+                [type]="descLabel.description.fieldType"
+                [isRequired]="descLabel.description.isRequired"
+                [label]="descLabel.description.fieldLabel"
+                [fieldName]="descLabel.description.fieldName"
+                [placeholder]="descLabel.description.placeholder"
+                [errors]="descLabel.description.errors"
+                [group]="accountForm"
+              ></app-textarea>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="d-flex align-center justify-content-center mb-4">
+        <button
+          class="btn btn-primary createBtn"
+          type="submit"
+          (click)="saveAccount()"
+        >
+          Create Account
+        </button>
+      </div>
+    </div>
+  </form>
+</div>

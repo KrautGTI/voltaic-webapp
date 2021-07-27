@@ -1,31 +1,18 @@
-import {
-  Component,
-  OnInit,
-  OnDestroy,
-  AfterViewInit,
-  AfterContentChecked,
-  ChangeDetectorRef,
-  Output, EventEmitter
-} from "@angular/core";
-import { Subject, Subscription, timer } from "rxjs";
-import { Router } from "@angular/router";
-import { takeUntil, delay } from "rxjs/operators";
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Router } from '@angular/router';
 import { GenericService } from '../../service/generic.service';
 
 @Component({
   selector: 'app-sidenav',
   templateUrl: './sidenav.component.html',
-  styleUrls: ['./sidenav.component.scss']
+  styleUrls: ['./sidenav.component.scss'],
 })
-export class SidenavComponent implements OnInit{
+export class SidenavComponent implements OnInit {
   @Output() menuClicked = new EventEmitter<Event>();
   isNavOpen = true;
   userDetails: any;
- // svpRoles = ['Hiring Manager','Hiring Manager 1', 'Hiring Manager 2']
-  constructor(
-    private router: Router,
-    private genericService:GenericService
-  ) { }
+  // svpRoles = ['Hiring Manager','Hiring Manager 1', 'Hiring Manager 2']
+  constructor(private router: Router, private genericService: GenericService) {}
 
   ngOnInit(): void {
     let userData = sessionStorage.getItem('user');
@@ -38,12 +25,12 @@ export class SidenavComponent implements OnInit{
   logout() {
     localStorage.clear();
     sessionStorage.clear();
-    this.router.navigate(["/home"]);
+    this.router.navigate(['/home']);
     window.scrollTo(0, 0);
   }
   toggleNav(data: any) {
     this.isNavOpen = !this.isNavOpen;
-    if(this.isNavOpen) {
+    if (this.isNavOpen) {
       data.isShowLogo = false;
     } else {
       data.isShowLogo = true;
@@ -52,7 +39,6 @@ export class SidenavComponent implements OnInit{
   }
 
   hasAccess() {
-   return this.userDetails.user_role === 'admin' ? true : false;
+    return this.userDetails.user_role === 'admin' ? true : false;
   }
 }
-

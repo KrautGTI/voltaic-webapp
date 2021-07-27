@@ -1,0 +1,42 @@
+<div class="input" [formGroup]="group">
+  <div class="row">
+    <label class="form-label col-4" *ngIf="label">
+      {{ label }}
+      <span *ngIf="isRequired" class="mandatory-style">*</span>
+    </label>
+
+    <div class="col-8 eachInfo">
+      <div class="blueTxt">
+        <select
+          [name]="fieldName"
+          [ngClass]="{
+            'select-error':
+              groupControl!.invalid &&
+              (groupControl!.dirty || groupControl!.touched)
+          }"
+          [class]="'select-data form-control ' + class"
+          (blur)="onBlur($event)"
+          (change)="onChange($event)"
+        >
+          <option value="-1">Select None</option>
+          <option *ngFor="let option of options" [value]="options.id">
+            {{ options.name }}
+          </option>
+        </select>
+        <div
+          class="form-error"
+          *ngIf="
+            groupControl!.invalid &&
+            (groupControl!.dirty || groupControl!.touched)
+          "
+        >
+          <div *ngFor="let err of errors">
+            <label *ngIf="groupControl!.errors![err.type]">{{
+              err.message
+            }}</label>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

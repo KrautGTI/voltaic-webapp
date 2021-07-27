@@ -1,0 +1,22 @@
+.form-label {
+  font-weight: 500;
+  font-size: 16px;
+  display: inline-block;
+  color: #616e88;
+  vertical-align: top;
+  text-align: right;
+  padding-right: 30px;
+}
+.mandatory-style {
+  font-size: 16px;
+  color: #ec1616;
+}
+
+.form-error {
+  label {
+    font-size: 14px;
+    color: #ec1616;
+    margin-bottom: 0;
+    margin-top: 5px;
+  }
+}

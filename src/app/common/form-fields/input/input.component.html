@@ -4,7 +4,7 @@
       {{ label }}
       <span *ngIf="isRequired" class="mandatory-style">*</span>
     </label>
-    <div class="col-8 eachInfo">
+    <div class="col-8 eachInfo" *ngIf="!isNewDesing">
       <div class="blueTxt">
         <input
           [type]="type"
@@ -21,6 +21,7 @@
           maxlength="250"
           (blur)="onBlur($event)"
           (input)="onChange($event)"
+          #inputRef
         />
         <div
           class="form-error"
@@ -35,6 +36,51 @@
             }}</label>
           </div>
         </div>
+      </div>
+    </div>
+    <div class="col-8" *ngIf="isNewDesing">
+      <div class="eachInfoWraper">
+        <div class="blueTxt w-100">
+          <input
+            [type]="type"
+            [placeholder]="placeholder"
+            [name]="fieldName"
+            [class]="'text-input form-control ' + class"
+            [ngClass]="{
+              'input-error':
+                groupControl!.invalid &&
+                (groupControl!.dirty || groupControl!.touched)
+            }"
+            [formControlName]="fieldName"
+            autocomplete="off"
+            maxlength="250"
+            (blur)="onBlur($event)"
+            (input)="onChange($event)"
+            #inputRef
+          />
+          <div
+            class="form-error"
+            *ngIf="
+              groupControl!.invalid &&
+              (groupControl!.dirty || groupControl!.touched)
+            "
+          >
+            <div *ngFor="let err of errors">
+              <label *ngIf="groupControl!.errors![err.type]">{{
+                err.message
+              }}</label>
+            </div>
+          </div>
+        </div>
+        <div
+          *ngIf="!isFixed"
+          class="icon-style"
+          [ngClass]="{
+            'edit-icon': !isEditable,
+            'check-icon': isEditable
+          }"
+          (click)="onClickEdit()"
+        ></div>
       </div>
     </div>
   </div>

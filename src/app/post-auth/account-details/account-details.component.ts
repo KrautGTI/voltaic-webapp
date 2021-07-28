@@ -1,11 +1,23 @@
 import { Component, ElementRef, OnDestroy, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import {
+  AbstractControl,
+  FormBuilder,
+  FormGroup,
+  ValidatorFn,
+} from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { forkJoin, Observable, Subject } from 'rxjs';
+import { forkJoin, Observable, of, Subject } from 'rxjs';
 import { GenericService } from '../../service/generic.service';
 import { AuthService } from '../../service/auth.service';
 import { takeUntil } from 'rxjs/operators';
 import { NotificationService } from 'src/app/service/notification.service';
+import { liveSearch } from 'src/app/common/live-search.operator';
+import { FormField } from 'src/app/shared/models/util.model';
+import {
+  AccountInformationLabels,
+  AddressInformationLabels,
+  DescriptionInformationLabels,
+} from 'src/app/shared/constants/account.constant';
 
 @Component({
   selector: 'app-account-details',
@@ -15,7 +27,14 @@ import { NotificationService } from 'src/app/service/notification.service';
 export class AccountDetailsComponent implements OnInit, OnDestroy {
   public accountId: string = '';
   public accountDetails: any = null;
-  public accountDetailsForm: FormGroup;
+  public accountDetailsForm: FormGroup = new FormGroup({});
+  public label: { [key: string]: FormField } = { ...AccountInformationLabels };
+  public addrLabel: { [key: string]: FormField } = {
+    ...AddressInformationLabels,
+  };
+  public descLabel: { [key: string]: FormField } = {
+    ...DescriptionInformationLabels,
+  };
   private leadSources: any = '';
   private marketers: any = '';
   public leadOwners: any = '';
@@ -24,8 +43,15 @@ export class AccountDetailsComponent implements OnInit, OnDestroy {
   private stages: any = '';
   public dealsList: any = '';
   private accountList: any = [];
+  public masterData: any = '';
   private targetField: string = '';
+  private searchTerm$ = new Subject<string>();
   private unsubscribe$: Subject<boolean> = new Subject();
+
+  readonly searchValues$ = this.searchTerm$.pipe(
+    // liveSearch((term) => this.genericService.getAccounts())
+    liveSearch((term) => of(this.accountList))
+  );
 
   constructor(
     private route: ActivatedRoute,
@@ -35,9 +61,7 @@ export class AccountDetailsComponent implements OnInit, OnDestroy {
     private fb: FormBuilder,
     private genericService: GenericService,
     private elementRef: ElementRef
-  ) {
-    this.accountDetailsForm = this.fb.group({});
-  }
+  ) {}
 
   ngOnInit(): void {
     this.route.queryParams.subscribe((params) => {
@@ -52,61 +76,79 @@ export class AccountDetailsComponent implements OnInit, OnDestroy {
   }
   private createForm(): void {
     this.accountDetailsForm = this.fb.group({
-      Account_Owner_ID: [''],
-      Industry: [''],
-      Employees: [''],
-      Annual_Revenue: [''],
-      Phone: [''],
-      Account_Owner: [''],
-      Rating: [''],
-      Account_Name: [''],
-      Account_Site: [''],
-      Parent_Account_ID: [''],
-      Account_Number: [''],
-      Account_Type: [''],
-      Average_Bill: [''],
-      Created_By: [''],
-      Modified_By: [''],
-      Fax: [''],
-      Website: [''],
-      Ticker_Symbol: [''],
-      Ownership: [''],
-      SIC_Code: [''],
-      Reschedule_Cycle_Time: [''],
-      Billing_Street: [''],
-      Shipping_Street: [''],
-      Billing_City: [''],
-      Shipping_City: [''],
-      Billing_State: [''],
-      Shipping_State: [''],
-      Billing_Code: [''],
-      Shipping_Code: [''],
-      Billing_Country: [''],
-      Shipping_Country: [''],
-      Description: [''],
+      Tag: [''],
+      login_id: [''],
       Notes: [''],
+      Created_By: [''],
+      Created_Time: [''],
+      Modified_By: [''],
+      Modified_Time: [''],
     });
+    Object.keys(this.label).forEach((key: string) => {
+      this.label[key].isEditable = false;
+      this.label[key].placeholder = '-';
+      const fieldName = this.label[key].fieldName;
+      this.accountDetailsForm.addControl(
+        fieldName,
+        this.createControl(this.label[key])
+      );
+    });
+    Object.keys(this.addrLabel).forEach((key: string) => {
+      this.addrLabel[key].isEditable = false;
+      this.addrLabel[key].placeholder = '-';
+      const fieldName = this.addrLabel[key].fieldName;
+      this.accountDetailsForm.addControl(
+        fieldName,
+        this.createControl(this.addrLabel[key])
+      );
+    });
+    Object.keys(this.descLabel).forEach((key: string) => {
+      this.descLabel[key].isEditable = false;
+      this.descLabel[key].placeholder = '-';
+      const fieldName = this.descLabel[key].fieldName;
+      this.accountDetailsForm.addControl(
+        fieldName,
+        this.createControl(this.descLabel[key])
+      );
+    });
+    console.log(this.accountDetailsForm);
+  }
+  private createControl(field: FormField): any {
+    const fieldName = field.fieldName;
+    const validation: ValidatorFn[] = [];
+    const disabled = false;
+    const value = '';
+    return this.fb.control({ disabled, value }, validation);
+  }
+
+  public getControl(name: string): AbstractControl | null {
+    return this.accountDetailsForm.get(name);
   }
   private fetchRequiredDetails(): void {
     const reqs: Observable<any>[] = [];
-    const getSource$ = this.genericService.getSources();
-    const getMarketers$ = this.genericService.getMarketers();
-    const getSecondMarketers$ = this.genericService.getSecondMarketers();
+    const getAccounts$ = this.genericService.getAccounts();
     const getLeadOwners$ = this.genericService.getLeadOwners();
-    const getEnergyConsultant$ = this.genericService.getEnergyConsultant();
+    const getMasterData$ = this.genericService.getMasterData();
     const getStages$ = this.genericService.getStages();
     const getDealsFromAccount$ = this.genericService.getDealsFromAccount(
       this.accountId
     );
-    const getAccounts$ = this.genericService.getAccounts();
+
+    const getSource$ = this.genericService.getSources();
+    const getMarketers$ = this.genericService.getMarketers();
+    const getSecondMarketers$ = this.genericService.getSecondMarketers();
+    const getEnergyConsultant$ = this.genericService.getEnergyConsultant();
+
+    reqs.push(getAccounts$);
+    reqs.push(getLeadOwners$);
+    reqs.push(getMasterData$);
+    reqs.push(getStages$);
+    reqs.push(getDealsFromAccount$);
+
     reqs.push(getSource$);
     reqs.push(getMarketers$);
     reqs.push(getSecondMarketers$);
-    reqs.push(getLeadOwners$);
     reqs.push(getEnergyConsultant$);
-    reqs.push(getStages$);
-    reqs.push(getDealsFromAccount$);
-    reqs.push(getAccounts$);
 
     forkJoin(reqs)
       .pipe(takeUntil(this.unsubscribe$))
@@ -114,50 +156,7 @@ export class AccountDetailsComponent implements OnInit, OnDestroy {
         (results) => {
           if (results && Array.isArray(results)) {
             if (results[0]) {
-              this.leadSources = results[0].message ? results[0].message : '';
-            }
-            if (results[1]) {
-              this.marketers = results[1].message ? results[1].message : '';
-            }
-            if (results[2]) {
-              this.secondMarketers = results[2].message
-                ? results[2].message
-                : '';
-            }
-            if (results[3]) {
-              this.leadOwners = results[3].message ? results[3].message : '';
-            }
-            if (results[4]) {
-              this.energyConsultant = results[4].message
-                ? results[4].message
-                : '';
-            }
-            if (results[5]) {
-              this.stages = results[5].message ? results[5].message : '';
-            }
-            if (results[6]) {
-              const dealsList = results[6];
-              if (dealsList?.message !== 'No Record Updated..') {
-                this.dealsList =
-                  dealsList && dealsList.message && dealsList.message.data
-                    ? dealsList.message.data
-                    : [];
-                if (Array.isArray(this.dealsList)) {
-                  this.dealsList.forEach((element: any) => {
-                    element.Stage_Name = '-';
-                    if (this.stages && Array.isArray(this.stages)) {
-                      this.stages.forEach((ele: any) => {
-                        if (element.Stage_ID == ele.id) {
-                          element.Stage_Name = ele.name;
-                        }
-                      });
-                    }
-                  });
-                }
-              }
-            }
-            if (results[7]) {
-              const accountList = results[7];
+              const accountList = results[0];
               if (
                 accountList?.message != 'Server Error' &&
                 accountList?.error?.name != 'TokenExpiredError'
@@ -177,6 +176,53 @@ export class AccountDetailsComponent implements OnInit, OnDestroy {
                 const errMsg = 'Session Expired !! Please login again.';
                 this.notificationService.error(errMsg, true);
               }
+            }
+            if (results[1]) {
+              this.leadOwners = results[1].message ? results[1].message : '';
+            }
+            if (results[2]) {
+              const masterData = results[2];
+              this.masterData = masterData;
+            }
+            if (results[3]) {
+              this.stages = results[3].message ? results[3].message : '';
+            }
+            if (results[4]) {
+              const dealsList = results[4];
+              if (dealsList?.message !== 'No Record Updated..') {
+                this.dealsList =
+                  dealsList && dealsList.message && dealsList.message.data
+                    ? dealsList.message.data
+                    : [];
+                if (Array.isArray(this.dealsList)) {
+                  this.dealsList.forEach((element: any) => {
+                    element.Stage_Name = '-';
+                    if (this.stages && Array.isArray(this.stages)) {
+                      this.stages.forEach((ele: any) => {
+                        if (element.Stage_ID == ele.id) {
+                          element.Stage_Name = ele.name;
+                        }
+                      });
+                    }
+                  });
+                }
+              }
+            }
+            if (results[5]) {
+              this.leadSources = results[5].message ? results[5].message : '';
+            }
+            if (results[6]) {
+              this.marketers = results[6].message ? results[6].message : '';
+            }
+            if (results[7]) {
+              this.secondMarketers = results[7].message
+                ? results[7].message
+                : '';
+            }
+            if (results[8]) {
+              this.energyConsultant = results[8].message
+                ? results[8].message
+                : '';
             }
           }
         },
@@ -225,5 +271,9 @@ export class AccountDetailsComponent implements OnInit, OnDestroy {
     } else {
       targetControl.parentNode.nextSibling.classList.remove('checkIcon');
     }
+  }
+  public onChangeParentAccount(term: string): void {
+    this.searchTerm$.next(term);
+    console.log('term=', term);
   }
 }

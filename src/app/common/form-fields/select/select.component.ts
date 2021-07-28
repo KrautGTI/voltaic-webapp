@@ -1,11 +1,13 @@
 import {
   Component,
+  ElementRef,
   EventEmitter,
   Input,
   OnChanges,
   OnInit,
   Output,
   SimpleChanges,
+  ViewChild,
 } from '@angular/core';
 import {
   AbstractControl,
@@ -30,6 +32,9 @@ export class SelectComponent implements OnInit, OnChanges {
   @Input() public type: string = 'text';
   @Input() public fieldName: string = '';
   @Input() public class: string = '';
+  @Input() public isFixed: boolean = true;
+  @Input() public isNewDesing: boolean = false;
+  @Input() public isEditable: boolean = true;
   @Input() public isRequired: boolean = false;
   @Input() public defaultOption: boolean = true;
   @Input() public isOptionStringArray: boolean = true;
@@ -38,6 +43,7 @@ export class SelectComponent implements OnInit, OnChanges {
   @Input() public errors: FormFieldError[] = [];
   @Output() public cstBlur = new EventEmitter<any>();
   @Output() public cstChange = new EventEmitter<any>();
+  @ViewChild('inputRef') private inputRef: ElementRef | null = null;
 
   public modifiedOptions: OptionModel[] = [];
 
@@ -77,6 +83,7 @@ export class SelectComponent implements OnInit, OnChanges {
     }
     this.groupControl?.setValidators(validators);
     this.groupControl?.updateValueAndValidity();
+    this.setEditableStatus();
   }
 
   get groupControl(): AbstractControl | null {
@@ -87,5 +94,21 @@ export class SelectComponent implements OnInit, OnChanges {
   }
   public onChange(e: any): void {
     this.cstChange.emit(e.target.value);
+  }
+  public onClickEdit(): void {
+    if (!this.isEditable) {
+      setTimeout(() => {
+        this.inputRef?.nativeElement.focus();
+      });
+    }
+    this.isEditable = !this.isEditable;
+    this.setEditableStatus();
+  }
+  private setEditableStatus(): void {
+    if (this.isEditable) {
+      this.groupControl?.enable();
+    } else {
+      this.groupControl?.disable();
+    }
   }
 }

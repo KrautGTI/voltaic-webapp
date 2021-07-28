@@ -1,10 +1,12 @@
 import {
   Component,
+  ElementRef,
   EventEmitter,
   HostListener,
   Input,
   OnInit,
   Output,
+  ViewChild,
 } from '@angular/core';
 import {
   AbstractControl,
@@ -27,12 +29,16 @@ export class InputSearchComponent implements OnInit {
   @Input() public fieldName: string = '';
   @Input() public placeholder: string = '';
   @Input() public class: string = '';
+  @Input() public isNewDesing: boolean = false;
+  @Input() public isFixed: boolean = true;
+  @Input() public isEditable: boolean = true;
   @Input() public isRequired: boolean = false;
   @Input() public optionConfig: OptionConfig | undefined = new OptionConfig();
   @Input() public errors: FormFieldError[] = [];
   @Input('searchValues') public searchValues$: any = [];
   @Output() public cstBlur = new EventEmitter<any>();
   @Output() public cstChange = new EventEmitter<any>();
+  @ViewChild('inputRef') private inputRef: ElementRef | null = null;
   public showModal: boolean = true;
   private wasInside = false;
 
@@ -48,6 +54,7 @@ export class InputSearchComponent implements OnInit {
     }
     this.groupControl?.setValidators(validators);
     this.groupControl?.updateValueAndValidity();
+    this.setEditableStatus();
   }
 
   get groupControl(): AbstractControl | null {
@@ -82,5 +89,21 @@ export class InputSearchComponent implements OnInit {
       this.showModal = false;
     }
     this.wasInside = false;
+  }
+  public onClickEdit(): void {
+    if (!this.isEditable) {
+      setTimeout(() => {
+        this.inputRef?.nativeElement.focus();
+      });
+    }
+    this.isEditable = !this.isEditable;
+    this.setEditableStatus();
+  }
+  private setEditableStatus(): void {
+    if (this.isEditable) {
+      this.groupControl?.enable();
+    } else {
+      this.groupControl?.disable();
+    }
   }
 }

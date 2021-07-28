@@ -136,7 +136,6 @@ export class AccountCreateComponent implements OnInit, OnDestroy {
             }
             if (results[2]) {
               const masterData = results[2];
-              console.log('masterData=', masterData);
               this.masterData = masterData;
             }
           }

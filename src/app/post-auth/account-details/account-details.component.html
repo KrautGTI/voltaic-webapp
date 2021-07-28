@@ -718,5 +718,119 @@
         </table>
       </div>
     </div>
+
+    <div class="card shadow">
+      <div
+        class="
+          p-3
+          text-blue
+          font-size-15rem font-weight-600
+          d-flex
+          justify-content-between
+          cardHeader
+        "
+      >
+        Contracts
+      </div>
+      <div class="card-body dealsInfo">
+        <table class="dealTable">
+          <thead>
+            <tr>
+              <td>Contract Name</td>
+              <td>Email</td>
+              <td>Phone</td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                {{
+                  contactDetails &&
+                  (contactDetails?.First_Name || contactDetails?.Last_Name)
+                    ? contactDetails?.First_Name +
+                      " " +
+                      contactDetails?.Last_Name
+                    : ""
+                }}
+              </td>
+              <td>{{ contactDetails?.Email }}</td>
+              <td>
+                {{ contactDetails?.Phone }}
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="card shadow">
+      <div
+        class="
+          p-3
+          text-blue
+          font-size-15rem font-weight-600
+          d-flex
+          justify-content-between
+          cardHeader
+        "
+      >
+        Open Activities
+      </div>
+      <div class="card-body dealsInfo"></div>
+    </div>
+    <div class="card shadow">
+      <div
+        class="
+          p-3
+          text-blue
+          font-size-15rem font-weight-600
+          d-flex
+          justify-content-between
+          cardHeader
+        "
+      >
+        Emails
+      </div>
+      <div class="card-body dealsInfo"></div>
+    </div>
+    <div class="card shadow">
+      <div
+        class="
+          p-3
+          text-blue
+          font-size-15rem font-weight-600
+          d-flex
+          justify-content-between
+          cardHeader
+        "
+      >
+        Closed Activities
+      </div>
+      <div class="card-body dealsInfo">
+        <table class="dealTable">
+          <thead>
+            <tr>
+              <td>Subject</td>
+              <td>Activity Type</td>
+              <td>Status</td>
+              <td>Due Date</td>
+              <td>From</td>
+              <td>To</td>
+              <td>Activity Owner</td>
+              <td>Classification</td>
+              <td>Modified Time</td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let deals of dealsList">
+              <td class="dealname">{{ deals.Deal_Name }}</td>
+              <td>{{ deals.Stage_Name }}</td>
+              <td>
+                {{ deals.Closing_Date == null ? "-" : deals.Closing_Date }}
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
   </form>
 </div>

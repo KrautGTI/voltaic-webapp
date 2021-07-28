@@ -26,7 +26,9 @@ import {
 })
 export class AccountDetailsComponent implements OnInit, OnDestroy {
   public accountId: string = '';
+  public contactId: string = '';
   public accountDetails: any = null;
+  public contactDetails: any = null;
   public accountDetailsForm: FormGroup = new FormGroup({});
   public label: { [key: string]: FormField } = { ...AccountInformationLabels };
   public addrLabel: { [key: string]: FormField } = {
@@ -169,6 +171,10 @@ export class AccountDetailsComponent implements OnInit, OnDestroy {
                     this.accountList,
                     this.accountId
                   );
+                  this.contactId = this.accountDetails.Contact_ID
+                    ? this.accountDetails.Contact_ID
+                    : '0';
+                  this.getContactByAccountId(this.contactId);
                   console.log('accountDetails=', this.accountDetails);
                   this.setFormControlValue();
                 }
@@ -231,6 +237,38 @@ export class AccountDetailsComponent implements OnInit, OnDestroy {
           this.notificationService.error(errMsg, false);
         }
       );
+  }
+  private getContactByAccountId(contactId: string): void {
+    this.genericService
+      .getContacts()
+      .pipe(takeUntil(this.unsubscribe$))
+      .subscribe(
+        (userList: any) => {
+          if (
+            userList?.message != 'Server Error' &&
+            userList?.error?.name != 'TokenExpiredError'
+          ) {
+            let contactList = userList.message;
+            this.contactDetails = this.getContactDetails(
+              contactList,
+              contactId
+            );
+          } else if (userList?.error?.name == 'TokenExpiredError') {
+            const errMsg = 'Session Expired !! Please login again.';
+            this.notificationService.error(errMsg, true);
+          }
+        },
+        (error) => {
+          const errMsg = 'Unable To fetch data. Please try again.';
+          this.notificationService.error(errMsg);
+        }
+      );
+  }
+  private getContactDetails(contactList: any, contactId: string): any {
+    const contactDetails = contactList.find(
+      (item: any) => parseInt(item.Contact_ID) === parseInt(contactId)
+    );
+    return contactDetails;
   }
 
   private getAccountDetails(accountList: any, accountId: string): any {

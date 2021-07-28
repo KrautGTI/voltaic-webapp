@@ -1,940 +1,1067 @@
 {
-    "Products": [
-      {
-        "id": "1",
-        "value": "$0.10/W Blitz"
-      },
-      {
-        "id": "2",
-        "value": "Attic Run Lift Energy"
-      },
-      {
-        "id": "3",
-        "value": "Attic Run SCI"
-      },
-      {
-        "id": "4",
-        "value": "Battery Backup"
-      },
-      {
-        "id": "5",
-        "value": "Cash Incentive"
-      },
-      {
-        "id": "6",
-        "value": "Combiner Panel"
-      },
-      {
-        "id": "7",
-        "value": "Concierge"
-      },
-      {
-        "id": "8",
-        "value": "Derate"
-      },
-      {
-        "id": "9",
-        "value": "Enphase"
-      },
-      {
-        "id": "10",
-        "value": "Ground Mount"
-      },
-      {
-        "id": "11",
-        "value": "HVAC"
-      },
-      {
-        "id": "12",
-        "value": "Insulation"
-      },
-      {
-        "id": "13",
-        "value": "LEDs"
-      },
-      {
-        "id": "14",
-        "value": "Level 2 EV"
-      },
-      {
-        "id": "15",
-        "value": "Monitoring"
-      },
-      {
-        "id": "16",
-        "value": "MPU"
-      },
-      {
-        "id": "17",
-        "value": "MPU Relocation"
-      },
-      {
-        "id": "18",
-        "value": "Nest"
-      },
-      {
-        "id": "19",
-        "value": "Nest x2"
-      },
-      {
-        "id": "20",
-        "value": "Panel Skirt"
-      },
-      {
-        "id": "21",
-        "value": "Partial Roof"
-      },
-      {
-        "id": "22",
-        "value": "Prem Panel"
-      },
-      {
-        "id": "23",
-        "value": "PV ADD ON"
-      },
-      {
-        "id": "24",
-        "value": "QCELL 335W BOB"
-      },
-      {
-        "id": "25",
-        "value": "Quiet Cool"
-      },
-      {
-        "id": "26",
-        "value": "Reverse Tilt Kit"
-      },
-      {
-        "id": "27",
-        "value": "Ring"
-      },
-      {
-        "id": "28",
-        "value": "Roof"
-      },
-      {
-        "id": "29",
-        "value": "Small System SCI $500"
-      },
-      {
-        "id": "30",
-        "value": "Solar"
-      },
-      {
-        "id": "31",
-        "value": "SolarEdge"
-      },
-      {
-        "id": "32",
-        "value": "Storedge Inverter"
-      },
-      {
-        "id": "33",
-        "value": "Sub Panel"
-      },
-      {
-        "id": "34",
-        "value": "Tesla PW2"
-      },
-      {
-        "id": "35",
-        "value": "Tree Trimming"
-      },
-      {
-        "id": "36",
-        "value": "Trenching"
-      },
-      {
-        "id": "37",
-        "value": "Turf"
-      },
-      {
-        "id": "38",
-        "value": "VSPP"
-      },
-      {
-        "id": "39",
-        "value": "Windows"
-      }
-    ],
-    "Retention_Rep": [
-        {
-          "id": "1",
-          "value": "Lisa Logback"
-        }
-    ],
-    "Region": [
-        {
-          "id": "1",
-          "value": "AZ"
-        },
-        {
-            "id": "2",
-            "value": "CA"
-          },
-          {
-            "id": "3",
-            "value": "IE"
-          },
-          {
-            "id": "4",
-            "value": "IL"
-          },
-          {
-            "id": "5",
-            "value": "LA"
-          },
-          {
-            "id": "6",
-            "value": "MA"
-          },
-          {
-            "id": "7",
-            "value": "NM"
-          },
-          {
-            "id": "8",
-            "value": "NV"
-          },
-          {
-            "id": "9",
-            "value": "OC"
-          },
-          {
-            "id": "10",
-            "value": "SD"
-          },
-          {
-            "id": "11",
-            "value": "TX"
-          }
-    ],
-    "Fan_Size": [
-        {
-            "id": "1",
-            "value": "1.5"
-          },
-          {
-              "id": "2",
-              "value": "2.5"
-            },
-            {
-              "id": "3",
-              "value": "3.3"
-            },
-            {
-              "id": "4",
-              "value": "4.8"
-            },
-            {
-              "id": "5",
-              "value": "5.5"
-            },
-            {
-              "id": "6",
-              "value": "6.0"
-            },
-            {
-              "id": "7",
-              "value": "7.0"
-            }
-    ],
-    "Utility_Rate_Plan": [
-        {
-            "id": "1",
-            "value": "CARE"
-          },
-          {
-              "id": "2",
-              "value": "Domestic"
-            },
-            {
-              "id": "3",
-              "value": "FERA"
-            },
-            {
-              "id": "4",
-              "value": "MED BSLN"
-            },
-            {
-              "id": "5",
-              "value": "NEM"
-            },
-            {
-              "id": "6",
-              "value": "SDP"
-            }
-    ],
-    "Channel_Partner": [
-        {
-            "id": "1",
-            "value": "1Solar"
-          },
-          {
-            "id": "2",
-            "value": "BPS"
-          },
-          {
-            "id": "3",
-            "value": "Empire"
-          },
-          {
-            "id": "4",
-            "value": "ESP"
-          },
-          {
-            "id": "5",
-            "value": "Freedom"
-          },
-          {
-            "id": "6",
-            "value": "NV Solar Group"
-          },
-          {
-            "id": "7",
-            "value": "SET/Lift Energy"
-          },
-          {
-            "id": "8",
-            "value": "SET/Titan"
-          },
-          {
-            "id": "9",
-            "value": "SolarX"
-          },
-          {
-            "id": "10",
-            "value": "Solcius"
-          },
-          {
-            "id": "11",
-            "value": "Sunergy"
-          },
-          {
-            "id": "12",
-            "value": "Sunlight"
-          },
-          {
-            "id": "13",
-            "value": "Voltaic Construction"
-          }
-    ],
-    "Promo": [
-        {
-            "id": "1",
-            "value": "50in Flat Screen TV (11/13/20 ONLY)."
-          },
-          {
-            "id": "2",
-            "value": "Voltaic & Sunrun CA:SCI 2020"
-          },
-          {
-            "id": "3",
-            "value": "Voltaic Purchase CA:SCI 2020"
-          },
-          {
-            "id": "4",
-            "value": "Voltaic Purchase AZ & IL Freedom 2020"
-          },
-          {
-            "id": "5",
-            "value": "Voltaic & Sunrun AZ & IL Freedom 2020"
-          },
-          {
-            "id": "6",
-            "value": "Homeowner Ref. $500 2020"
-          },
-          {
-            "id": "7",
-            "value": "Sunrun Ref. $1,000 Q2 2020"
-          },
-          {
-            "id": "8",
-            "value": "Sunrun Ref. $1,000 Q4 2020"
-          }
-    ],
-    "Scope_of_Reroof": [
-        {
-            "id": "1",
-            "value": "Partial"
-          },
-          {
-            "id": "2",
-            "value": "Full"
-          },
-          {
-            "id": "3",
-            "value": "Partial w/Decking"
-          },
-          {
-            "id": "4",
-            "value": "Full w/Decking"
-          },
-          {
-            "id": "5",
-            "value": "Re-Paper"
-          },
-          {
-            "id": "6",
-            "value": "Comp Out"
-          }
-    ],
-    "HVAC_SOW": [
-        {
-          "id": "1",
-          "value": "Replace"
-        },
-        {
-            "id": "2",
-            "value": "Full Cut In"
-          }
-    ],
-    "HVAC_Size": [
-        {
-          "id": "1",
-          "value": "3 Ton"
-        },
-        {
-            "id": "2",
-            "value": "3.5 Ton"
-          },
-          {
-            "id": "3",
-            "value": "4 Ton"
-          },
-          {
-            "id": "4",
-            "value": "4.5 Ton"
-          },
-          {
-            "id": "5",
-            "value": "5 Ton"
-          }
-    ],
-    "Meter_Spot": [
-        {
-            "id": "1",
-            "value": "COMPLETE SAME L / NO DR"
-          },
-          {
-              "id": "2",
-              "value": "RELOCATION"
-            },
-            {
-              "id": "3",
-              "value": "D/R SAME LOCATION"
-            },
-            {
-              "id": "4",
-              "value": "D/R + RELOCATION"
-            },
-            {
-              "id": "5",
-              "value": "POSSIBLE RELOCATION"
-            }
-    ],
-    "Rate_Term_Escalator": [
-        {
-            "id": "1",
-            "value": ".10/2.99"
-        }, {
-            "id": "2",
-            "value": ".13/0.0"
-        }, {
-            "id": "3",
-            "value": ".13/2.9"
-        }, {
-            "id": "4",
-            "value": ".135/2.99"
-        }, {
-            "id": "5",
-            "value": ".135/0.0"
-        }, {
-            "id": "6",
-            "value": ".105/1.9"
-        }, {
-            "id": "7",
-            "value": ".11/2.5"
-        }, {
-            "id": "8",
-            "value": ".11/2.9"
-        }, {
-            "id": "9",
-            "value": ".11/0"
-        }, {
-            "id": "10",
-            "value": ".140/2.9"
-        }, {
-            "id": "11",
-            "value": ".140/2.5"
-        }, {
-            "id": "12",
-            "value": ".140/0"
-        }, {
-            "id": "13",
-            "value": ".145/2.9"
-        }, {
-            "id": "14",
-            "value": ".145/2.5"
-        }, {
-            "id": "15",
-            "value": ".145/0"
-        }, {
-            "id": "16",
-            "value": ".15/2.9"
-        }, {
-            "id": "17",
-            "value": ".15/2.5"
-        }, {
-            "id": "18",
-            "value": ".15/0"
-        }, {
-            "id": "19",
-            "value": ".155/2.9"
-        }, {
-            "id": "20",
-            "value": ".155/0"
-        }, {
-            "id": "21",
-            "value": ".155/2.5"
-        }, {
-            "id": "22",
-            "value": ".160/2.9"
-        }, {
-            "id": "23",
-            "value": ".160/2.5"
-        }, {
-            "id": "24",
-            "value": ".160/0"
-        }, {
-            "id": "25",
-            "value": ".165/2.9"
-        }, {
-            "id": "26",
-            "value": ".165/2.5"
-        }, {
-            "id": "27",
-            "value": ".165/0"
-        }, {
-            "id": "28",
-            "value": ".17/2.9"
-        }, {
-            "id": "29",
-            "value": ".17/2.5"
-        }, {
-            "id": "30",
-            "value": ".17/0"
-        }, {
-            "id": "31",
-            "value": ".175/2.9"
-        }, {
-            "id": "32",
-            "value": ".175/2,5"
-        }, {
-            "id": "33",
-            "value": ".175/0"
-        }, {
-            "id": "34",
-            "value": ".18/2.9"
-        }, {
-            "id": "35",
-            "value": ".18/2.5"
-        }, {
-            "id": "36",
-            "value": ".18/0"
-        }, {
-            "id": "37",
-            "value": ".185/2.9"
-        }, {
-            "id": "38",
-            "value": ".185/2.5"
-        }, {
-              "id": "39",
-              "value": ".185/0"
-        }, {
-            "id": "40",
-            "value": ".19/2.9"
-        }, {
-            "id": "41",
-            "value": ".19/2.5"
-        }, {
-            "id": "42",
-            "value": ".19/0"
-        }, {
-            "id": "43",
-            "value": ".195/2/9"
-        }, {
-            "id": "44",
-            "value": ".195/2.5"
-        }, {
-            "id": "45",
-            "value": ".195/0"
-        }, {
-            "id": "46",
-            "value": ".20/2/9"
-        }, {
-            "id": "47",
-            "value": ".20/2.5"
-        }, {
-            "id": "48",
-            "value": ".20/0"
-        }, {
-            "id": "49",
-            "value": "10/.99"
-        }, {
-            "id": "50",
-            "value": "10/1.49"
-        }, {
-            "id": "51",
-            "value": "10/3.99"
-        }, {
-            "id": "52",
-            "value": "FLEX 25/2.98"
-        }, {
-            "id": "53",
-            "value": "12/.99"
-        }, {
-            "id": "54",
-            "value": "12/1.49"
-        }, {
-            "id": "55",
-            "value": "15/.99"
-        }, {
-            "id": "56",
-            "value": "15/3.99"
-        }, {
-            "id": "57",
-            "value": "20/5.99"
-        }, {
-            "id": "58",
-            "value": "20/.99"
-        }, {
-            "id": "59",
-            "value": "20/1.49"
-        }, {
-            "id": "60",
-            "value": "20/2.99"
-        }, {
-            "id": "61",
-            "value": "20/3.99"
-        }, {
-            "id": "62",
-            "value": "25/2.99"
-        }, {
-            "id": "63",
-            "value": "25/3.99"
-        }, {
-            "id": "64",
-            "value": "25/6.99"
-        }, {
-            "id": "65",
-            "value": "0"
-        }, {
-            "id": "66",
-            "value": "20/1.48"
-        }, {
-            "id": "67",
-            "value": "25/1.99"
-        }
-    ],
-    "Program": [
-        {
-            "id": "1",
-            "value": "Cash"
-          },
-          {
-            "id": "2",
-            "value": "Credit Card"
-          },
-          {
-            "id": "3",
-            "value": "Enium"
-          },
-          {
-            "id": "4",
-            "value": "Hero"
-          },
-          {
-            "id": "5",
-            "value": "Loanpal"
-          },
-          {
-            "id": "6",
-            "value": "NV Solar Group PPA"
-          },
-          {
-            "id": "7",
-            "value": "Solkraft HB"
-          },
-          {
-            "id": "8",
-            "value": "Solkraft Premier"
-          },
-          {
-            "id": "9",
-            "value": "Sunlight"
-          },
-          {
-            "id": "10",
-            "value": "Sunnova Lease"
-          },
-          {
-            "id": "11",
-            "value": "Sunnova Lease Storage"
-          },
-          {
-            "id": "12",
-            "value": "Sunnova PPA"
-          },
-          {
-            "id": "13",
-            "value": "Sunrun Lease"
-          },
-          {
-            "id": "14",
-            "value": "Sunrun PPA"
-          },
-          {
-            "id": "15",
-            "value": "SVC"
-          },
-          {
-            "id": "16",
-            "value": "Vivint Lease"
-          },
-          {
-            "id": "17",
-            "value": "Vivint Loanpal"
-          },
-          {
-            "id": "18",
-            "value": "Vivint PPA"
-          }
-    ],
-    "Time": [
-        {
-            "id": "1",
-            "value": "12:00 AM"
-          },
-          {
-            "id": "2",
-            "value": "12:30 AM"
-          },
-          {
-            "id": "3",
-            "value": "01:00 AM"
-          },
-          {
-            "id": "4",
-            "value": "01:30 AM"
-          },
-          {
-            "id": "5",
-            "value": "02:00 AM"
-          },
-          {
-            "id": "6",
-            "value": "02:30 AM"
-          },
-          {
-            "id": "7",
-            "value": "03:00 AM"
-          },
-          {
-            "id": "8",
-            "value": "03:30 AM"
-          },
-          {
-            "id": "9",
-            "value": "04:00 AM"
-          },
-          {
-            "id": "10",
-            "value": "04:30 AM"
-          },
-          {
-            "id": "11",
-            "value": "05:00 AM"
-          },
-          {
-            "id": "12",
-            "value": "05:30 AM"
-          },
-          {
-            "id": "13",
-            "value": "06:00 AM"
-          },
-          {
-            "id": "14",
-            "value": "06:30 AM"
-          },
-          {
-            "id": "15",
-            "value": "07:00 AM"
-          },
-          {
-            "id": "16",
-            "value": "07:30 AM"
-          },
-          {
-            "id": "17",
-            "value": "08:00 AM"
-          },
-          {
-            "id": "18",
-            "value": "08:30 AM"
-          },
-          {
-            "id": "19",
-            "value": "09:00 AM"
-          },
-          {
-            "id": "20",
-            "value": "09:30 AM"
-          },
-          {
-            "id": "21",
-            "value": "10:00 AM"
-          },
-          {
-            "id": "22",
-            "value": "10:30 AM"
-          },
-          {
-            "id": "23",
-            "value": "11:00 AM"
-          },
-          {
-            "id": "24",
-            "value": "11:30 AM"
-          },
-          {
-            "id": "25",
-            "value": "12:00 PM"
-          },
-          {
-            "id": "26",
-            "value": "12:30 PM"
-          },
-          {
-            "id": "27",
-            "value": "01:00 PM"
-          },
-          {
-            "id": "28",
-            "value": "01:30 PM"
-          },
-          {
-            "id": "29",
-            "value": "02:00 PM"
-          },
-          {
-            "id": "30",
-            "value": "02:30 PM"
-          },
-          {
-            "id": "31",
-            "value": "03:00 PM"
-          },
-          {
-            "id": "32",
-            "value": "03:30 PM"
-          },
-          {
-            "id": "33",
-            "value": "04:00 PM"
-          },
-          {
-            "id": "34",
-            "value": "04:30 PM"
-          },
-          {
-            "id": "35",
-            "value": "05:00 PM"
-          },
-          {
-            "id": "36",
-            "value": "05:30 PM"
-          },
-          {
-            "id": "37",
-            "value": "06:00 PM"
-          },
-          {
-            "id": "38",
-            "value": "06:30 PM"
-          },
-          {
-            "id": "39",
-            "value": "07:00 PM"
-          },
-          {
-            "id": "40",
-            "value": "07:30 PM"
-          },
-          {
-            "id": "41",
-            "value": "08:00 PM"
-          },
-          {
-            "id": "42",
-            "value": "08:30 PM"
-          },
-          {
-            "id": "43",
-            "value": "09:00 PM"
-          },
-          {
-            "id": "44",
-            "value": "09:30 PM"
-          },
-          {
-            "id": "45",
-            "value": "10:00 PM"
-          },
-          {
-            "id": "46",
-            "value": "10:30 PM"
-          },
-          {
-            "id": "47",
-            "value": "11:00 PM"
-          },
-          {
-            "id": "48",
-            "value": "11:30 PM"
-          }
-    ],
-    "YesNoChoice": [
-      {
-        "id": "1",
-        "value": "Yes"
-      },
-      {
-        "id": "2",
-        "value": "No"
-      }
-    ],
-    "Salutation": [
-      {
-        "id": "1",
-        "value": "Mr."
-      },
-      {
-        "id": "2",
-        "value": "Mrs."
-      },
-      {
-        "id": "3",
-        "value": "Ms."
-      },
-      {
-        "id": "4",
-        "value": "Dr."
-      },
-      {
-        "id": "5",
-        "value": "Prof."
-      }
-    ]
+  "Products": [
+    {
+      "id": "1",
+      "value": "$0.10/W Blitz"
+    },
+    {
+      "id": "2",
+      "value": "Attic Run Lift Energy"
+    },
+    {
+      "id": "3",
+      "value": "Attic Run SCI"
+    },
+    {
+      "id": "4",
+      "value": "Battery Backup"
+    },
+    {
+      "id": "5",
+      "value": "Cash Incentive"
+    },
+    {
+      "id": "6",
+      "value": "Combiner Panel"
+    },
+    {
+      "id": "7",
+      "value": "Concierge"
+    },
+    {
+      "id": "8",
+      "value": "Derate"
+    },
+    {
+      "id": "9",
+      "value": "Enphase"
+    },
+    {
+      "id": "10",
+      "value": "Ground Mount"
+    },
+    {
+      "id": "11",
+      "value": "HVAC"
+    },
+    {
+      "id": "12",
+      "value": "Insulation"
+    },
+    {
+      "id": "13",
+      "value": "LEDs"
+    },
+    {
+      "id": "14",
+      "value": "Level 2 EV"
+    },
+    {
+      "id": "15",
+      "value": "Monitoring"
+    },
+    {
+      "id": "16",
+      "value": "MPU"
+    },
+    {
+      "id": "17",
+      "value": "MPU Relocation"
+    },
+    {
+      "id": "18",
+      "value": "Nest"
+    },
+    {
+      "id": "19",
+      "value": "Nest x2"
+    },
+    {
+      "id": "20",
+      "value": "Panel Skirt"
+    },
+    {
+      "id": "21",
+      "value": "Partial Roof"
+    },
+    {
+      "id": "22",
+      "value": "Prem Panel"
+    },
+    {
+      "id": "23",
+      "value": "PV ADD ON"
+    },
+    {
+      "id": "24",
+      "value": "QCELL 335W BOB"
+    },
+    {
+      "id": "25",
+      "value": "Quiet Cool"
+    },
+    {
+      "id": "26",
+      "value": "Reverse Tilt Kit"
+    },
+    {
+      "id": "27",
+      "value": "Ring"
+    },
+    {
+      "id": "28",
+      "value": "Roof"
+    },
+    {
+      "id": "29",
+      "value": "Small System SCI $500"
+    },
+    {
+      "id": "30",
+      "value": "Solar"
+    },
+    {
+      "id": "31",
+      "value": "SolarEdge"
+    },
+    {
+      "id": "32",
+      "value": "Storedge Inverter"
+    },
+    {
+      "id": "33",
+      "value": "Sub Panel"
+    },
+    {
+      "id": "34",
+      "value": "Tesla PW2"
+    },
+    {
+      "id": "35",
+      "value": "Tree Trimming"
+    },
+    {
+      "id": "36",
+      "value": "Trenching"
+    },
+    {
+      "id": "37",
+      "value": "Turf"
+    },
+    {
+      "id": "38",
+      "value": "VSPP"
+    },
+    {
+      "id": "39",
+      "value": "Windows"
+    }
+  ],
+  "Retention_Rep": [
+    {
+      "id": "1",
+      "value": "Lisa Logback"
+    }
+  ],
+  "Region": [
+    {
+      "id": "1",
+      "value": "AZ"
+    },
+    {
+      "id": "2",
+      "value": "CA"
+    },
+    {
+      "id": "3",
+      "value": "IE"
+    },
+    {
+      "id": "4",
+      "value": "IL"
+    },
+    {
+      "id": "5",
+      "value": "LA"
+    },
+    {
+      "id": "6",
+      "value": "MA"
+    },
+    {
+      "id": "7",
+      "value": "NM"
+    },
+    {
+      "id": "8",
+      "value": "NV"
+    },
+    {
+      "id": "9",
+      "value": "OC"
+    },
+    {
+      "id": "10",
+      "value": "SD"
+    },
+    {
+      "id": "11",
+      "value": "TX"
+    }
+  ],
+  "Fan_Size": [
+    {
+      "id": "1",
+      "value": "1.5"
+    },
+    {
+      "id": "2",
+      "value": "2.5"
+    },
+    {
+      "id": "3",
+      "value": "3.3"
+    },
+    {
+      "id": "4",
+      "value": "4.8"
+    },
+    {
+      "id": "5",
+      "value": "5.5"
+    },
+    {
+      "id": "6",
+      "value": "6.0"
+    },
+    {
+      "id": "7",
+      "value": "7.0"
+    }
+  ],
+  "Utility_Rate_Plan": [
+    {
+      "id": "1",
+      "value": "CARE"
+    },
+    {
+      "id": "2",
+      "value": "Domestic"
+    },
+    {
+      "id": "3",
+      "value": "FERA"
+    },
+    {
+      "id": "4",
+      "value": "MED BSLN"
+    },
+    {
+      "id": "5",
+      "value": "NEM"
+    },
+    {
+      "id": "6",
+      "value": "SDP"
+    }
+  ],
+  "Channel_Partner": [
+    {
+      "id": "1",
+      "value": "1Solar"
+    },
+    {
+      "id": "2",
+      "value": "BPS"
+    },
+    {
+      "id": "3",
+      "value": "Empire"
+    },
+    {
+      "id": "4",
+      "value": "ESP"
+    },
+    {
+      "id": "5",
+      "value": "Freedom"
+    },
+    {
+      "id": "6",
+      "value": "NV Solar Group"
+    },
+    {
+      "id": "7",
+      "value": "SET/Lift Energy"
+    },
+    {
+      "id": "8",
+      "value": "SET/Titan"
+    },
+    {
+      "id": "9",
+      "value": "SolarX"
+    },
+    {
+      "id": "10",
+      "value": "Solcius"
+    },
+    {
+      "id": "11",
+      "value": "Sunergy"
+    },
+    {
+      "id": "12",
+      "value": "Sunlight"
+    },
+    {
+      "id": "13",
+      "value": "Voltaic Construction"
+    }
+  ],
+  "Promo": [
+    {
+      "id": "1",
+      "value": "50in Flat Screen TV (11/13/20 ONLY)."
+    },
+    {
+      "id": "2",
+      "value": "Voltaic & Sunrun CA:SCI 2020"
+    },
+    {
+      "id": "3",
+      "value": "Voltaic Purchase CA:SCI 2020"
+    },
+    {
+      "id": "4",
+      "value": "Voltaic Purchase AZ & IL Freedom 2020"
+    },
+    {
+      "id": "5",
+      "value": "Voltaic & Sunrun AZ & IL Freedom 2020"
+    },
+    {
+      "id": "6",
+      "value": "Homeowner Ref. $500 2020"
+    },
+    {
+      "id": "7",
+      "value": "Sunrun Ref. $1,000 Q2 2020"
+    },
+    {
+      "id": "8",
+      "value": "Sunrun Ref. $1,000 Q4 2020"
+    }
+  ],
+  "Scope_of_Reroof": [
+    {
+      "id": "1",
+      "value": "Partial"
+    },
+    {
+      "id": "2",
+      "value": "Full"
+    },
+    {
+      "id": "3",
+      "value": "Partial w/Decking"
+    },
+    {
+      "id": "4",
+      "value": "Full w/Decking"
+    },
+    {
+      "id": "5",
+      "value": "Re-Paper"
+    },
+    {
+      "id": "6",
+      "value": "Comp Out"
+    }
+  ],
+  "HVAC_SOW": [
+    {
+      "id": "1",
+      "value": "Replace"
+    },
+    {
+      "id": "2",
+      "value": "Full Cut In"
+    }
+  ],
+  "HVAC_Size": [
+    {
+      "id": "1",
+      "value": "3 Ton"
+    },
+    {
+      "id": "2",
+      "value": "3.5 Ton"
+    },
+    {
+      "id": "3",
+      "value": "4 Ton"
+    },
+    {
+      "id": "4",
+      "value": "4.5 Ton"
+    },
+    {
+      "id": "5",
+      "value": "5 Ton"
+    }
+  ],
+  "Meter_Spot": [
+    {
+      "id": "1",
+      "value": "COMPLETE SAME L / NO DR"
+    },
+    {
+      "id": "2",
+      "value": "RELOCATION"
+    },
+    {
+      "id": "3",
+      "value": "D/R SAME LOCATION"
+    },
+    {
+      "id": "4",
+      "value": "D/R + RELOCATION"
+    },
+    {
+      "id": "5",
+      "value": "POSSIBLE RELOCATION"
+    }
+  ],
+  "Rate_Term_Escalator": [
+    {
+      "id": "1",
+      "value": ".10/2.99"
+    },
+    {
+      "id": "2",
+      "value": ".13/0.0"
+    },
+    {
+      "id": "3",
+      "value": ".13/2.9"
+    },
+    {
+      "id": "4",
+      "value": ".135/2.99"
+    },
+    {
+      "id": "5",
+      "value": ".135/0.0"
+    },
+    {
+      "id": "6",
+      "value": ".105/1.9"
+    },
+    {
+      "id": "7",
+      "value": ".11/2.5"
+    },
+    {
+      "id": "8",
+      "value": ".11/2.9"
+    },
+    {
+      "id": "9",
+      "value": ".11/0"
+    },
+    {
+      "id": "10",
+      "value": ".140/2.9"
+    },
+    {
+      "id": "11",
+      "value": ".140/2.5"
+    },
+    {
+      "id": "12",
+      "value": ".140/0"
+    },
+    {
+      "id": "13",
+      "value": ".145/2.9"
+    },
+    {
+      "id": "14",
+      "value": ".145/2.5"
+    },
+    {
+      "id": "15",
+      "value": ".145/0"
+    },
+    {
+      "id": "16",
+      "value": ".15/2.9"
+    },
+    {
+      "id": "17",
+      "value": ".15/2.5"
+    },
+    {
+      "id": "18",
+      "value": ".15/0"
+    },
+    {
+      "id": "19",
+      "value": ".155/2.9"
+    },
+    {
+      "id": "20",
+      "value": ".155/0"
+    },
+    {
+      "id": "21",
+      "value": ".155/2.5"
+    },
+    {
+      "id": "22",
+      "value": ".160/2.9"
+    },
+    {
+      "id": "23",
+      "value": ".160/2.5"
+    },
+    {
+      "id": "24",
+      "value": ".160/0"
+    },
+    {
+      "id": "25",
+      "value": ".165/2.9"
+    },
+    {
+      "id": "26",
+      "value": ".165/2.5"
+    },
+    {
+      "id": "27",
+      "value": ".165/0"
+    },
+    {
+      "id": "28",
+      "value": ".17/2.9"
+    },
+    {
+      "id": "29",
+      "value": ".17/2.5"
+    },
+    {
+      "id": "30",
+      "value": ".17/0"
+    },
+    {
+      "id": "31",
+      "value": ".175/2.9"
+    },
+    {
+      "id": "32",
+      "value": ".175/2,5"
+    },
+    {
+      "id": "33",
+      "value": ".175/0"
+    },
+    {
+      "id": "34",
+      "value": ".18/2.9"
+    },
+    {
+      "id": "35",
+      "value": ".18/2.5"
+    },
+    {
+      "id": "36",
+      "value": ".18/0"
+    },
+    {
+      "id": "37",
+      "value": ".185/2.9"
+    },
+    {
+      "id": "38",
+      "value": ".185/2.5"
+    },
+    {
+      "id": "39",
+      "value": ".185/0"
+    },
+    {
+      "id": "40",
+      "value": ".19/2.9"
+    },
+    {
+      "id": "41",
+      "value": ".19/2.5"
+    },
+    {
+      "id": "42",
+      "value": ".19/0"
+    },
+    {
+      "id": "43",
+      "value": ".195/2/9"
+    },
+    {
+      "id": "44",
+      "value": ".195/2.5"
+    },
+    {
+      "id": "45",
+      "value": ".195/0"
+    },
+    {
+      "id": "46",
+      "value": ".20/2/9"
+    },
+    {
+      "id": "47",
+      "value": ".20/2.5"
+    },
+    {
+      "id": "48",
+      "value": ".20/0"
+    },
+    {
+      "id": "49",
+      "value": "10/.99"
+    },
+    {
+      "id": "50",
+      "value": "10/1.49"
+    },
+    {
+      "id": "51",
+      "value": "10/3.99"
+    },
+    {
+      "id": "52",
+      "value": "FLEX 25/2.98"
+    },
+    {
+      "id": "53",
+      "value": "12/.99"
+    },
+    {
+      "id": "54",
+      "value": "12/1.49"
+    },
+    {
+      "id": "55",
+      "value": "15/.99"
+    },
+    {
+      "id": "56",
+      "value": "15/3.99"
+    },
+    {
+      "id": "57",
+      "value": "20/5.99"
+    },
+    {
+      "id": "58",
+      "value": "20/.99"
+    },
+    {
+      "id": "59",
+      "value": "20/1.49"
+    },
+    {
+      "id": "60",
+      "value": "20/2.99"
+    },
+    {
+      "id": "61",
+      "value": "20/3.99"
+    },
+    {
+      "id": "62",
+      "value": "25/2.99"
+    },
+    {
+      "id": "63",
+      "value": "25/3.99"
+    },
+    {
+      "id": "64",
+      "value": "25/6.99"
+    },
+    {
+      "id": "65",
+      "value": "0"
+    },
+    {
+      "id": "66",
+      "value": "20/1.48"
+    },
+    {
+      "id": "67",
+      "value": "25/1.99"
+    }
+  ],
+  "Program": [
+    {
+      "id": "1",
+      "value": "Cash"
+    },
+    {
+      "id": "2",
+      "value": "Credit Card"
+    },
+    {
+      "id": "3",
+      "value": "Enium"
+    },
+    {
+      "id": "4",
+      "value": "Hero"
+    },
+    {
+      "id": "5",
+      "value": "Loanpal"
+    },
+    {
+      "id": "6",
+      "value": "NV Solar Group PPA"
+    },
+    {
+      "id": "7",
+      "value": "Solkraft HB"
+    },
+    {
+      "id": "8",
+      "value": "Solkraft Premier"
+    },
+    {
+      "id": "9",
+      "value": "Sunlight"
+    },
+    {
+      "id": "10",
+      "value": "Sunnova Lease"
+    },
+    {
+      "id": "11",
+      "value": "Sunnova Lease Storage"
+    },
+    {
+      "id": "12",
+      "value": "Sunnova PPA"
+    },
+    {
+      "id": "13",
+      "value": "Sunrun Lease"
+    },
+    {
+      "id": "14",
+      "value": "Sunrun PPA"
+    },
+    {
+      "id": "15",
+      "value": "SVC"
+    },
+    {
+      "id": "16",
+      "value": "Vivint Lease"
+    },
+    {
+      "id": "17",
+      "value": "Vivint Loanpal"
+    },
+    {
+      "id": "18",
+      "value": "Vivint PPA"
+    }
+  ],
+  "Time": [
+    {
+      "id": "1",
+      "value": "12:00 AM"
+    },
+    {
+      "id": "2",
+      "value": "12:30 AM"
+    },
+    {
+      "id": "3",
+      "value": "01:00 AM"
+    },
+    {
+      "id": "4",
+      "value": "01:30 AM"
+    },
+    {
+      "id": "5",
+      "value": "02:00 AM"
+    },
+    {
+      "id": "6",
+      "value": "02:30 AM"
+    },
+    {
+      "id": "7",
+      "value": "03:00 AM"
+    },
+    {
+      "id": "8",
+      "value": "03:30 AM"
+    },
+    {
+      "id": "9",
+      "value": "04:00 AM"
+    },
+    {
+      "id": "10",
+      "value": "04:30 AM"
+    },
+    {
+      "id": "11",
+      "value": "05:00 AM"
+    },
+    {
+      "id": "12",
+      "value": "05:30 AM"
+    },
+    {
+      "id": "13",
+      "value": "06:00 AM"
+    },
+    {
+      "id": "14",
+      "value": "06:30 AM"
+    },
+    {
+      "id": "15",
+      "value": "07:00 AM"
+    },
+    {
+      "id": "16",
+      "value": "07:30 AM"
+    },
+    {
+      "id": "17",
+      "value": "08:00 AM"
+    },
+    {
+      "id": "18",
+      "value": "08:30 AM"
+    },
+    {
+      "id": "19",
+      "value": "09:00 AM"
+    },
+    {
+      "id": "20",
+      "value": "09:30 AM"
+    },
+    {
+      "id": "21",
+      "value": "10:00 AM"
+    },
+    {
+      "id": "22",
+      "value": "10:30 AM"
+    },
+    {
+      "id": "23",
+      "value": "11:00 AM"
+    },
+    {
+      "id": "24",
+      "value": "11:30 AM"
+    },
+    {
+      "id": "25",
+      "value": "12:00 PM"
+    },
+    {
+      "id": "26",
+      "value": "12:30 PM"
+    },
+    {
+      "id": "27",
+      "value": "01:00 PM"
+    },
+    {
+      "id": "28",
+      "value": "01:30 PM"
+    },
+    {
+      "id": "29",
+      "value": "02:00 PM"
+    },
+    {
+      "id": "30",
+      "value": "02:30 PM"
+    },
+    {
+      "id": "31",
+      "value": "03:00 PM"
+    },
+    {
+      "id": "32",
+      "value": "03:30 PM"
+    },
+    {
+      "id": "33",
+      "value": "04:00 PM"
+    },
+    {
+      "id": "34",
+      "value": "04:30 PM"
+    },
+    {
+      "id": "35",
+      "value": "05:00 PM"
+    },
+    {
+      "id": "36",
+      "value": "05:30 PM"
+    },
+    {
+      "id": "37",
+      "value": "06:00 PM"
+    },
+    {
+      "id": "38",
+      "value": "06:30 PM"
+    },
+    {
+      "id": "39",
+      "value": "07:00 PM"
+    },
+    {
+      "id": "40",
+      "value": "07:30 PM"
+    },
+    {
+      "id": "41",
+      "value": "08:00 PM"
+    },
+    {
+      "id": "42",
+      "value": "08:30 PM"
+    },
+    {
+      "id": "43",
+      "value": "09:00 PM"
+    },
+    {
+      "id": "44",
+      "value": "09:30 PM"
+    },
+    {
+      "id": "45",
+      "value": "10:00 PM"
+    },
+    {
+      "id": "46",
+      "value": "10:30 PM"
+    },
+    {
+      "id": "47",
+      "value": "11:00 PM"
+    },
+    {
+      "id": "48",
+      "value": "11:30 PM"
+    }
+  ],
+  "YesNoChoice": [
+    {
+      "id": "1",
+      "value": "Yes"
+    },
+    {
+      "id": "2",
+      "value": "No"
+    }
+  ],
+  "Salutation": [
+    {
+      "id": "1",
+      "value": "Mr."
+    },
+    {
+      "id": "2",
+      "value": "Mrs."
+    },
+    {
+      "id": "3",
+      "value": "Ms."
+    },
+    {
+      "id": "4",
+      "value": "Dr."
+    },
+    {
+      "id": "5",
+      "value": "Prof."
+    }
+  ],
+  "Rating": [
+    { "id": "Acquired", "value": "Acquired" },
+    { "id": "Active", "value": "Active" },
+    { "id": "Market Failed", "value": "Market Failed" },
+    { "id": "Project Cancelled", "value": "Project Cancelled" },
+    { "id": "ShutDown", "value": "Shut Down" }
+  ],
+  "Account_Type": [
+    { "id": "Analyst", "value": "Analyst" },
+    { "id": "Competitor", "value": "Competitor" },
+    { "id": "Customer", "value": "Customer" },
+    { "id": "Distributor", "value": "Distributor" },
+    { "id": "Integrator", "value": "Integrator" },
+    { "id": "Investor", "value": "Investor" },
+    { "id": "Other", "value": "Other" },
+    { "id": "Partner", "value": "Partner" },
+    { "id": "Press", "value": "Press" },
+    { "id": "Prospect", "value": "Prospect" },
+    { "id": "Reseller", "value": "Reseller" },
+    { "id": "Supplier", "value": "Supplier" },
+    { "id": "Vendor", "value": "Vendor" }
+  ],
+  "Ownership": [
+    { "id": "Other", "value": "Other" },
+    { "id": "Private", "value": "Private" },
+    { "id": "Public", "value": "Public" },
+    { "id": "Subsidiary", "value": "Subsidiary" }
+  ],
+  "Industry": [
+    { "id": "ASP", "value": "ASP (Application Service Provider)" },
+    { "id": "Data/Telecom OEM", "value": "Data/Telecom OEM" },
+    { "id": "ERP", "value": "ERP (Enterprise Resource Planning)" },
+    {
+      "id": "Government/Military",
+      "value": "Government/Military"
+    },
+    { "id": "Large Enterprise", "value": "Large Enterprise" },
+    { "id": "ManagementISV", "value": "ManagementISV" },
+    {
+      "id": "MSP (Management Service Provider)",
+      "value": "MSP (Management Service Provider)"
+    },
+    {
+      "id": "Network Equipment (Enterprise)",
+      "value": "Network Equipment Enterprise"
+    },
+    { "id": "Non-management ISV", "value": "Non-management ISV" },
+    { "id": "Optical Networking", "value": "Optical Networking" },
+    { "id": "Service Provider", "value": "Service Provider" },
+    {
+      "id": "Small/Medium Enterprise",
+      "value": "Small/Medium Enterprise"
+    },
+    { "id": "Storage Equipment", "value": "Storage Equipment" },
+    {
+      "id": "Storage Service Provider",
+      "value": "Storage Service Provider"
+    },
+    { "id": "Systems Integrator", "value": "Systems Integrator" },
+    { "id": "Wireless Industry", "value": "Wireless Industry" }
+  ]
 }

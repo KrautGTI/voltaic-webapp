@@ -15,10 +15,20 @@ export class FormField {
   fieldName = '';
   placeholder = '';
   fieldType = '';
+  isEditable = true;
   isRequired = false;
   isDisabled? = false;
   options? = [];
+  optionConfig?: OptionConfig = new OptionConfig();
   errors: FormFieldError[] = [];
+}
+export class OptionConfig {
+  labelKey: string = '';
+  valueKey: string = '';
+}
+export class OptionModel {
+  label: string = '';
+  value: string = '';
 }
 
 export class FormFieldGroup {
@@ -26,6 +36,11 @@ export class FormFieldGroup {
   gorupName = '';
   gorupType = 'static';
   groupDetails: FormField[] = [];
+}
+export class ColumnDefs {
+  headerName: string = '';
+  field: string = '';
+  cellStyle?: any = null;
 }
 
 export enum FieldTypes {
@@ -41,6 +56,7 @@ export enum FieldTypes {
   FILE = 'file',
   PASSWORD = 'password',
   SWITCH = 'switch',
+  AUTOSEARCH = 'autosearch',
 }
 
 export enum ErrorType {

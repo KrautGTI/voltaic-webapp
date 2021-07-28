@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import {
   AbstractControl,
   FormBuilder,
@@ -19,10 +19,14 @@ export class TextareaComponent implements OnInit {
   @Input() public fieldName: string = '';
   @Input() public placeholder: string = '';
   @Input() public class: string = '';
+  @Input() public isNewDesing: boolean = false;
+  @Input() public isFixed: boolean = true;
+  @Input() public isEditable: boolean = true;
   @Input() public isRequired: boolean = false;
   @Input() public errors: FormFieldError[] = [];
   @Output() public cstBlur = new EventEmitter<any>();
   @Output() public cstChange = new EventEmitter<any>();
+  @ViewChild('inputRef') private inputRef: ElementRef | null = null;
 
   constructor(private fb: FormBuilder) {
     this.group = this.fb.group({});
@@ -36,6 +40,7 @@ export class TextareaComponent implements OnInit {
     }
     this.groupControl?.setValidators(validators);
     this.groupControl?.updateValueAndValidity();
+    this.setEditableStatus();
   }
 
   get groupControl(): AbstractControl | null {
@@ -46,5 +51,21 @@ export class TextareaComponent implements OnInit {
   }
   public onChange(e: any): void {
     this.cstChange.emit(e.target.value);
+  }
+  public onClickEdit(): void {
+    if (!this.isEditable) {
+      setTimeout(() => {
+        this.inputRef?.nativeElement.focus();
+      });
+    }
+    this.isEditable = !this.isEditable;
+    this.setEditableStatus();
+  }
+  private setEditableStatus(): void {
+    if (this.isEditable) {
+      this.groupControl?.enable();
+    } else {
+      this.groupControl?.disable();
+    }
   }
 }

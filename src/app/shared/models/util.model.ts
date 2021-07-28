@@ -37,6 +37,11 @@ export class FormFieldGroup {
   gorupType = 'static';
   groupDetails: FormField[] = [];
 }
+export class ColumnDefs {
+  headerName: string = '';
+  field: string = '';
+  cellStyle?: any = null;
+}
 
 export enum FieldTypes {
   TEXT = 'text',

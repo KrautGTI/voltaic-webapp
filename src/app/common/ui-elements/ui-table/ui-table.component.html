@@ -1,1 +1,24 @@
-<p>ui-table works!</p>
+<ag-grid-angular
+  #agGrid
+  id="agGrid"
+  class="ag-theme-balham"
+  [modules]="modules"
+  [columnDefs]="columnDefs"
+  [defaultColDef]="defaultColDef"
+  [rowGroupPanelShow]="rowGroupPanelShow"
+  [groupMultiAutoColumn]="true"
+  [domLayout]="domLayout"
+  (RowGroupOpened)="onRowGroupOpened($event)"
+  [pivotPanelShow]="pivotPanelShow"
+  [debug]="true"
+  [rowSelection]="rowSelection"
+  [enableBrowserTooltips]="true"
+  [pagination]="true"
+  [rowData]="tabData"
+  [animateRows]="true"
+  (gridReady)="onGridReady($event)"
+  [paginationPageSize]="paginationPageSize"
+  [paginationNumberFormatter]="paginationNumberFormatter"
+  (cellClicked)="onRowClick($event)"
+  [rowHeight]="rowHeight"
+></ag-grid-angular>

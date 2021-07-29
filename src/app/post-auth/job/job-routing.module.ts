@@ -4,7 +4,7 @@ import { JobReportsComponent } from './job-reports/job-reports.component';
 
 const routes: Routes = [
   {
-    path: 'reports',
+    path: '',
     component: JobReportsComponent,
   },
 ];

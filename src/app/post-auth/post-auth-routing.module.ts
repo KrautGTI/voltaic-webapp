@@ -13,7 +13,7 @@ const routes: Routes = [
           import('./dashboard/dashboard.module').then((m) => m.DashboardModule),
       },
       {
-        path: 'job',
+        path: 'job-reports',
         loadChildren: () => import('./job/job.module').then((m) => m.JobModule),
       },
       {
@@ -56,6 +56,11 @@ const routes: Routes = [
           import('./account-details/account-details.module').then(
             (m) => m.AccountDetailsModule
           ),
+      },
+      {
+        path: 'reports',
+        loadChildren: () =>
+          import('./reports/reports.module').then((m) => m.ReportsModule),
       },
     ],
   },

@@ -17,8 +17,8 @@ import { SelectComponent } from './select/select.component';
 import { SwitchComponent } from './switch/switch.component';
 import { TextareaComponent } from './textarea/textarea.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
-
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatMomentDateModule } from '@angular/material-moment-adapter';
 
 @NgModule({
   declarations: [
@@ -37,12 +37,14 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     RadioGroupComponent,
     SelectComponent,
     SwitchComponent,
-    TextareaComponent
+    TextareaComponent,
   ],
   imports: [
     CommonModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatDatepickerModule,
+    MatMomentDateModule,
   ],
   exports: [
     BtnPrimaryComponent,
@@ -60,7 +62,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     RadioGroupComponent,
     SelectComponent,
     SwitchComponent,
-    TextareaComponent
-  ]
+    TextareaComponent,
+  ],
 })
-export class FormFieldsModule { }
+export class FormFieldsModule {}

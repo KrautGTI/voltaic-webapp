@@ -7,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ReportCreateComponent implements OnInit {
 
+  public moduleData = [];
+
   constructor() { }
 
   ngOnInit(): void {

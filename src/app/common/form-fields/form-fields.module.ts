@@ -19,6 +19,7 @@ import { TextareaComponent } from './textarea/textarea.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatMomentDateModule } from '@angular/material-moment-adapter';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 @NgModule({
   declarations: [
@@ -45,6 +46,7 @@ import { MatMomentDateModule } from '@angular/material-moment-adapter';
     ReactiveFormsModule,
     MatDatepickerModule,
     MatMomentDateModule,
+    MatCheckboxModule,
   ],
   exports: [
     BtnPrimaryComponent,

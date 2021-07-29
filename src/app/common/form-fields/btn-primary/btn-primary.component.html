@@ -1,1 +1,8 @@
-<p>btn-primary works!</p>
+<button
+  class="btn btn-primary createBtn"
+  [type]="btnType"
+  (click)="onClick()"
+  [disabled]="disabled"
+>
+  {{ btnName }}
+</button>

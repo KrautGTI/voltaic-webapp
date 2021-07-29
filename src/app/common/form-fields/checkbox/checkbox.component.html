@@ -1,1 +1,11 @@
-<p>checkbox works!</p>
+<div class="input-checkbox" [formGroup]="group">
+  <mat-checkbox
+    [formControlName]="fieldName"
+    [labelPosition]="labelPosition"
+    [checked]="this.groupControl!.value"
+  >
+    <label class="form-label" *ngIf="label">
+      {{ label }}
+    </label>
+  </mat-checkbox>
+</div>

@@ -1,4 +1,11 @@
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnDestroy,
+  OnInit,
+  Output,
+} from '@angular/core';
 import {
   AbstractControl,
   FormArray,
@@ -20,12 +27,16 @@ import { FormField } from 'src/app/shared/models/util.model';
 })
 export class ModuleInfoComponent implements OnInit, OnDestroy {
   @Input() public moduleData: any = [];
+  @Output() public btnSubmit: EventEmitter<string[]> = new EventEmitter<
+    string[]
+  >();
 
   public label: { [key: string]: FormField } = ReportModuleLabels;
   public moduleForm: FormGroup = new FormGroup({});
   private unsubscribe$: Subject<boolean> = new Subject();
   public filteredModuleData: any = [];
   public isInvalidForm: boolean = true;
+  public isVisibleBtn: boolean = false;
 
   constructor(private fb: FormBuilder) {}
 
@@ -50,7 +61,9 @@ export class ModuleInfoComponent implements OnInit, OnDestroy {
   private getFilteredModuleData(selectedValue: string): void {
     this.filteredModuleData = [];
     this.availableModules.clear();
+    this.isVisibleBtn = false;
     if (selectedValue) {
+      this.isVisibleBtn = true;
       this.filteredModuleData = this.moduleData.filter(
         (item: any) => item.id !== selectedValue
       );
@@ -84,15 +97,24 @@ export class ModuleInfoComponent implements OnInit, OnDestroy {
     return this.availableModules.at(i) as FormGroup;
   }
   private setFormArrayValid(): void {
-    const resArr = this.availableModules.controls.filter(
-      (control) => control.get('selectItem')!.value
-    );
-    this.isInvalidForm = !resArr.length;
+    const selectedModules: FormArray = this.getSelectedModules();
+    this.isInvalidForm = !selectedModules.length;
   }
 
   public onContinue(): void {
-    if (this.availableModules.valid) {
-      console.log(this.availableModules.value);
-    }
+    const selectedModules: FormArray = this.getSelectedModules();
+    const moduleIdArr = [];
+    moduleIdArr.push(this.selectModule?.value);
+    selectedModules.controls.forEach((control) => {
+      moduleIdArr.push(control.get('fieldName')!.value);
+    });
+    this.btnSubmit.emit(moduleIdArr);
+    this.isVisibleBtn = false;
+  }
+  private getSelectedModules(): FormArray {
+    const resArr = this.availableModules.controls.filter(
+      (control) => control.get('selectItem')!.value
+    );
+    return this.fb.array(resArr);
   }
 }

@@ -1,1 +1,23 @@
-<p>report-type works!</p>
+<form [formGroup]="reportTypeForm">
+  <div class="row mb-4">
+    <div class="col-6">
+      <app-radio-group
+        [isRequired]="label.reportType.isRequired"
+        [label]="label.reportType.fieldLabel"
+        [fieldName]="label.reportType.fieldName"
+        [options]="reportTypeArr"
+        [errors]="label.reportType.errors"
+        [group]="reportTypeForm"
+      ></app-radio-group>
+    </div>
+  </div>
+  <div class="row mb-4" *ngIf="isVisibleBtn">
+    <div class="col-6">
+      <app-btn-primary
+        [btnName]="'Continue'"
+        [btnType]="'submit'"
+        (btnClick)="onContinue()"
+      ></app-btn-primary>
+    </div>
+  </div>
+</form>

@@ -8,6 +8,7 @@ import { BasicInfoComponent } from './basic-info/basic-info.component';
 import { ReportRouteComponent } from './report-route/report-route.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FormFieldsModule } from '../form-fields/form-fields.module';
+import { ColumnsSelectionComponent } from './columns-selection/columns-selection.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { FormFieldsModule } from '../form-fields/form-fields.module';
     ReportFilterComponent,
     BasicInfoComponent,
     ReportRouteComponent,
+    ColumnsSelectionComponent,
   ],
   imports: [CommonModule, FormsModule, ReactiveFormsModule, FormFieldsModule],
   exports: [
@@ -26,6 +28,7 @@ import { FormFieldsModule } from '../form-fields/form-fields.module';
     ReportFilterComponent,
     BasicInfoComponent,
     ReportRouteComponent,
+    ColumnsSelectionComponent,
   ],
 })
 export class ReportGenerateModule {}

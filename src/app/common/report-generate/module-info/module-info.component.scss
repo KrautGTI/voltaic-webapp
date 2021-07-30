@@ -9,4 +9,8 @@
   overflow-x: hidden;
   overflow-y: auto;
   max-height: 250px;
+  min-height: 150px;
+  .head-item {
+    margin: 4px 0;
+  }
 }

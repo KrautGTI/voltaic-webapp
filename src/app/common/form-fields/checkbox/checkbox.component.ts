@@ -31,7 +31,7 @@ export class CheckboxComponent implements OnInit {
     return this.group.get(this.fieldName);
   }
   public onChange(e: any): void {
-    this.cstChange.emit(e.target.value);
+    this.cstChange.emit(e.checked);
   }
   public onClickEdit(): void {
     this.isEditable = !this.isEditable;

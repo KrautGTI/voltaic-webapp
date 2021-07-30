@@ -1,10 +1,12 @@
 <div class="input-checkbox" [formGroup]="group">
   <mat-checkbox
     [formControlName]="fieldName"
+    [name]="fieldName"
     [labelPosition]="labelPosition"
     [checked]="this.groupControl!.value"
+    (change)="onChange($event)"
   >
-    <label class="form-label" *ngIf="label">
+    <label class="form-label mb-0" *ngIf="label">
       {{ label }}
     </label>
   </mat-checkbox>

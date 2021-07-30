@@ -39,12 +39,11 @@
       </div>
     </div>
   </div>
-  <div class="row mb-4" *ngIf="selectModule?.value">
+  <div class="row mb-4" *ngIf="isVisibleBtn">
     <div class="col-6">
       <app-btn-primary
         [btnName]="'Continue'"
         [btnType]="'submit'"
-        [disabled]="isInvalidForm"
         (btnClick)="onContinue()"
       ></app-btn-primary>
     </div>

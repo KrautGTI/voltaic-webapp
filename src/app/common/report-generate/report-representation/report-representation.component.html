@@ -10,35 +10,13 @@
           </div>
           <div class="row">
             <div class="col-12">
-              <div class="available-sub-container">
-                <div
-                  class="head-item"
-                  formArrayName="availableColumns"
-                  *ngFor="let item of availableColumns.controls; let i = index"
-                >
-                  <label
-                    class="module-header"
-                    *ngIf="
-                      i === 0 ||
-                      (i > 0 &&
-                        getAvailableGroup(i).get('moduleName')!.value !==
-                          getAvailableGroup(i - 1).get('moduleName')!.value)
-                    "
-                    >{{ getAvailableGroup(i).get("moduleName")!.value }}</label
-                  >
-                  <div
-                    class="column-container"
-                    [ngClass]="{
-                      active: getAvailableGroup(i).get('active')!.value
-                    }"
-                    (click)="onClickColumn(getAvailableGroup(i), i)"
-                  >
-                    <label class="column-header">{{
-                      getAvailableGroup(i).get("name")!.value
-                    }}</label>
-                  </div>
-                </div>
-              </div>
+              <app-columns-selection
+                [form]="reportForm"
+                [fieldName]="'availableColumns'"
+                [isVisibleModuleHeader]="true"
+                [isVisibleArrangeBtns]="false"
+                (pickedColumns)="onPickedColumns($event)"
+              ></app-columns-selection>
             </div>
           </div>
         </div>
@@ -61,32 +39,14 @@
           </div>
           <div class="row">
             <div class="col-12">
-              <div class="selected-sub-container">
-                <div
-                  class="head-item"
-                  formArrayName="selectedColumns"
-                  *ngFor="let item of selectedColumns.controls; let i = index"
-                >
-                  <div
-                    class="column-container"
-                    [ngClass]="{
-                      active: getSelectedGroup(i).get('active')!.value
-                    }"
-                    (click)="onClickSelectedColumn(getSelectedGroup(i), i)"
-                  >
-                    <label class="column-header">{{
-                      getSelectedGroup(i).get("name")!.value
-                    }}</label>
-                  </div>
-                </div>
-              </div>
+              <app-columns-selection
+                [form]="reportForm"
+                [fieldName]="'selectedColumns'"
+                [isVisibleModuleHeader]="false"
+                [isVisibleArrangeBtns]="true"
+              ></app-columns-selection>
             </div>
           </div>
-        </div>
-        <div class="action-btn-container">
-          <div class="up-icon" (click)="onUp()">Up</div>
-          <div class="down-icon" (click)="onDown()">Down</div>
-          <div class="delete-icon" (click)="onDelete()">Delete</div>
         </div>
       </div>
     </div>

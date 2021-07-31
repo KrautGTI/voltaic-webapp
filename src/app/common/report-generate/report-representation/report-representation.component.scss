@@ -19,11 +19,6 @@
     flex-direction: column;
     align-items: center;
   }
-  .action-btn-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
   .selected-container {
     display: flex;
     flex-direction: column;
@@ -37,36 +32,8 @@
     }
   }
 }
-.module-header {
-  font-weight: 700;
-  font-size: 16px;
-  color: #616e88;
-  margin: 5px 0;
-}
-.column-container {
-  padding-left: 7px;
-  cursor: pointer;
-  .column-header {
-    font-weight: 500;
-    font-size: 16px;
-    color: #616e88;
-    margin: 5px 0;
-  }
-}
-.active {
-  background-color: darkkhaki;
-}
 .header-label {
   font-weight: 500;
   font-size: 16px;
   color: #616e88;
-}
-.up-icon {
-  cursor: pointer;
-}
-.down-icon {
-  cursor: pointer;
-}
-.delete-icon {
-  cursor: pointer;
 }

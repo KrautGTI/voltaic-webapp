@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { RoutingStep } from 'src/app/shared/models/util.model';
 export class ModuleSelect {
   fieldName: string = '';
   fieldLabel: string = '';
@@ -11,25 +12,33 @@ export class ModuleSelect {
   styleUrls: ['./report-route.component.scss'],
 })
 export class ReportRouteComponent implements OnInit {
+  @Input() public routingSteps: RoutingStep[] = [];
   @Input() public moduleData = [];
-  public isVisibleReportType = false;
-  public isVisibleRepresentation = false;
   public selectedModuleArr: string[] = [];
 
   constructor() {}
 
   ngOnInit(): void {}
 
-  public btnSubmit(data: string[]): void {
-    this.isVisibleReportType = true;
-    console.log(data);
-    this.selectedModuleArr = data;
+  public btnSubmit(data: any, stepId: string, i: number): void {
+    switch (stepId) {
+      case 'moduleInfo':
+        this.selectedModuleArr = data;
+        break;
+      case 'reportType':
+        console.log('type=', data);
+        break;
+      case 'reportRepresentation':
+        console.log('type=', data);
+        break;
+      case 'reportFilter':
+        break;
+    }
+    this.setNextStepVisible(stepId, i);
   }
-  public reportTypeSelected(type: string): void {
-    this.isVisibleRepresentation = true;
-    console.log('type=', type);
-  }
-  public reportColumnsSelected(data: ModuleSelect[]): void {
-    console.log('data=', data);
+  private setNextStepVisible(stepId: string, index: number): void {
+    if (this.routingSteps.length - 1 > index) {
+      this.routingSteps[index + 1].isVisible = true;
+    }
   }
 }

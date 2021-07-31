@@ -22,7 +22,6 @@ export class ReportRepresentationComponent implements OnInit {
   public reportForm: FormGroup = new FormGroup({});
   public selectedModules: ModuleRef[] = [];
   private pickedColumns: FormArray = new FormArray([]);
-  private pickedSelectedIndex: number = -1;
 
   constructor(private fb: FormBuilder) {}
 
@@ -62,30 +61,8 @@ export class ReportRepresentationComponent implements OnInit {
       return this.selectedModuleArr.includes(module.id);
     });
   }
-  public getAvailableGroup(i: number): FormGroup {
-    return this.availableColumns.at(i) as FormGroup;
-  }
-  public getSelectedGroup(i: number): FormGroup {
-    return this.selectedColumns.at(i) as FormGroup;
-  }
-  public onClickColumn(selectedForm: FormGroup, index: number): void {
-    this.pickedColumns = this.fb.array([]);
-    this.availableColumns.controls.forEach((control) => {
-      if (control.get('active')?.value) {
-        control.get('active')?.patchValue(false);
-      }
-    });
-    this.pickedColumns.push(selectedForm);
-    selectedForm.get('active')?.patchValue(true);
-  }
-  public onClickSelectedColumn(selectedForm: FormGroup, index: number): void {
-    this.pickedSelectedIndex = index;
-    this.selectedColumns.controls.forEach((control) => {
-      if (control.get('active')?.value) {
-        control.get('active')?.patchValue(false);
-      }
-    });
-    selectedForm.get('active')?.patchValue(true);
+  public onPickedColumns(formArray: FormArray): void {
+    this.pickedColumns = formArray;
   }
   public onContinue(): void {
     this.reportColumnsSelected.emit(this.selectedColumns!.value);
@@ -116,26 +93,5 @@ export class ReportRepresentationComponent implements OnInit {
         );
       }
     });
-  }
-  public onUp(): void {
-    if (this.pickedSelectedIndex > 0) {
-      const newIndex = this.pickedSelectedIndex - 1;
-      const removeControl = this.selectedColumns.at(this.pickedSelectedIndex);
-      this.selectedColumns.removeAt(this.pickedSelectedIndex);
-      this.selectedColumns.insert(newIndex, removeControl);
-      this.pickedSelectedIndex = newIndex;
-    }
-  }
-  public onDown(): void {
-    if (this.pickedSelectedIndex < this.selectedColumns.length - 1) {
-      const newIndex = this.pickedSelectedIndex + 1;
-      const removeControl = this.selectedColumns.at(this.pickedSelectedIndex);
-      this.selectedColumns.removeAt(this.pickedSelectedIndex);
-      this.selectedColumns.insert(newIndex, removeControl);
-      this.pickedSelectedIndex = newIndex;
-    }
-  }
-  public onDelete(): void {
-    this.selectedColumns.removeAt(this.pickedSelectedIndex);
   }
 }

@@ -54,6 +54,11 @@ export class ModuleRef {
   name: string = '';
   columns: ModuleColumn[] = [];
 }
+export class RoutingStep {
+  stepId: string = '';
+  stepName: string = '';
+  isVisible: boolean = false;
+}
 
 export enum FieldTypes {
   TEXT = 'text',

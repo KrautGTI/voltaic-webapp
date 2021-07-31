@@ -3,6 +3,7 @@ import {
   FieldTypes,
   FormField,
   ModuleRef,
+  RoutingStep,
 } from '../models/util.model';
 
 export const ReportModuleLabels: { [key: string]: FormField } = {
@@ -485,5 +486,34 @@ export const ModuleData: ModuleRef[] = [
     id: 'Users',
     name: 'Users',
     columns: [],
+  },
+];
+
+export const RoutingStepsData: RoutingStep[] = [
+  {
+    stepId: 'moduleInfo',
+    stepName: 'Module Information',
+    isVisible: true,
+  },
+  {
+    stepId: 'reportType',
+    stepName: 'Report Type',
+    isVisible: false,
+  },
+  {
+    stepId: 'reportRepresentation',
+    stepName: 'Report Representation',
+    isVisible: false,
+  },
+  {
+    stepId: 'reportFilter',
+    stepName: 'Report Filter',
+    isVisible: false,
+  },
+
+  {
+    stepId: 'basicInfo',
+    stepName: 'Basic Information',
+    isVisible: false,
   },
 ];

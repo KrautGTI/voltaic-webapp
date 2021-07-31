@@ -29,6 +29,7 @@ export class OptionConfig {
 export class OptionModel {
   label: string = '';
   value: string = '';
+  checked?: boolean = false;
 }
 
 export class FormFieldGroup {
@@ -41,6 +42,22 @@ export class ColumnDefs {
   headerName: string = '';
   field: string = '';
   cellStyle?: any = null;
+}
+
+export class ModuleColumn {
+  id: string = '';
+  name: string = '';
+  active: boolean = false;
+}
+export class ModuleRef {
+  id: string = '';
+  name: string = '';
+  columns: ModuleColumn[] = [];
+}
+export class RoutingStep {
+  stepId: string = '';
+  stepName: string = '';
+  isVisible: boolean = false;
 }
 
 export enum FieldTypes {

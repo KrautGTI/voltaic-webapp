@@ -1,0 +1,63 @@
+<form [formGroup]="reportForm">
+  <div class="row mb-4">
+    <div class="col-8">
+      <div class="representation-container">
+        <div class="available-container">
+          <div class="row mb-2">
+            <div class="col-12">
+              <label class="header-label">Available Columns:</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-12">
+              <app-columns-selection
+                [form]="reportForm"
+                [fieldName]="'availableColumns'"
+                [isVisibleModuleHeader]="true"
+                [isVisibleArrangeBtns]="false"
+                (pickedColumns)="onPickedColumns($event)"
+              ></app-columns-selection>
+            </div>
+          </div>
+        </div>
+        <div class="btn-container">
+          <div class="row">
+            <div class="col-12">
+              <app-btn-primary
+                [btnName]="'Add'"
+                [btnType]="'submit'"
+                (btnClick)="onAdd()"
+              ></app-btn-primary>
+            </div>
+          </div>
+        </div>
+        <div class="selected-container">
+          <div class="row mb-2">
+            <div class="col-12">
+              <label class="header-label">Selected Columns:</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-12">
+              <app-columns-selection
+                [form]="reportForm"
+                [fieldName]="'selectedColumns'"
+                [isVisibleModuleHeader]="false"
+                [isVisibleArrangeBtns]="true"
+              ></app-columns-selection>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row mb-4" *ngIf="isVisibleBtn">
+    <div class="col-6">
+      <app-btn-primary
+        [btnName]="'Continue'"
+        [btnType]="'submit'"
+        (btnClick)="onContinue()"
+      ></app-btn-primary>
+    </div>
+  </div>
+</form>

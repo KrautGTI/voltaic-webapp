@@ -1,22 +1,21 @@
-@import "../../styles.scss";
 .footer {
-  background-color:#0E0B16;
+  background-color: #0e0b16;
   padding: 0.7rem 0 0.8rem;
   font-size: 13px;
   letter-spacing: 0.4px;
 }
 .line {
   width: 1px;
-  background-color: $color-white;
+  background-color: #fff;
   height: 12px;
   margin: 0.5rem 0.8rem;
 }
 .auth-bg {
-//   background: linear-gradient(to bottom, $color-primary, $color-secondary)
-//     no-repeat center;
-background-image: url('/assets/images/loginBG2.png');
-background-size: cover;
-min-height: calc(100vh - 52px);
+  //   background: linear-gradient(to bottom, $color-primary, $color-secondary)
+  //     no-repeat center;
+  background-image: url("/assets/images/loginBG2.png");
+  background-size: cover;
+  min-height: calc(100vh - 52px);
 }
 .auth-container {
   width: min(380px, 100%);
@@ -27,9 +26,9 @@ min-height: calc(100vh - 52px);
     width: 94%;
     margin: 0 auto;
     border-radius: 5px;
-    background-color: $color-cream;
-    margin-bottom: 13px!important;
-    margin-top: 13px!important;
+    background-color: #f2f2f2;
+    margin-bottom: 13px !important;
+    margin-top: 13px !important;
     .card-header {
       display: flex;
       padding: 0;
@@ -37,24 +36,24 @@ min-height: calc(100vh - 52px);
         width: 50%;
         border-radius: 0;
         padding: 1rem 0;
-        background-color: $color-border;
-        color: $color-secondary;
-        border-color: $color-border;
+        background-color: #e0e0e0;
+        // color: $color-secondary;
+        border-color: #e0e0e0;
         &.active {
-          background-color: $color-secondary;
-          color: $color-border;
-          border-color: $color-secondary;
+          // background-color: $color-secondary;
+          color: #e0e0e0;
+          // border-color: $color-secondary;
         }
       }
     }
     input {
-        padding-left: 8px;
-        &.focus {
-            box-shadow: none;
-        }
-    } 
+      padding-left: 8px;
+      &.focus {
+        box-shadow: none;
+      }
+    }
     .form-control {
-      background-color: $color-cream;
+      background-color: #f2f2f2;
       border-radius: 0 10px 10px 0;
       border-style: solid;
       border-color: #9eadbd;
@@ -66,14 +65,16 @@ min-height: calc(100vh - 52px);
       border-color: #9eadbd;
       border-width: 1px 0 1px 1px;
       padding: 0.7rem 0.5rem;
-      background-color: $color-cream;
+      background-color: #f2f2f2;
       i {
         border-radius: 50%;
         width: 1rem;
         height: 1rem;
-        @include flex-center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
         background-color: #9eadbd;
-        color: $color-white;
+        color: #fff;
       }
     }
   }
@@ -83,17 +84,20 @@ min-height: calc(100vh - 52px);
     height: 100px;
     margin-top: -10%;
     border-radius: 50%;
-    background-color: $color-white;
+    background-color: #fff;
     box-shadow: 0px 0px 5px 0px black;
     .auth-logo {
-      @include absCenter;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
       width: 70px;
       height: 70px;
     }
   }
 }
-.login-card-width{
-  width:450px;
+.login-card-width {
+  width: 450px;
 }
 .override-alert {
   padding: 10px 16px !important;
@@ -101,7 +105,7 @@ min-height: calc(100vh - 52px);
 }
 
 .btn-primary.loginBtn {
-  background-color: #A239CA;
+  background-color: #a239ca;
   font-size: 14px;
   padding-left: 30px;
   padding-right: 30px;
@@ -109,9 +113,10 @@ min-height: calc(100vh - 52px);
   border: 0;
 }
 
-.forgotPswrd a, .forgotPswrd span{
+.forgotPswrd a,
+.forgotPswrd span {
   color: #bc51e8;
-    font-size: 15px;
+  font-size: 15px;
 }
 
 .regHere {
@@ -119,13 +124,13 @@ min-height: calc(100vh - 52px);
   text-decoration: underline;
 }
 .titleErrorTxt {
-color: #EF5350;
+  color: #ef5350;
 }
 
 .hiddeneField {
-  display:none;
+  display: none;
 }
 
 .swal2-styled.swal2-confirm {
-  background-color: #A239CA;
+  background-color: #a239ca;
 }

@@ -1,0 +1,35 @@
+<ng-container *ngFor="let step of routingSteps; let i = index">
+  <div class="row mt-4" *ngIf="step.isVisible">
+    <div class="col-12">
+      <label class="header-label">{{ i + 1 }}. {{ step.stepName }}</label>
+      <hr />
+    </div>
+    <div class="col-12">
+      <ng-container [ngSwitch]="step.stepId">
+        <ng-container *ngSwitchCase="'moduleInfo'">
+          <app-module-info
+            [moduleData]="moduleData"
+            (btnSubmit)="btnSubmit($event, step.stepId, i)"
+          ></app-module-info>
+        </ng-container>
+        <ng-container *ngSwitchCase="'reportType'">
+          <app-report-type
+            (reportTypeSelect)="btnSubmit($event, step.stepId, i)"
+          ></app-report-type>
+        </ng-container>
+        <ng-container *ngSwitchCase="'reportRepresentation'">
+          <app-report-representation
+            [selectedModuleArr]="selectedModuleArr"
+            (reportColumnsSelected)="btnSubmit($event, step.stepId, i)"
+          ></app-report-representation>
+        </ng-container>
+        <ng-container *ngSwitchCase="'reportFilter'">
+          <app-report-filter></app-report-filter>
+        </ng-container>
+        <ng-container *ngSwitchCase="'basicInfo'">
+          <app-basic-info></app-basic-info>
+        </ng-container>
+      </ng-container>
+    </div>
+  </div>
+</ng-container>

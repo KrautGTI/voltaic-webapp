@@ -1,0 +1,51 @@
+<form [formGroup]="moduleForm">
+  <div class="row mb-4">
+    <div class="col-6">
+      <label class="header-label">Select Module</label>
+    </div>
+  </div>
+  <div class="row mb-4">
+    <div class="col-6">
+      <app-select
+        [isRequired]="label.selectModule.isRequired"
+        [label]="label.selectModule.fieldLabel"
+        [fieldName]="label.selectModule.fieldName"
+        [options]="moduleData"
+        [optionConfig]="label.selectModule.optionConfig"
+        [errors]="label.selectModule.errors"
+        [group]="moduleForm"
+      ></app-select>
+    </div>
+  </div>
+  <div class="row mb-4" *ngIf="selectModule?.value">
+    <div class="col-6">
+      <label class="header-label">Select Related Modules</label>
+    </div>
+  </div>
+  <div class="row mb-4" *ngIf="selectModule?.value">
+    <div class="col-6">
+      <div class="head-item-container">
+        <div
+          class="head-item"
+          formArrayName="availableModules"
+          *ngFor="let item of filteredModuleData; let i = index"
+        >
+          <app-checkbox
+            [label]="getGroup(i).get('fieldLabel')!.value"
+            [fieldName]="'selectItem'"
+            [group]="getGroup(i)"
+          ></app-checkbox>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row mb-4" *ngIf="isVisibleBtn">
+    <div class="col-6">
+      <app-btn-primary
+        [btnName]="'Continue'"
+        [btnType]="'submit'"
+        (btnClick)="onContinue()"
+      ></app-btn-primary>
+    </div>
+  </div>
+</form>

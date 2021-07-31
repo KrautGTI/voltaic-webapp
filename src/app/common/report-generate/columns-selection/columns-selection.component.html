@@ -1,0 +1,38 @@
+<div class="column-main-container">
+  <div class="column-sub-container" [formGroup]="form">
+    <div
+      class="head-item"
+      [formArrayName]="fieldName"
+      *ngFor="let item of columnFormArray!.controls; let i = index"
+    >
+      <ng-container *ngIf="isVisibleModuleHeader">
+        <label
+          class="module-header"
+          *ngIf="
+            i === 0 ||
+            (i > 0 &&
+              getGroup(i).get('moduleName')!.value !==
+                getGroup(i - 1).get('moduleName')!.value)
+          "
+          >{{ getGroup(i).get("moduleName")!.value }}</label
+        >
+      </ng-container>
+      <div
+        class="column-container"
+        [ngClass]="{
+          active: getGroup(i).get('active')!.value
+        }"
+        (click)="onClick(getGroup(i), i)"
+      >
+        <label class="column-header">{{
+          getGroup(i).get("name")!.value
+        }}</label>
+      </div>
+    </div>
+  </div>
+  <div class="action-btn-container" *ngIf="isVisibleArrangeBtns">
+    <div class="up-icon" (click)="onUp()">Up</div>
+    <div class="down-icon" (click)="onDown()">Down</div>
+    <div class="delete-icon" (click)="onDelete()">Delete</div>
+  </div>
+</div>

@@ -15,7 +15,7 @@ export class FormField {
   fieldName = '';
   placeholder = '';
   fieldType = '';
-  isEditable = true;
+  isEditable? = true;
   isRequired = false;
   isDisabled? = false;
   options? = [];

@@ -6,6 +6,7 @@ import { AgGridModule } from 'ag-grid-angular';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { AccountCreateComponent } from './account-create/account-create.component';
 import { FormFieldsModule } from 'src/app/common/form-fields/form-fields.module';
+import { UiElementsModule } from 'src/app/common/ui-elements/ui-elements.module';
 
 @NgModule({
   declarations: [AccountComponent, AccountCreateComponent],
@@ -16,6 +17,7 @@ import { FormFieldsModule } from 'src/app/common/form-fields/form-fields.module'
     ReactiveFormsModule,
     FormsModule,
     FormFieldsModule,
+    UiElementsModule,
   ],
 })
 export class AccountModule {}

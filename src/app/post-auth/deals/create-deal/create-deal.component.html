@@ -1,311 +1,252 @@
 <div class="container-fluid" style="margin-top: 30px">
     <form [formGroup]="dealForm">
-        <div class="card shadow">
-            <div class="card-body contactInfo contactDetails">
-                <div class="p-3 font-size-15rem font-weight-600 d-flex justify-content-between cardHeader">
-                    Deal Information
-                </div>
-                <!-- <div class="col-12 pr-3">
-                    <div class="row">
-                        <div class="col-6">
-                            <div class="mb-4 eachInfoDiv">
-                                <div class="row">
-                                    <div class="col-4 titleTxt">Contact Owner: </div>
-                                    <div class="col-8 eachInfo selectDiv">                        
-                                        <div class="blueTxt">
-                                            <select formControlName="ownerName" class="form-control">
-                                                <option value="-1">Select None</option>
-                                                <option *ngFor="let leadOwner of leadOwners" [value]="leadOwner.id">{{leadOwner.name}}</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>       
-                        </div>
-                        <div class="col-6">
-                            <div class="mb-4 eachInfoDiv">
-                                <div class="row">
-                                    <div class="col-4 titleTxt">Home Sq Ft: </div>
-                                    <div class="col-8 eachInfo">                        
-                                        <div class="blueTxt">
-                                            <input type="text"
-                                            class="form-control" formControlName="Home_Sq_Ft"
-                                            id="Home_Sq_Ft" autocomplete="off"/>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>       
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-6">
-                            <div class="mb-4 eachInfoDiv">
-                                <div class="row">
-                                    <div class="col-4 titleTxt">First Name: </div>
-                                    <div class="col-8 eachInfo">                        
-                                        <div class="blueTxt">
-                                            <input type="text"
-                                            class="form-control" formControlName="First_Name"
-                                            id="First_Name" autocomplete="off"/>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>       
-                        </div>
-                        <div class="col-6">
-                            <div class="mb-4 eachInfoDiv">
-                                <div class="row">
-                                    <div class="col-4 titleTxt">Last Name: </div>
-                                    <div class="col-8 eachInfo">                        
-                                        <div class="blueTxt">
-                                            <input type="text"
-                                            class="form-control" formControlName="Last_Name"
-                                            id="Last_Name"/>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>       
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-6">
-                            <div class="mb-4 eachInfoDiv">
-                                <div class="row">
-                                    <div class="col-4 titleTxt">Spouse Name: </div>
-                                    <div class="col-8 eachInfo">                        
-                                        <div class="blueTxt">
-                                            <input type="text"
-                                            class="form-control" formControlName="Spouse_Name"
-                                            id="Spouse_Name" autocomplete="off"/>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>       
-                        </div>
-                        <div class="col-6">
-                            <div class="mb-4 eachInfoDiv">
-                                <div class="row">
-                                    <div class="col-4 titleTxt">Freedom ID: </div>
-                                    <div class="col-8 eachInfo">                        
-                                        <div class="blueTxt">
-                                            <input type="text"
-                                            class="form-control" formControlName="Freedom_ID"
-                                            id="Freedom_ID" autocomplete="off"/>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>       
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-6">
-                            <div class="mb-4 eachInfoDiv">
-                                <div class="row">
-                                    <div class="col-4 titleTxt">Email: </div>
-                                    <div class="col-8 eachInfo">
-                                        <div class="blueTxt">
-                                            <input type="text"
-                                            class="form-control" formControlName="Email"
-                                            id="Email" autocomplete="off"/>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>       
-                        </div>
-                        <div class="col-6">
-                            <div class="mb-4 eachInfoDiv">
-                                <div class="row">
-                                    <div class="col-4 titleTxt">Phone: </div>
-                                    <div class="col-8 eachInfo">                        
-                                        <div class="blueTxt">
-                                            <input type="text"
-                                            class="form-control" formControlName="Phone"
-                                            id="Phone" autocomplete="off"/>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>       
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-6">
-                            <div class="mb-4 eachInfoDiv">
-                                <div class="row">
-                                    <div class="col-4 titleTxt">Average Bill: </div>
-                                    <div class="col-8 eachInfo">                        
-                                        <div class="blueTxt">
-                                            <input type="text"
-                                            class="form-control" formControlName="Average_Bill"
-                                            id="Average_Bill" autocomplete="off"/>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>       
-                        </div>
-                        <div class="col-6">
-                            <div class="mb-4 eachInfoDiv">
-                                <div class="row">
-                                    <div class="col-4 titleTxt">LeadIdCPY: </div>
-                                    <div class="col-8 eachInfo">                        
-                                        <div class="blueTxt">
-                                            <input type="text"
-                                            class="form-control" formControlName="LeadIdCPY"
-                                            id="LeadIdCPY" autocomplete="off"/>
-                                        </div>
-                                        
-                                    </div>
-                                </div>
-                            </div>       
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-6">
-                            <div class="mb-4 eachInfoDiv">
-                                <div class="row">
-                                    <div class="col-4 titleTxt">Date Created: </div>
-                                    <div class="col-8 eachInfo">                        
-                                        <div class="blueTxt">
-                                            <input type="text"
-                                            class="form-control" formControlName="Date_Created"
-                                            id="Date_Created" autocomplete="off"/>
-                                        </div>
-                                        
-                                    </div>
-                                </div>
-                            </div>       
-                        </div>
-                        <div class="col-6">
-                            <div class="mb-4 eachInfoDiv">
-                                <div class="row">
-                                    <div class="col-4 titleTxt">2nd Marketer: </div>
-                                    <div class="col-8 eachInfo selectDiv">                        
-                                        <div class="blueTxt">
-                                            <select formControlName="Second_Marketer" class="form-control">
-                                                <option value="-1">Select None</option>
-                                                <option *ngFor="let secondMarketer of secondMarketers" [value]="secondMarketer.id">{{secondMarketer.name}}</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>       
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-6">
-                            <div class="mb-4 eachInfoDiv">
-                                <div class="row">
-                                    <div class="col-4 titleTxt">Lead Source: </div>
-                                    <div class="col-8 eachInfo selectDiv">                        
-                                        <div class="blueTxt">
-                                            <select formControlName="Lead_Source" class="form-control">
-                                                <option value="-1">Select None</option>
-                                                <option *ngFor="let leadSrc of leadSources" [value]="leadSrc.id">{{leadSrc.name}}</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>       
-                        </div>
-                        <div class="col-6">
-                            <div class="mb-4 eachInfoDiv">
-                                <div class="row">
-                                    <div class="col-4 titleTxt">Date/Time Scheduled: </div>
-                                    <div class="col-8 eachInfo">                        
-                                        <div class="blueTxt">
-                                            <input type="text"
-                                            class="form-control" formControlName="DateTime_Scheduled"
-                                            id="DateTime_Scheduled" autocomplete="off"/>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>       
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-6">
-                            <div class="mb-4 eachInfoDiv">
-                                <div class="row">
-                                    <div class="col-4 titleTxt">Energy Consultant: </div>
-                                    <div class="col-8 eachInfo selectDiv">                        
-                                        <div class="blueTxt">
-                                            <select formControlName="Energy_Consultant" class="form-control">
-                                                <option value="-1">Select None</option>
-                                                <option *ngFor="let ec of energyConsultant" [value]="ec.id">{{ec.name}}</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>       
-                        </div>
-                        <div class="col-6">
-                            <div class="mb-4 eachInfoDiv">
-                                <div class="row">
-                                    <div class="col-4 titleTxt">Qualified By: </div>
-                                    <div class="col-8 eachInfo">                        
-                                        <div class="blueTxt">
-                                            <input type="text"
-                                            class="form-control" formControlName="Qualified_By"
-                                            id="Qualified_By" autocomplete="off"/>
-                                        </div>
-                                    </div> 
-                                </div>
-                            </div>       
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-6">
-                            <div class="mb-4 eachInfoDiv">
-                                <div class="row">
-                                    <div class="col-4 titleTxt">Marketer: </div>
-                                    <div class="col-8 eachInfo selectDiv">                        
-                                        <div class="blueTxt">
-                                            <select formControlName="Marketer" class="form-control">
-                                                <option value="-1">Select None</option>
-                                                <option *ngFor="let markets of marketers" [value]="markets.id">{{markets.name}}</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>       
-                        </div>
-                    </div>
-                </div> -->
+      <div class="card shadow">
+        <div class="card-body contactInfo dealDetails">
+          <div
+            class="
+              p-3
+              font-size-15rem font-weight-600
+              d-flex
+              justify-content-between
+              cardHeader
+            "
+          >
+            Deal Information
+          </div>
+          <div>
+            <div class="row">
+              <div class="col-md-6 mb-4">
+                <app-select
+                  [isRequired]="label.accountOwner.isRequired"
+                  [label]="label.accountOwner.fieldLabel"
+                  [fieldName]="label.accountOwner.fieldName"
+                  [options]="label.accountOwner.options"
+                  [errors]="label.accountOwner.errors"
+                  [group]="accountForm"
+                ></app-select>
+              </div>
+              <div class="col-md-6 mb-4">
+                <app-select
+                  [isRequired]="label.rating.isRequired"
+                  [label]="label.rating.fieldLabel"
+                  [fieldName]="label.rating.fieldName"
+                  [options]="label.rating.options"
+                  [errors]="label.rating.errors"
+                  [group]="accountForm"
+                ></app-select>
+              </div>
+              <div class="col-md-6 mb-4">
+                <app-input
+                  [type]="label.accountName.fieldType"
+                  [isRequired]="label.accountName.isRequired"
+                  [label]="label.accountName.fieldLabel"
+                  [fieldName]="label.accountName.fieldName"
+                  [placeholder]="label.accountName.placeholder"
+                  [errors]="label.accountName.errors"
+                  [group]="accountForm"
+                ></app-input>
+              </div>
+              <div class="col-md-6 mb-4">
+                <app-input-number
+                  [type]="label.phone.fieldType"
+                  [isRequired]="label.phone.isRequired"
+                  [label]="label.phone.fieldLabel"
+                  [fieldName]="label.phone.fieldName"
+                  [placeholder]="label.phone.placeholder"
+                  [errors]="label.phone.errors"
+                  [group]="accountForm"
+                ></app-input-number>
+              </div>
+              <div class="col-md-6 mb-4">
+                <app-input
+                  [type]="label.accountSite.fieldType"
+                  [isRequired]="label.accountSite.isRequired"
+                  [label]="label.accountSite.fieldLabel"
+                  [fieldName]="label.accountSite.fieldName"
+                  [placeholder]="label.accountSite.placeholder"
+                  [errors]="label.accountSite.errors"
+                  [group]="accountForm"
+                ></app-input>
+              </div>
+              <div class="col-md-6 mb-4">
+                <app-input-number
+                  [type]="label.fax.fieldType"
+                  [isRequired]="label.fax.isRequired"
+                  [label]="label.fax.fieldLabel"
+                  [fieldName]="label.fax.fieldName"
+                  [placeholder]="label.fax.placeholder"
+                  [errors]="label.fax.errors"
+                  [group]="accountForm"
+                ></app-input-number>
+              </div>
+              <div class="col-md-6 mb-4">
+                <app-input
+                  [type]="label.parentAccount.fieldType"
+                  [isRequired]="label.parentAccount.isRequired"
+                  [label]="label.parentAccount.fieldLabel"
+                  [fieldName]="label.parentAccount.fieldName"
+                  [placeholder]="label.parentAccount.placeholder"
+                  [errors]="label.parentAccount.errors"
+                  [group]="accountForm"
+                ></app-input>
+              </div>
+              <div class="col-md-6 mb-4">
+                <app-input
+                  [type]="label.website.fieldType"
+                  [isRequired]="label.website.isRequired"
+                  [label]="label.website.fieldLabel"
+                  [fieldName]="label.website.fieldName"
+                  [placeholder]="label.website.placeholder"
+                  [errors]="label.website.errors"
+                  [group]="accountForm"
+                ></app-input>
+              </div>
+              <div class="col-md-6 mb-4">
+                <app-input-number
+                  [type]="label.accountNumber.fieldType"
+                  [isRequired]="label.accountNumber.isRequired"
+                  [label]="label.accountNumber.fieldLabel"
+                  [fieldName]="label.accountNumber.fieldName"
+                  [placeholder]="label.accountNumber.placeholder"
+                  [errors]="label.accountNumber.errors"
+                  [group]="accountForm"
+                ></app-input-number>
+              </div>
+              <div class="col-md-6 mb-4">
+                <app-input
+                  [type]="label.tickerSymbol.fieldType"
+                  [isRequired]="label.tickerSymbol.isRequired"
+                  [label]="label.tickerSymbol.fieldLabel"
+                  [fieldName]="label.tickerSymbol.fieldName"
+                  [placeholder]="label.tickerSymbol.placeholder"
+                  [errors]="label.tickerSymbol.errors"
+                  [group]="accountForm"
+                ></app-input>
+              </div>
+              <div class="col-md-6 mb-4">
+                <app-select
+                  [isRequired]="label.accountType.isRequired"
+                  [label]="label.accountType.fieldLabel"
+                  [fieldName]="label.accountType.fieldName"
+                  [options]="label.accountType.options"
+                  [errors]="label.accountType.errors"
+                  [group]="accountForm"
+                ></app-select>
+              </div>
+              <div class="col-md-6 mb-4">
+                <app-select
+                  [isRequired]="label.ownership.isRequired"
+                  [label]="label.ownership.fieldLabel"
+                  [fieldName]="label.ownership.fieldName"
+                  [options]="label.ownership.options"
+                  [errors]="label.ownership.errors"
+                  [group]="accountForm"
+                ></app-select>
+              </div>
+              <div class="col-md-6 mb-4">
+                <app-select
+                  [isRequired]="label.industry.isRequired"
+                  [label]="label.industry.fieldLabel"
+                  [fieldName]="label.industry.fieldName"
+                  [options]="label.industry.options"
+                  [errors]="label.industry.errors"
+                  [group]="accountForm"
+                ></app-select>
+              </div>
+              <div class="col-md-6 mb-4">
+                <app-input
+                  [type]="label.employees.fieldType"
+                  [isRequired]="label.employees.isRequired"
+                  [label]="label.employees.fieldLabel"
+                  [fieldName]="label.employees.fieldName"
+                  [placeholder]="label.employees.placeholder"
+                  [errors]="label.employees.errors"
+                  [group]="accountForm"
+                ></app-input>
+              </div>
+              <div class="col-md-6 mb-4">
+                <app-input-number
+                  [type]="label.annualRevenue.fieldType"
+                  [isRequired]="label.annualRevenue.isRequired"
+                  [label]="label.annualRevenue.fieldLabel"
+                  [fieldName]="label.annualRevenue.fieldName"
+                  [placeholder]="label.annualRevenue.placeholder"
+                  [errors]="label.annualRevenue.errors"
+                  [group]="accountForm"
+                ></app-input-number>
+              </div>
+              <div class="col-md-6 mb-4">
+                <app-input
+                  [type]="label.sICCode.fieldType"
+                  [isRequired]="label.sICCode.isRequired"
+                  [label]="label.sICCode.fieldLabel"
+                  [fieldName]="label.sICCode.fieldName"
+                  [placeholder]="label.sICCode.placeholder"
+                  [errors]="label.sICCode.errors"
+                  [group]="accountForm"
+                ></app-input>
+              </div>
+              <div class="col-md-6 mb-4">
+                <app-input-number
+                  [type]="label.averageBill.fieldType"
+                  [isRequired]="label.averageBill.isRequired"
+                  [label]="label.averageBill.fieldLabel"
+                  [fieldName]="label.averageBill.fieldName"
+                  [placeholder]="label.averageBill.placeholder"
+                  [errors]="label.averageBill.errors"
+                  [group]="accountForm"
+                ></app-input-number>
+              </div>
+              <div class="col-md-6 mb-4">
+                <app-input
+                  [type]="label.rescheduleCycleTime.fieldType"
+                  [isRequired]="label.rescheduleCycleTime.isRequired"
+                  [label]="label.rescheduleCycleTime.fieldLabel"
+                  [fieldName]="label.rescheduleCycleTime.fieldName"
+                  [placeholder]="label.rescheduleCycleTime.placeholder"
+                  [errors]="label.rescheduleCycleTime.errors"
+                  [group]="accountForm"
+                ></app-input>
+              </div>
             </div>
-
-            <div class="card-body contactInfo contactDetails">
-                <div class="p-3 font-size-15rem font-weight-600 d-flex justify-content-between cardHeader">
-                    Description Information
-                </div>
-                <div class="col-12 pr-3">
-                    <div class="row">
-                        <div class="col-11">
-                            <div class="mb-4 eachInfoDiv">
-                                <div class="row">
-                                    <div class="col-2 titleTxt">Description: </div>
-                                    <div class="col-9 eachInfo">                        
-                                        <div class="blueTxt">
-                                            <input type="text"
-                                            class="form-control" formControlName="Description"
-                                            id="Description" autocomplete="off"/>
-                                        </div>    
-                                    </div>
-                                </div>
-                            </div>       
-                        </div>
-                    </div>
-                </div>
-            </div>
+          </div>
         </div>
+        <div class="card-body contactInfo dealDetails">
+          <div
+            class="
+              p-3
+              font-size-15rem font-weight-600
+              d-flex
+              justify-content-between
+              cardHeader
+            "
+          >
+            Description Information
+          </div>
+          <div>
+            <div class="row">
+              <div class="col-md-6 mb-4">
+                <app-textarea
+                  [type]="descLabel.description.fieldType"
+                  [isRequired]="descLabel.description.isRequired"
+                  [label]="descLabel.description.fieldLabel"
+                  [fieldName]="descLabel.description.fieldName"
+                  [placeholder]="descLabel.description.placeholder"
+                  [errors]="descLabel.description.errors"
+                  [group]="accountForm"
+                ></app-textarea>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="d-flex align-center justify-content-center mb-4">
+          <button
+            class="btn btn-primary createBtn"
+            type="submit"
+            (click)="saveDeal()"
+          >
+            Create Deal
+          <button>
+          </div>
     </form>
-</div>
-
-
-
-
+  </div>

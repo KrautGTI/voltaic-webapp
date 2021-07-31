@@ -147,4 +147,9 @@ export class GenericService {
     const url = this.authServiceUrl + 'contacts/addModifyContacts';
     return this.httpClient.post(url, contactDetails);
   }
+
+  public addModifyDeals(data: any): any {
+    const url = this.authServiceUrl + 'deals/addOrEditDeals';
+    return this.httpClient.post(url, data);
+  }
 }

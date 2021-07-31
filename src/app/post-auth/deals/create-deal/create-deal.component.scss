@@ -1,15 +1,12 @@
-.contactDetails {  
-    padding-top: 5px!important;
+.dealDetails {
+    padding-top: 5px !important;
     .cardHeader {
-        padding-left: 0rem!important;
-        font-weight:600;
+      padding-left: 0rem !important;
+      font-weight: 600;
+      padding-right: 1rem !important;
     }
-    .pr-3 {
-        padding-right:1rem!important;
-    }
-}
-
-.titleTxt {
+  }
+  .titleTxt {
     font-weight: 500;
     font-size: 16px;
     display: inline-block;
@@ -17,4 +14,5 @@
     vertical-align: top;
     text-align: right;
     padding-right: 30px;
-}
+  }
+  

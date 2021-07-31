@@ -141,21 +141,14 @@
               </div>
               <div class="col-md-6 mb-4">
                 <app-select
-                  [isRequired]="label.product_id.isRequired"
-                  [label]="label.product_id.fieldLabel"
-                  [fieldName]="label.product_id.fieldName"
-                  [options]="masterData['Products']"
-                  [errors]="label.product_id.errors"
-                  [group]="dealForm"
-                ></app-select>
-                <!-- <ng-select class="customNgSelect" id="Products" [items]="masterData['Products']" bindLabel="value"
-                    bindValue="value" dropdownPosition="bottom" [multiple]=true
-                    [closeOnSelect]="true" [searchable]="true" [clearable]="true"
-                    formControlName="Products">
-                    <ng-option [value]="product?.id" *ngFor="let product of masterData?.Products">
-                        {{product.value}}
-                    </ng-option>
-                </ng-select> -->
+[isRequired]="label.product_id.isRequired"
+[label]="label.product_id.fieldLabel"
+[fieldName]="label.product_id.fieldName"
+[options]="masterData['Products']"
+[optionConfig]="label.product_id.optionConfig"
+[errors]="label.product_id.errors"
+[group]="dealForm"
+></app-select>
               </div>
               <div class="col-md-6 mb-4">
                 <app-input
@@ -176,7 +169,7 @@
 [options]="leadSources"
 [optionConfig]="label.lead_source_id.optionConfig"
 [errors]="label.lead_source_id.errors"
-[group]="accountForm"
+[group]="dealForm"
 ></app-select>
               </div>
               <div class="col-md-6 mb-4">
@@ -198,7 +191,7 @@
 [options]="masterData['Retention_Rep']"
 [optionConfig]="label.retention_rep_id.optionConfig"
 [errors]="label.retention_rep_id.errors"
-[group]="accountForm"
+[group]="dealForm"
 ></app-select>
               </div>
               <div class="col-md-6 mb-4">
@@ -221,7 +214,7 @@
 [options]="mentors"
 [optionConfig]="label.mentor_id.optionConfig"
 [errors]="label.mentor_id.errors"
-[group]="accountForm"
+[group]="dealForm"
 ></app-select>
               </div>
               <div class="col-md-6 mb-4">
@@ -243,7 +236,7 @@
 [options]="masterData['Region']"
 [optionConfig]="label.region.optionConfig"
 [errors]="label.region.errors"
-[group]="accountForm"
+[group]="dealForm"
 ></app-select>
               </div>
               <div class="col-md-6 mb-4">
@@ -265,7 +258,7 @@
 [options]="masterData['YesNoChoice']"
 [optionConfig]="label.qc_ready_to_schedule.optionConfig"
 [errors]="label.qc_ready_to_schedule.errors"
-[group]="accountForm"
+[group]="dealForm"
 ></app-select>
               </div>
               <div class="col-md-6 mb-4">
@@ -301,7 +294,7 @@
 [options]="masterData['Fan_Size']"
 [optionConfig]="label.fan_size.optionConfig"
 [errors]="label.fan_size.errors"
-[group]="accountForm"
+[group]="dealForm"
 ></app-select>
               </div>
               <div class="col-md-6 mb-4">
@@ -323,7 +316,7 @@
 [options]="marketers"
 [optionConfig]="label.marketer.optionConfig"
 [errors]="label.marketer.errors"
-[group]="accountForm"
+[group]="dealForm"
 ></app-select>
               </div>
               <div class="col-md-6 mb-4">
@@ -345,7 +338,7 @@
 [options]="stages"
 [optionConfig]="label.stage_id.optionConfig"
 [errors]="label.stage_id.errors"
-[group]="accountForm"
+[group]="dealForm"
 ></app-select>
               </div>
               <div class="col-md-6 mb-4">
@@ -411,7 +404,7 @@
                 [options]="energyConsultant"
                 [optionConfig]="label.energy_consultant_id.optionConfig"
                 [errors]="label.energy_consultant_id.errors"
-                [group]="accountForm"
+                [group]="dealForm"
                 ></app-select>
               </div>
               <div class="col-md-6 mb-4">
@@ -422,7 +415,7 @@
 [options]="masterData['Program']"
 [optionConfig]="label.program.optionConfig"
 [errors]="label.program.errors"
-[group]="accountForm"
+[group]="dealForm"
 ></app-select>
               </div>
               <div class="col-md-6 mb-4">
@@ -444,7 +437,7 @@
 [options]="masterData['Rate_Term_Escalator']"
 [optionConfig]="label.escalator.optionConfig"
 [errors]="label.escalator.errors"
-[group]="accountForm"
+[group]="dealForm"
 ></app-select>
               </div>
               <div class="col-md-6 mb-4">
@@ -455,7 +448,7 @@
 [options]="masterData['Utility_Rate_Plan']"
 [optionConfig]="label.utility_rate_plan.optionConfig"
 [errors]="label.utility_rate_plan.errors"
-[group]="accountForm"
+[group]="dealForm"
 ></app-select>
               </div>
               <div class="col-md-6 mb-4">
@@ -499,7 +492,7 @@
                 [options]="masterData['Channel_Partner']"
                 [optionConfig]="label.channel_partner.optionConfig"
                 [errors]="label.channel_partner.errors"
-                [group]="accountForm"
+                [group]="dealForm"
                 ></app-select>
               </div>
               <div class="col-md-6 mb-4">
@@ -554,7 +547,7 @@
 [options]="masterData['YesNoChoice']"
 [optionConfig]="label.sales_concierge.optionConfig"
 [errors]="label.sales_concierge.errors"
-[group]="accountForm"
+[group]="dealForm"
 ></app-select>
               </div>
               <div class="col-md-6 mb-4">
@@ -576,7 +569,7 @@
 [options]="masterData['YesNoChoice']"
 [optionConfig]="label.complimentary_concierge.optionConfig"
 [errors]="label.complimentary_concierge.errors"
-[group]="accountForm"
+[group]="dealForm"
 ></app-select>
               </div>
               <div class="col-md-6 mb-4">
@@ -593,7 +586,7 @@
 [options]="masterData['Promo']"
 [optionConfig]="label.promo.optionConfig"
 [errors]="label.promo.errors"
-[group]="accountForm"
+[group]="dealForm"
 ></app-select>
               </div>
               <div class="col-md-6 mb-4">
@@ -612,10 +605,10 @@
 [isRequired]="label.utility.isRequired"
 [label]="label.utility.fieldLabel"
 [fieldName]="label.utility.fieldName"
-[options]="leadOwners"
+[options]="masterData['Utility']"
 [optionConfig]="label.utility.optionConfig"
 [errors]="label.utility.errors"
-[group]="accountForm"
+[group]="dealForm"
 ></app-select>
               </div>
               <div class="col-md-6 mb-4">
@@ -629,7 +622,7 @@
 [options]="masterData['YesNoChoice']"
 [optionConfig]="label.hoa.optionConfig"
 [errors]="label.hoa.errors"
-[group]="accountForm"
+[group]="dealForm"
 ></app-select>
               </div>
               <div class="col-md-6 mb-4">
@@ -679,7 +672,7 @@
 [options]="masterData['YesNoChoice']"
 [optionConfig]="label.roof_waiver.optionConfig"
 [errors]="label.roof_waiver.errors"
-[group]="accountForm"
+[group]="dealForm"
 ></app-select>
               </div>
               <div class="col-md-6 mb-4">
@@ -696,7 +689,7 @@
 [options]="masterData['YesNoChoice']"
 [optionConfig]="label.roofing_required.optionConfig"
 [errors]="label.roofing_required.errors"
-[group]="accountForm"
+[group]="dealForm"
 ></app-select>
               </div>
               <div class="col-md-6 mb-4">
@@ -718,7 +711,7 @@
                 [options]="masterData['YesNoChoice']"
                 [optionConfig]="label.resign_required.optionConfig"
                 [errors]="label.resign_required.errors"
-                [group]="accountForm"
+                [group]="dealForm"
                 ></app-select>
               </div>
               <div class="col-md-6 mb-4">
@@ -732,7 +725,7 @@
                 [options]="masterData['YesNoChoice']"
                 [optionConfig]="label.resigned_for_roofing.optionConfig"
                 [errors]="label.resigned_for_roofing.errors"
-                [group]="accountForm"
+                [group]="dealForm"
                 ></app-select>
               </div>
               <div class="col-md-6 mb-4">
@@ -760,7 +753,7 @@
 [options]="masterData['Scope_of_Reroof']"
 [optionConfig]="label.scope_of_reroof.optionConfig"
 [errors]="label.scope_of_reroof.errors"
-[group]="accountForm"
+[group]="dealForm"
 ></app-select>
               </div>
               <div class="col-md-6 mb-4">
@@ -771,7 +764,7 @@
                 [options]="masterData['YesNoChoice']"
                 [optionConfig]="label.pr_sow_received.optionConfig"
                 [errors]="label.pr_sow_received.errors"
-                [group]="accountForm"
+                [group]="dealForm"
                 ></app-select>
               </div>
               <div class="col-md-6 mb-4">
@@ -796,7 +789,7 @@
 [options]="masterData['HVAC_SOW']"
 [optionConfig]="label.hvac_sow.optionConfig"
 [errors]="label.hvac_sow.errors"
-[group]="accountForm"
+[group]="dealForm"
 ></app-select>
               </div>
               <div class="col-md-6 mb-4">
@@ -810,7 +803,7 @@
 [options]="masterData['HVAC_Size']"
 [optionConfig]="label.hvac_size.optionConfig"
 [errors]="label.hvac_size.errors"
-[group]="accountForm"
+[group]="dealForm"
 ></app-select>
               </div>
               <div class="col-md-6 mb-4">
@@ -824,7 +817,7 @@
 [options]="masterData['YesNoChoice']"
 [optionConfig]="label.derate.optionConfig"
 [errors]="label.derate.errors"
-[group]="accountForm"
+[group]="dealForm"
 ></app-select>
               </div>
               <div class="col-md-6 mb-4">
@@ -838,7 +831,7 @@
                 [options]="masterData['YesNoChoice']"
                 [optionConfig]="label.mpu_required.optionConfig"
                 [errors]="label.mpu_required.errors"
-                [group]="accountForm"
+                [group]="dealForm"
                 ></app-select>
               </div>
               <div class="col-md-6 mb-4">
@@ -852,7 +845,7 @@
                 [options]="masterData['YesNoChoice']"
                 [optionConfig]="label.mpu_sold.optionConfig"
                 [errors]="label.mpu_sold.errors"
-                [group]="accountForm"
+                [group]="dealForm"
                 ></app-select>
               </div>
               <div class="col-md-6 mb-4">
@@ -880,7 +873,7 @@
 [options]="masterData['Meter_Spot']"
 [optionConfig]="label.meter_spot.optionConfig"
 [errors]="label.meter_spot.errors"
-[group]="accountForm"
+[group]="dealForm"
 ></app-select>
               </div>
               <div class="col-md-6 mb-4">
@@ -937,7 +930,7 @@
 [options]="masterData['YesNoChoice']"
 [optionConfig]="label.fi_scheduled.optionConfig"
 [errors]="label.fi_scheduled.errors"
-[group]="accountForm"
+[group]="dealForm"
 ></app-select>
               </div>
               <div class="col-md-6 mb-4">
@@ -1001,7 +994,7 @@
 [options]="masterData['YesNoChoice']"
 [optionConfig]="label.vcr_completed.optionConfig"
 [errors]="label.vcr_completed.errors"
-[group]="accountForm"
+[group]="dealForm"
 ></app-select>
               </div>
               <div class="col-md-6 mb-4">
@@ -1012,7 +1005,7 @@
 [options]="secondMarketers"
 [optionConfig]="label.second_marketer.optionConfig"
 [errors]="label.second_marketer.errors"
-[group]="accountForm"
+[group]="dealForm"
 ></app-select>
               </div>
               <div class="col-md-6 mb-4">
@@ -1064,10 +1057,10 @@
           <button
             class="btn btn-primary createBtn"
             type="submit"
-            (click)="saveDeal()"
-          >
+            (click)="saveDeal()">
             Create Deal
-          <button>
+        </button>
           </div>
+      </div>
     </form>
   </div>

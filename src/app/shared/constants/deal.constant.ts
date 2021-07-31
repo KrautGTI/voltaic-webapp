@@ -9,6 +9,7 @@ export const DealInformationLabels: { [key: string]: FormField } = {
     isRequired: true,
     isDisabled: false,
     options: [],
+    optionConfig: { labelKey: 'name', valueKey: 'id' },
     errors: [
       {
         type: ErrorType.REQUIRED,
@@ -39,6 +40,7 @@ export const DealInformationLabels: { [key: string]: FormField } = {
     isRequired: true,
     isDisabled: false,
     options: [],
+    optionConfig: { labelKey: 'Account_Name', valueKey: 'Account_ID' },
     errors: [
       {
         type: ErrorType.REQUIRED,
@@ -99,6 +101,7 @@ export const DealInformationLabels: { [key: string]: FormField } = {
     isRequired: true,
     isDisabled: false,
     options: [],
+    optionConfig: { labelKey: 'First_Name', additionalLabelKey: 'Last_Name', valueKey: 'Contact_ID' },
     errors: [
       {
         type: ErrorType.REQUIRED,
@@ -189,6 +192,7 @@ export const DealInformationLabels: { [key: string]: FormField } = {
     isRequired: true,
     isDisabled: false,
     options: [],
+    optionConfig: { labelKey: 'value', valueKey: 'id' },
     errors: [
       {
         type: ErrorType.REQUIRED,
@@ -219,6 +223,7 @@ export const DealInformationLabels: { [key: string]: FormField } = {
     isRequired: true,
     isDisabled: false,
     options: [],
+    optionConfig: { labelKey: 'name', valueKey: 'id' },
     errors: [
       {
         type: ErrorType.REQUIRED,
@@ -249,6 +254,7 @@ export const DealInformationLabels: { [key: string]: FormField } = {
     isRequired: false,
     isDisabled: false,
     options: [],
+    optionConfig: { labelKey: 'value', valueKey: 'id' },
     errors: [
       {
         type: ErrorType.REQUIRED,
@@ -279,6 +285,7 @@ export const DealInformationLabels: { [key: string]: FormField } = {
     isRequired: false,
     isDisabled: false,
     options: [],
+    optionConfig: { labelKey: 'name', valueKey: 'id' },
     errors: [
       {
         type: ErrorType.REQUIRED,
@@ -309,6 +316,7 @@ export const DealInformationLabels: { [key: string]: FormField } = {
     isRequired: true,
     isDisabled: false,
     options: [],
+    optionConfig: { labelKey: 'value', valueKey: 'id' },
     errors: [
       {
         type: ErrorType.REQUIRED,
@@ -339,6 +347,7 @@ export const DealInformationLabels: { [key: string]: FormField } = {
     isRequired: false,
     isDisabled: false,
     options: [],
+    optionConfig: { labelKey: 'value', valueKey: 'id' },
     errors: [
       {
         type: ErrorType.REQUIRED,
@@ -399,6 +408,7 @@ export const DealInformationLabels: { [key: string]: FormField } = {
     isRequired: false,
     isDisabled: false,
     options: [],
+    optionConfig: { labelKey: 'value', valueKey: 'id' },
     errors: [
       {
         type: ErrorType.REQUIRED,
@@ -429,6 +439,7 @@ export const DealInformationLabels: { [key: string]: FormField } = {
     isRequired: true,
     isDisabled: false,
     options: [],
+    optionConfig: { labelKey: 'name', valueKey: 'id' },
     errors: [
       {
         type: ErrorType.REQUIRED,
@@ -459,6 +470,7 @@ export const DealInformationLabels: { [key: string]: FormField } = {
     isRequired: true,
     isDisabled: false,
     options: [],
+    optionConfig: { labelKey: 'name', valueKey: 'id' },
     errors: [
       {
         type: ErrorType.REQUIRED,
@@ -549,6 +561,7 @@ export const DealInformationLabels: { [key: string]: FormField } = {
     isRequired: true,
     isDisabled: false,
     options: [],
+    optionConfig: { labelKey: 'name', valueKey: 'id' },
     errors: [
       {
         type: ErrorType.REQUIRED,
@@ -564,6 +577,7 @@ export const DealInformationLabels: { [key: string]: FormField } = {
     isRequired: true,
     isDisabled: false,
     options: [],
+    optionConfig: { labelKey: 'value', valueKey: 'id' },
     errors: [
       {
         type: ErrorType.REQUIRED,
@@ -594,6 +608,7 @@ export const DealInformationLabels: { [key: string]: FormField } = {
     isRequired: true,
     isDisabled: false,
     options: [],
+    optionConfig: { labelKey: 'value', valueKey: 'id' },
     errors: [
       {
         type: ErrorType.REQUIRED,
@@ -609,6 +624,7 @@ export const DealInformationLabels: { [key: string]: FormField } = {
     isRequired: false,
     isDisabled: false,
     options: [],
+    optionConfig: { labelKey: 'value', valueKey: 'id' },
     errors: [
       {
         type: ErrorType.REQUIRED,
@@ -669,6 +685,7 @@ export const DealInformationLabels: { [key: string]: FormField } = {
     isRequired: false,
     isDisabled: false,
     options: [],
+    optionConfig: { labelKey: 'value', valueKey: 'id' },
     errors: [
       {
         type: ErrorType.REQUIRED,
@@ -744,6 +761,7 @@ export const DealInformationLabels: { [key: string]: FormField } = {
     isRequired: false,
     isDisabled: false,
     options: [],
+    optionConfig: { labelKey: 'value', valueKey: 'id' },
     errors: [
       {
         type: ErrorType.REQUIRED,
@@ -774,6 +792,7 @@ export const DealInformationLabels: { [key: string]: FormField } = {
     isRequired: false,
     isDisabled: false,
     options: [],
+    optionConfig: { labelKey: 'value', valueKey: 'id' },
     errors: [
       {
         type: ErrorType.REQUIRED,
@@ -819,6 +838,7 @@ export const DealInformationLabels: { [key: string]: FormField } = {
     isRequired: false,
     isDisabled: false,
     options: [],
+    optionConfig: { labelKey: 'value', valueKey: 'id' },
     errors: [
       {
         type: ErrorType.REQUIRED,
@@ -834,6 +854,7 @@ export const DealInformationLabels: { [key: string]: FormField } = {
     isRequired: false,
     isDisabled: false,
     options: [],
+    optionConfig: { labelKey: 'value', valueKey: 'id' },
     errors: [
       {
         type: ErrorType.REQUIRED,
@@ -864,6 +885,7 @@ export const DealInformationLabels: { [key: string]: FormField } = {
     isRequired: false,
     isDisabled: false,
     options: [],
+    optionConfig: { labelKey: 'value', valueKey: 'id' },
     errors: [
       {
         type: ErrorType.REQUIRED,
@@ -894,6 +916,7 @@ export const DealInformationLabels: { [key: string]: FormField } = {
     isRequired: false,
     isDisabled: false,
     options: [],
+    optionConfig: { labelKey: 'value', valueKey: 'id' },
     errors: [
       {
         type: ErrorType.REQUIRED,
@@ -954,6 +977,7 @@ export const DealInformationLabels: { [key: string]: FormField } = {
     isRequired: false,
     isDisabled: false,
     options: [],
+    optionConfig: { labelKey: 'value', valueKey: 'id' },
     errors: [
       {
         type: ErrorType.REQUIRED,
@@ -999,6 +1023,7 @@ export const DealInformationLabels: { [key: string]: FormField } = {
     isRequired: false,
     isDisabled: false,
     options: [],
+    optionConfig: { labelKey: 'value', valueKey: 'id' },
     errors: [
       {
         type: ErrorType.REQUIRED,
@@ -1014,6 +1039,7 @@ export const DealInformationLabels: { [key: string]: FormField } = {
     isRequired: false,
     isDisabled: false,
     options: [],
+    optionConfig: { labelKey: 'value', valueKey: 'id' },
     errors: [
       {
         type: ErrorType.REQUIRED,
@@ -1044,6 +1070,7 @@ export const DealInformationLabels: { [key: string]: FormField } = {
     isRequired: false,
     isDisabled: false,
     options: [],
+    optionConfig: { labelKey: 'value', valueKey: 'id' },
     errors: [
       {
         type: ErrorType.REQUIRED,
@@ -1059,6 +1086,7 @@ export const DealInformationLabels: { [key: string]: FormField } = {
     isRequired: false,
     isDisabled: false,
     options: [],
+    optionConfig: { labelKey: 'value', valueKey: 'id' },
     errors: [
       {
         type: ErrorType.REQUIRED,
@@ -1089,6 +1117,7 @@ export const DealInformationLabels: { [key: string]: FormField } = {
     isRequired: false,
     isDisabled: false,
     options: [],
+    optionConfig: { labelKey: 'value', valueKey: 'id' },
     errors: [
       {
         type: ErrorType.REQUIRED,
@@ -1119,6 +1148,7 @@ export const DealInformationLabels: { [key: string]: FormField } = {
     isRequired: false,
     isDisabled: false,
     options: [],
+    optionConfig: { labelKey: 'value', valueKey: 'id' },
     errors: [
       {
         type: ErrorType.REQUIRED,
@@ -1179,6 +1209,7 @@ export const DealInformationLabels: { [key: string]: FormField } = {
     isRequired: false,
     isDisabled: false,
     options: [],
+    optionConfig: { labelKey: 'value', valueKey: 'id' },
     errors: [
       {
         type: ErrorType.REQUIRED,
@@ -1194,6 +1225,7 @@ export const DealInformationLabels: { [key: string]: FormField } = {
     isRequired: false,
     isDisabled: false,
     options: [],
+    optionConfig: { labelKey: 'value', valueKey: 'id' },
     errors: [
       {
         type: ErrorType.REQUIRED,
@@ -1239,6 +1271,7 @@ export const DealInformationLabels: { [key: string]: FormField } = {
     isRequired: false,
     isDisabled: false,
     options: [],
+    optionConfig: { labelKey: 'value', valueKey: 'id' },
     errors: [
       {
         type: ErrorType.REQUIRED,
@@ -1269,6 +1302,7 @@ export const DealInformationLabels: { [key: string]: FormField } = {
     isRequired: false,
     isDisabled: false,
     options: [],
+    optionConfig: { labelKey: 'value', valueKey: 'id' },
     errors: [
       {
         type: ErrorType.REQUIRED,
@@ -1299,6 +1333,7 @@ export const DealInformationLabels: { [key: string]: FormField } = {
     isRequired: false,
     isDisabled: false,
     options: [],
+    optionConfig: { labelKey: 'value', valueKey: 'id' },
     errors: [
       {
         type: ErrorType.REQUIRED,
@@ -1329,6 +1364,7 @@ export const DealInformationLabels: { [key: string]: FormField } = {
     isRequired: false,
     isDisabled: false,
     options: [],
+    optionConfig: { labelKey: 'value', valueKey: 'id' },
     errors: [
       {
         type: ErrorType.REQUIRED,
@@ -1344,6 +1380,7 @@ export const DealInformationLabels: { [key: string]: FormField } = {
     isRequired: false,
     isDisabled: false,
     options: [],
+    optionConfig: { labelKey: 'value', valueKey: 'id' },
     errors: [
       {
         type: ErrorType.REQUIRED,
@@ -1374,6 +1411,7 @@ export const DealInformationLabels: { [key: string]: FormField } = {
     isRequired: false,
     isDisabled: false,
     options: [],
+    optionConfig: { labelKey: 'value', valueKey: 'id' },
     errors: [
       {
         type: ErrorType.REQUIRED,
@@ -1434,6 +1472,7 @@ export const DealInformationLabels: { [key: string]: FormField } = {
     isRequired: false,
     isDisabled: false,
     options: [],
+    optionConfig: { labelKey: 'value', valueKey: 'id' },
     errors: [
       {
         type: ErrorType.REQUIRED,
@@ -1554,6 +1593,7 @@ export const DealInformationLabels: { [key: string]: FormField } = {
     isRequired: false,
     isDisabled: false,
     options: [],
+    optionConfig: { labelKey: 'value', valueKey: 'id' },
     errors: [
       {
         type: ErrorType.REQUIRED,
@@ -1614,6 +1654,7 @@ export const DealInformationLabels: { [key: string]: FormField } = {
     isRequired: false,
     isDisabled: false,
     options: [],
+    optionConfig: { labelKey: 'value', valueKey: 'id' },
     errors: [
       {
         type: ErrorType.REQUIRED,
@@ -1689,6 +1730,7 @@ export const DealInformationLabels: { [key: string]: FormField } = {
     isRequired: false,
     isDisabled: false,
     options: [],
+    optionConfig: { labelKey: 'value', valueKey: 'id' },
     errors: [
       {
         type: ErrorType.REQUIRED,
@@ -1749,6 +1791,7 @@ export const DealInformationLabels: { [key: string]: FormField } = {
     isRequired: false,
     isDisabled: false,
     options: [],
+    optionConfig: { labelKey: 'value', valueKey: 'id' },
     errors: [
       {
         type: ErrorType.REQUIRED,
@@ -1764,6 +1807,7 @@ export const DealInformationLabels: { [key: string]: FormField } = {
     isRequired: false,
     isDisabled: false,
     options: [],
+    optionConfig: { labelKey: 'name', valueKey: 'id' },
     errors: [
       {
         type: ErrorType.REQUIRED,

@@ -1070,13 +1070,16 @@
                             <div class="mb-4 eachInfoDiv">
                                 <div class="row">
                                     <div class="col-4 titleTxt">Utility: </div>
-                                    <div class="col-8 eachInfo" (click)="editSaveField('Utility')">                        
+                                    <div class="col-8 eachInfo selectDiv">                        
                                         <div class="blueTxt">
-                                            <input type="text"
+                                            <!-- <input type="text"
                                 class="form-control" formControlName="Utility"
-                                id="Utility" [value]="dealDetails?.Utility == null ? '-' : dealDetails?.Utility" readonly autocomplete="off"/>
-                                        </div>
-                                        <div class="textBoxIcon"></div>
+                                id="Utility" [value]="dealDetails?.Utility == null ? '-' : dealDetails?.Utility" readonly autocomplete="off"/> -->
+                                <select formControlName="Utility">
+                                    <option value="-1">Select None</option>
+                                    <option *ngFor="let utility of masterData?.Utility" [value]="utility?.value">{{utility?.value}}</option>
+                                </select>            
+                            </div>
                                     </div>
                                 </div>
                             </div>       

@@ -167,7 +167,7 @@ export class DealDetailsComponent implements OnInit {
       UB_Page_1: ['-'],
       UB_Page_2: ['-'],
       Usage_Page: ['-'],
-      Utility: ['-'],
+      Utility: ['-1'],
       Utility_Rate_Plan: ['-1'],
       VCR_Completed: ['-1'],
       VSA: [''],
@@ -347,6 +347,8 @@ export class DealDetailsComponent implements OnInit {
                 : this.dealDetails?.Meter_Spot,
             PROMO:
               this.dealDetails?.PROMO == null ? '-1' : this.dealDetails?.PROMO,
+            Utility:
+              this.dealDetails?.Utility == null ? '-1' : this.dealDetails?.Utility,
             PR_SOW_Received:
               this.dealDetails?.PR_SOW_Received == null
                 ? '-1'
@@ -499,7 +501,7 @@ export class DealDetailsComponent implements OnInit {
           reschedule_cycle_time: this.dealDetailsForm.value.Reschedule_Cycle_Time == '-' ? '' : this.dealDetailsForm.value.Reschedule_Cycle_Time,
           date: this.dealDetailsForm.value.Date == '-' ? '' : this.dealDetailsForm.value.Date,
           promo: this.dealDetailsForm.value.PROMO == '-1' ? '' : this.dealDetailsForm.value.PROMO,
-          utility: this.dealDetailsForm.value.Utility == '-' ? '' : this.dealDetailsForm.value.Utility,
+          utility: this.dealDetailsForm.value.Utility == '-1' ? '' : this.dealDetailsForm.value.Utility,
           hoa: this.dealDetailsForm.value.HOA == '-1' ? '' : this.dealDetailsForm.value.HOA,
           hoa_info: this.dealDetailsForm.value.HOA_INFO == '-' ? '' : this.dealDetailsForm.value.HOA_INFO,
           ahj: this.dealDetailsForm.value.AHJ == '-' ? '' : this.dealDetailsForm.value.AHJ,

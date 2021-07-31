@@ -157,14 +157,20 @@ export class CreateDealComponent implements OnInit {
               this.stages = results[6].message ? results[6].message : '';
             }
             if (results[7]) {
+              console.log('accounts data');
+              console.log(results[7].message);
               this.accounts = results[7].message ? results[7].message : '';
             }
             if (results[8]) {
+              console.log('contacts data');
+              console.log(results[8].message);
               this.contacts = results[8].message ? results[8].message : '';
             }
             if (results[9]) {
-              const masterData = results[8];
+              const masterData = results[9];
               this.masterData = masterData;
+              // console.log('master data');
+              // console.log(this.masterData);
             }
           }
         },

@@ -188,7 +188,18 @@ export class CreateDealComponent implements OnInit {
 
   public saveDeal(): void {
     console.log(this.dealForm);
-    // if (this.dealForm.valid) {
+    if (this.dealForm.valid) {
+      Swal.fire({
+        text: 'Do You Want To Save Changes?',
+        icon: 'question',
+        confirmButtonColor: '#A239CA',
+        position: 'center',
+        confirmButtonText: 'Yes',
+        showConfirmButton: true,
+        showCancelButton: true,
+        cancelButtonText: 'No',
+      }).then((res) => {
+        if (res.isConfirmed) {
       this.dealData = {...this.dealForm.value};
       this.dealData['deal_owner_id'] = this.dealForm.value.deal_owner_id.split('#?#')[1];
       this.dealData['deal_owner'] = this.dealForm.value.deal_owner_id.split('#?#')[0];
@@ -207,15 +218,23 @@ export class CreateDealComponent implements OnInit {
               res?.message != 'Server Error' &&
               res?.error?.name != 'TokenExpiredError'
             ) {
+              const successMsg = 'Deals Created Succesfully';
+              this.notificationService.success(
+                successMsg,
+                '/post-auth/deals/'
+              );
             } else if (res?.error?.name === 'TokenExpiredError') {
               const errMsg = 'Session Expired !! Please login again.';
               this.notificationService.error(errMsg, true);
             }
           },
           (err: any) => {
-            const errMsg = 'Unable To fetch data. Please try again.';
+            const errMsg = 'Unable To Save The Contact';
             this.notificationService.error(errMsg, false);
           }
         );
+        }
+      });
     }
   }
+}

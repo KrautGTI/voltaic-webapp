@@ -52,6 +52,7 @@ export class DateComponent implements OnInit {
   @Input() public maxDate: Date | null = null;
   @Input() public startRange: number | null = null;
   @Input() public endRange: number | null = null;
+  @Input() public isDateTime: boolean = false;
   @Output() public cstBlur = new EventEmitter<any>();
   @Output() public cstChange = new EventEmitter<any>();
   @ViewChild('inputRef') private inputRef: ElementRef | null = null;

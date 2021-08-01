@@ -279,11 +279,14 @@ export class DealDetailsComponent implements OnInit {
             //  console.log(this.contactList);
           });
 
+          
+          console.log('accounts name: ' + " " + this.dealDetails?.Account_Name + '#?#' + this.dealDetails?.Account_ID);
+
           this.dealDetailsForm.patchValue({
             Account_Name:
               this.dealDetails?.Account_Name == null
                 ? '-1'
-                : this.dealDetails?.Account_Name,
+                : (this.dealDetails?.Account_Name + '#?#' + this.dealDetails?.Account_ID),
             Channel_Partner:
               this.dealDetails?.Channel_Partner == null
                 ? '-1'
@@ -295,11 +298,11 @@ export class DealDetailsComponent implements OnInit {
             Contact_Name:
               this.dealDetails?.Contact_Name == null
                 ? '-1'
-                : this.dealDetails?.Contact_Name,
+                : (this.dealDetails?.Contact_Name + '#?#' + (this.dealDetails?.Contact_ID)),
             Deal_Owner:
               this.dealDetails?.Deal_Owner == null
                 ? '-1'
-                : this.dealDetails?.Deal_Owner,
+                : (this.dealDetails?.Deal_Owner + '#?#' + (this.dealDetails?.Deal_Owner_ID)),
             Derate:
               this.dealDetails?.Derate == null
                 ? '-1'
@@ -477,12 +480,13 @@ export class DealDetailsComponent implements OnInit {
       if (res.isConfirmed) {
         const dealDetailsData = {
           deal_id: this.dealId,
-       deal_owner_id: '',
-          account_name: this.dealDetailsForm.value.account_name == '-1' ? '' : this.dealDetailsForm.value.account_name,
-          deal_owner: this.dealDetailsForm.value.Deal_Owner == '-1' ? '' : this.dealDetailsForm.value.Deal_Owner,
-          deal_name: this.dealDetailsForm.value.deal_name == '-' ? '' : this.dealDetailsForm.value.deal_name,
-          contact_name: this.dealDetailsForm.value.Contact_Name == '-1' ? '' : this.dealDetailsForm.value.Contact_Name,
-       contact_id: '',
+          deal_owner_id: this.dealDetailsForm.value.Deal_Owner == '-1' ? '' : this.dealDetailsForm.value.Deal_Owner.split('#?#')[1],
+          account_name: this.dealDetailsForm.value.Account_Name == '-1' ? '' : this.dealDetailsForm.value.Account_Name.split('#?#')[0],
+          account_id: this.dealDetailsForm.value.Account_Name == '-1' ? '' : this.dealDetailsForm.value.Account_Name.split('#?#')[1],
+          deal_owner: this.dealDetailsForm.value.Deal_Owner == '-1' ? '' : this.dealDetailsForm.value.Deal_Owner.split('#?#')[0],
+          deal_name: this.dealDetailsForm.value.Deal_Name == '-' ? '' : this.dealDetailsForm.value.Deal_Name,
+          contact_name: this.dealDetailsForm.value.Contact_Name == '-1' ? '' : this.dealDetailsForm.value.Contact_Name.split('#?#')[0],
+          contact_id: this.dealDetailsForm.value.Contact_Name == '-1' ? '' : this.dealDetailsForm.value.Contact_Name.split('#?#')[1],
 		      email: this.dealDetailsForm.value.dealerEmail == '-' ? '' : this.dealDetailsForm.value.dealerEmail,
           closing_date: this.dealDetailsForm.value.Closing_Date == '-' ? '' : this.dealDetailsForm.value.Closing_Date,
           product_id: this.dealDetailsForm.value.Products == '-1' ? '' : this.dealDetailsForm.value.Products,
@@ -517,14 +521,16 @@ export class DealDetailsComponent implements OnInit {
           resigned_for_roofing: this.dealDetailsForm.value.Resigned_for_Roofing == '-1' ? '' : this.dealDetailsForm.value.Resigned_for_Roofing,
           roofer: this.dealDetailsForm.value.Roofer == '-' ? '' : this.dealDetailsForm.value.Roofer,
           scope_of_reroof: this.dealDetailsForm.value.Scope_of_Reroof == '-1' ? '' : this.dealDetailsForm.value.Scope_of_Reroof,
-          roof_pics: this.dealDetailsForm.value.Roof_Pics == '-' ? '' : this.dealDetailsForm.value.Roof_Pics,
+          //roof_pics: this.dealDetailsForm.value.Roof_Pics == '-' ? '' : this.dealDetailsForm.value.Roof_Pics,
+          roof_pics: '',
           hvac_sow: this.dealDetailsForm.value.HVAC_SOW == '-1' ? '' : this.dealDetailsForm.value.HVAC_SOW,
           hvac_size: this.dealDetailsForm.value.HVAC_size == '-1' ? '' : this.dealDetailsForm.value.HVAC_size,
           derate: this.dealDetailsForm.value.Derate == '-1' ? '' : this.dealDetailsForm.value.Derate,
           mpu_required: this.dealDetailsForm.value.MPU_Required == '-1' ? '' : this.dealDetailsForm.value.MPU_Required,
           mpu_sold: this.dealDetailsForm.value.MPU_Sold == '-1' ? '' : this.dealDetailsForm.value.MPU_Sold,
-          msp_pics: this.dealDetailsForm.value.MSP_Pics == '-' ? '' : this.dealDetailsForm.value.MSP_Pics,
-          meter_spot: this.dealDetailsForm.value.Meter_Spot == '-1' ? '' : this.dealDetailsForm.value.Meter_Spot,
+         // msp_pics: this.dealDetailsForm.value.MSP_Pics == '-' ? '' : this.dealDetailsForm.value.MSP_Pics,
+         msp_pics: '', 
+         meter_spot: this.dealDetailsForm.value.Meter_Spot == '-1' ? '' : this.dealDetailsForm.value.Meter_Spot,
           relocation_distance: this.dealDetailsForm.value.Relocation_Distance == '-' ? '' : this.dealDetailsForm.value.Relocation_Distance,
           mpu_scheduled: this.dealDetailsForm.value.MPU_Scheduled == '-' ? '' : this.dealDetailsForm.value.MPU_Scheduled,
           mpu_complete: this.dealDetailsForm.value.MPU_Complete == '-' ? '' : this.dealDetailsForm.value.MPU_Complete,
@@ -561,7 +567,7 @@ export class DealDetailsComponent implements OnInit {
           down_payment: this.dealDetailsForm.value.Down_Payment == '-' ? '' : this.dealDetailsForm.value.Down_Payment,
           cash_adders: this.dealDetailsForm.value.Cash_Adders == '-' ? '' : this.dealDetailsForm.value.Cash_Adders,
           sales_concierge: this.dealDetailsForm.value.Sales_Concierge == '-1' ? '' : this.dealDetailsForm.value.Sales_Concierge,
-          complimentary_concierge: this.dealDetailsForm.value.complimentary_concierge == '-1' ? '' : this.dealDetailsForm.value.complimentary_concierge,
+          complimentary_concierge: this.dealDetailsForm.value.Complimentary_Concierge == '-1' ? '' : this.dealDetailsForm.value.Complimentary_Concierge,
           ss_date: this.dealDetailsForm.value.SS_Date == '-' ? '' : this.dealDetailsForm.value.SS_Date,
           ss_time: this.dealDetailsForm.value.SS_Time == '-1' ? '' : this.dealDetailsForm.value.SS_Time,
           ss_arrival_window: this.dealDetailsForm.value.SS_Arrival_Window == '-' ? '' : this.dealDetailsForm.value.SS_Arrival_Window,
@@ -601,7 +607,7 @@ export class DealDetailsComponent implements OnInit {
           expected_profit: this.dealDetailsForm.value.Expected_Profit == '-' ? '' : this.dealDetailsForm.value.Expected_Profit,
           description: this.dealDetailsForm.value.Description == '-' ? '' : this.dealDetailsForm.value.Description,
         };
-        // console.log(contactDetailsData);
+        console.log(dealDetailsData);
         this.querySubscription = this.genericService
           .addModifyDeals(dealDetailsData)
           .subscribe(

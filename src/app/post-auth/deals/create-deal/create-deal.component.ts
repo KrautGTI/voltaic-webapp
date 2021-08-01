@@ -42,6 +42,7 @@ export class CreateDealComponent implements OnInit {
   contacts: any = [];
   accounts: any = [];
   public masterData: any = '';
+  dealData: any;
 
   constructor(
     private fb: FormBuilder,
@@ -65,8 +66,12 @@ export class CreateDealComponent implements OnInit {
 
   private createForm(): void {
     this.dealForm = this.fb.group({
-      Tag: [''],
-      login_id: [''],
+
+      // deal_owner_id
+      // deal_owner
+      // contact_name
+      // contact_id
+
     });
     Object.keys(this.label).forEach((key: string) => {
       const fieldName = this.label[key].fieldName;
@@ -182,9 +187,19 @@ export class CreateDealComponent implements OnInit {
   }
 
   public saveDeal(): void {
-    if (this.dealForm.valid) {
+    console.log(this.dealForm);
+    // if (this.dealForm.valid) {
+      this.dealData = {...this.dealForm.value};
+      this.dealData['deal_owner_id'] = this.dealForm.value.deal_owner_id.split('#?#')[1];
+      this.dealData['deal_owner'] = this.dealForm.value.deal_owner_id.split('#?#')[0];
+      this.dealData['contact_name'] = this.dealForm.value.contact_name.split('#?#')[0];
+      this.dealData['contact_id'] = this.dealForm.value.contact_name.split('#?#')[1];
+      this.dealData['account_name'] = this.dealForm.value.account_name.split('#?#')[0];
+      this.dealData['account_id'] = this.dealForm.value.account_name.split('#?#')[1];
+
+      console.log(this.dealData);
       this.genericService
-        .addModifyDeals(this.dealForm.value)
+        .addModifyDeals(this.dealData)
         .pipe(takeUntil(this.unsubscribe$))
         .subscribe(
           (res: any) => {
@@ -204,4 +219,3 @@ export class CreateDealComponent implements OnInit {
         );
     }
   }
-}

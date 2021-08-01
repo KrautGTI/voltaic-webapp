@@ -11,6 +11,7 @@ import { NgSelectModule } from "@ng-select/ng-select";
 import {DpDatePickerModule} from 'ng2-date-picker';
 import { FormFieldsModule } from 'src/app/common/form-fields/form-fields.module';
 import { UiElementsModule } from 'src/app/common/ui-elements/ui-elements.module';
+import { MatDatepickerModule } from '@angular/material/datepicker';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,7 @@ import { UiElementsModule } from 'src/app/common/ui-elements/ui-elements.module'
       // },
     }), 
     DragDropModule, ReactiveFormsModule, FormsModule, NgSelectModule, DpDatePickerModule,
-    FormFieldsModule, UiElementsModule
+    FormFieldsModule, UiElementsModule, MatDatepickerModule
   ]
 })
 export class DealsModule { }

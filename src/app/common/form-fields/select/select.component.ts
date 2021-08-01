@@ -41,6 +41,7 @@ export class SelectComponent implements OnInit, OnChanges {
   @Input() public options: any = [];
   @Input() public optionConfig: OptionConfig | undefined = new OptionConfig();
   @Input() public errors: FormFieldError[] = [];
+  @Input() public isTime: boolean = false;
   @Output() public cstBlur = new EventEmitter<any>();
   @Output() public cstChange = new EventEmitter<any>();
   @ViewChild('inputRef') private inputRef: ElementRef | null = null;
@@ -71,10 +72,17 @@ export class SelectComponent implements OnInit, OnChanges {
                     ? (option[this.optionConfig.labelKey] + ' ' + option[this.optionConfig?.additionalLabelKey])
                     : '';
             }
-            optionModel.value =
+            if(this.optionConfig?.mergeValueKey == true) {
+              optionModel.value =
+              this.optionConfig && option[this.optionConfig.valueKey]
+                ? (option[this.optionConfig.labelKey] + '#?#' + option[this.optionConfig.valueKey])
+                : '';
+            } else {
+              optionModel.value =
               this.optionConfig && option[this.optionConfig.valueKey]
                 ? option[this.optionConfig.valueKey]
                 : '';
+            }
             this.modifiedOptions.push(optionModel);
           });
         }

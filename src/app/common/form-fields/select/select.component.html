@@ -5,7 +5,7 @@
       <span *ngIf="isRequired" class="mandatory-style">*</span>
     </label>
 
-    <div class="col-8 eachInfo" *ngIf="!isNewDesing">
+    <div [ngClass]="isTime ? 'col-12' : 'col-8'" class="eachInfo" *ngIf="!isNewDesing">
       <div class="blueTxt">
         <select
           [name]="fieldName"
@@ -40,7 +40,7 @@
         </div>
       </div>
     </div>
-    <div class="col-8" *ngIf="isNewDesing">
+    <div [ngClass]="isTime ? 'col-12' : 'col-8'" *ngIf="isNewDesing">
       <div class="eachInfoWraper">
         <div class="blueTxt w-100">
           <select

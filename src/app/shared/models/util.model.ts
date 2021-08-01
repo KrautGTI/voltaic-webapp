@@ -26,6 +26,7 @@ export class OptionConfig {
   labelKey: string = '';
   valueKey: string = '';
   additionalLabelKey?: string = '';
+  mergeValueKey?: boolean = false;
 }
 export class OptionModel {
   label: string = '';

@@ -1,1 +1,9 @@
-<p>report-list works!</p>
+<div class="container-fluid" style="margin-top: 30px">
+  <app-ui-table
+    [tabData]="tabData"
+    [columnDefsConfigs]="columnDefsConfigs"
+    [rowSelection]="'multiple'"
+    (gridReady)="onGridReady($event)"
+    (rowClick)="onRowClick($event)"
+  ></app-ui-table>
+</div>

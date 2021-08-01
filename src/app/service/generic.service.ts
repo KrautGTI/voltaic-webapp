@@ -165,6 +165,7 @@ export class GenericService {
     return this.httpClient.post(url, { account_id: accountId });
   }
   public addModifyAccounts(data: any): any {
+    data.login_id = this.authService.getUserId();
     const url = this.authServiceUrl + 'accounts/addModifyAccounts';
     return this.httpClient.post(url, data);
   }

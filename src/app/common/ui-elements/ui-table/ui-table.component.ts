@@ -16,18 +16,19 @@ import { ColumnDefs } from 'src/app/shared/models/util.model';
   styleUrls: ['./ui-table.component.scss'],
 })
 export class UiTableComponent implements OnInit, OnChanges {
-  @Input() tabData: any = [];
-  @Input() columnDefsConfigs: ColumnDefs[] = [];
-  @Output() gridReady: EventEmitter<any> = new EventEmitter<any>();
-  @Output() rowClick: EventEmitter<any> = new EventEmitter<any>();
-  @Output() rowGroupOpened: EventEmitter<any> = new EventEmitter<any>();
+  @Input() public tabData: any = [];
+  @Input() public columnDefsConfigs: ColumnDefs[] = [];
+  @Input() public rowSelection: string = 'single';
+  @Output() public gridReady: EventEmitter<any> = new EventEmitter<any>();
+  @Output() public rowClick: EventEmitter<any> = new EventEmitter<any>();
+  @Output() public rowGroupOpened: EventEmitter<any> = new EventEmitter<any>();
   public modules: any[] = AllModules;
   public columnDefs: ColumnDefs[] = [];
   public defaultColDef: any;
   public rowGroupPanelShow: any;
   public domLayout: any;
   public pivotPanelShow: any;
-  public rowSelection: any;
+
   public paginationPageSize: any;
   public paginationNumberFormatter: any;
   public rowHeight: any;
@@ -47,7 +48,6 @@ export class UiTableComponent implements OnInit, OnChanges {
     this.pivotPanelShow = 'always';
     this.domLayout = 'autoHeight';
     this.rowHeight = 45;
-    this.rowSelection = 'single';
     this.paginationPageSize = 15;
     this.paginationNumberFormatter = function (params: any) {
       return '[' + params.value.toLocaleString() + ']';
@@ -63,6 +63,20 @@ export class UiTableComponent implements OnInit, OnChanges {
       enablePivot: true,
       enableValue: true,
     };
+    // const firstColumn = this.columnDefsConfigs[0]
+    //   ? this.columnDefsConfigs[0]
+    //   : null;
+    // if (firstColumn) {
+    //   this.autoGroupColumnDef = {
+    //     headerName: firstColumn.headerName ? firstColumn.headerName : '',
+    //     field: firstColumn.field ? firstColumn.field : '',
+    //     minWidth: 250,
+    //     cellRenderer: 'agGroupCellRenderer',
+    //     cellRendererParams: {
+    //       checkbox: this.rowSelection === 'multiple' ? true : false,
+    //     },
+    //   };
+    // }
     this.setColumnDefs();
   }
   private setColumnDefs(): void {
@@ -72,7 +86,12 @@ export class UiTableComponent implements OnInit, OnChanges {
       height: '40px',
       cursor: 'pointer',
     };
-    this.columnDefs = this.columnDefsConfigs.map((item) => {
+    this.columnDefs = this.columnDefsConfigs.map((item, i: number) => {
+      if (this.rowSelection === 'multiple' && i === 0) {
+        item.headerCheckboxSelection = true;
+        item.headerCheckboxSelectionFilteredOnly = true;
+        item.checkboxSelection = true;
+      }
       item.cellStyle = cellStyle;
       return item;
     });

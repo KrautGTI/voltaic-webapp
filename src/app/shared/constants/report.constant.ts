@@ -517,3 +517,55 @@ export const RoutingStepsData: RoutingStep[] = [
     isVisible: false,
   },
 ];
+
+export const BasicInfoFieldLabel: { [key: string]: FormField } = {
+  selectFolder: {
+    fieldLabel: '',
+    fieldName: 'selectFolder',
+    placeholder: 'Select Folder',
+    fieldType: FieldTypes.SELECT,
+    isEditable: true,
+    isRequired: true,
+    isDisabled: false,
+    options: [],
+    optionConfig: { labelKey: 'value', valueKey: 'id' },
+    errors: [
+      {
+        type: ErrorType.REQUIRED,
+        message: 'Select Folder is required.',
+      },
+    ],
+  },
+  reportName: {
+    fieldLabel: '',
+    fieldName: 'reportName',
+    placeholder: 'Name',
+    fieldType: FieldTypes.TEXT,
+    isEditable: true,
+    isRequired: true,
+    isDisabled: false,
+    options: [],
+    errors: [
+      {
+        type: ErrorType.REQUIRED,
+        message: 'Name is required.',
+      },
+    ],
+  },
+  description: {
+    fieldLabel: '',
+    fieldName: 'description',
+    placeholder: 'Description',
+    fieldType: FieldTypes.TEXTAREA,
+    isEditable: true,
+    isRequired: false,
+    isDisabled: false,
+    options: [],
+    errors: [
+      {
+        type: ErrorType.REQUIRED,
+        message: 'Description is required.',
+      },
+    ],
+  },
+};

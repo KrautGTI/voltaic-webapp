@@ -24,7 +24,9 @@
           ></app-report-representation>
         </ng-container>
         <ng-container *ngSwitchCase="'reportFilter'">
-          <app-report-filter></app-report-filter>
+          <app-report-filter
+            (reportfiltered)="btnSubmit($event, step.stepId, i)"
+          ></app-report-filter>
         </ng-container>
         <ng-container *ngSwitchCase="'basicInfo'">
           <app-basic-info></app-basic-info>

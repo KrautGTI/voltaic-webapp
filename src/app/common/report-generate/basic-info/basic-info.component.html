@@ -1,1 +1,70 @@
-<p>basic-info works!</p>
+<form [formGroup]="basicInfoForm">
+  <div class="row mb-4">
+    <div class="col-6">
+      <div class="row mb-4">
+        <div class="col-12">
+          <app-select
+            [isRequired]="label.selectFolder.isRequired"
+            [label]="label.selectFolder.fieldLabel"
+            [fieldName]="label.selectFolder.fieldName"
+            [options]="masterData[label.selectFolder.fieldName]"
+            [optionConfig]="label.selectFolder.optionConfig"
+            [errors]="label.selectFolder.errors"
+            [group]="basicInfoForm"
+          ></app-select>
+        </div>
+      </div>
+      <div class="row mb-4">
+        <div class="col-12">
+          <app-input
+            [type]="label.reportName.fieldType"
+            [isRequired]="label.reportName.isRequired"
+            [label]="label.reportName.fieldLabel"
+            [fieldName]="label.reportName.fieldName"
+            [placeholder]="label.reportName.placeholder"
+            [errors]="label.reportName.errors"
+            [group]="basicInfoForm"
+          ></app-input>
+        </div>
+      </div>
+      <div class="row mb-4">
+        <div class="col-12">
+          <app-textarea
+            [type]="label.description.fieldType"
+            [isRequired]="label.description.isRequired"
+            [label]="label.description.fieldLabel"
+            [fieldName]="label.description.fieldName"
+            [placeholder]="label.description.placeholder"
+            [errors]="label.description.errors"
+            [group]="basicInfoForm"
+          ></app-textarea>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row mb-4" *ngIf="isVisibleBtn">
+    <div class="col-6">
+      <div class="btn-wraper">
+        <span class="me-3">
+          <app-btn-primary
+            [btnName]="'Run'"
+            (btnClick)="onRun()"
+          ></app-btn-primary>
+        </span>
+        <span class="me-3">
+          <app-btn-primary
+            [btnName]="'Save'"
+            (btnClick)="onSave()"
+          ></app-btn-primary>
+        </span>
+        <span class="me-1">
+          <app-btn-primary
+            [btnName]="'Cancel'"
+            [class]="'btn-light'"
+            (btnClick)="onCancel()"
+          ></app-btn-primary>
+        </span>
+      </div>
+    </div>
+  </div>
+</form>

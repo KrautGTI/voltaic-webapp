@@ -3,18 +3,17 @@ import { GenericService } from '../../service/generic.service';
 import '@ag-grid-community/all-modules/dist/styles/ag-grid.css';
 import '@ag-grid-community/core/dist/styles/ag-theme-balham.css';
 import { AllModules } from '@ag-grid-enterprise/all-modules';
-import { LoaderService } from "../../shared/loader/loader.service";
-import { Router } from "@angular/router";
+import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
 import { ThrowStmt } from '@angular/compiler';
+import { NotificationService } from 'src/app/service/notification.service';
 
 @Component({
   selector: 'app-contact-leads',
   templateUrl: './contact-leads.component.html',
-  styleUrls: ['./contact-leads.component.scss']
+  styleUrls: ['./contact-leads.component.scss'],
 })
 export class ContactLeadsComponent implements OnInit {
-
   modules: any[] = AllModules;
   gridApi: any;
   gridColumnApi: any;
@@ -37,103 +36,175 @@ export class ContactLeadsComponent implements OnInit {
   rowHeight: any;
   paginationNumberFormatter: any;
   sortingOrder: any;
-  userDetails: any;
-  isAdmin: boolean = false;
-  
+
   constructor(
     private genericService: GenericService,
-    private loaderService: LoaderService,
-    private router: Router
+    private router: Router,
+    private notificationService: NotificationService
   ) {}
 
   ngOnInit(): void {
-    const userData = sessionStorage.getItem('user');
-    this.userDetails = userData
-      ? JSON.parse(userData)
-      : null;
-    this.isAdmin = this.userDetails.user_role === 'admin' ? true : false;
-    this.loaderService.show();
     this.columnDefs = [
       {
         headerName: 'First Name',
         field: 'first_name',
-        cellStyle: { color: '#212121', 'font-size': '14px', height: '40px', cursor: 'pointer' },
+        cellStyle: {
+          color: '#212121',
+          'font-size': '14px',
+          height: '40px',
+          cursor: 'pointer',
+        },
       },
       {
         headerName: 'Last Name',
         field: 'last_name',
-        cellStyle: { color: '#212121', 'font-size': '14px', height: '40px', cursor: 'pointer' },
+        cellStyle: {
+          color: '#212121',
+          'font-size': '14px',
+          height: '40px',
+          cursor: 'pointer',
+        },
       },
       {
         headerName: 'Email',
         field: 'email',
-        cellStyle: { color: '#212121', 'font-size': '14px', height: '40px', cursor: 'pointer' },
+        cellStyle: {
+          color: '#212121',
+          'font-size': '14px',
+          height: '40px',
+          cursor: 'pointer',
+        },
       },
       {
         headerName: 'Phone No.',
         field: 'phone',
-        cellStyle: { color: '#212121', 'font-size': '14px', height: '40px', cursor: 'pointer' },
+        cellStyle: {
+          color: '#212121',
+          'font-size': '14px',
+          height: '40px',
+          cursor: 'pointer',
+        },
       },
       {
         headerName: 'City',
         field: 'city',
-        cellStyle: { color: '#212121', 'font-size': '14px', height: '40px', cursor: 'pointer' },
+        cellStyle: {
+          color: '#212121',
+          'font-size': '14px',
+          height: '40px',
+          cursor: 'pointer',
+        },
       },
       {
         headerName: 'State',
         field: 'state',
-        cellStyle: { color: '#212121', 'font-size': '14px', height: '40px', cursor: 'pointer' },
+        cellStyle: {
+          color: '#212121',
+          'font-size': '14px',
+          height: '40px',
+          cursor: 'pointer',
+        },
       },
       {
         headerName: 'Street',
         field: 'street',
-        cellStyle: { color: '#212121', 'font-size': '14px', height: '40px', cursor: 'pointer' },
+        cellStyle: {
+          color: '#212121',
+          'font-size': '14px',
+          height: '40px',
+          cursor: 'pointer',
+        },
       },
       {
         headerName: 'Zip Code',
         field: 'zip_code',
-        cellStyle: { color: '#212121', 'font-size': '14px', height: '40px', cursor: 'pointer' },
+        cellStyle: {
+          color: '#212121',
+          'font-size': '14px',
+          height: '40px',
+          cursor: 'pointer',
+        },
       },
       {
         headerName: 'Company',
         field: 'company',
-        cellStyle: { color: '#212121', 'font-size': '14px', height: '40px', cursor: 'pointer' },
+        cellStyle: {
+          color: '#212121',
+          'font-size': '14px',
+          height: '40px',
+          cursor: 'pointer',
+        },
       },
       {
         headerName: 'Avg. Monthly Bill',
         field: 'average_monthly_bill',
-        cellStyle: { color: '#212121', 'font-size': '14px', height: '40px', cursor: 'pointer' },
-      },  
+        cellStyle: {
+          color: '#212121',
+          'font-size': '14px',
+          height: '40px',
+          cursor: 'pointer',
+        },
+      },
       {
         headerName: 'Description',
         field: 'description',
-        cellStyle: { color: '#212121', 'font-size': '14px', height: '40px', cursor: 'pointer' },
+        cellStyle: {
+          color: '#212121',
+          'font-size': '14px',
+          height: '40px',
+          cursor: 'pointer',
+        },
       },
       {
         headerName: 'Owner',
         field: 'ownerName',
-        cellStyle: { color: '#212121', 'font-size': '14px', height: '40px', cursor: 'pointer' },
+        cellStyle: {
+          color: '#212121',
+          'font-size': '14px',
+          height: '40px',
+          cursor: 'pointer',
+        },
       },
       {
         headerName: 'Owner Email',
         field: 'ownerEmail',
-        cellStyle: { color: '#212121', 'font-size': '14px', height: '40px', cursor: 'pointer' },
+        cellStyle: {
+          color: '#212121',
+          'font-size': '14px',
+          height: '40px',
+          cursor: 'pointer',
+        },
       },
       {
         headerName: 'Lead Source',
         field: 'master_lead_source_id',
-        cellStyle: { color: '#212121', 'font-size': '14px', height: '40px', cursor: 'pointer' },
+        cellStyle: {
+          color: '#212121',
+          'font-size': '14px',
+          height: '40px',
+          cursor: 'pointer',
+        },
       },
       {
         headerName: 'Lead Status',
         field: 'master_lead_status',
-        cellStyle: { color: '#212121', 'font-size': '14px', height: '40px', cursor: 'pointer' },
+        cellStyle: {
+          color: '#212121',
+          'font-size': '14px',
+          height: '40px',
+          cursor: 'pointer',
+        },
       },
       {
         headerName: 'Energy Consultant',
         field: 'master_energy_consultant_id',
-        cellStyle: { color: '#212121', 'font-size': '14px', height: '40px', cursor: 'pointer' },
-      }   
+        cellStyle: {
+          color: '#212121',
+          'font-size': '14px',
+          height: '40px',
+          cursor: 'pointer',
+        },
+      },
     ];
     this.defaultColDef = {
       sortable: true,
@@ -174,9 +245,9 @@ export class ContactLeadsComponent implements OnInit {
     this.gridApi?.sizeColumnsToFit();
   }
 
-  onRowClick(event:any) {
-   // console.log(event.data.id);
-   // this.router.navigate(['post-auth/contact/details'], { queryParams: { contactId: event.data.id } });
+  onRowClick(event: any) {
+    // console.log(event.data.id);
+    // this.router.navigate(['post-auth/contact/details'], { queryParams: { contactId: event.data.id } });
   }
 
   onRowGroupOpeneds(params: any) {}
@@ -184,41 +255,26 @@ export class ContactLeadsComponent implements OnInit {
   onGridReady(params: any) {
     this.gridApi = params.api;
     this.gridColumnApi = params.columnApi;
-      this.genericService.getLeads(this.userDetails.authorize_token, this.isAdmin).subscribe((userList: any) => {
+    this.genericService.getLeads().subscribe(
+      (userList: any) => {
         console.log(userList);
-        if(userList?.message != 'Server Error' && userList?.error?.name != 'TokenExpiredError'){
+        if (
+          userList?.message != 'Server Error' &&
+          userList?.error?.name != 'TokenExpiredError'
+        ) {
           this.manageUserList = userList.message;
           this.rowData = this.manageUserList;
-          this.loaderService.hide();
           this.sizeToFit();
-        } else if(userList?.error?.name === 'TokenExpiredError'){
-          const errMsg = "Session Expired !! Please login again.";
-          Swal.fire({
-            text: errMsg, icon: 'error', confirmButtonColor: '#A239CA',
-            confirmButtonText: 'OK'
-          }).then(res => {
-            this.logout();
-          });
+        } else if (userList?.error?.name === 'TokenExpiredError') {
+          const errMsg = 'Session Expired !! Please login again.';
+          this.notificationService.error(errMsg, true);
         }
-      }, (error) => {
-          this.loaderService.hide();
-          const errMsg = "Unable To fetch data. Please try again.";
-          Swal.fire({
-            text: errMsg, icon: 'error', confirmButtonColor: '#A239CA',
-            confirmButtonText: 'OK'
-          });
-      });
+      },
+      (error) => {
+        const errMsg = 'Unable To fetch data. Please try again.';
+        this.notificationService.error(errMsg);
+      }
+    );
     // }
   }
-  logout() {
-    this.genericService.logoutApi(this.userDetails.authorize_token).subscribe((data: any) => { 
-      console.log(data);
-      sessionStorage.clear();
-      this.router.navigate(['/login'], {
-        replaceUrl: true
-      });
-    });
-  }
 }
-
-

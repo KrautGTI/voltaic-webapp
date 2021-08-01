@@ -1,0 +1,19 @@
+<div class="input-radio" [formGroup]="group">
+  <label class="form-label" *ngIf="label">
+    {{ label }}
+  </label>
+  <div class="radio-grp-container">
+    <mat-radio-group
+      aria-label="Select an option"
+      [formControlName]="fieldName"
+      [name]="fieldName"
+      (change)="onChange($event)"
+    >
+      <ng-container *ngFor="let option of options">
+        <mat-radio-button [value]="option.value" [checked]="option.checked">{{
+          option.label
+        }}</mat-radio-button>
+      </ng-container>
+    </mat-radio-group>
+  </div>
+</div>

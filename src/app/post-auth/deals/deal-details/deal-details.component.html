@@ -1,0 +1,2049 @@
+<div class="container-fluid" style="margin-top: 30px">
+    <form [formGroup]="dealDetailsForm">
+        <div class="card shadow">
+            <div class="card-body dealInfo">
+                <div class="mb-4 eachInfoDiv">
+                    <div class="row">
+                        <div class="col-3 titleTxt">Deal Owner: </div>
+                        <div class="col-7 eachInfo selectDiv">                        
+                            <div class="blueTxt">
+                                <select formControlName="Deal_Owner">
+                                    <option value="-1">Select None</option>
+                                    <option *ngFor="let leadOwner of leadOwners" [value]="leadOwner?.name">{{leadOwner?.name}}</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="mb-4 eachInfoDiv">
+                    <div class="row">
+                        <div class="col-3 titleTxt">Stage: </div>
+                        <div class="col-7 eachInfo selectDiv">
+                            <div class="blueTxt">
+                                <select formControlName="Stage">
+                                    <option value="-1">Select None</option>
+                                    <option *ngFor="let stage of stages" [value]="stage?.id">{{stage?.name}}</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="mb-4 eachInfoDiv">
+                    <div class="row">
+                        <div class="col-3 titleTxt">Closing Date: </div>
+                        <div class="col-7 eachInfo">                        
+                            <div class="blueTxt dateDivFull">
+                                <dp-date-picker formControlName="Closing_Date" class="customDatePicker"></dp-date-picker> 
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>           
+            </div>
+        </div>
+
+        <div class="card shadow" *ngIf="contactList?.length > 0">
+            <div class="p-3 text-blue font-size-15rem font-weight-600 d-flex justify-content-between cardHeader">
+            Contact Person
+            </div>
+            <div class="card-body contactsInfo" *ngFor="let contacts of contactList">   
+                <p class="">{{contacts?.First_Name + ' ' + contacts?.Last_Name}}</p>
+                <p>{{contacts?.Email}}</p>
+                <p>{{contacts?.Phone}}</p>
+            </div>
+        </div>
+
+        <div class="card shadow">
+            <div class="p-3 text-blue font-size-15rem font-weight-600 d-flex justify-content-between cardHeader dealDiv" (click)="toggle('Deal Information')">
+                Hide Details<span class="text-grey" style="font-size: .8rem;" *ngIf="dealInfoVisible">&#8743;&nbsp;</span><span class="text-grey" style="font-size: .8rem;" *ngIf="!dealInfoVisible">&#8744;&nbsp;</span> 
+            </div>
+
+            <div class="card-body contactInfo dealDetails" *ngIf="dealInfoVisible">
+                <div class="p-3 font-size-15rem font-weight-600 d-flex justify-content-between cardHeader">
+                    Deal Information
+                </div>
+                <div class="col-12 pr-3">
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="mb-4 eachInfoDiv">
+                                <div class="row">
+                                    <div class="col-4 titleTxt">Created By: </div>
+                                    <div class="col-8 eachInfo">                        
+                                        <div class="blueTxt">
+                                            <input type="text"
+                                            class="form-control" formControlName="Created_By"
+                                            id="Created_By" readonly autocomplete="off"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>       
+                        </div>
+                        <div class="col-6">
+                            <div class="mb-4 eachInfoDiv">
+                                <div class="row">
+                                    <div class="col-4 titleTxt">Contract Price: </div>
+                                    <div class="col-8 eachInfo" (click)="editSaveField('Contract_Price')">                        
+                                        <div class="blueTxt">
+                                            <input type="text"
+                                            class="form-control" formControlName="Contract_Price"
+                                            id="Contract_Price" [value]="dealDetails?.Contract_Price == null ? '-' : dealDetails?.Contract_Price" readonly/>
+                                        </div>
+                                        <div class="textBoxIcon"></div>
+                                    </div>
+                                </div>
+                            </div>       
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="mb-4 eachInfoDiv">
+                                <div class="row">
+                                    <div class="col-4 titleTxt">Account Name: </div>
+                                    <div class="col-8 eachInfo selectDiv">                        
+                                        <div class="blueTxt">
+                                            <select formControlName="Account_Name">
+                                                <option value="-1">Select None</option>
+                                                <option *ngFor="let account of accounts" [value]="account?.Account_Name">{{account?.Account_Name}}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>       
+                        </div>
+                        <div class="col-6">
+                            <div class="mb-4 eachInfoDiv">
+                                <div class="row">
+                                    <div class="col-4 titleTxt">MPU: </div>
+                                    <div class="col-8 eachInfo" (click)="editSaveField('MPU')">                        
+                                        <div class="blueTxt">
+                                            <input type="text"
+                                            class="form-control" formControlName="MPU"
+                                            id="MPU" [value]="dealDetails?.MPU == null ? '-' : dealDetails?.MPU" readonly/>
+                                        </div>
+                                        <div class="textBoxIcon"></div>
+                                    </div>
+                                </div>
+                            </div>       
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="mb-4 eachInfoDiv">
+                                <div class="row">
+                                    <div class="col-4 titleTxt">Deal Age: </div>
+                                    <div class="col-8 eachInfo">                        
+                                        <div class="blueTxt">
+                                            <input type="text"
+                                            class="form-control" formControlName="Deal_Age"
+                                            id="Deal_Age" [value]="dealDetails?.Deal_Age == null ? '-' : dealDetails?.Deal_Age" readonly autocomplete="off"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>       
+                        </div>
+                        <div class="col-6">
+                            <div class="mb-4 eachInfoDiv">
+                                <div class="row">
+                                    <div class="col-4 titleTxt">Nest Price: </div>
+                                    <div class="col-8 eachInfo" (click)="editSaveField('Nest_Price')">                        
+                                        <div class="blueTxt">
+                                            <input type="text"
+                                            class="form-control" formControlName="Nest_Price"
+                                            id="Nest_Price" [value]="dealDetails?.Nest_Price == null ? '-' : dealDetails?.Nest_Price" readonly autocomplete="off"/>
+                                        </div>
+                                        <div class="textBoxIcon"></div>
+                                    </div>
+                                </div>
+                            </div>       
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="mb-4 eachInfoDiv">
+                                <div class="row">
+                                    <div class="col-4 titleTxt">Deal Name: </div>
+                                    <div class="col-8 eachInfo" (click)="editSaveField('Deal_Name')">                        
+                                        <div class="blueTxt">
+                                            <input type="text"
+                                            class="form-control" formControlName="Deal_Name"
+                                            id="Deal_Name" [value]="dealDetails?.Deal_Name == null ? '-' : dealDetails?.Deal_Name" readonly autocomplete="off"/>
+                                        </div>
+                                        <div class="textBoxIcon"></div>
+                                    </div>
+                                </div>
+                            </div>       
+                        </div>
+                        <div class="col-6">
+                            <div class="mb-4 eachInfoDiv">
+                                <div class="row">
+                                    <div class="col-4 titleTxt">Ring Price: </div>
+                                    <div class="col-8 eachInfo" (click)="editSaveField('Ring_Price')">                        
+                                        <div class="blueTxt">
+                                            <input type="text"
+                                            class="form-control" formControlName="Ring_Price"
+                                            id="Ring_Price" [value]="dealDetails?.Ring_Price == null ? '-' : dealDetails?.Ring_Price " readonly autocomplete="off"/>
+                                        </div>
+                                        <div class="textBoxIcon"></div>
+                                    </div>
+                                </div>
+                            </div>       
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="mb-4 eachInfoDiv">
+                                <div class="row">
+                                    <div class="col-4 titleTxt">Contact Name: </div>
+                                    <div class="col-8 eachInfo selectDiv">                        
+                                        <div class="blueTxt">
+                                            <select formControlName="Contact_Name">
+                                                <option value="-1">Select None</option>
+                                                <option *ngFor="let contact of contacts" [value]="contact?.First_Name">{{contact?.First_Name}}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>       
+                        </div>
+                        <div class="col-6">
+                            <div class="mb-4 eachInfoDiv">
+                                <div class="row">
+                                    <div class="col-4 titleTxt">LED's Price: </div>
+                                    <div class="col-8 eachInfo" (click)="editSaveField('LED_Price')">                        
+                                        <div class="blueTxt">
+                                            <input type="text"
+                                class="form-control" formControlName="LED_Price"
+                                id="LED_Price" [value]="dealDetails?.LED_Price == null ? '-' : dealDetails?.LED_Price" readonly autocomplete="off"/>
+                                        </div>
+                                        <div class="textBoxIcon"></div>
+                                    </div>
+                                </div>
+                            </div>       
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="mb-4 eachInfoDiv">
+                                <div class="row">
+                                    <div class="col-4 titleTxt">Email: </div>
+                                    <div class="col-8 eachInfo" (click)="editSaveField('dealerEmail')">                        
+                                        <div class="blueTxt">
+                                            <input type="text"
+                                class="form-control" formControlName="dealerEmail"
+                                id="dealerEmail" [value]="dealDetails?.dealerEmail == null ? '-' : dealDetails?.dealerEmail" readonly autocomplete="off"/>
+                                        </div>
+                                        <div class="textBoxIcon"></div>
+                                    </div>
+                                </div>
+                            </div>       
+                        </div>
+                        <div class="col-6">
+                            <div class="mb-4 eachInfoDiv">
+                                <div class="row">
+                                    <div class="col-4 titleTxt">Storedge Inverter: </div>
+                                    <div class="col-8 eachInfo" (click)="editSaveField('Storedge_Inverter')">                        
+                                        <div class="blueTxt">
+                                            <input type="text"
+                                            class="form-control" formControlName="Storedge_Inverter"
+                                            id="Storedge_Inverter" [value]="dealDetails?.Storedge_Inverter == null ? '-' : dealDetails?.Storedge_Inverter" readonly autocomplete="off"/>
+                                        </div>
+                                        <div class="textBoxIcon"></div>
+                                    </div>
+                                </div>
+                            </div>       
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="mb-4 eachInfoDiv">
+                                <div class="row">
+                                    <div class="col-4 titleTxt">Products: </div>
+                                    <div class="col-8 eachInfo selectDiv">                        
+                                        <div class="blueTxt">
+                                            <ng-select class="customNgSelect" id="Products" [items]="masterData?.Products" bindLabel="value"
+                                bindValue="value" dropdownPosition="bottom" [multiple]=true
+                                [closeOnSelect]="true" [searchable]="true" [clearable]="true"
+                                formControlName="Products">
+                                <ng-option [value]="product?.id" *ngFor="let product of masterData?.Products">
+                                    {{product.value}}
+                                </ng-option>
+                            </ng-select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>       
+                        </div>
+                        <div class="col-6">
+                            <div class="mb-4 eachInfoDiv">
+                                <div class="row">
+                                    <div class="col-4 titleTxt">Level 2 EV: </div>
+                                    <div class="col-8 eachInfo" (click)="editSaveField('Level_2_EV')">                        
+                                        <div class="blueTxt">
+                                            <input type="text"
+                                            class="form-control" formControlName="Level_2_EV"
+                                            id="Level_2_EV" [value]="dealDetails?.Level_2_EV == null ? '-' : dealDetails?.Level_2_EV" readonly autocomplete="off"/>
+                                        </div>
+                                        <div class="textBoxIcon"></div>
+                                    </div>
+                                </div>
+                            </div>       
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="mb-4 eachInfoDiv">
+                                <div class="row">
+                                    <div class="col-4 titleTxt">Lead Source: </div>
+                                    <div class="col-8 eachInfo selectDiv">                        
+                                        <div class="blueTxt">
+                                            <select formControlName="Lead_Source">
+                                                <option value="-1">Select None</option>
+                                                <option *ngFor="let leadSrc of leadSources" [value]="leadSrc?.id">{{leadSrc?.name}}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>       
+                        </div>
+                        <div class="col-6">
+                            <div class="mb-4 eachInfoDiv">
+                                <div class="row">
+                                    <div class="col-4 titleTxt">Battery Price: </div>
+                                    <div class="col-8 eachInfo" (click)="editSaveField('Battery_Price')">                        
+                                        <div class="blueTxt">
+                                            <input type="text"
+                                class="form-control" formControlName="Battery_Price"
+                                id="Battery_Price" [value]="dealDetails?.Battery_Price == null ? '-' : dealDetails?.Battery_Price" readonly autocomplete="off"/>
+                                        </div>
+                                        <div class="textBoxIcon"></div>
+                                    </div>
+                                </div>
+                            </div>       
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="mb-4 eachInfoDiv">
+                                <div class="row">
+                                    <div class="col-4 titleTxt">Retention Rep: </div>
+                                    <div class="col-8 eachInfo selectDiv">                        
+                                        <div class="blueTxt">
+                                            <select formControlName="Retention_Rep">
+                                                <option value="-1">Select None</option>
+                                                <option *ngFor="let retention of masterData?.Retention_Rep" [value]="retention?.id">{{retention?.value}}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>       
+                        </div>
+                        <div class="col-6">
+                            <div class="mb-4 eachInfoDiv">
+                                <div class="row">
+                                    <div class="col-4 titleTxt">HVAC Price: </div>
+                                    <div class="col-8 eachInfo" (click)="editSaveField('HVAC_Price')">                        
+                                        <div class="blueTxt">
+                                            <input type="text"
+                                class="form-control" formControlName="HVAC_Price"
+                                id="HVAC_Price" [value]="dealDetails?.HVAC_Price == null ? '-' : dealDetails?.HVAC_Price" readonly autocomplete="off"/>
+                                        </div>
+                                        <div class="textBoxIcon"></div>
+                                    </div>
+                                </div>
+                            </div>       
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="mb-4 eachInfoDiv">
+                                <div class="row">
+                                    <div class="col-4 titleTxt">Mentor: </div>
+                                    <div class="col-8 eachInfo selectDiv">                        
+                                        <div class="blueTxt">
+                                            <select formControlName="Mentor">
+                                                <option value="-1">Select None</option>
+                                                <option *ngFor="let mentor of mentors" [value]="mentor?.id">{{mentor?.name}}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>       
+                        </div>
+                        <div class="col-6">
+                            <div class="mb-4 eachInfoDiv">
+                                <div class="row">
+                                    <div class="col-4 titleTxt">Insulation Price: </div>
+                                    <div class="col-8 eachInfo" (click)="editSaveField('Insulation_Price')">                        
+                                        <div class="blueTxt">
+                                            <input type="text"
+                                class="form-control" formControlName="Insulation_Price"
+                                id="Insulation_Price" [value]="dealDetails?.Insulation_Price == null ? '-' : dealDetails?.Insulation_Price" readonly autocomplete="off"/>
+                                        </div>
+                                        <div class="textBoxIcon"></div>
+                                    </div>
+                                </div>
+                            </div>       
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="mb-4 eachInfoDiv">
+                                <div class="row">
+                                    <div class="col-4 titleTxt">Region: </div>
+                                    <div class="col-8 eachInfo selectDiv">                        
+                                        <div class="blueTxt">
+                                            <select formControlName="Region">
+                                                <option value="-1">Select None</option>
+                                                <option *ngFor="let reg of masterData?.Region" [value]="reg?.id">{{reg?.name}}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>       
+                        </div>
+                        <div class="col-6">
+                            <div class="mb-4 eachInfoDiv">
+                                <div class="row">
+                                    <div class="col-4 titleTxt">Pool Pump Price: </div>
+                                    <div class="col-8 eachInfo" (click)="editSaveField('Pool_Pump_Price')">                        
+                                        <div class="blueTxt">
+                                            <input type="text"
+                                class="form-control" formControlName="Pool_Pump_Price"
+                                id="Pool_Pump_Price" [value]="dealDetails?.Pool_Pump_Price == null ? '-' : dealDetails?.Pool_Pump_Price" readonly autocomplete="off"/>
+                                        </div>
+                                        <div class="textBoxIcon"></div>
+                                    </div>
+                                </div>
+                            </div>       
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="mb-4 eachInfoDiv">
+                                <div class="row">
+                                    <div class="col-4 titleTxt">QC Ready To Schedule: </div>
+                                    <div class="col-8 eachInfo selectDiv">                        
+                                        <div class="blueTxt">
+                                            <select formControlName="QC_Ready_To_Schedule">
+                                                <option value="-1">Select None</option>
+                                                <option *ngFor="let yesNo of masterData?.YesNoChoice" [value]="yesNo?.value">{{yesNo?.value}}</option>
+                                            </select>                
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>       
+                        </div>
+                        <div class="col-6">
+                            <div class="mb-4 eachInfoDiv">
+                                <div class="row">
+                                    <div class="col-4 titleTxt">Quiet Cool Price: </div>
+                                    <div class="col-8 eachInfo" (click)="editSaveField('Quiet_Cool_Price')">                        
+                                        <div class="blueTxt">
+                                            <input type="text"
+                                class="form-control" formControlName="Quiet_Cool_Price"
+                                id="Quiet_Cool_Price" [value]="dealDetails?.Quiet_Cool_Price == null ? '-' : dealDetails?.Quiet_Cool_Price" readonly autocomplete="off"/>
+                                        </div>
+                                        <div class="textBoxIcon"></div>
+                                    </div>
+                                </div>
+                            </div>       
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="mb-4 eachInfoDiv">
+                                <div class="row">
+                                    <div class="col-4 titleTxt">Quiet Cool Installed: </div>
+                                    <div class="col-8 eachInfo">                        
+                                        <div class="blueTxt dateDivFull">
+                                            <dp-date-picker formControlName="Quiet_Cool_Installed" class="customDatePicker"></dp-date-picker>             
+                                        </div>       
+                                    </div>
+                                </div>
+                            </div>       
+                        </div>
+                        <div class="col-6">
+                            <div class="mb-4 eachInfoDiv">
+                                <div class="row">
+                                    <div class="col-4 titleTxt">Roof Price: </div>
+                                    <div class="col-8 eachInfo" (click)="editSaveField('Roof_Price')">                        
+                                        <div class="blueTxt">
+                                            <input type="text"
+                                class="form-control" formControlName="Roof_Price"
+                                id="Roof_Price" [value]="dealDetails?.Roof_Price == null ? '-' : dealDetails?.Roof_Price" readonly autocomplete="off"/>
+                                        </div>
+                                        <div class="textBoxIcon"></div>
+                                    </div>
+                                </div>
+                            </div>       
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="mb-4 eachInfoDiv">
+                                <div class="row">
+                                    <div class="col-4 titleTxt">Artificial Grass: </div>
+                                    <div class="col-8 eachInfo" (click)="editSaveField('Artificial_Grass')">                        
+                                        <div class="blueTxt">
+                                            <input type="text"
+                                class="form-control" formControlName="Artificial_Grass"
+                                id="Artificial_Grass" [value]="dealDetails?.Artificial_Grass == null ? '-' : dealDetails?.Artificial_Grass" readonly autocomplete="off"/>
+                                        </div>
+                                        <div class="textBoxIcon"></div>
+                                    </div>
+                                </div>
+                            </div>       
+                        </div>
+                        <div class="col-6">
+                            <div class="mb-4 eachInfoDiv">
+                                <div class="row">
+                                    <div class="col-4 titleTxt">Solar Price: </div>
+                                    <div class="col-8 eachInfo" (click)="editSaveField('Solar_Price')">                        
+                                        <div class="blueTxt">
+                                            <input type="text"
+                                class="form-control" formControlName="Solar_Price"
+                                id="Solar_Price" [value]="dealDetails?.Solar_Price == null ? '-' : dealDetails?.Solar_Price" readonly autocomplete="off"/>
+                                        </div>
+                                        <div class="textBoxIcon"></div>
+                                    </div>
+                                </div>
+                            </div>       
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="mb-4 eachInfoDiv">
+                                <div class="row">
+                                    <div class="col-4 titleTxt">Fan Size: </div>
+                                    <div class="col-8 eachInfo selectDiv">                        
+                                        <div class="blueTxt">
+                                            <select formControlName="Fan_Size">
+                                                <option value="-1">Select None</option>
+                                                <option *ngFor="let fanSize of masterData?.Fan_Size" [value]="fanSize?.value">{{fanSize?.value}}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>       
+                        </div>
+                        <div class="col-6">
+                            <div class="mb-4 eachInfoDiv">
+                                <div class="row">
+                                    <div class="col-4 titleTxt">Window Price: </div>
+                                    <div class="col-8 eachInfo" (click)="editSaveField('Window_Price')">                        
+                                        <div class="blueTxt">
+                                            <input type="text"
+                                class="form-control" formControlName="Window_Price"
+                                id="Window_Price" [value]="dealDetails?.Window_Price == null ? '-' : dealDetails?.Window_Price" readonly autocomplete="off"/>
+                                        </div>
+                                        <div class="textBoxIcon"></div>
+                                    </div>
+                                </div>
+                            </div>       
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="mb-4 eachInfoDiv">
+                                <div class="row">
+                                    <div class="col-4 titleTxt">Marketer: </div>
+                                    <div class="col-8 eachInfo selectDiv">                        
+                                        <div class="blueTxt">
+                                            <select formControlName="Marketer">
+                                                <option value="-1">Select None</option>
+                                                <option *ngFor="let markets of marketers" [value]="markets?.id">{{markets?.name}}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>       
+                        </div>
+                        <div class="col-6">
+                            <div class="mb-4 eachInfoDiv">
+                                <div class="row">
+                                    <div class="col-4 titleTxt">Additional Scope: </div>
+                                    <div class="col-8 eachInfo" (click)="editSaveField('Additional_Scope')">                        
+                                        <div class="blueTxt">
+                                            <input type="text"
+                                class="form-control" formControlName="Additional_Scope"
+                                id="Additional_Scope" [value]="dealDetails?.Additional_Scope == null ? '-' : dealDetails?.Additional_Scope" readonly autocomplete="off"/>
+                                        </div>
+                                        <div class="textBoxIcon"></div>
+                                    </div>
+                                </div>
+                            </div>       
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="mb-4 eachInfoDiv">
+                                <div class="row">
+                                    <div class="col-4 titleTxt">2nd Marketer: </div>
+                                    <div class="col-8 eachInfo selectDiv">                        
+                                        <div class="blueTxt">
+                                            <select formControlName="Second_Marketer">
+                                                <option value="-1">Select None</option>
+                                                <option *ngFor="let secondMarketer of secondMarketers" [value]="secondMarketer?.id">{{secondMarketer?.name}}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>       
+                        </div>
+                        <div class="col-6">
+                            <div class="mb-4 eachInfoDiv">
+                                <div class="row">
+                                    <div class="col-4 titleTxt">Monitoring: </div>
+                                    <div class="col-8 eachInfo" (click)="editSaveField('Monitoring')">                        
+                                        <div class="blueTxt">
+                                            <input type="text"
+                                class="form-control" formControlName="Monitoring"
+                                id="Monitoring" [value]="dealDetails?.Monitoring == null ? '-' : dealDetails?.Monitoring" readonly autocomplete="off"/>
+                                        </div>
+                                        <div class="textBoxIcon"></div>
+                                    </div>
+                                </div>
+                            </div>       
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="mb-4 eachInfoDiv">
+                                <div class="row">
+                                    <div class="col-4 titleTxt">Annual Consumption(kWh): </div>
+                                    <div class="col-8 eachInfo" (click)="editSaveField('Annual_Consumption')">                        
+                                        <div class="blueTxt">
+                                            <input type="text"
+                                            class="form-control" formControlName="Annual_Consumption"
+                                            id="Annual_Consumption" [value]="dealDetails?.Annual_Consumption == null ? '-' : dealDetails?.Annual_Consumption" readonly autocomplete="off"/>
+                                        </div>
+                                        <div class="textBoxIcon"></div>
+                                    </div>
+                                </div>
+                            </div>       
+                        </div>
+                        <div class="col-6">
+                            <div class="mb-4 eachInfoDiv">
+                                <div class="row">
+                                    <div class="col-4 titleTxt">Loan Amount: </div>
+                                    <div class="col-8 eachInfo">                        
+                                        <div class="blueTxt">
+                                            <input type="text"
+                                class="form-control" formControlName="Loan_Amount"
+                                id="Loan_Amount" [value]="dealDetails?.Loan_Amount == null ? '-' : dealDetails?.Loan_Amount" readonly autocomplete="off"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>       
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="mb-4 eachInfoDiv">
+                                <div class="row">
+                                    <div class="col-4 titleTxt">Annual Bill ($): </div>
+                                    <div class="col-8 eachInfo" (click)="editSaveField('Annual_Bill')">                        
+                                        <div class="blueTxt">
+                                            <input type="text"
+                                class="form-control" formControlName="Annual_Bill"
+                                id="Annual_Bill" [value]="dealDetails?.Annual_Bill == null ? '-' : dealDetails?.Annual_Bill" readonly autocomplete="off"/>
+                                        </div>
+                                        <div class="textBoxIcon"></div>
+                                    </div>
+                                </div>
+                            </div>       
+                        </div>
+                        <div class="col-6">
+                            <div class="mb-4 eachInfoDiv">
+                                <div class="row">
+                                    <div class="col-4 titleTxt">Program: </div>
+                                    <div class="col-8 eachInfo selectDiv">                        
+                                        <div class="blueTxt">
+                                            <select formControlName="Program">
+                                                <option value="-1">Select None</option>
+                                                <option *ngFor="let program of masterData?.Program" [value]="program?.id">{{program?.value}}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>       
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="mb-4 eachInfoDiv">
+                                <div class="row">
+                                    <div class="col-4 titleTxt">Energy Consultant: </div>
+                                    <div class="col-8 eachInfo selectDiv">                        
+                                        <div class="blueTxt">
+                                            <select formControlName="Energy_Consultant">
+                                                <option value="-1">Select None</option>
+                                                <option *ngFor="let ec of energyConsultant" [value]="ec?.id">{{ec?.name}}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>       
+                        </div>
+                        <div class="col-6">
+                            <div class="mb-4 eachInfoDiv">
+                                <div class="row">
+                                    <div class="col-4 titleTxt">Rate/Term/Escalator: </div>
+                                    <div class="col-8 eachInfo selectDiv">                        
+                                        <div class="blueTxt">
+                                            <select formControlName="Escalator">
+                                                <option value="-1">Select None</option>
+                                                <option *ngFor="let escalator of masterData?.Rate_Term_Escalator" [value]="escalator?.id">{{escalator?.value}}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>       
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="mb-4 eachInfoDiv">
+                                <div class="row">
+                                    <div class="col-4 titleTxt">Blended Rate per kWh: </div>
+                                    <div class="col-8 eachInfo" (click)="editSaveField('Blended_Rate')">                        
+                                        <div class="blueTxt">
+                                            <input type="text"
+                                class="form-control" formControlName="Blended_Rate"
+                                id="Blended_Rate" [value]="dealDetails?.Blended_Rate == null ? '-' : dealDetails?.Blended_Rate" readonly autocomplete="off"/>
+                                        </div>
+                                        <div class="textBoxIcon"></div>
+                                    </div>
+                                </div>
+                            </div>       
+                        </div>
+                        <div class="col-6">
+                            <div class="mb-4 eachInfoDiv">
+                                <div class="row">
+                                    <div class="col-4 titleTxt">Dealer Fee: </div>
+                                    <div class="col-8 eachInfo" (click)="editSaveField('Dealer_Fee')">                        
+                                        <div class="blueTxt">
+                                            <input type="text"
+                                class="form-control" formControlName="Dealer_Fee"
+                                id="Dealer_Fee" [value]="dealDetails?.Dealer_Fee == null ? '-' : dealDetails?.Dealer_Fee" readonly autocomplete="off"/>
+                                        </div>
+                                        <div class="textBoxIcon"></div>
+                                    </div>
+                                </div>
+                            </div>       
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="mb-4 eachInfoDiv">
+                                <div class="row">
+                                    <div class="col-4 titleTxt">Utility Rate Plan: </div>
+                                    <div class="col-8 eachInfo selectDiv">                        
+                                        <div class="blueTxt">
+                                            <select formControlName="Utility_Rate_Plan">
+                                                <option value="-1">Select None</option>
+                                                <option *ngFor="let utilityRate of masterData?.Utility_Rate_Plan" [value]="utilityRate?.id">{{utilityRate?.value}}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>       
+                        </div>
+                        <div class="col-6">
+                            <div class="mb-4 eachInfoDiv">
+                                <div class="row">
+                                    <div class="col-4 titleTxt">System Size: </div>
+                                    <div class="col-8 eachInfo" (click)="editSaveField('System_Size')">                        
+                                        <div class="blueTxt">
+                                            <input type="text"
+                                class="form-control" formControlName="System_Size"
+                                id="System_Size" [value]="dealDetails?.System_Size == null ? '-' : dealDetails?.System_Size" readonly autocomplete="off"/>
+                                        </div>
+                                        <div class="textBoxIcon"></div>
+                                    </div>
+                                </div>
+                            </div>       
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="mb-4 eachInfoDiv">
+                                <div class="row">
+                                    <div class="col-4 titleTxt">APS Reservation Number: </div>
+                                    <div class="col-8 eachInfo" (click)="editSaveField('APS_Reservation_Number')">                        
+                                        <div class="blueTxt">
+                                            <input type="text"
+                                class="form-control" formControlName="APS_Reservation_Number"
+                                id="APS_Reservation_Number" [value]="dealDetails?.APS_Reservation_Number == null ? '-' : dealDetails?.APS_Reservation_Number" readonly autocomplete="off"/>
+                                        </div>
+                                        <div class="textBoxIcon"></div>
+                                    </div>
+                                </div>
+                            </div>       
+                        </div>
+                        <div class="col-6">
+                            <div class="mb-4 eachInfoDiv">
+                                <div class="row">
+                                    <div class="col-4 titleTxt">Down Payment: </div>
+                                    <div class="col-8 eachInfo" (click)="editSaveField('Down_Payment')">                        
+                                        <div class="blueTxt">
+                                            <input type="text"
+                                class="form-control" formControlName="Down_Payment"
+                                id="Down_Payment" [value]="dealDetails?.Down_Payment == null ? '-' : dealDetails?.Down_Payment" readonly autocomplete="off"/>
+                                        </div>
+                                        <div class="textBoxIcon"></div>
+                                    </div>
+                                </div>
+                            </div>       
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="mb-4 eachInfoDiv">
+                                <div class="row">
+                                    <div class="col-4 titleTxt">Channel Partner: </div>
+                                    <div class="col-8 eachInfo selectDiv">                        
+                                        <div class="blueTxt">
+                                            <select formControlName="Channel_Partner">
+                                                <option value="-1">Select None</option>
+                                                <option *ngFor="let channel of masterData?.Channel_Partner" [value]="channel?.value">{{channel?.value}}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>       
+                        </div>
+                        <div class="col-6">
+                            <div class="mb-4 eachInfoDiv">
+                                <div class="row">
+                                    <div class="col-4 titleTxt">Cash Adders: </div>
+                                    <div class="col-8 eachInfo" (click)="editSaveField('Cash_Adders')">                        
+                                        <div class="blueTxt">
+                                            <input type="text"
+                                class="form-control" formControlName="Cash_Adders"
+                                id="Cash_Adders" [value]="dealDetails?.Cash_Adders == null ? '-' : dealDetails?.Cash_Adders" readonly autocomplete="off"/>
+                                        </div>
+                                        <div class="textBoxIcon"></div>
+                                    </div>
+                                </div>
+                            </div>       
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="mb-4 eachInfoDiv">
+                                <div class="row">
+                                    <div class="col-4 titleTxt">Modified By: </div>
+                                    <div class="col-8 eachInfo">                        
+                                        <div class="blueTxt">
+                                            <input type="text"
+                                class="form-control" formControlName="Modified_By"
+                                id="Modified_By" readonly autocomplete="off"/>
+                                        </div>
+                                       
+                                    </div>
+                                </div>
+                            </div>       
+                        </div>
+                        <div class="col-6">
+                            <div class="mb-4 eachInfoDiv">
+                                <div class="row">
+                                    <div class="col-4 titleTxt">Eff PPW: </div>
+                                    <div class="col-8 eachInfo">                        
+                                        <div class="blueTxt">
+                                            <input type="text"
+                                            class="form-control" formControlName="Eff_PPW"
+                                            id="Eff_PPW" [value]="dealDetails?.Eff_PPW == null ? '-' : dealDetails?.Eff_PPW" readonly autocomplete="off"/>
+                                        </div>
+                                       
+                                    </div>
+                                </div>
+                            </div>       
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="mb-4 eachInfoDiv">
+                                <div class="row">
+                                    <div class="col-4 titleTxt">Home Sq Ft: </div>
+                                    <div class="col-8 eachInfo" (click)="editSaveField('Home_Sq_Ft')">                        
+                                        <div class="blueTxt">
+                                            <input type="text"
+                                class="form-control" formControlName="Home_Sq_Ft"
+                                id="Home_Sq_Ft" [value]="dealDetails?.Home_Sq_Ft == null ? '-' : dealDetails?.Home_Sq_Ft" readonly autocomplete="off"/>
+                                        </div>
+                                        <div class="textBoxIcon"></div>
+                                    </div>
+                                </div>
+                            </div>       
+                        </div>
+                        <div class="col-6">
+                            <div class="mb-4 eachInfoDiv">
+                                <div class="row">
+                                    <div class="col-4 titleTxt">Sales Concierge: </div>
+                                    <div class="col-8 eachInfo selectDiv">                        
+                                        <div class="blueTxt">
+                                            <select formControlName="Sales_Concierge">
+                                                <option value="-1">Select None</option>
+                                                <option *ngFor="let yesNo of masterData?.YesNoChoice" [value]="yesNo?.value">{{yesNo?.value}}</option>
+                                            </select>
+                                           
+                                        </div>
+                                        
+                                    </div>
+                                </div>
+                            </div>       
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="mb-4 eachInfoDiv">
+                                <div class="row">
+                                    <div class="col-4 titleTxt">Retention Date: </div>
+                                    <div class="col-8 eachInfo" >                        
+                                        <div class="blueTxt dateDivFull">
+                                          
+                                <dp-date-picker formControlName="Retention_Date" class="customDatePicker"></dp-date-picker>             
+                            </div>
+                                     
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="mb-4 eachInfoDiv">
+                                <div class="row">
+                                    <div class="col-4 titleTxt">Complimentary Concierge: </div>
+                                    <div class="col-8 eachInfo selectDiv">                        
+                                        <div class="blueTxt">
+
+                                <select formControlName="Complimentary_Concierge">
+                                    <option value="-1">Select None</option>
+                                    <option *ngFor="let yesNo of masterData?.YesNoChoice" [value]="yesNo?.value">{{yesNo?.value}}</option>
+                                </select>           
+                            </div>
+                                       
+                                    </div>
+                                </div>
+                            </div>       
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="mb-4 eachInfoDiv">
+                                <div class="row">
+                                    <div class="col-4 titleTxt">Project Docs: </div>
+                                    <div class="col-8 eachInfo" (click)="editSaveField('Project_Docs')">                        
+                                        <div class="blueTxt">
+                                            <input type="text"
+                                class="form-control" formControlName="Project_Docs"
+                                id="Project_Docs" [value]="dealDetails?.Project_Docs == null ? '-' : dealDetails?.Project_Docs" readonly autocomplete="off"/>
+                                        </div>
+                                        <div class="textBoxIcon"></div>
+                                    </div>
+                                </div>
+                            </div>       
+                        </div>
+                        <div class="col-6">
+                            <div class="mb-4 eachInfoDiv">
+                                <div class="row">
+                                    <div class="col-4 titleTxt">SS Date/time: </div>
+                                    <div class="col-4 eachInfo">                        
+                                        <div class="blueTxt borderRight">
+                                            <dp-date-picker formControlName="SS_Date" class="customDatePicker"></dp-date-picker>            
+                                        </div>
+                                    </div>
+                                    <div class="col-4 eachInfo selectDiv">                        
+                                        <div class="blueTxt">
+                                            <select formControlName="SS_Time">
+                                                <option value="-1">Select time</option>
+                                                <option *ngFor="let channel of masterData?.Time" [value]="channel?.value">{{channel?.value}}</option>
+                                            </select>            
+                                        </div>     
+                                    </div>
+                                </div>
+                            </div>       
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="mb-4 eachInfoDiv">
+                                <div class="row">
+                                    <div class="col-4 titleTxt">Reschedule Cycle Time: </div>
+                                    <div class="col-8 eachInfo" (click)="editSaveField('Reschedule_Cycle_Time')">                        
+                                        <div class="blueTxt">
+                                            <input type="text"
+                                            class="form-control" formControlName="Reschedule_Cycle_Time"
+                                            id="Reschedule_Cycle_Time" [value]="dealDetails?.Reschedule_Cycle_Time == null ? '-' : dealDetails?.Reschedule_Cycle_Time" readonly autocomplete="off"/>
+                                        </div>
+                                        <div class="textBoxIcon"></div>
+                                    </div>
+                                </div>
+                            </div>       
+                        </div>
+                        <div class="col-6">
+                            <div class="mb-4 eachInfoDiv">
+                                <div class="row">
+                                    <div class="col-4 titleTxt">SS Arrival Window: </div>
+                                    <div class="col-8 eachInfo" (click)="editSaveField('SS_Arrival_Window')">                        
+                                        <div class="blueTxt">
+                                            <input type="text"
+                                class="form-control" formControlName="SS_Arrival_Window"
+                                id="SS_Arrival_Window" [value]="dealDetails?.SS_Arrival_Window == null ? '-' : dealDetails?.SS_Arrival_Window" readonly autocomplete="off"/>
+                                        </div>
+                                        <div class="textBoxIcon"></div>
+                                    </div>
+                                </div>
+                            </div>       
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="mb-4 eachInfoDiv">
+                                <div class="row">
+                                    <div class="col-4 titleTxt">Date 17: </div>
+                                    <div class="col-8 eachInfo">                        
+                                        <div class="blueTxt dateDivFull">
+                                          
+                                <dp-date-picker formControlName="Date" class="customDatePicker" readonly></dp-date-picker>             
+                            </div>
+                                
+                                    </div>
+                                </div>
+                            </div>       
+                        </div>
+                        <div class="col-6">
+                            <div class="mb-4 eachInfoDiv">
+                                <div class="row">
+                                    <div class="col-4 titleTxt">SS Date Complete: </div>
+                                    <div class="col-8 eachInfo" >                        
+                                        <div class="blueTxt dateDivFull">
+                                           
+                                <dp-date-picker formControlName="SS_Date_Complete" class="customDatePicker"></dp-date-picker>   
+                            </div>
+                          
+                                    </div>
+                                </div>
+                            </div>       
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="mb-4 eachInfoDiv">
+                                <div class="row">
+                                    <div class="col-4 titleTxt">PROMO: </div>
+                                    <div class="col-8 eachInfo selectDiv">                        
+                                        <div class="blueTxt">
+                                            <select formControlName="PROMO">
+                                                <option value="-1">Select None</option>
+                                                <option *ngFor="let promo of masterData?.Promo" [value]="promo?.id">{{promo?.value}}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>       
+                        </div>
+                        <div class="col-6">
+                            <div class="mb-4 eachInfoDiv">
+                                <div class="row">
+                                    <div class="col-4 titleTxt">SR Approval: </div>
+                                    <div class="col-8 eachInfo">                        
+                                        <div class="blueTxt dateDivFull">
+                                <dp-date-picker formControlName="SR_Approval" class="customDatePicker"></dp-date-picker>            
+                            </div>
+                             
+                                    </div>
+                                </div>
+                            </div>       
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="mb-4 eachInfoDiv">
+                                <div class="row">
+                                    <div class="col-4 titleTxt">Utility: </div>
+                                    <div class="col-8 eachInfo" (click)="editSaveField('Utility')">                        
+                                        <div class="blueTxt">
+                                            <input type="text"
+                                class="form-control" formControlName="Utility"
+                                id="Utility" [value]="dealDetails?.Utility == null ? '-' : dealDetails?.Utility" readonly autocomplete="off"/>
+                                        </div>
+                                        <div class="textBoxIcon"></div>
+                                    </div>
+                                </div>
+                            </div>       
+                        </div>
+                        <div class="col-6">
+                            <div class="mb-4 eachInfoDiv">
+                                <div class="row">
+                                    <div class="col-4 titleTxt">QC Fail: </div>
+                                    <div class="col-4 eachInfo">                        
+                                        <div class="blueTxt borderRight">
+                                            
+                                            <dp-date-picker formControlName="QC_Fail_Date" class="customDatePicker"></dp-date-picker>  
+                                        </div>
+                                        
+                                    </div>
+                                    <div class="col-4 eachInfo selectDiv">                        
+                                        <div class="blueTxt">
+                                            <select formControlName="QC_Fail_Time">
+                                                <option value="-1">Select time</option>
+                                                <option *ngFor="let channel of masterData?.Time" [value]="channel?.value">{{channel?.value}}</option>
+                                            </select>    
+                                        </div>
+                                      
+                                    </div>
+                                </div>
+                            </div>       
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="mb-4 eachInfoDiv">
+                                <div class="row">
+                                    <div class="col-4 titleTxt">HOA: </div>
+                                    <div class="col-8 eachInfo selectDiv">                        
+                                        <div class="blueTxt">
+                                            <select formControlName="HOA">
+                                                <option value="-1">Select None</option>
+                                                <option *ngFor="let yesNo of masterData?.YesNoChoice" [value]="yesNo?.value">{{yesNo?.value}}</option>
+                                            </select>
+                                          
+                                        </div>
+                                       
+                                    </div>
+                                </div>
+                            </div>       
+                        </div>
+                        <div class="col-6">
+                            <div class="mb-4 eachInfoDiv">
+                                <div class="row">
+                                    <div class="col-4 titleTxt">QC Pass: </div>
+                                    <div class="col-4 eachInfo">                        
+                                        <div class="blueTxt borderRight">
+                                           
+                                <dp-date-picker formControlName="QC_Pass_Date" class="customDatePicker"></dp-date-picker>              
+                            </div>
+                                       
+                                    </div>
+                                    <div class="col-4 eachInfo selectDiv">                        
+                                        <div class="blueTxt">
+                                            <select formControlName="QC_Pass_Time">
+                                                <option value="-1">Select time</option>
+                                                <option *ngFor="let channel of masterData?.Time" [value]="channel?.value">{{channel?.value}}</option>
+                                            </select>    
+                                            
+                                        </div>
+                                     
+                                    </div>
+                                </div>
+                            </div>       
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="mb-4 eachInfoDiv">
+                                <div class="row">
+                                    <div class="col-4 titleTxt">HOA INFO: </div>
+                                    <div class="col-8 eachInfo" (click)="editSaveField('HOA_INFO')">                        
+                                        <div class="blueTxt">
+                                            <input type="text"
+                                class="form-control" formControlName="HOA_INFO"
+                                id="HOA_INFO" [value]="dealDetails?.HOA_INFO == null ? '-' : dealDetails?.HOA_INFO" readonly autocomplete="off"/>
+                                        </div>
+                                        <div class="textBoxIcon"></div>
+                                    </div>
+                                </div>
+                            </div>       
+                        </div>
+                        <div class="col-6">
+                            <div class="mb-4 eachInfoDiv">
+                                <div class="row">
+                                    <div class="col-4 titleTxt">FL Received: </div>
+                                    <div class="col-4 eachInfo">                        
+                                        <div class="blueTxt borderRight">
+                                           
+                                <dp-date-picker formControlName="FL_Received_Date" class="customDatePicker"></dp-date-picker>              
+                            </div>
+                                       
+                                    </div>
+                                    <div class="col-4 eachInfo selectDiv">                        
+                                        <div class="blueTxt">
+                                            <select formControlName="FL_Received_Time">
+                                                <option value="-1">Select time</option>
+                                                <option *ngFor="let channel of masterData?.Time" [value]="channel?.value">{{channel?.value}}</option>
+                                            </select>    
+                                            
+                                        </div>
+                                       
+                                    </div>
+                                </div>
+                            </div>       
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="mb-4 eachInfoDiv">
+                                <div class="row">
+                                    <div class="col-4 titleTxt">AHJ: </div>
+                                    <div class="col-8 eachInfo" (click)="editSaveField('AHJ')">                        
+                                        <div class="blueTxt">
+                                            <input type="text"
+                                class="form-control" formControlName="AHJ"
+                                id="AHJ" [value]="dealDetails?.AHJ == null ? '-' : dealDetails?.AHJ" readonly autocomplete="off"/>
+                                        </div>
+                                        <div class="textBoxIcon"></div>
+                                    </div>
+                                </div>
+                            </div>       
+                        </div>
+                        <div class="col-6">
+                            <div class="mb-4 eachInfoDiv">
+                                <div class="row">
+                                    <div class="col-4 titleTxt">Final Layout: </div>
+                                    <div class="col-8 eachInfo" (click)="editSaveField('Final_Layout')">                        
+                                        <div class="blueTxt">
+                                            <input type="text"
+                                class="form-control" formControlName="Final_Layout"
+                                id="Final_Layout" [value]="dealDetails?.Final_Layout == null ? '-' : dealDetails?.Final_Layout" readonly autocomplete="off"/>
+                                        </div>
+                                        <div class="textBoxIcon"></div>
+                                    </div>
+                                </div>
+                            </div>       
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="mb-4 eachInfoDiv">
+                                <div class="row">
+                                    <div class="col-4 titleTxt">Roof Waiver: </div>
+                                    <div class="col-8 eachInfo selectDiv">                        
+                                        <div class="blueTxt">
+                                            <select formControlName="Roof_Waiver">
+                                                <option value="-1">Select None</option>
+                                                <option *ngFor="let yesNo of masterData?.YesNoChoice" [value]="yesNo?.value">{{yesNo?.value}}</option>
+                                            </select>
+                                            
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>       
+                        </div>
+                        <div class="col-6">
+                            <div class="mb-4 eachInfoDiv">
+                                <div class="row">
+                                    <div class="col-4 titleTxt">FLA: </div>
+                                    <div class="col-8 eachInfo" >                        
+                                        <div class="blueTxt">
+                                           
+                                <dp-date-picker formControlName="FLA" class="customDatePicker"></dp-date-picker>            
+                            </div>
+                           
+                                    </div>
+                                </div>
+                            </div>       
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="mb-4 eachInfoDiv">
+                                <div class="row">
+                                    <div class="col-4 titleTxt">Roofing Required: </div>
+                                    <div class="col-8 eachInfo selectDiv">                        
+                                        <div class="blueTxt">
+                                            <select formControlName="Roofing_Required">
+                                                <option value="-1">Select None</option>
+                                                <option *ngFor="let yesNo of masterData?.YesNoChoice" [value]="yesNo?.value">{{yesNo?.value}}</option>
+                                            </select>
+                                           
+                                        </div>
+                                        
+                                    </div>
+                                </div>
+                            </div>       
+                        </div>
+                        <div class="col-6">
+                            <div class="mb-4 eachInfoDiv">
+                                <div class="row">
+                                    <div class="col-4 titleTxt">NTP: </div>
+                                    <div class="col-8 eachInfo">                        
+                                        <div class="blueTxt">
+                                           
+                                <dp-date-picker formControlName="NTP" class="customDatePicker"></dp-date-picker>             
+                            </div>
+                           
+                                    </div>
+                                </div>
+                            </div>       
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="mb-4 eachInfoDiv">
+                                <div class="row">
+                                    <div class="col-4 titleTxt">Resign Required: </div>
+                                    <div class="col-8 eachInfo selectDiv">                        
+                                        <div class="blueTxt">
+                                           
+                                <select formControlName="Resign_Required">
+                                    <option value="-1">Select None</option>
+                                    <option *ngFor="let yesNo of masterData?.YesNoChoice" [value]="yesNo?.value">{{yesNo?.value}}</option>
+                                </select>           
+                            </div>
+                                       
+                                    </div>
+                                </div>
+                            </div>       
+                        </div>
+                        <div class="col-6">
+                            <div class="mb-4 eachInfoDiv">
+                                <div class="row">
+                                    <div class="col-4 titleTxt">VSA: </div>
+                                    <div class="col-8 eachInfo">                        
+                                        <div class="blueTxt">
+                                          
+                                <dp-date-picker formControlName="VSA" class="customDatePicker"></dp-date-picker>             
+                            </div>
+                            
+                                    </div>
+                                </div>
+                            </div>       
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="mb-4 eachInfoDiv">
+                                <div class="row">
+                                    <div class="col-4 titleTxt">Resigned for Roofing: </div>
+                                    <div class="col-8 eachInfo selectDiv">                        
+                                        <div class="blueTxt">
+                                           
+                                <select formControlName="Resigned_for_Roofing">
+                                    <option value="-1">Select None</option>
+                                    <option *ngFor="let yesNo of masterData?.YesNoChoice" [value]="yesNo?.value">{{yesNo?.value}}</option>
+                                </select>            
+                            </div>
+                                        
+                                    </div>
+                                </div>
+                            </div>       
+                        </div>
+                        <div class="col-6">
+                            <div class="mb-4 eachInfoDiv">
+                                <div class="row">
+                                    <div class="col-4 titleTxt">PR SOW Received: </div>
+                                    <div class="col-8 eachInfo selectDiv">                        
+                                        <div class="blueTxt">
+                                           
+                                            <select formControlName="PR_SOW_Received">
+                                                <option value="-1">Select None</option>
+                                                <option *ngFor="let yesNo of masterData?.YesNoChoice" [value]="yesNo?.value">{{yesNo?.value}}</option>
+                                            </select> 
+                                        </div>
+                                      
+                                    </div>
+                                </div>
+                            </div>       
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="mb-4 eachInfoDiv">
+                                <div class="row">
+                                    <div class="col-4 titleTxt">Roofer: </div>
+                                    <div class="col-8 eachInfo" (click)="editSaveField('Roofer')">                        
+                                        <div class="blueTxt">
+                                            <input type="text"
+                                class="form-control" formControlName="Roofer"
+                                id="Roofer" [value]="dealDetails?.Roofer == null ? '-' : dealDetails?.Roofer" readonly autocomplete="off"/>
+                                        </div>
+                                        <div class="textBoxIcon"></div>
+                                    </div>
+                                </div>
+                            </div>       
+                        </div>
+                        <div class="col-6">
+                            <div class="mb-4 eachInfoDiv">
+                                <div class="row">
+                                    <div class="col-4 titleTxt">PR SOW Approved: </div>
+                                    <div class="col-8 eachInfo" >                        
+                                        <div class="blueTxt dateDivFull">
+                                           
+                                <dp-date-picker formControlName="PR_SOW_Approved" class="customDatePicker"></dp-date-picker>             
+                            </div>
+                            
+                                    </div>
+                                </div>
+                            </div>       
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="mb-4 eachInfoDiv">
+                                <div class="row">
+                                    <div class="col-4 titleTxt">Scope of Reroof: </div>
+                                    <div class="col-8 eachInfo selectDiv">                        
+                                        <div class="blueTxt">
+                                            <select formControlName="Scope_of_Reroof">
+                                                <option value="-1">Select None</option>
+                                                <option *ngFor="let scopeReroof of masterData?.Scope_of_Reroof" [value]="scopeReroof?.id">{{scopeReroof?.value}}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>       
+                        </div>
+                        <div class="col-6">
+                            <div class="mb-4 eachInfoDiv">
+                                <div class="row">
+                                    <div class="col-4 titleTxt">Permit Submitted: </div>
+                                    <div class="col-8 eachInfo" >                        
+                                        <div class="blueTxt dateDivFull">
+                                           
+                                <dp-date-picker formControlName="Permit_Submitted" class="customDatePicker"></dp-date-picker>             
+                            </div>
+                               
+                                    </div>
+                                </div>
+                            </div>       
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="mb-4 eachInfoDiv">
+                                <div class="row">
+                                    <div class="col-4 titleTxt">Attic / Roof Pics: </div>
+                                    <div class="col-8 eachInfo" (click)="editSaveField('Roof_Pics')">                        
+                                        <div class="blueTxt">
+                                            <input type="text"
+                                class="form-control" formControlName="Roof_Pics"
+                                id="Roof_Pics" [value]="dealDetails?.Roof_Pics == null ? '-' : dealDetails?.Roof_Pics" readonly autocomplete="off"/>
+                                        </div>
+                                        <div class="textBoxIcon"></div>
+                                    </div>
+                                </div>
+                            </div>       
+                        </div>
+                        <div class="col-6">
+                            <div class="mb-4 eachInfoDiv">
+                                <div class="row">
+                                    <div class="col-4 titleTxt">M1 Paid: </div>
+                                    <div class="col-8 eachInfo" >                        
+                                        <div class="blueTxt dateDivFull">
+                                           
+                                <dp-date-picker formControlName="M1_Paid" class="customDatePicker"></dp-date-picker>        
+                            </div>
+                               
+                                    </div>
+                                </div>
+                            </div>       
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="mb-4 eachInfoDiv">
+                                <div class="row">
+                                    <div class="col-4 titleTxt">HVAC SOW: </div>
+                                    <div class="col-8 eachInfo selectDiv">                        
+                                        <div class="blueTxt">
+                                            <select formControlName="HVAC_SOW">
+                                                <option value="-1">Select None</option>
+                                                <option *ngFor="let hvacSow of masterData?.HVAC_SOW" [value]="hvacSow?.id">{{hvacSow?.value}}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>       
+                        </div>
+                        <div class="col-6">
+                            <div class="mb-4 eachInfoDiv">
+                                <div class="row">
+                                    <div class="col-4 titleTxt">Volt Paid M1: </div>
+                                    <div class="col-4 eachInfo">                        
+                                        <div class="blueTxt borderRight">
+                                           
+                                            <dp-date-picker formControlName="Volt_Paid_M1_Date" class="customDatePicker"></dp-date-picker>  
+                                        </div>
+                                        
+                                    </div>
+                                    <div class="col-4 eachInfo selectDiv">                        
+                                        <div class="blueTxt">
+                                            <select formControlName="Volt_Paid_M1_Time">
+                                                <option value="-1">Select time</option>
+                                                <option *ngFor="let channel of masterData?.Time" [value]="channel?.value">{{channel?.value}}</option>
+                                            </select>  
+                                            
+                                        </div>
+                                        
+                                    </div>
+                                </div>
+                            </div>       
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="mb-4 eachInfoDiv">
+                                <div class="row">
+                                    <div class="col-4 titleTxt">HVAC size: </div>
+                                    <div class="col-8 eachInfo selectDiv">                        
+                                        <div class="blueTxt">
+                                            <select formControlName="HVAC_size">
+                                                <option value="-1">Select None</option>
+                                                <option *ngFor="let hvacSize of masterData?.HVAC_Size" [value]="hvacSize?.id">{{hvacSize?.value}}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>       
+                        </div>
+                        <div class="col-6">
+                            <div class="mb-4 eachInfoDiv">
+                                <div class="row">
+                                    <div class="col-4 titleTxt">Rep Clawback: </div>
+                                    <div class="col-8 eachInfo">                        
+                                        <div class="blueTxt dateDivFull">
+                                         
+                                <dp-date-picker formControlName="Rep_Clawback" class="customDatePicker"></dp-date-picker>            
+                            </div>
+                                    
+                                    </div>
+                                </div>
+                            </div>       
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="mb-4 eachInfoDiv">
+                                <div class="row">
+                                    <div class="col-4 titleTxt">Derate: </div>
+                                    <div class="col-8 eachInfo selectDiv">                        
+                                        <div class="blueTxt">
+                                         
+                                <select formControlName="Derate">
+                                    <option value="-1">Select None</option>
+                                    <option *ngFor="let yesNo of masterData?.YesNoChoice" [value]="yesNo?.value">{{yesNo?.value}}</option>
+                                </select>            
+                            </div>
+                            
+                                    </div>
+                                </div>
+                            </div>       
+                        </div>
+                        <div class="col-6">
+                            <div class="mb-4 eachInfoDiv">
+                                <div class="row">
+                                    <div class="col-4 titleTxt">Volt Clawback: </div>
+                                    <div class="col-8 eachInfo">                        
+                                        <div class="blueTxt dateDivFull">
+                                         
+                                <dp-date-picker formControlName="Volt_Clawback" class="customDatePicker"></dp-date-picker>             
+                            </div>
+                               
+                                    </div>
+                                </div>
+                            </div>       
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="mb-4 eachInfoDiv">
+                                <div class="row">
+                                    <div class="col-4 titleTxt">MPU Required: </div>
+                                    <div class="col-8 eachInfo selectDiv">                        
+                                        <div class="blueTxt">
+                                          
+                                <select formControlName="MPU_Required">
+                                    <option value="-1">Select None</option>
+                                    <option *ngFor="let yesNo of masterData?.YesNoChoice" [value]="yesNo?.value">{{yesNo?.value}}</option>
+                                </select>            
+                            </div>
+                                       
+                                    </div>
+                                </div>
+                            </div>       
+                        </div>
+                        <div class="col-6">
+                            <div class="mb-4 eachInfoDiv">
+                                <div class="row">
+                                    <div class="col-4 titleTxt">Permit Approved: </div>
+                                    <div class="col-8 eachInfo">                        
+                                        <div class="blueTxt dateDivFull">
+                                           
+                                <dp-date-picker formControlName="Permit_Approved" class="customDatePicker"></dp-date-picker>             
+                            </div>
+                                
+                                    </div>
+                                </div>
+                            </div>       
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="mb-4 eachInfoDiv">
+                                <div class="row">
+                                    <div class="col-4 titleTxt">MPU Sold: </div>
+                                    <div class="col-8 eachInfo selectDiv">                        
+                                        <div class="blueTxt">
+                                          
+                                <select formControlName="MPU_Sold">
+                                    <option value="-1">Select None</option>
+                                    <option *ngFor="let yesNo of masterData?.YesNoChoice" [value]="yesNo?.value">{{yesNo?.value}}</option>
+                                </select>           
+                            </div>
+                                       
+                                    </div>
+                                </div>
+                            </div>       
+                        </div>
+                        <div class="col-6">
+                            <div class="mb-4 eachInfoDiv">
+                                <div class="row">
+                                    <div class="col-4 titleTxt">Install Scheduled: </div>
+                                    <div class="col-8 eachInfo">                        
+                                        <div class="blueTxt dateDivFull">
+                                        
+                                <dp-date-picker formControlName="Install_Scheduled" class="customDatePicker"></dp-date-picker>             
+                            </div>
+                                
+                                    </div>
+                                </div>
+                            </div>       
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="mb-4 eachInfoDiv">
+                                <div class="row">
+                                    <div class="col-4 titleTxt">MSP Pics: </div>
+                                    <div class="col-8 eachInfo" (click)="editSaveField('MSP_Pics')">                        
+                                        <div class="blueTxt">
+                                            <input type="text"
+                                            class="form-control" formControlName="MSP_Pics"
+                                            id="MSP_Pics" [value]="dealDetails?.MSP_Pics == null ? '-' : dealDetails?.MSP_Pics" readonly autocomplete="off"/>
+                                        </div>
+                                        <div class="textBoxIcon"></div>
+                                    </div>
+                                </div>
+                            </div>       
+                        </div>
+                        <div class="col-6">
+                            <div class="mb-4 eachInfoDiv">
+                                <div class="row">
+                                    <div class="col-4 titleTxt">Install Completed: </div>
+                                    <div class="col-8 eachInfo">                        
+                                        <div class="blueTxt dateDivFull">
+                                          
+                                <dp-date-picker formControlName="Install_Completed" class="customDatePicker"></dp-date-picker>             
+                            </div>
+                                
+                                    </div>
+                                </div>
+                            </div>       
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="mb-4 eachInfoDiv">
+                                <div class="row">
+                                    <div class="col-4 titleTxt">Meter Spot: </div>
+                                    <div class="col-8 eachInfo selectDiv">                        
+                                        <div class="blueTxt">
+                                            <select formControlName="Meter_Spot">
+                                                <option value="-1">Select None</option>
+                                                <option *ngFor="let meterSpot of masterData?.Meter_Spot" [value]="meterSpot?.id">{{meterSpot?.value}}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>       
+                        </div>
+                        <div class="col-6">
+                            <div class="mb-4 eachInfoDiv">
+                                <div class="row">
+                                    <div class="col-4 titleTxt">M2 Paid: </div>
+                                    <div class="col-8 eachInfo">                        
+                                        <div class="blueTxt dateDivFull">
+                                         
+                                <dp-date-picker formControlName="M2_Paid" class="customDatePicker"></dp-date-picker>             
+                            </div>
+                                    
+                                    </div>
+                                </div>
+                            </div>       
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="mb-4 eachInfoDiv">
+                                <div class="row">
+                                    <div class="col-4 titleTxt">Relocation Distance: </div>
+                                    <div class="col-8 eachInfo" (click)="editSaveField('Relocation_Distance')">                        
+                                        <div class="blueTxt">
+                                            <input type="text"
+                                class="form-control" formControlName="Relocation_Distance"
+                                id="Relocation_Distance" [value]="dealDetails?.Relocation_Distance == null ? '-' : dealDetails?.Relocation_Distance" readonly autocomplete="off"/>
+                                        </div>
+                                        <div class="textBoxIcon"></div>
+                                    </div>
+                                </div>
+                            </div>       
+                        </div>
+                        <div class="col-6">
+                            <div class="mb-4 eachInfoDiv">
+                                <div class="row">
+                                    <div class="col-4 titleTxt">Volt Paid M2: </div>
+                                    <div class="col-4 eachInfo">                        
+                                        <div class="blueTxt borderRight">
+                                           
+                                <dp-date-picker formControlName="Volt_Paid_M2_Date" class="customDatePicker"></dp-date-picker>  
+                                        </div>
+                                       
+                                    </div>
+                                    <div class="col-4 eachInfo selectDiv">                        
+                                        <div class="blueTxt">
+                                            <select formControlName="Volt_Paid_M2_Time">
+                                                <option value="-1">Select time</option>
+                                                <option *ngFor="let channel of masterData?.Time" [value]="channel?.value">{{channel?.value}}</option>
+                                            </select>  
+
+                                        </div>
+                                        
+                                    </div>
+                                </div>
+                            </div>       
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="mb-4 eachInfoDiv">
+                                <div class="row">
+                                    <div class="col-4 titleTxt">MPU Scheduled: </div>
+                                    <div class="col-8 eachInfo">                        
+                                        <div class="blueTxt dateDivFull">
+                                <dp-date-picker formControlName="MPU_Scheduled" class="customDatePicker"></dp-date-picker>             
+                            </div>
+                                   
+                                    </div>
+                                </div>
+                            </div>       
+                        </div>
+                        <div class="col-6">
+                            <div class="mb-4 eachInfoDiv">
+                                <div class="row">
+                                    <div class="col-4 titleTxt">Packaging Commission Paid: </div>
+                                    <div class="col-8 eachInfo" >                        
+                                        <div class="blueTxt">
+                                           
+                                <dp-date-picker formControlName="Packaging_Commission_Paid" class="customDatePicker"></dp-date-picker>            
+                            </div>
+                                    
+                                    </div>
+                                </div>
+                            </div>       
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="mb-4 eachInfoDiv">
+                                <div class="row">
+                                    <div class="col-4 titleTxt">MPU Complete: </div>
+                                    <div class="col-8 eachInfo">                        
+                                        <div class="blueTxt dateDivFull">
+                                        
+                                <dp-date-picker formControlName="MPU_Complete" class="customDatePicker"></dp-date-picker>            
+                            </div>
+                                     
+                                    </div>
+                                </div>
+                            </div>       
+                        </div>
+                        <div class="col-6">
+                            <div class="mb-4 eachInfoDiv">
+                                <div class="row">
+                                    <div class="col-4 titleTxt">FI SCHEDULED?: </div>
+                                    <div class="col-8 eachInfo selectDiv" >                        
+                                        <div class="blueTxt">
+                                            <select formControlName="FI_SCHEDULED">
+                                                <option value="-1">Select None</option>
+                                                <option *ngFor="let yesNo of masterData?.YesNoChoice" [value]="yesNo?.value">{{yesNo?.value}}</option>
+                                            </select>
+                                        </div>
+                                       
+                                    </div>
+                                </div>
+                            </div>       
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="mb-4 eachInfoDiv">
+                                <div class="row">
+                                    <div class="col-4 titleTxt">Rookie Card VC: </div>
+                                    <div class="col-8 eachInfo">                        
+                                        <div class="blueTxt dateDivFull">
+                                     
+                                <dp-date-picker formControlName="Rookie_Card_VC" class="customDatePicker"></dp-date-picker>            
+                            </div>
+                                    
+                                    </div>
+                                </div>
+                            </div>       
+                        </div>
+                        <div class="col-6">
+                            <div class="mb-4 eachInfoDiv">
+                                <div class="row">
+                                    <div class="col-4 titleTxt">FI PASS: </div>
+                                    <div class="col-8 eachInfo">                        
+                                        <div class="blueTxt dateDivFull">
+                                         
+                                <dp-date-picker formControlName="FI_PASS" class="customDatePicker"></dp-date-picker>            
+                            </div>
+                                 
+                                    </div>
+                                </div>
+                            </div>       
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="mb-4 eachInfoDiv">
+                                <div class="row">
+                                    <div class="col-4 titleTxt">UB Page 1: </div>
+                                    <div class="col-8 eachInfo" (click)="editSaveField('UB_Page_1')">                        
+                                        <div class="blueTxt">
+                                            <input type="text"
+                                class="form-control" formControlName="UB_Page_1"
+                                id="UB_Page_1" [value]="dealDetails?.UB_Page_1 == null ? '-' : dealDetails?.UB_Page_1" readonly autocomplete="off"/>
+                                        </div>
+                                        <div class="textBoxIcon"></div>
+                                    </div>
+                                </div>
+                            </div>       
+                        </div>
+                        <div class="col-6">
+                            <div class="mb-4 eachInfoDiv">
+                                <div class="row">
+                                    <div class="col-4 titleTxt">PTO Submitted: </div>
+                                    <div class="col-4 eachInfo">                        
+                                        <div class="blueTxt borderRight">
+                                         
+                                <dp-date-picker formControlName="PTO_Submitted_Date" class="customDatePicker"></dp-date-picker>         
+                            </div>
+                                       
+                                    </div>
+                                    <div class="col-4 eachInfo selectDiv">                        
+                                        <div class="blueTxt">
+                                            <select formControlName="PTO_Submitted_Time">
+                                                <option value="-1">Select time</option>
+                                                <option *ngFor="let channel of masterData?.Time" [value]="channel?.value">{{channel?.value}}</option>
+                                            </select> 
+                                            
+                                        </div>
+                                      
+                                    </div>
+                                </div>
+                            </div>       
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="mb-4 eachInfoDiv">
+                                <div class="row">
+                                    <div class="col-4 titleTxt">UB Page 2: </div>
+                                    <div class="col-8 eachInfo" (click)="editSaveField('UB_Page_2')">                        
+                                        <div class="blueTxt">
+                                            <input type="text"
+                                class="form-control" formControlName="UB_Page_2"
+                                id="UB_Page_2" [value]="dealDetails?.UB_Page_2 == null ? '-' : dealDetails?.UB_Page_2" readonly autocomplete="off"/>
+                                        </div>
+                                        <div class="textBoxIcon"></div>
+                                    </div>
+                                </div>
+                            </div>       
+                        </div>
+                        <div class="col-6">
+                            <div class="mb-4 eachInfoDiv">
+                                <div class="row">
+                                    <div class="col-4 titleTxt">PTO: </div>
+                                    <div class="col-8 eachInfo">                        
+                                        <div class="blueTxt dateDivFull">
+                                          
+                                <dp-date-picker formControlName="PTO" class="customDatePicker"></dp-date-picker>             
+                            </div>
+                                
+                                    </div>
+                                </div>
+                            </div>       
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="mb-4 eachInfoDiv">
+                                <div class="row">
+                                    <div class="col-4 titleTxt">Usage Page: </div>
+                                    <div class="col-8 eachInfo" (click)="editSaveField('Usage_Page')">                        
+                                        <div class="blueTxt">
+                                            <input type="text"
+                                class="form-control" formControlName="Usage_Page"
+                                id="Usage_Page" [value]="dealDetails?.Usage_Page == null ? '-' : dealDetails?.Usage_Page" readonly autocomplete="off"/>
+                                        </div>
+                                        <div class="textBoxIcon"></div>
+                                    </div>
+                                </div>
+                            </div>       
+                        </div>
+                        <div class="col-6">
+                            <div class="mb-4 eachInfoDiv">
+                                <div class="row">
+                                    <div class="col-4 titleTxt">VCR Completed: </div>
+                                    <div class="col-8 eachInfo selectDiv" >                        
+                                        <div class="blueTxt">
+                                           
+                                <select formControlName="VCR_Completed">
+                                    <option value="-1">Select None</option>
+                                    <option *ngFor="let yesNo of masterData?.YesNoChoice" [value]="yesNo?.value">{{yesNo?.value}}</option>
+                                </select>           
+                            </div>
+                                    </div>
+                                </div>
+                            </div>       
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="mb-4 eachInfoDiv">
+                                <div class="row">
+                                    <div class="col-4 titleTxt">IA / HIC: </div>
+                                    <div class="col-8 eachInfo" (click)="editSaveField('HIC')">                        
+                                        <div class="blueTxt">
+                                            <input type="text"
+                                class="form-control" formControlName="HIC"
+                                id="HIC" [value]="dealDetails?.HIC == null ? '-' : dealDetails?.HIC" readonly autocomplete="off"/>
+                                        </div>
+                                        <div class="textBoxIcon"></div>
+                                    </div>
+                                </div>
+                            </div>       
+                        </div>
+                        <div class="col-6">
+                            <div class="mb-4 eachInfoDiv">
+                                <div class="row">
+                                    <div class="col-4 titleTxt">Expected Profit: </div>
+                                    <div class="col-8 eachInfo" (click)="editSaveField('Expected_Profit')">                        
+                                        <div class="blueTxt">
+                                            <input type="text"
+                                            class="form-control" formControlName="Expected_Profit"
+                                            id="Expected_Profit" [value]="dealDetails?.Expected_Profit == null ? '-' : dealDetails?.Expected_Profit" readonly autocomplete="off"/>
+                                        </div>
+                                        <div class="textBoxIcon"></div>
+                                    </div>
+                                </div>
+                            </div>       
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="mb-4 eachInfoDiv">
+                                <div class="row">
+                                    <div class="col-4 titleTxt">Company Cam: </div>
+                                    <div class="col-8 eachInfo" (click)="editSaveField('Company_Cam')">                        
+                                        <div class="blueTxt">
+                                            <input type="text"
+                                class="form-control" formControlName="Company_Cam"
+                                id="Company_Cam" [value]="dealDetails?.Company_Cam == null ? '-' : dealDetails?.Company_Cam" readonly autocomplete="off"/>
+                                        </div>
+                                        <div class="textBoxIcon"></div>
+                                    </div>
+                                </div>
+                            </div>       
+                        </div>
+                        <div class="col-6">
+                               
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card-body contactInfo dealDetails" *ngIf="dealInfoVisible">
+                <div class="p-3 font-size-15rem font-weight-600 d-flex justify-content-between cardHeader">
+                    Description Information
+                </div>
+                <div class="col-12 pr-3">
+                    <div class="row">
+                        <div class="col-8">
+                            <div class="mb-4 eachInfoDiv">
+                                <div class="row">
+                                    <div class="col-3 titleTxt">Description: </div>
+                                    <div class="col-9 eachInfo" (click)="editSaveField('Description')">                        
+                                        <div class="blueTxt">
+                                            <input type="text"
+                                            class="form-control" formControlName="Description"
+                                            id="Description" [value]="dealDetails?.Description == null ? '-' : dealDetails?.Description" readonly autocomplete="off"/>
+                                        </div>
+                                        <div class="textBoxIcon"></div>
+                                    </div>
+                                </div>
+                            </div>       
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+
+        <div class="card shadow">
+            <div class="p-3 text-blue font-size-15rem font-weight-600 d-flex justify-content-between cardHeader">
+                Notes
+                </div>
+                <div class="card-body contactsInfo">   
+                    <textarea placeholder="Add a note..." class="form-control"></textarea>
+                </div>
+        </div>
+        <div class="card shadow">
+            <div class="p-3 text-blue font-size-15rem font-weight-600 d-flex justify-content-between cardHeader">
+                Attachments
+                </div>
+                <div class="card-body contactsInfo">   
+                    <p>No Attachment</p>
+                </div>
+        </div>
+        <div class="card shadow">
+            <div class="p-3 text-blue font-size-15rem font-weight-600 d-flex justify-content-between cardHeader">
+                Contact Roles
+                </div>
+                <div class="card-body contactsInfo">   
+                    <table class="contactTable">
+                        <thead>
+                            <tr>
+                                <td>Contact Name</td>
+                                <td>Phone</td>
+                                <td>Email</td>
+                                <td>Role Name</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let contacts of contactList">
+                                <td class="contactname">{{contacts?.First_Name + ' ' + contacts?.Last_Name}}</td>
+                                <td>{{contacts?.Phone}}</td>
+                                <td>{{contacts?.Email}}</td>
+                                <td>--</td>
+                            </tr>
+                        </tbody>  
+                    </table>
+                </div>
+        </div>
+    </form>
+</div>
+
+
+

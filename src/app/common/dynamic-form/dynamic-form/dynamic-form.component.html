@@ -1,0 +1,108 @@
+<div class="field-container" [formGroup]="form">
+  <div class="row">
+    <div
+      [ngClass]="{
+        'col-md-4': +columnSize === 3,
+        'col-md-6': +columnSize === 2,
+        'col-md-12': +columnSize === 1
+      }"
+      *ngFor="let field of fields"
+    >
+      <ng-container [ngSwitch]="field.fieldType.toLowerCase()">
+        <ng-container *ngIf="!field.readonly">
+          <div class="row">
+            <div class="col-md-12" *ngSwitchCase="'text">
+              <app-input
+                [type]="'text'"
+                [isRequired]="field.isRequired"
+                [label]="field.label"
+                [fieldName]="field.name"
+                [placeholder]="field.placeholder"
+                [errors]="field.errors"
+                [group]="form"
+              ></app-input>
+            </div>
+            <div class="col-md-12" *ngSwitchCase="'email">
+              <app-input-email
+                [type]="'email'"
+                [isRequired]="field.isRequired"
+                [label]="field.label"
+                [fieldName]="field.name"
+                [placeholder]="field.placeholder"
+                [errors]="field.errors"
+                [group]="form"
+              ></app-input-email>
+            </div>
+            <div class="col-md-12" *ngSwitchCase="'interger">
+              <app-input-integer
+                [type]="'number'"
+                [isRequired]="field.isRequired"
+                [label]="field.label"
+                [fieldName]="field.name"
+                [placeholder]="field.placeholder"
+                [errors]="field.errors"
+                [group]="form"
+              ></app-input-integer>
+            </div>
+            <div class="col-md-12" *ngSwitchCase="'number">
+              <app-input-number
+                [type]="'number'"
+                [isRequired]="field.isRequired"
+                [label]="field.label"
+                [fieldName]="field.name"
+                [placeholder]="field.placeholder"
+                [errors]="field.errors"
+                [group]="form"
+              ></app-input-number>
+            </div>
+            <div class="col-md-12" *ngSwitchCase="'textarea">
+              <app-textarea
+                [type]="'number'"
+                [isRequired]="field.isRequired"
+                [label]="field.label"
+                [fieldName]="field.name"
+                [placeholder]="field.placeholder"
+                [errors]="field.errors"
+                [group]="form"
+              ></app-textarea>
+            </div>
+            <div class="col-md-12" *ngSwitchCase="'select">
+              <app-select
+                [isRequired]="field.isRequired"
+                [label]="field.label"
+                [fieldName]="field.name"
+                [options]="field.options"
+                [errors]="field.errors"
+                [group]="form"
+              ></app-select>
+            </div>
+            <div class="col-md-12" *ngSwitchCase="'label">
+              <div class="row cst-label-container">
+                <div class="col-md-4">
+                  <label class="field-label mb-0">{{ field.label }}</label>
+                </div>
+                <div class="col-md-8">
+                  <label class="field-value mb-0">{{
+                    getControl(field.name).value
+                  }}</label>
+                </div>
+              </div>
+            </div>
+          </div>
+        </ng-container>
+        <ng-container *ngIf="field.readonly">
+          <div class="row cst-label-container">
+            <div class="col-md-4">
+              <label class="field-label mb-0">{{ field.label }}</label>
+            </div>
+            <div class="col-md-8">
+              <label class="field-value mb-0">{{
+                getControl(field.name).value
+              }}</label>
+            </div>
+          </div>
+        </ng-container>
+      </ng-container>
+    </div>
+  </div>
+</div>

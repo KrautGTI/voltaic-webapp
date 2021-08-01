@@ -1,0 +1,836 @@
+<div class="container-fluid" style="margin-top: 30px">
+  <form [formGroup]="accountDetailsForm">
+    <div class="card shadow">
+      <div class="card-body accountInfo">
+        <div>
+          <div class="row">
+            <div class="col-md-10 mb-4">
+              <app-select
+                [isRequired]="label.accountOwner.isRequired"
+                [isEditable]="true"
+                [isNewDesing]="true"
+                [label]="label.accountOwner.fieldLabel"
+                [fieldName]="label.accountOwner.fieldName"
+                [options]="leadOwners"
+                [optionConfig]="label.accountOwner.optionConfig"
+                [errors]="label.accountOwner.errors"
+                [group]="accountDetailsForm"
+              ></app-select>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-10 mb-4">
+              <app-select
+                [isRequired]="label.industry.isRequired"
+                [isEditable]="label.industry.isEditable"
+                [isNewDesing]="true"
+                [isFixed]="false"
+                [label]="label.industry.fieldLabel"
+                [fieldName]="label.industry.fieldName"
+                [options]="masterData[label.industry.fieldName]"
+                [optionConfig]="label.industry.optionConfig"
+                [errors]="label.industry.errors"
+                [group]="accountDetailsForm"
+              ></app-select>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-10 mb-4">
+              <app-input
+                [type]="label.employees.fieldType"
+                [isRequired]="label.employees.isRequired"
+                [isEditable]="label.employees.isEditable"
+                [isNewDesing]="true"
+                [isFixed]="false"
+                [label]="label.employees.fieldLabel"
+                [fieldName]="label.employees.fieldName"
+                [placeholder]="label.employees.placeholder"
+                [errors]="label.employees.errors"
+                [group]="accountDetailsForm"
+              ></app-input>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-10 mb-4">
+              <app-input-number
+                [type]="label.annualRevenue.fieldType"
+                [isRequired]="label.annualRevenue.isRequired"
+                [isEditable]="label.annualRevenue.isEditable"
+                [isNewDesing]="true"
+                [isFixed]="false"
+                [label]="label.annualRevenue.fieldLabel"
+                [fieldName]="label.annualRevenue.fieldName"
+                [placeholder]="label.annualRevenue.placeholder"
+                [errors]="label.annualRevenue.errors"
+                [group]="accountDetailsForm"
+              ></app-input-number>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-10 mb-4">
+              <app-input-number
+                [type]="label.phone.fieldType"
+                [isRequired]="label.phone.isRequired"
+                [isEditable]="label.phone.isEditable"
+                [isNewDesing]="true"
+                [isFixed]="false"
+                [label]="label.phone.fieldLabel"
+                [fieldName]="label.phone.fieldName"
+                [placeholder]="label.phone.placeholder"
+                [errors]="label.phone.errors"
+                [group]="accountDetailsForm"
+              ></app-input-number>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card shadow">
+      <div
+        class="
+          p-3
+          text-blue
+          font-size-15rem font-weight-600
+          d-flex
+          justify-content-between
+          cardHeader
+          common-card-header
+        "
+      >
+        Deals
+      </div>
+      <div class="card-body dealsInfo">
+        <div class="row">
+          <div class="col-md-6 left-deals-card">
+            <div class="row mb-4">
+              <div class="col-12 labelText">Adriene Morris</div>
+              <div class="col-12 labelValue">
+                <label>PTO</label>
+                <label class="subLabelValue">May 22, 2021</label>
+              </div>
+            </div>
+            <div class="row mb-4">
+              <div class="col-12 labelText">Shirley Polzer</div>
+              <div class="col-12 labelValue">
+                <label>Design Approved</label>
+                <label class="subLabelValue">Jun 9, 2021</label>
+              </div>
+            </div>
+            <div class="row mb-4">
+              <div class="col-12 labelText">Edward Llanos</div>
+              <div class="col-12 labelValue">
+                <label>Final Inspection Passed</label>
+                <label class="subLabelValue">May 14, 2021</label>
+              </div>
+            </div>
+            <div class="row mb-4">
+              <div class="col-12 labelText">Robert Joe</div>
+              <div class="col-12 labelValue">
+                <label>Installation Complete</label>
+                <label class="subLabelValue">May 25, 2021</label>
+              </div>
+            </div>
+            <div class="row mb-4">
+              <div class="col-12 labelText">Diana Kuwabara</div>
+              <div class="col-12 labelValue">
+                <label>Installation Complete</label>
+                <label class="subLabelValue">May 14, 2021</label>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 right-deals-card"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card shadow">
+      <div
+        class="
+          p-3
+          text-blue
+          font-size-15rem font-weight-600
+          d-flex
+          justify-content-between
+          cardHeader
+          common-card-header
+        "
+      >
+        Hide Details
+      </div>
+      <div class="card-body accountDetails">
+        <div
+          class="
+            p-3
+            font-size-15rem font-weight-600
+            d-flex
+            justify-content-between
+            cardHeader
+          "
+        >
+          Account Information
+        </div>
+        <div>
+          <div class="row">
+            <div class="col-md-6 mb-4">
+              <app-select
+                [isRequired]="label.accountOwner.isRequired"
+                [isEditable]="label.accountOwner.isEditable"
+                [isNewDesing]="true"
+                [isFixed]="false"
+                [label]="label.accountOwner.fieldLabel"
+                [fieldName]="label.accountOwner.fieldName"
+                [options]="leadOwners"
+                [optionConfig]="label.accountOwner.optionConfig"
+                [errors]="label.accountOwner.errors"
+                [group]="accountDetailsForm"
+              ></app-select>
+            </div>
+            <div class="col-md-6 mb-4">
+              <app-select
+                [isRequired]="label.rating.isRequired"
+                [isEditable]="label.rating.isEditable"
+                [isNewDesing]="true"
+                [isFixed]="false"
+                [label]="label.rating.fieldLabel"
+                [fieldName]="label.rating.fieldName"
+                [options]="masterData[label.rating.fieldName]"
+                [optionConfig]="label.rating.optionConfig"
+                [errors]="label.rating.errors"
+                [group]="accountDetailsForm"
+              ></app-select>
+            </div>
+            <div class="col-md-6 mb-4">
+              <app-input
+                [isRequired]="label.accountName.isRequired"
+                [isEditable]="label.accountName.isEditable"
+                [isNewDesing]="true"
+                [isFixed]="false"
+                [type]="label.accountName.fieldType"
+                [label]="label.accountName.fieldLabel"
+                [fieldName]="label.accountName.fieldName"
+                [placeholder]="label.accountName.placeholder"
+                [errors]="label.accountName.errors"
+                [group]="accountDetailsForm"
+              ></app-input>
+            </div>
+            <div class="col-md-6 mb-4">
+              <app-input-number
+                [isRequired]="label.phone.isRequired"
+                [isEditable]="label.phone.isEditable"
+                [isNewDesing]="true"
+                [isFixed]="false"
+                [type]="label.phone.fieldType"
+                [label]="label.phone.fieldLabel"
+                [fieldName]="label.phone.fieldName"
+                [placeholder]="label.phone.placeholder"
+                [errors]="label.phone.errors"
+                [group]="accountDetailsForm"
+              ></app-input-number>
+            </div>
+            <div class="col-md-6 mb-4">
+              <app-input
+                [isRequired]="label.accountSite.isRequired"
+                [isEditable]="label.accountSite.isEditable"
+                [isNewDesing]="true"
+                [isFixed]="false"
+                [type]="label.accountSite.fieldType"
+                [label]="label.accountSite.fieldLabel"
+                [fieldName]="label.accountSite.fieldName"
+                [placeholder]="label.accountSite.placeholder"
+                [errors]="label.accountSite.errors"
+                [group]="accountDetailsForm"
+              ></app-input>
+            </div>
+            <div class="col-md-6 mb-4">
+              <app-input-number
+                [isRequired]="label.fax.isRequired"
+                [isEditable]="label.fax.isEditable"
+                [isNewDesing]="true"
+                [isFixed]="false"
+                [type]="label.fax.fieldType"
+                [label]="label.fax.fieldLabel"
+                [fieldName]="label.fax.fieldName"
+                [placeholder]="label.fax.placeholder"
+                [errors]="label.fax.errors"
+                [group]="accountDetailsForm"
+              ></app-input-number>
+            </div>
+            <div class="col-md-6 mb-4">
+              <app-input-search
+                [isRequired]="label.parentAccount.isRequired"
+                [isEditable]="label.parentAccount.isEditable"
+                [isNewDesing]="true"
+                [isFixed]="false"
+                [type]="label.parentAccount.fieldType"
+                [label]="label.parentAccount.fieldLabel"
+                [fieldName]="label.parentAccount.fieldName"
+                [placeholder]="label.parentAccount.placeholder"
+                [errors]="label.parentAccount.errors"
+                [searchValues]="searchValues$"
+                [optionConfig]="label.parentAccount.optionConfig"
+                [group]="accountDetailsForm"
+                (cstChange)="onChangeParentAccount($event)"
+              ></app-input-search>
+            </div>
+            <div class="col-md-6 mb-4">
+              <app-input
+                [isRequired]="label.website.isRequired"
+                [isEditable]="label.website.isEditable"
+                [isNewDesing]="true"
+                [isFixed]="false"
+                [type]="label.website.fieldType"
+                [label]="label.website.fieldLabel"
+                [fieldName]="label.website.fieldName"
+                [placeholder]="label.website.placeholder"
+                [errors]="label.website.errors"
+                [group]="accountDetailsForm"
+              ></app-input>
+            </div>
+            <div class="col-md-6 mb-4">
+              <app-input-number
+                [isRequired]="label.accountNumber.isRequired"
+                [isEditable]="label.accountNumber.isEditable"
+                [isNewDesing]="true"
+                [isFixed]="false"
+                [type]="label.accountNumber.fieldType"
+                [label]="label.accountNumber.fieldLabel"
+                [fieldName]="label.accountNumber.fieldName"
+                [placeholder]="label.accountNumber.placeholder"
+                [errors]="label.accountNumber.errors"
+                [group]="accountDetailsForm"
+              ></app-input-number>
+            </div>
+            <div class="col-md-6 mb-4">
+              <app-input
+                [isRequired]="label.tickerSymbol.isRequired"
+                [isEditable]="label.tickerSymbol.isEditable"
+                [isNewDesing]="true"
+                [isFixed]="false"
+                [type]="label.tickerSymbol.fieldType"
+                [label]="label.tickerSymbol.fieldLabel"
+                [fieldName]="label.tickerSymbol.fieldName"
+                [placeholder]="label.tickerSymbol.placeholder"
+                [errors]="label.tickerSymbol.errors"
+                [group]="accountDetailsForm"
+              ></app-input>
+            </div>
+            <div class="col-md-6 mb-4">
+              <app-select
+                [isRequired]="label.accountType.isRequired"
+                [isEditable]="label.accountType.isEditable"
+                [isNewDesing]="true"
+                [isFixed]="false"
+                [label]="label.accountType.fieldLabel"
+                [fieldName]="label.accountType.fieldName"
+                [options]="masterData[label.accountType.fieldName]"
+                [optionConfig]="label.accountType.optionConfig"
+                [errors]="label.accountType.errors"
+                [group]="accountDetailsForm"
+              ></app-select>
+            </div>
+            <div class="col-md-6 mb-4">
+              <app-select
+                [isRequired]="label.ownership.isRequired"
+                [isEditable]="label.ownership.isEditable"
+                [isNewDesing]="true"
+                [isFixed]="false"
+                [label]="label.ownership.fieldLabel"
+                [fieldName]="label.ownership.fieldName"
+                [options]="masterData[label.ownership.fieldName]"
+                [optionConfig]="label.ownership.optionConfig"
+                [errors]="label.ownership.errors"
+                [group]="accountDetailsForm"
+              ></app-select>
+            </div>
+            <div class="col-md-6 mb-4">
+              <app-select
+                [isRequired]="label.industry.isRequired"
+                [isEditable]="label.industry.isEditable"
+                [isNewDesing]="true"
+                [isFixed]="false"
+                [label]="label.industry.fieldLabel"
+                [fieldName]="label.industry.fieldName"
+                [options]="masterData[label.industry.fieldName]"
+                [optionConfig]="label.industry.optionConfig"
+                [errors]="label.industry.errors"
+                [group]="accountDetailsForm"
+              ></app-select>
+            </div>
+            <div class="col-md-6 mb-4">
+              <app-input
+                [isRequired]="label.employees.isRequired"
+                [isEditable]="label.employees.isEditable"
+                [isNewDesing]="true"
+                [isFixed]="false"
+                [type]="label.employees.fieldType"
+                [label]="label.employees.fieldLabel"
+                [fieldName]="label.employees.fieldName"
+                [placeholder]="label.employees.placeholder"
+                [errors]="label.employees.errors"
+                [group]="accountDetailsForm"
+              ></app-input>
+            </div>
+            <div class="col-md-6 mb-4">
+              <app-input-number
+                [isRequired]="label.annualRevenue.isRequired"
+                [isEditable]="label.annualRevenue.isEditable"
+                [isNewDesing]="true"
+                [isFixed]="false"
+                [type]="label.annualRevenue.fieldType"
+                [label]="label.annualRevenue.fieldLabel"
+                [fieldName]="label.annualRevenue.fieldName"
+                [placeholder]="label.annualRevenue.placeholder"
+                [errors]="label.annualRevenue.errors"
+                [group]="accountDetailsForm"
+              ></app-input-number>
+            </div>
+            <div class="col-md-6 mb-4">
+              <app-input
+                [isRequired]="label.sICCode.isRequired"
+                [isEditable]="label.sICCode.isEditable"
+                [isNewDesing]="true"
+                [isFixed]="false"
+                [type]="label.sICCode.fieldType"
+                [label]="label.sICCode.fieldLabel"
+                [fieldName]="label.sICCode.fieldName"
+                [placeholder]="label.sICCode.placeholder"
+                [errors]="label.sICCode.errors"
+                [group]="accountDetailsForm"
+              ></app-input>
+            </div>
+            <div class="col-md-6 mb-4">
+              <div class="row">
+                <label class="form-label col-4"> Created By </label>
+                <span class="form-value col-8">
+                  <label class="form-label">{{
+                    getControl("Created_By")!.value
+                  }}</label>
+                  <label class="form-sub-label">{{
+                    getControl("Created_Time")!.value
+                  }}</label>
+                </span>
+              </div>
+            </div>
+            <div class="col-md-6 mb-4">
+              <div class="row">
+                <label class="form-label col-4"> Modified By </label>
+                <span class="form-value col-8">
+                  <label class="form-label">{{
+                    getControl("Modified_By")!.value
+                  }}</label>
+                  <label class="form-sub-label">{{
+                    getControl("Modified_Time")!.value
+                  }}</label>
+                </span>
+              </div>
+            </div>
+            <div class="col-md-6 mb-4">
+              <app-input-number
+                [isRequired]="label.averageBill.isRequired"
+                [isEditable]="label.averageBill.isEditable"
+                [isNewDesing]="true"
+                [isFixed]="false"
+                [type]="label.averageBill.fieldType"
+                [label]="label.averageBill.fieldLabel"
+                [fieldName]="label.averageBill.fieldName"
+                [placeholder]="label.averageBill.placeholder"
+                [errors]="label.averageBill.errors"
+                [group]="accountDetailsForm"
+              ></app-input-number>
+            </div>
+            <div class="col-md-6 mb-4">
+              <app-input
+                [isRequired]="label.rescheduleCycleTime.isRequired"
+                [isEditable]="label.rescheduleCycleTime.isEditable"
+                [isNewDesing]="true"
+                [isFixed]="false"
+                [type]="label.rescheduleCycleTime.fieldType"
+                [label]="label.rescheduleCycleTime.fieldLabel"
+                [fieldName]="label.rescheduleCycleTime.fieldName"
+                [placeholder]="label.rescheduleCycleTime.placeholder"
+                [errors]="label.rescheduleCycleTime.errors"
+                [group]="accountDetailsForm"
+              ></app-input>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card-body accountDetails">
+        <div
+          class="
+            p-3
+            font-size-15rem font-weight-600
+            d-flex
+            justify-content-between
+            cardHeader
+          "
+        >
+          Address Information
+        </div>
+        <div>
+          <div class="row">
+            <div class="col-md-6 mb-4">
+              <app-input
+                [isRequired]="addrLabel.billingStreet.isRequired"
+                [isEditable]="addrLabel.billingStreet.isEditable"
+                [isNewDesing]="true"
+                [isFixed]="false"
+                [type]="addrLabel.billingStreet.fieldType"
+                [label]="addrLabel.billingStreet.fieldLabel"
+                [fieldName]="addrLabel.billingStreet.fieldName"
+                [placeholder]="addrLabel.billingStreet.placeholder"
+                [errors]="addrLabel.billingStreet.errors"
+                [group]="accountDetailsForm"
+              ></app-input>
+            </div>
+            <div class="col-md-6 mb-4">
+              <app-input
+                [isRequired]="addrLabel.shippingStreet.isRequired"
+                [isEditable]="addrLabel.shippingStreet.isEditable"
+                [isNewDesing]="true"
+                [isFixed]="false"
+                [type]="addrLabel.shippingStreet.fieldType"
+                [label]="addrLabel.shippingStreet.fieldLabel"
+                [fieldName]="addrLabel.shippingStreet.fieldName"
+                [placeholder]="addrLabel.shippingStreet.placeholder"
+                [errors]="addrLabel.shippingStreet.errors"
+                [group]="accountDetailsForm"
+              ></app-input>
+            </div>
+            <div class="col-md-6 mb-4">
+              <app-input
+                [isRequired]="addrLabel.billingCity.isRequired"
+                [isEditable]="addrLabel.billingCity.isEditable"
+                [isNewDesing]="true"
+                [isFixed]="false"
+                [type]="addrLabel.billingCity.fieldType"
+                [label]="addrLabel.billingCity.fieldLabel"
+                [fieldName]="addrLabel.billingCity.fieldName"
+                [placeholder]="addrLabel.billingCity.placeholder"
+                [errors]="addrLabel.billingCity.errors"
+                [group]="accountDetailsForm"
+              ></app-input>
+            </div>
+            <div class="col-md-6 mb-4">
+              <app-input
+                [isRequired]="addrLabel.shippingCity.isRequired"
+                [isEditable]="addrLabel.shippingCity.isEditable"
+                [isNewDesing]="true"
+                [isFixed]="false"
+                [type]="addrLabel.shippingCity.fieldType"
+                [label]="addrLabel.shippingCity.fieldLabel"
+                [fieldName]="addrLabel.shippingCity.fieldName"
+                [placeholder]="addrLabel.shippingCity.placeholder"
+                [errors]="addrLabel.shippingCity.errors"
+                [group]="accountDetailsForm"
+              ></app-input>
+            </div>
+            <div class="col-md-6 mb-4">
+              <app-input
+                [isRequired]="addrLabel.billingState.isRequired"
+                [isEditable]="addrLabel.billingState.isEditable"
+                [isNewDesing]="true"
+                [isFixed]="false"
+                [type]="addrLabel.billingState.fieldType"
+                [label]="addrLabel.billingState.fieldLabel"
+                [fieldName]="addrLabel.billingState.fieldName"
+                [placeholder]="addrLabel.billingState.placeholder"
+                [errors]="addrLabel.billingState.errors"
+                [group]="accountDetailsForm"
+              ></app-input>
+            </div>
+            <div class="col-md-6 mb-4">
+              <app-input
+                [isRequired]="addrLabel.shippingState.isRequired"
+                [isEditable]="addrLabel.shippingState.isEditable"
+                [isNewDesing]="true"
+                [isFixed]="false"
+                [type]="addrLabel.shippingState.fieldType"
+                [label]="addrLabel.shippingState.fieldLabel"
+                [fieldName]="addrLabel.shippingState.fieldName"
+                [placeholder]="addrLabel.shippingState.placeholder"
+                [errors]="addrLabel.shippingState.errors"
+                [group]="accountDetailsForm"
+              ></app-input>
+            </div>
+            <div class="col-md-6 mb-4">
+              <app-input
+                [isRequired]="addrLabel.billingCode.isRequired"
+                [isEditable]="addrLabel.billingCode.isEditable"
+                [isNewDesing]="true"
+                [isFixed]="false"
+                [type]="addrLabel.billingCode.fieldType"
+                [label]="addrLabel.billingCode.fieldLabel"
+                [fieldName]="addrLabel.billingCode.fieldName"
+                [placeholder]="addrLabel.billingCode.placeholder"
+                [errors]="addrLabel.billingCode.errors"
+                [group]="accountDetailsForm"
+              ></app-input>
+            </div>
+            <div class="col-md-6 mb-4">
+              <app-input
+                [isRequired]="addrLabel.shippingCode.isRequired"
+                [isEditable]="addrLabel.shippingCode.isEditable"
+                [isNewDesing]="true"
+                [isFixed]="false"
+                [type]="addrLabel.shippingCode.fieldType"
+                [label]="addrLabel.shippingCode.fieldLabel"
+                [fieldName]="addrLabel.shippingCode.fieldName"
+                [placeholder]="addrLabel.shippingCode.placeholder"
+                [errors]="addrLabel.shippingCode.errors"
+                [group]="accountDetailsForm"
+              ></app-input>
+            </div>
+            <div class="col-md-6 mb-4">
+              <app-input
+                [isRequired]="addrLabel.billingCountry.isRequired"
+                [isEditable]="addrLabel.billingCountry.isEditable"
+                [isNewDesing]="true"
+                [isFixed]="false"
+                [type]="addrLabel.billingCountry.fieldType"
+                [label]="addrLabel.billingCountry.fieldLabel"
+                [fieldName]="addrLabel.billingCountry.fieldName"
+                [placeholder]="addrLabel.billingCountry.placeholder"
+                [errors]="addrLabel.billingCountry.errors"
+                [group]="accountDetailsForm"
+              ></app-input>
+            </div>
+            <div class="col-md-6 mb-4">
+              <app-input
+                [isRequired]="addrLabel.shippingCountry.isRequired"
+                [isEditable]="addrLabel.shippingCountry.isEditable"
+                [isNewDesing]="true"
+                [isFixed]="false"
+                [type]="addrLabel.shippingCountry.fieldType"
+                [label]="addrLabel.shippingCountry.fieldLabel"
+                [fieldName]="addrLabel.shippingCountry.fieldName"
+                [placeholder]="addrLabel.shippingCountry.placeholder"
+                [errors]="addrLabel.shippingCountry.errors"
+                [group]="accountDetailsForm"
+              ></app-input>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card-body accountDetails">
+        <div
+          class="
+            p-3
+            font-size-15rem font-weight-600
+            d-flex
+            justify-content-between
+            cardHeader
+          "
+        >
+          Description Information
+        </div>
+        <div>
+          <div>
+            <div class="row">
+              <div class="col-md-6 mb-4">
+                <app-textarea
+                  [isRequired]="descLabel.description.isRequired"
+                  [isEditable]="descLabel.description.isEditable"
+                  [isNewDesing]="true"
+                  [isFixed]="false"
+                  [type]="descLabel.description.fieldType"
+                  [label]="descLabel.description.fieldLabel"
+                  [fieldName]="descLabel.description.fieldName"
+                  [placeholder]="descLabel.description.placeholder"
+                  [errors]="descLabel.description.errors"
+                  [group]="accountDetailsForm"
+                ></app-textarea>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card shadow">
+      <div
+        class="
+          p-3
+          text-blue
+          font-size-15rem font-weight-600
+          d-flex
+          justify-content-between
+          cardHeader
+        "
+      >
+        Notes
+      </div>
+      <div class="card-body dealsInfo">
+        <textarea
+          placeholder="Add a note..."
+          class="form-control"
+          formControlName="Notes"
+        ></textarea>
+      </div>
+    </div>
+    <div class="card shadow">
+      <div
+        class="
+          p-3
+          text-blue
+          font-size-15rem font-weight-600
+          d-flex
+          justify-content-between
+          cardHeader
+        "
+      >
+        Attachments
+      </div>
+      <div class="card-body dealsInfo">
+        <p>No Attachment</p>
+      </div>
+    </div>
+    <div class="card shadow">
+      <div
+        class="
+          p-3
+          text-blue
+          font-size-15rem font-weight-600
+          d-flex
+          justify-content-between
+          cardHeader
+        "
+      >
+        Deals
+      </div>
+      <div class="card-body dealsInfo">
+        <table class="dealTable">
+          <thead>
+            <tr>
+              <td>Deal Name</td>
+              <td>Stage</td>
+              <td>Closing Date</td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let deals of dealsList">
+              <td class="dealname">{{ deals.Deal_Name }}</td>
+              <td>{{ deals.Stage_Name }}</td>
+              <td>
+                {{ deals.Closing_Date == null ? "-" : deals.Closing_Date }}
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="card shadow">
+      <div
+        class="
+          p-3
+          text-blue
+          font-size-15rem font-weight-600
+          d-flex
+          justify-content-between
+          cardHeader
+        "
+      >
+        Contracts
+      </div>
+      <div class="card-body dealsInfo">
+        <table class="dealTable">
+          <thead>
+            <tr>
+              <td>Contract Name</td>
+              <td>Email</td>
+              <td>Phone</td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                {{
+                  contactDetails &&
+                  (contactDetails?.First_Name || contactDetails?.Last_Name)
+                    ? contactDetails?.First_Name +
+                      " " +
+                      contactDetails?.Last_Name
+                    : ""
+                }}
+              </td>
+              <td>{{ contactDetails?.Email }}</td>
+              <td>
+                {{ contactDetails?.Phone }}
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="card shadow">
+      <div
+        class="
+          p-3
+          text-blue
+          font-size-15rem font-weight-600
+          d-flex
+          justify-content-between
+          cardHeader
+        "
+      >
+        Open Activities
+      </div>
+      <div class="card-body dealsInfo"></div>
+    </div>
+    <div class="card shadow">
+      <div
+        class="
+          p-3
+          text-blue
+          font-size-15rem font-weight-600
+          d-flex
+          justify-content-between
+          cardHeader
+        "
+      >
+        Emails
+      </div>
+      <div class="card-body dealsInfo"></div>
+    </div>
+    <div class="card shadow">
+      <div
+        class="
+          p-3
+          text-blue
+          font-size-15rem font-weight-600
+          d-flex
+          justify-content-between
+          cardHeader
+        "
+      >
+        Closed Activities
+      </div>
+      <div class="card-body dealsInfo">
+        <table class="dealTable">
+          <thead>
+            <tr>
+              <td>Subject</td>
+              <td>Activity Type</td>
+              <td>Status</td>
+              <td>Due Date</td>
+              <td>From</td>
+              <td>To</td>
+              <td>Activity Owner</td>
+              <td>Classification</td>
+              <td>Modified Time</td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let deals of dealsList">
+              <td class="dealname">{{ deals.Deal_Name }}</td>
+              <td>{{ deals.Stage_Name }}</td>
+              <td>
+                {{ deals.Closing_Date == null ? "-" : deals.Closing_Date }}
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </form>
+</div>

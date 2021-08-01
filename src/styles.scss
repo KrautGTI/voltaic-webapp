@@ -1,6 +1,6 @@
  //@import "ag-grid-community/dist/styles/ag-grid.css";
  //@import "ag-grid-community/dist/styles/ag-theme-material.css";
-// @import "~bootstrap/dist/css/bootstrap.css";
+//@import "~bootstrap/dist/css/bootstrap.css";
 @import "./styles/utils/functions";
 @import "./styles/themes/theme";
 @import "./styles/utils/variables";
@@ -11,7 +11,7 @@
 @import "./styles/base/typography";
 @import "./styles/base/custom";
 @import "./styles/utils/spacing";
-// @import "~@ng-select/ng-select/themes/default.theme.css";
+@import "~@ng-select/ng-select/themes/default.theme.css";
 
 body {
   overflow-x: hidden;
@@ -60,14 +60,14 @@ body {
 }
 
 //------------Button Class -------------//
-.btn.btn-light {
-  background: #178af6;
-  border-color: #f0f5f9;
-  color: #fcfeff;
-  &:hover {
-    background-color: #98acb3 !important;
-  }
-}
+// .btn.btn-light {
+//   background: #178af6;
+//   border-color: #f0f5f9;
+//   color: #fcfeff;
+//   &:hover {
+//     background-color: #98acb3 !important;
+//   }
+// }
 
 
 .btn.btn-xs {
@@ -179,7 +179,7 @@ body {
   display: inline-block;
   color: #1f1f1f;
   margin-bottom: 5px;
-  width:100%;
+  //width:100%;
 }
 
 .form-bg {

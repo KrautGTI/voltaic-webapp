@@ -1,134 +1,177 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { environment } from '../../environments/environment';
+import { AuthService } from './auth.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class GenericService {
-  authServiceUrl = environment.apiBaseUrl;
-  userDetails: any;
-  constructor(private httpClient: HttpClient) {}
+  private authServiceUrl = environment.apiBaseUrl;
+  private isAdmin: boolean = false;
+
+  constructor(
+    private httpClient: HttpClient,
+    private authService: AuthService
+  ) {}
 
   public loginUser(loginData: any) {
-    const headers = new HttpHeaders({
-      Accept: 'application/json',
-    });
-    const options = { headers: headers };
     const url = this.authServiceUrl + 'user/login';
-    return this.httpClient.post(url, loginData, options);
+    return this.httpClient.post(url, loginData);
   }
 
   public generateOTP(email: any) {
-    const headers = new HttpHeaders({
-      'Content-Type': 'application/json',
-    });
-    const options = { headers: headers };
     const url = this.authServiceUrl + 'user/otpGen';
-    return this.httpClient.post(url, email, options);
+    return this.httpClient.post(url, email);
   }
 
   public setPassoword(resetForm: any) {
-    const headers = new HttpHeaders({
-      'Content-Type': 'application/json',
-    });
-    const options = { headers: headers };
     const url = this.authServiceUrl + 'user/setPassword';
-    return this.httpClient.post(url, resetForm, options);
+    return this.httpClient.post(url, resetForm);
   }
 
-  public getJobReports(token: string, isAdmin: boolean) {
-    const headers = new HttpHeaders({
-      Accept: 'application/json',
-      authorize_token: token
-    });
-    const options = { headers: headers };
+  public getJobReports() {
     const url = this.authServiceUrl + 'masterJob/masterJobs';
-      return this.httpClient.post(url, '', options);
+    return this.httpClient.post(url, '');
   }
 
-  public getAllUsers(token: string, isAdmin: boolean) {
-    const headers = new HttpHeaders({
-      Accept: 'application/json',
-      authorize_token: token
-    });
-    
-    const options = { headers: headers };
+  public getAllUsers() {
     const url = this.authServiceUrl + 'masterJob/getAllUsers';
-      return this.httpClient.post(url, '', options);
+    return this.httpClient.post(url, '');
   }
 
-  public getLeads(token: string, isAdmin: boolean) {
-    const headers = new HttpHeaders({
-        Accept: 'application/json',
-        authorize_token: token
-      });
-    const options = { headers: headers };
+  public getLeads() {
+    this.isAdmin = this.authService.getIsAdmin();
     const url = this.authServiceUrl + 'masterJob/getLeadsContacts';
-    if(isAdmin) {
-      return this.httpClient.post(url, {role: 'admin'}, options);
+    if (this.isAdmin) {
+      return this.httpClient.post(url, { role: 'admin' });
     } else {
-      return this.httpClient.post(url, '', options);
+      return this.httpClient.post(url, '');
     }
-    
   }
 
-  public logoutApi(token: string) {
-    const headers = new HttpHeaders({
-      Accept: 'application/json',
-      authorize_token: token
-    });
-    const options = { headers: headers };
+  public getDeals() {
+    this.isAdmin = this.authService.getIsAdmin();
+    const url = this.authServiceUrl + 'deals/getDealsDashboard';
+    if (this.isAdmin) {
+      return this.httpClient.post(url, { role: 'admin' });
+    } else {
+      return this.httpClient.post(url, '');
+    }
+  }
+  public logoutApi() {
     const url = this.authServiceUrl + 'user/logout';
-    return this.httpClient.post(url, '', options);
+    return this.httpClient.post(url, '');
   }
 
   public getRoles() {
-    const headers = new HttpHeaders({
-      Accept: 'application/json',
-    });  
-    const options = { headers: headers };
     const url = this.authServiceUrl + 'user/getRole';
-      return this.httpClient.get(url, options);
+    return this.httpClient.get(url);
   }
 
   public registerUser(registerData: any) {
-    const headers = new HttpHeaders({
-      Accept: 'application/json',
-    });
-    const options = { headers: headers };
     const url = this.authServiceUrl + 'user/addUser';
-    return this.httpClient.post(url, registerData, options);
+    return this.httpClient.post(url, registerData);
   }
 
-  public getAccounts(token: string, isAdmin: boolean) {
-    const headers = new HttpHeaders({
-        Accept: 'application/json',
-        authorize_token: token
-      });
-    const options = { headers: headers };
+  public getAccounts() {
+    this.isAdmin = this.authService.getIsAdmin();
     const url = this.authServiceUrl + 'accounts/getAccounts';
-    if(isAdmin) {
-      return this.httpClient.post(url, {role: 'admin'}, options);
+    if (this.isAdmin) {
+      return this.httpClient.post(url, { role: 'admin' });
     } else {
-      return this.httpClient.post(url, '', options);
-    }   
-  }
-
-  public getContacts(token: string, isAdmin: boolean) {
-    const headers = new HttpHeaders({
-        Accept: 'application/json',
-        authorize_token: token
-      });
-    const options = { headers: headers };
-    const url = this.authServiceUrl + 'contacts/getContacts';
-    if(isAdmin) {
-      return this.httpClient.post(url, {role: 'admin'}, options);
-    } else {
-      return this.httpClient.post(url, '', options);
+      return this.httpClient.post(url, '');
     }
-    
   }
 
+  public getAccountsForSearch() {
+    this.isAdmin = this.authService.getIsAdmin();
+    const url = this.authServiceUrl + 'accounts/getAccounts';
+    if (this.isAdmin) {
+      return this.httpClient
+        .post(url, { role: 'admin' })
+        .pipe(
+          map((data: any) =>
+            data && data.message && Array.isArray(data.message)
+              ? data.message
+              : []
+          )
+        );
+    } else {
+      return this.httpClient.post(url, '');
+    }
+  }
+
+  public getContacts() {
+    this.isAdmin = this.authService.getIsAdmin();
+    const url = this.authServiceUrl + 'contacts/getContacts';
+    if (this.isAdmin) {
+      return this.httpClient.post(url, { role: 'admin' });
+    } else {
+      return this.httpClient.post(url, '');
+    }
+  }
+
+  public getMentors() {
+    const url = this.authServiceUrl + 'master/getAllMentors';
+    return this.httpClient.get(url);
+  }
+
+  public getMarketers() {
+    const url = this.authServiceUrl + 'master/getAllMarketers';
+    return this.httpClient.get(url);
+  }
+
+  public getStages() {
+    const url = this.authServiceUrl + 'master/getStages';
+    return this.httpClient.get(url);
+  }
+
+  public getSources() {
+    const url = this.authServiceUrl + 'master/getSources';
+    return this.httpClient.get(url);
+  }
+
+  public getEnergyConsultant() {
+    const url = this.authServiceUrl + 'master/getEnergyConsultant';
+    return this.httpClient.get(url);
+  }
+
+  public getSecondMarketers() {
+    const url = this.authServiceUrl + 'master/getSecondMarketers';
+    return this.httpClient.get(url);
+  }
+
+  public getLeadOwners() {
+    const url = this.authServiceUrl + 'master/getLeadOwner';
+    return this.httpClient.get(url);
+  }
+  public getMasterData() {
+    return this.httpClient.get('assets/json/master.json');
+  }
+
+  public getDealsById(dealid: string) {
+    const url = this.authServiceUrl + 'deals/getDealsById';
+    return this.httpClient.post(url, { dealId: dealid });
+  }
+
+  public getDealsFromContact(contactid: string) {
+    const url = this.authServiceUrl + 'contacts/getDealsFromContact';
+    return this.httpClient.post(url, { contact_id: contactid });
+  }
+  public getDealsFromAccount(accountId: string) {
+    const url = this.authServiceUrl + 'accounts/getDealsByAccount';
+    return this.httpClient.post(url, { account_id: accountId });
+  }
+  public addModifyAccounts(data: any): any {
+    data.login_id = this.authService.getUserId();
+    const url = this.authServiceUrl + 'accounts/addModifyAccounts';
+    return this.httpClient.post(url, data);
+  }
+
+  public addModifyContact(contactDetails: any) {
+    const url = this.authServiceUrl + 'contacts/addModifyContacts';
+    return this.httpClient.post(url, contactDetails);
+  }
 }

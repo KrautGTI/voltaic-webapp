@@ -15,13 +15,29 @@
     display:flex; 
 }
 
-.breadcrumbDiv {
+.rightMarginDiv {
+  padding-right:15px;
+}
+
+.breadcrumbDiv, .createBtnDiv {
     margin-top:20px!important;
+    width:50%;
+    display: inline-block;
+}
+.createBtnDiv {
+  text-align:right;
+  vertical-align: super;
+}
+
+.btn-primary.createBtn {
+  background-color: #A239CA;
+  font-size: 14px;
+  border: none;
 }
 
 .rightContentDiv {
-margin-left:25px;
-margin-bottom: 50px;
+  margin-left:25px;
+  margin-bottom: 50px;
 }
 
 .breadcrumb { 

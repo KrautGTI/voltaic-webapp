@@ -3,17 +3,16 @@ import { GenericService } from '../../../service/generic.service';
 import '@ag-grid-community/all-modules/dist/styles/ag-grid.css';
 import '@ag-grid-community/core/dist/styles/ag-theme-balham.css';
 import { AllModules } from '@ag-grid-enterprise/all-modules';
-import { LoaderService } from "../../../shared/loader/loader.service";
-import { Router } from "@angular/router";
+import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
+import { NotificationService } from 'src/app/service/notification.service';
 
 @Component({
   selector: 'app-job-reports',
   templateUrl: './job-reports.component.html',
-  styleUrls: ['./job-reports.component.scss']
+  styleUrls: ['./job-reports.component.scss'],
 })
 export class JobReportsComponent implements OnInit {
-
   modules: any[] = AllModules;
   gridApi: any;
   gridColumnApi: any;
@@ -36,47 +35,64 @@ export class JobReportsComponent implements OnInit {
   rowHeight: any;
   paginationNumberFormatter: any;
   sortingOrder: any;
-  userDetails: any;
-  isAdmin: boolean = false;
   constructor(
     private genericService: GenericService,
-    private loaderService: LoaderService,
-    private router: Router
+    private router: Router,
+    private notificationService: NotificationService
   ) {}
 
   ngOnInit(): void {
-    const userData = sessionStorage.getItem('user');
-    this.userDetails = userData
-      ? JSON.parse(userData)
-      : null;
-    this.isAdmin = this.userDetails.user_role === 'admin' ? true : false;
-    this.loaderService.show();
     this.columnDefs = [
       {
         headerName: 'Job Name',
         field: 'job_name',
-        cellStyle: { color: '#212121', 'font-size': '14px', height: '40px', cursor: 'pointer' },
+        cellStyle: {
+          color: '#212121',
+          'font-size': '14px',
+          height: '40px',
+          cursor: 'pointer',
+        },
       },
       {
         headerName: 'Company',
         field: 'company',
-        cellStyle: { color: '#212121', 'font-size': '14px', height: '40px', cursor: 'pointer' },
+        cellStyle: {
+          color: '#212121',
+          'font-size': '14px',
+          height: '40px',
+          cursor: 'pointer',
+        },
       },
       {
         headerName: 'City',
         field: 'address_city',
-        cellStyle: { color: '#212121', 'font-size': '14px', height: '40px', cursor: 'pointer' },
+        cellStyle: {
+          color: '#212121',
+          'font-size': '14px',
+          height: '40px',
+          cursor: 'pointer',
+        },
       },
       {
         headerName: 'Phone',
         field: 'phone',
-        cellStyle: { color: '#212121', 'font-size': '14px', height: '40px', cursor: 'pointer' },
+        cellStyle: {
+          color: '#212121',
+          'font-size': '14px',
+          height: '40px',
+          cursor: 'pointer',
+        },
       },
       {
         headerName: 'Contract Amount',
         field: 'contract_amount',
-        cellStyle: { color: '#212121', 'font-size': '14px', height: '40px', cursor: 'pointer' },
-      }, 
+        cellStyle: {
+          color: '#212121',
+          'font-size': '14px',
+          height: '40px',
+          cursor: 'pointer',
+        },
+      },
       // {
       //   headerName: 'Contract Date',
       //   field: 'contract_date',
@@ -88,44 +104,74 @@ export class JobReportsComponent implements OnInit {
       {
         headerName: 'Engineering',
         field: 'engineering',
-        cellStyle: { color: '#212121', 'font-size': '14px', height: '40px', cursor: 'pointer' },
+        cellStyle: {
+          color: '#212121',
+          'font-size': '14px',
+          height: '40px',
+          cursor: 'pointer',
+        },
         cellRenderer: (params: any) => {
-         return params.value;
-        }
+          return params.value;
+        },
       },
       {
         headerName: 'Inspection',
         field: 'inspection',
-        cellStyle: { color: '#212121', 'font-size': '14px', height: '40px', cursor: 'pointer' },
+        cellStyle: {
+          color: '#212121',
+          'font-size': '14px',
+          height: '40px',
+          cursor: 'pointer',
+        },
         cellRenderer: (params: any) => {
           return params.value;
-         }
+        },
       },
       {
         headerName: 'Installation',
         field: 'installation',
-        cellStyle: { color: '#212121', 'font-size': '14px', height: '40px', cursor: 'pointer' },
+        cellStyle: {
+          color: '#212121',
+          'font-size': '14px',
+          height: '40px',
+          cursor: 'pointer',
+        },
         cellRenderer: (params: any) => {
           return params.value;
-         }
+        },
       },
       {
         headerName: 'job Acceptance Status',
         field: 'job_acceptance_status',
-        cellStyle: { color: '#212121', 'font-size': '14px', height: '40px', cursor: 'pointer' },
+        cellStyle: {
+          color: '#212121',
+          'font-size': '14px',
+          height: '40px',
+          cursor: 'pointer',
+        },
         cellRenderer: (params: any) => {
           return params.value;
-         }
+        },
       },
       {
         headerName: 'CRM',
         field: 'crm',
-        cellStyle: { color: '#212121', 'font-size': '14px', height: '40px', cursor: 'pointer' },
+        cellStyle: {
+          color: '#212121',
+          'font-size': '14px',
+          height: '40px',
+          cursor: 'pointer',
+        },
       },
       {
         headerName: 'Market',
         field: 'market',
-        cellStyle: { color: '#212121', 'font-size': '14px', height: '40px', cursor: 'pointer' },
+        cellStyle: {
+          color: '#212121',
+          'font-size': '14px',
+          height: '40px',
+          cursor: 'pointer',
+        },
       },
       {
         headerName: 'System Size',
@@ -148,7 +194,7 @@ export class JobReportsComponent implements OnInit {
         cellStyle: { color: '#212121', 'font-size': '14px', height: '40px' },
         cellRenderer: (params: any) => {
           return params.value;
-         }
+        },
       },
       {
         headerName: 'Permit',
@@ -156,7 +202,7 @@ export class JobReportsComponent implements OnInit {
         cellStyle: { color: '#212121', 'font-size': '14px', height: '40px' },
         cellRenderer: (params: any) => {
           return params.value;
-         }
+        },
       },
       {
         headerName: 'Phase',
@@ -164,15 +210,20 @@ export class JobReportsComponent implements OnInit {
         cellStyle: { color: '#212121', 'font-size': '14px', height: '40px' },
         cellRenderer: (params: any) => {
           return params.value;
-         }
+        },
       },
       {
         headerName: 'PTO',
         field: 'pto',
-        cellStyle: { color: '#212121', 'font-size': '14px', height: '40px', cursor: 'pointer' },
+        cellStyle: {
+          color: '#212121',
+          'font-size': '14px',
+          height: '40px',
+          cursor: 'pointer',
+        },
         cellRenderer: (params: any) => {
           return params.value;
-         }
+        },
       },
       // {
       //   headerName: 'PV Planset',
@@ -194,8 +245,6 @@ export class JobReportsComponent implements OnInit {
       //   field: 'permit_card',
       //   cellStyle: { color: '#212121', 'font-size': '14px', height: '40px' },
       // },
-      
-      
     ];
     this.defaultColDef = {
       sortable: true,
@@ -236,9 +285,9 @@ export class JobReportsComponent implements OnInit {
     this.gridApi?.sizeColumnsToFit();
   }
 
-  onRowClick(event:any) {
-   // console.log(event.data.id);
-   // this.router.navigate(['post-auth/contact/details'], { queryParams: { contactId: event.data.id } });
+  onRowClick(event: any) {
+    // console.log(event.data.id);
+    // this.router.navigate(['post-auth/contact/details'], { queryParams: { contactId: event.data.id } });
   }
 
   onRowGroupOpeneds(params: any) {}
@@ -246,41 +295,26 @@ export class JobReportsComponent implements OnInit {
   onGridReady(params: any) {
     this.gridApi = params.api;
     this.gridColumnApi = params.columnApi;
-      this.genericService.getJobReports(this.userDetails.authorize_token, this.isAdmin).subscribe((reportList: any) => {
+    this.genericService.getJobReports().subscribe(
+      (reportList: any) => {
         console.log(reportList);
-        if(reportList?.message != 'Server Error' && reportList?.error?.name != 'TokenExpiredError'){
-        this.jobReportList = reportList.message;
-        this.rowData = this.jobReportList;
-        this.loaderService.hide();
-        this.sizeToFit();
-      }  else if(reportList?.error?.name === 'TokenExpiredError'){
-        const errMsg = "Session Expired !! Please login again.";
-        Swal.fire({
-          text: errMsg, icon: 'error', confirmButtonColor: '#A239CA',
-          confirmButtonText: 'OK'
-        }).then(res => {
-          this.logout();
-        });
+        if (
+          reportList?.message != 'Server Error' &&
+          reportList?.error?.name != 'TokenExpiredError'
+        ) {
+          this.jobReportList = reportList.message;
+          this.rowData = this.jobReportList;
+          this.sizeToFit();
+        } else if (reportList?.error?.name === 'TokenExpiredError') {
+          const errMsg = 'Session Expired !! Please login again.';
+          this.notificationService.error(errMsg, true);
+        }
+      },
+      (error) => {
+        const errMsg = 'Unable To fetch data. Please try again.';
+        this.notificationService.error(errMsg);
       }
-      }, (error) => {
-          this.loaderService.hide();
-          const errMsg = "Unable To fetch data. Please try again.";
-          Swal.fire({
-            text: errMsg, icon: 'error', confirmButtonColor: '#A239CA',
-            confirmButtonText: 'OK'
-          });
-      });
+    );
     // }
   }
-
-  logout() {
-    this.genericService.logoutApi(this.userDetails.authorize_token).subscribe((data: any) => { 
-      console.log(data);
-      sessionStorage.clear();
-      this.router.navigate(['/login'], {
-        replaceUrl: true
-      });
-    });
-  }
 }
-

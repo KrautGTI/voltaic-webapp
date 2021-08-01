@@ -1,0 +1,13 @@
+<form [formGroup]="reportTypeForm">
+  <div class="row mb-4">
+    <div class="col-6"></div>
+  </div>
+  <div class="row mb-4" *ngIf="isVisibleBtn">
+    <div class="col-6">
+      <app-btn-primary
+        [btnName]="'Continue'"
+        (btnClick)="onContinue()"
+      ></app-btn-primary>
+    </div>
+  </div>
+</form>

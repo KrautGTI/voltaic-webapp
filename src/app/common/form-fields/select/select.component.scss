@@ -1,0 +1,70 @@
+.form-label {
+  font-weight: 500;
+  font-size: 16px;
+  display: inline-block;
+  color: #616e88;
+  vertical-align: top;
+  text-align: right;
+  padding-right: 30px;
+}
+.mandatory-style {
+  font-size: 16px;
+  color: #ec1616;
+}
+
+.form-error {
+  label {
+    font-size: 14px;
+    color: #ec1616;
+    margin-bottom: 0;
+    margin-top: 5px;
+  }
+}
+.eachInfo {
+  .form-control {
+    appearance: auto;
+  }
+}
+.eachInfoWraper {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid #bec5d4;
+  padding-bottom: 1px;
+  cursor: pointer;
+  .form-control {
+    appearance: none;
+    border: none;
+    &:focus {
+      box-shadow: none;
+    }
+  }
+  .isEditable {
+    appearance: auto;
+    border: none;
+  }
+  .w-100 {
+    width: 100%;
+  }
+  .icon-style {
+    display: inline-block;
+    float: right;
+    cursor: pointer;
+    background-size: cover;
+  }
+  .edit-icon {
+    background-image: url("../../../../assets/images/pencil-fill.svg");
+    height: 18px;
+    width: 18px;
+  }
+
+  .check-icon {
+    background-image: url("../../../../assets/images/check-square-fill.svg");
+    height: 25px;
+    width: 25px;
+  }
+}
+.form-control:disabled,
+.form-control[readonly] {
+  background-color: #fff;
+  opacity: 1;
+}

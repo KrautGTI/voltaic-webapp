@@ -1,0 +1,94 @@
+<div class="select" [formGroup]="group">
+  <div class="row">
+    <label class="form-label col-4" *ngIf="label">
+      {{ label }}
+      <span *ngIf="isRequired" class="mandatory-style">*</span>
+    </label>
+
+    <div class="col-8 eachInfo" *ngIf="!isNewDesing">
+      <div class="blueTxt">
+        <select
+          [name]="fieldName"
+          [formControlName]="fieldName"
+          [ngClass]="{
+            'select-error':
+              groupControl!.invalid &&
+              (groupControl!.dirty || groupControl!.touched)
+          }"
+          [class]="'select-data form-control ' + class"
+          (blur)="onBlur($event)"
+          (change)="onChange($event)"
+          #inputRef
+        >
+          <option value="">Select None</option>
+          <option *ngFor="let option of modifiedOptions" [value]="option.value">
+            {{ option.label }}
+          </option>
+        </select>
+        <div
+          class="form-error"
+          *ngIf="
+            groupControl!.invalid &&
+            (groupControl!.dirty || groupControl!.touched)
+          "
+        >
+          <div *ngFor="let err of errors">
+            <label *ngIf="groupControl!.errors![err.type]">{{
+              err.message
+            }}</label>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-8" *ngIf="isNewDesing">
+      <div class="eachInfoWraper">
+        <div class="blueTxt w-100">
+          <select
+            [name]="fieldName"
+            [formControlName]="fieldName"
+            [ngClass]="{
+              'select-error':
+                groupControl!.invalid &&
+                (groupControl!.dirty || groupControl!.touched),
+              isEditable: isEditable
+            }"
+            [class]="'select-data form-control ' + class"
+            (blur)="onBlur($event)"
+            (change)="onChange($event)"
+            #inputRef
+          >
+            <option value="">Select None</option>
+            <option
+              *ngFor="let option of modifiedOptions"
+              [value]="option.value"
+            >
+              {{ option.label }}
+            </option>
+          </select>
+          <div
+            class="form-error"
+            *ngIf="
+              groupControl!.invalid &&
+              (groupControl!.dirty || groupControl!.touched)
+            "
+          >
+            <div *ngFor="let err of errors">
+              <label *ngIf="groupControl!.errors![err.type]">{{
+                err.message
+              }}</label>
+            </div>
+          </div>
+        </div>
+        <div
+          *ngIf="!isFixed"
+          class="icon-style"
+          [ngClass]="{
+            'edit-icon': !isEditable,
+            'check-icon': isEditable
+          }"
+          (click)="onClickEdit()"
+        ></div>
+      </div>
+    </div>
+  </div>
+</div>

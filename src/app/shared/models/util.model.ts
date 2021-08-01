@@ -15,7 +15,7 @@ export class FormField {
   fieldName = '';
   placeholder = '';
   fieldType = '';
-  isEditable = true;
+  isEditable?: any = true;
   isRequired = false;
   isDisabled? = false;
   options? = [];
@@ -25,6 +25,7 @@ export class FormField {
 export class OptionConfig {
   labelKey: string = '';
   valueKey: string = '';
+  additionalLabelKey?: string = '';
 }
 export class OptionModel {
   label: string = '';

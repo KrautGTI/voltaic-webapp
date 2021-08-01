@@ -60,10 +60,17 @@ export class SelectComponent implements OnInit, OnChanges {
         ) {
           this.options.forEach((option) => {
             const optionModel: OptionModel = new OptionModel();
-            optionModel.label =
-              this.optionConfig && option[this.optionConfig.labelKey]
-                ? option[this.optionConfig.labelKey]
-                : '';
+            if(!this.optionConfig?.additionalLabelKey) {
+                optionModel.label =
+                  this.optionConfig && option[this.optionConfig.labelKey]
+                    ? option[this.optionConfig.labelKey]
+                    : '';
+            } else {
+              optionModel.label =
+                  this.optionConfig && option[this.optionConfig.labelKey] && option[this.optionConfig?.additionalLabelKey]
+                    ? (option[this.optionConfig.labelKey] + ' ' + option[this.optionConfig?.additionalLabelKey])
+                    : '';
+            }
             optionModel.value =
               this.optionConfig && option[this.optionConfig.valueKey]
                 ? option[this.optionConfig.valueKey]

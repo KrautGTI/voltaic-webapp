@@ -353,6 +353,60 @@
       "value": "Sunrun Ref. $1,000 Q4 2020"
     }
   ],
+  "Utility": [
+    {
+      "id": "1",
+      "value": "SCE"
+    },
+    {
+      "id": "2",
+      "value": "APS"
+    },
+    {
+      "id": "3",
+      "value": "NV Energy"
+    },
+    {
+      "id": "4",
+      "value": "TEP"
+    },
+    {
+      "id": "5",
+      "value": "SRP"
+    },
+    {
+      "id": "6",
+      "value": "LADWP"
+    },
+    {
+      "id": "7",
+      "value": "PG&E"
+    },
+    {
+      "id": "8",
+      "value": "SDG&E"
+    },
+    {
+      "id": "9",
+      "value": "Pasadena Power"
+    },
+    {
+      "id": "10",
+      "value": "ComEd"
+    },
+    {
+      "id": "11",
+      "value": "SSVEC"
+    },
+    {
+      "id": "12",
+      "value": "OFF GRID"
+    },
+    {
+      "id": "13",
+      "value": "National Grid"
+    }
+  ],
   "Scope_of_Reroof": [
     {
       "id": "1",

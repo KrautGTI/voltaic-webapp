@@ -75,6 +75,13 @@ export class AccountCreateComponent implements OnInit, OnDestroy {
         fieldName,
         this.createControl(this.label[key])
       );
+      const associatedfieldName = this.label[key].associatedfieldName;
+      if (associatedfieldName) {
+        this.accountForm.addControl(
+          associatedfieldName,
+          this.createControl(this.label[key])
+        );
+      }
     });
     Object.keys(this.addrLabel).forEach((key: string) => {
       const fieldName = this.addrLabel[key].fieldName;
@@ -82,6 +89,13 @@ export class AccountCreateComponent implements OnInit, OnDestroy {
         fieldName,
         this.createControl(this.addrLabel[key])
       );
+      const associatedfieldName = this.addrLabel[key].associatedfieldName;
+      if (associatedfieldName) {
+        this.accountForm.addControl(
+          associatedfieldName,
+          this.createControl(this.addrLabel[key])
+        );
+      }
     });
     Object.keys(this.descLabel).forEach((key: string) => {
       const fieldName = this.descLabel[key].fieldName;
@@ -89,11 +103,17 @@ export class AccountCreateComponent implements OnInit, OnDestroy {
         fieldName,
         this.createControl(this.descLabel[key])
       );
+      const associatedfieldName = this.descLabel[key].associatedfieldName;
+      if (associatedfieldName) {
+        this.accountForm.addControl(
+          associatedfieldName,
+          this.createControl(this.descLabel[key])
+        );
+      }
     });
     console.log(this.accountForm);
   }
   private createControl(field: FormField): any {
-    const fieldName = field.fieldName;
     const validation: ValidatorFn[] = [];
     const disabled = false;
     const value = '';
@@ -107,7 +127,7 @@ export class AccountCreateComponent implements OnInit, OnDestroy {
   private fetchRequiredData(): void {
     const reqs: Observable<any>[] = [];
     const getAccounts$ = this.genericService.getAccounts();
-    const getLeadOwners$ = this.genericService.getLeadOwners();
+    const getLeadOwners$ = this.genericService.getLeadOwnersWithUserFilter();
     const getMasterData$ = this.genericService.getMasterData();
     reqs.push(getAccounts$);
     reqs.push(getLeadOwners$);
@@ -132,7 +152,7 @@ export class AccountCreateComponent implements OnInit, OnDestroy {
               }
             }
             if (results[1]) {
-              this.leadOwners = results[1].message ? results[1].message : '';
+              this.leadOwners = results[1] ? results[1] : '';
             }
             if (results[2]) {
               const masterData = results[2];
@@ -149,12 +169,12 @@ export class AccountCreateComponent implements OnInit, OnDestroy {
 
   public onChangeParentAccount(term: string): void {
     this.searchTerm$.next(term);
-    console.log('term=', term);
   }
 
   public saveAccount(): void {
     if (this.accountForm.valid) {
-      console.log(this.accountForm.value);
+      const saveData = { ...this.accountForm.value };
+      console.log('saveData=', saveData);
       Swal.fire({
         text: 'Do You Want To Save Changes?',
         icon: 'question',
@@ -165,23 +185,24 @@ export class AccountCreateComponent implements OnInit, OnDestroy {
         showCancelButton: true,
         cancelButtonText: 'No',
       }).then((res) => {
-        this.genericService
-          .addModifyAccounts(this.accountForm.value)
-          .pipe(takeUntil(this.unsubscribe$))
-          .subscribe(
-            (dataValue: any) => {
-              console.log(dataValue);
-              const successMsg = 'Account Created Succesfully';
-              this.notificationService.success(
-                successMsg,
-                '/post-auth/accounts'
-              );
-            },
-            (error: any) => {
-              const errMsg = 'Unable To Save The Account';
-              this.notificationService.error(errMsg);
-            }
-          );
+        if (res.isConfirmed) {
+          this.genericService
+            .addModifyAccounts(saveData)
+            .pipe(takeUntil(this.unsubscribe$))
+            .subscribe(
+              (dataValue: any) => {
+                const successMsg = 'Account Created Succesfully';
+                this.notificationService.success(
+                  successMsg,
+                  '/post-auth/accounts'
+                );
+              },
+              (error: any) => {
+                const errMsg = 'Unable To Save The Account';
+                this.notificationService.error(errMsg);
+              }
+            );
+        }
       });
     }
   }

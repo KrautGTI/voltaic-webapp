@@ -61,27 +61,33 @@ export class SelectComponent implements OnInit, OnChanges {
         ) {
           this.options.forEach((option) => {
             const optionModel: OptionModel = new OptionModel();
-            if(!this.optionConfig?.additionalLabelKey) {
-                optionModel.label =
-                  this.optionConfig && option[this.optionConfig.labelKey]
-                    ? option[this.optionConfig.labelKey]
-                    : '';
+            if (!this.optionConfig?.additionalLabelKey) {
+              optionModel.label =
+                this.optionConfig && option[this.optionConfig.labelKey]
+                  ? option[this.optionConfig.labelKey]
+                  : '';
             } else {
               optionModel.label =
-                  this.optionConfig && option[this.optionConfig.labelKey] && option[this.optionConfig?.additionalLabelKey]
-                    ? (option[this.optionConfig.labelKey] + ' ' + option[this.optionConfig?.additionalLabelKey])
-                    : '';
+                this.optionConfig &&
+                option[this.optionConfig.labelKey] &&
+                option[this.optionConfig?.additionalLabelKey]
+                  ? option[this.optionConfig.labelKey] +
+                    ' ' +
+                    option[this.optionConfig?.additionalLabelKey]
+                  : '';
             }
-            if(this.optionConfig?.mergeValueKey == true) {
+            if (this.optionConfig?.mergeValueKey == true) {
               optionModel.value =
-              this.optionConfig && option[this.optionConfig.valueKey]
-                ? (option[this.optionConfig.labelKey] + '#?#' + option[this.optionConfig.valueKey])
-                : '';
+                this.optionConfig && option[this.optionConfig.valueKey]
+                  ? option[this.optionConfig.labelKey] +
+                    '#?#' +
+                    option[this.optionConfig.valueKey]
+                  : '';
             } else {
               optionModel.value =
-              this.optionConfig && option[this.optionConfig.valueKey]
-                ? option[this.optionConfig.valueKey]
-                : '';
+                this.optionConfig && option[this.optionConfig.valueKey]
+                  ? option[this.optionConfig.valueKey]
+                  : '';
             }
             this.modifiedOptions.push(optionModel);
           });

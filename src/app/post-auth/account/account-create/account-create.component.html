@@ -87,6 +87,7 @@
                 [isRequired]="label.parentAccount.isRequired"
                 [label]="label.parentAccount.fieldLabel"
                 [fieldName]="label.parentAccount.fieldName"
+                [associatedfieldName]="label.parentAccount.associatedfieldName"
                 [placeholder]="label.parentAccount.placeholder"
                 [errors]="label.parentAccount.errors"
                 [searchValues]="searchValues$"
@@ -377,7 +378,6 @@
       <div class="d-flex align-center justify-content-center mb-4">
         <app-btn-primary
           [btnName]="'Create Account'"
-          [btnType]="'submit'"
           [disabled]="accountForm.invalid"
           (btnClick)="saveAccount()"
         ></app-btn-primary>

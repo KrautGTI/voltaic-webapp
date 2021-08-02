@@ -1,7 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { map } from 'rxjs/operators';
+import { filter, map, tap } from 'rxjs/operators';
 import { environment } from '../../environments/environment';
+import { Account, Folder } from '../shared/models/data.model';
 import { AuthService } from './auth.service';
 
 @Injectable({
@@ -147,6 +148,21 @@ export class GenericService {
     const url = this.authServiceUrl + 'master/getLeadOwner';
     return this.httpClient.get(url);
   }
+  public getLeadOwnersWithUserFilter() {
+    const roleName = this.authService.getRole();
+    const loginId = this.authService.getUserId();
+    const url = this.authServiceUrl + 'master/getLeadOwner';
+    return this.httpClient.get(url).pipe(
+      map((res: any) => (res && res.message ? res.message : [])),
+      map((resArr: any[]) =>
+        resArr.filter((item) => {
+          return roleName === 'admin'
+            ? item
+            : item && item.login_id && item.login_id === loginId;
+        })
+      )
+    );
+  }
   public getMasterData() {
     return this.httpClient.get('assets/json/master.json');
   }
@@ -164,7 +180,8 @@ export class GenericService {
     const url = this.authServiceUrl + 'accounts/getDealsByAccount';
     return this.httpClient.post(url, { account_id: accountId });
   }
-  public addModifyAccounts(data: any): any {
+  public addModifyAccounts(data: Account): any {
+    data.login_id = this.authService.getUserId();
     const url = this.authServiceUrl + 'accounts/addModifyAccounts';
     return this.httpClient.post(url, data);
   }
@@ -177,5 +194,13 @@ export class GenericService {
   public addModifyDeals(data: any): any {
     const url = this.authServiceUrl + 'deals/addOrEditDeals';
     return this.httpClient.post(url, data);
+  }
+  public addModifyFolder(data: Folder): any {
+    const url = this.authServiceUrl + 'folder/addOrEditFolder';
+    return this.httpClient.post(url, data);
+  }
+  public getFolders() {
+    const url = this.authServiceUrl + 'folder/getFolders';
+    return this.httpClient.get(url);
   }
 }

@@ -42,6 +42,11 @@ export class AuthService {
     const user_name = this.userDetails ? this.userDetails.user_name : '';
     return user_name;
   }
+  public getUserId(): string {
+    this.getUserDetails();
+    const loginId = this.userDetails ? this.userDetails.user_loginId : '';
+    return loginId;
+  }
   public getRole(): string {
     this.getUserDetails();
     const user_role = this.userDetails ? this.userDetails.user_role : '';

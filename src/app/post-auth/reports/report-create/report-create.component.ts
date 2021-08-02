@@ -8,10 +8,16 @@ import { RoutingStep } from 'src/app/shared/models/util.model';
   styleUrls: ['./report-create.component.scss'],
 })
 export class ReportCreateComponent implements OnInit {
-  public routingSteps: RoutingStep[] = RoutingStepsData;
+  public routingStepsData: RoutingStep[] = RoutingStepsData;
+  public routingSteps: RoutingStep[] = [];
   public moduleData = [];
 
-  constructor() {}
+  constructor() {
+    this.createClone();
+  }
 
   ngOnInit(): void {}
+  private createClone(): void {
+    this.routingSteps = JSON.parse(JSON.stringify(this.routingStepsData));
+  }
 }

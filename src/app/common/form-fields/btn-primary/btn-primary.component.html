@@ -1,5 +1,5 @@
 <button
-  class="btn btn-primary createBtn"
+  [class]="'btn ' + class"
   [type]="btnType"
   (click)="onClick()"
   [disabled]="disabled"

@@ -11,6 +11,7 @@ export const ReportModuleLabels: { [key: string]: FormField } = {
     fieldLabel: '',
     fieldName: 'selectModule',
     placeholder: '',
+    associatedfieldName: '',
     fieldType: FieldTypes.SELECT,
     isEditable: true,
     isRequired: true,
@@ -28,6 +29,7 @@ export const ReportModuleLabels: { [key: string]: FormField } = {
     fieldLabel: '',
     fieldName: 'reportType',
     placeholder: '',
+    associatedfieldName: '',
     fieldType: FieldTypes.RADIO,
     isEditable: true,
     isRequired: true,
@@ -517,3 +519,58 @@ export const RoutingStepsData: RoutingStep[] = [
     isVisible: false,
   },
 ];
+
+export const BasicInfoFieldLabel: { [key: string]: FormField } = {
+  selectFolder: {
+    fieldLabel: '',
+    fieldName: 'selectFolder',
+    placeholder: 'Select Folder',
+    associatedfieldName: '',
+    fieldType: FieldTypes.SELECT,
+    isEditable: true,
+    isRequired: true,
+    isDisabled: false,
+    options: [],
+    optionConfig: { labelKey: 'value', valueKey: 'id' },
+    errors: [
+      {
+        type: ErrorType.REQUIRED,
+        message: 'Select Folder is required.',
+      },
+    ],
+  },
+  reportName: {
+    fieldLabel: '',
+    fieldName: 'reportName',
+    placeholder: 'Name',
+    associatedfieldName: '',
+    fieldType: FieldTypes.TEXT,
+    isEditable: true,
+    isRequired: true,
+    isDisabled: false,
+    options: [],
+    errors: [
+      {
+        type: ErrorType.REQUIRED,
+        message: 'Name is required.',
+      },
+    ],
+  },
+  description: {
+    fieldLabel: '',
+    fieldName: 'description',
+    placeholder: 'Description',
+    associatedfieldName: '',
+    fieldType: FieldTypes.TEXTAREA,
+    isEditable: true,
+    isRequired: false,
+    isDisabled: false,
+    options: [],
+    errors: [
+      {
+        type: ErrorType.REQUIRED,
+        message: 'Description is required.',
+      },
+    ],
+  },
+};

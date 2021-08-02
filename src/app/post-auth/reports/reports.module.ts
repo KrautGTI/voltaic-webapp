@@ -7,6 +7,7 @@ import { ReportEditComponent } from './report-edit/report-edit.component';
 import { ReportListComponent } from './report-list/report-list.component';
 import { ReportGenerateModule } from 'src/app/common/report-generate/report-generate.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { UiElementsModule } from 'src/app/common/ui-elements/ui-elements.module';
 
 
 @NgModule({
@@ -20,7 +21,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     ReportsRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    ReportGenerateModule
+    ReportGenerateModule,
+    UiElementsModule
   ]
 })
 export class ReportsModule { }

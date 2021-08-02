@@ -15,7 +15,7 @@
   height: 450px;
   overflow-x: hidden;
   overflow-y: auto;
-  min-width: 250px;
+  min-width: 300px;
 }
 .module-header {
   font-weight: 700;
@@ -34,14 +34,17 @@
   }
 }
 .active {
-  background-color: darkkhaki;
+  background-color: #dbe1ec;
 }
 .up-icon {
   cursor: pointer;
+  margin-bottom: 5px;
 }
 .down-icon {
   cursor: pointer;
+  margin-bottom: 5px;
 }
 .delete-icon {
   cursor: pointer;
+  margin-bottom: 5px;
 }

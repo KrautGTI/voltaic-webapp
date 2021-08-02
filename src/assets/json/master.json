@@ -1117,5 +1117,14 @@
     },
     { "id": "Systems Integrator", "value": "Systems Integrator" },
     { "id": "Wireless Industry", "value": "Wireless Industry" }
+  ],
+  "selectFolder": [
+    {
+      "id": "Account and Contact Reports",
+      "value": "Account and Contact Reports"
+    },
+    { "id": "Deal Reports", "value": "Deal Reports" },
+    { "id": "Email Reports", "value": "Email Reports" },
+    { "id": "Account Reports", "value": "Account Reports" }
   ]
 }

@@ -15,6 +15,7 @@ export class FormField {
   fieldName = '';
   placeholder = '';
   fieldType = '';
+  associatedfieldName = '';
   isEditable?: any = true;
   isRequired = false;
   isDisabled? = false;
@@ -44,6 +45,9 @@ export class ColumnDefs {
   headerName: string = '';
   field: string = '';
   cellStyle?: any = null;
+  headerCheckboxSelection?: boolean = false;
+  headerCheckboxSelectionFilteredOnly?: boolean = false;
+  checkboxSelection?: boolean = false;
 }
 
 export class ModuleColumn {

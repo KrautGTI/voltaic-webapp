@@ -6,12 +6,14 @@ import {
   Output,
 } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 import { forkJoin, Observable, Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { GenericService } from 'src/app/service/generic.service';
 import { NotificationService } from 'src/app/service/notification.service';
 import { BasicInfoFieldLabel } from 'src/app/shared/constants/report.constant';
 import { FormField } from 'src/app/shared/models/util.model';
+import { FolderCreateComponent } from '../folder-create/folder-create.component';
 
 @Component({
   selector: 'app-basic-info',
@@ -31,7 +33,8 @@ export class BasicInfoComponent implements OnInit, OnDestroy {
   constructor(
     private fb: FormBuilder,
     private genericService: GenericService,
-    private notificationService: NotificationService
+    private notificationService: NotificationService,
+    public dialog: MatDialog
   ) {}
   ngOnDestroy(): void {
     this.unsubscribe$.next(true);
@@ -82,5 +85,15 @@ export class BasicInfoComponent implements OnInit, OnDestroy {
   }
   public onCancel(): void {
     this.onCancelBtn.emit(this.basicInfoForm!.value);
+  }
+  public onCreateFolder(): void {
+    this.openDialog();
+  }
+  private openDialog() {
+    const dialogRef = this.dialog.open(FolderCreateComponent);
+
+    dialogRef.afterClosed().subscribe((result) => {
+      console.log(`Dialog result: ${result}`);
+    });
   }
 }

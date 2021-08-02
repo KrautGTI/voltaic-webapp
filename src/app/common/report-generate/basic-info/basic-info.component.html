@@ -2,7 +2,7 @@
   <div class="row mb-4">
     <div class="col-6">
       <div class="row mb-4">
-        <div class="col-12">
+        <div class="col-12 d-flex justify-content-start">
           <app-select
             [isRequired]="label.selectFolder.isRequired"
             [label]="label.selectFolder.fieldLabel"
@@ -12,6 +12,12 @@
             [errors]="label.selectFolder.errors"
             [group]="basicInfoForm"
           ></app-select>
+          <div class="ml-3">
+            <app-btn-primary
+              [btnName]="'Create Folder'"
+              (btnClick)="onCreateFolder()"
+            ></app-btn-primary>
+          </div>
         </div>
       </div>
       <div class="row mb-4">

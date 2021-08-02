@@ -104,7 +104,6 @@ export class SelectComponent implements OnInit, OnChanges {
     }
     this.groupControl?.setValidators(validators);
     this.groupControl?.updateValueAndValidity();
-    console.log(this.isEditable, '====', this.fieldName);
     this.setEditableStatus();
   }
 
@@ -128,10 +127,8 @@ export class SelectComponent implements OnInit, OnChanges {
   }
   private setEditableStatus(): void {
     if (this.isEditable) {
-      console.log('enable');
       this.groupControl?.enable();
     } else {
-      console.log('disable');
       this.groupControl?.disable();
     }
   }

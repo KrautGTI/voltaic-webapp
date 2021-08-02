@@ -64,8 +64,7 @@ export class AccountDetailsComponent implements OnInit, OnDestroy {
     private authService: AuthService,
     private notificationService: NotificationService,
     private fb: FormBuilder,
-    private genericService: GenericService,
-    private elementRef: ElementRef
+    private genericService: GenericService
   ) {}
 
   ngOnInit(): void {
@@ -99,6 +98,13 @@ export class AccountDetailsComponent implements OnInit, OnDestroy {
         fieldName,
         this.createControl(this.label[key])
       );
+      const associatedfieldName = this.label[key].associatedfieldName;
+      if (associatedfieldName) {
+        this.accountDetailsForm.addControl(
+          associatedfieldName,
+          this.createControl(this.label[key])
+        );
+      }
     });
     Object.keys(this.addrLabel).forEach((key: string) => {
       this.addrLabel[key].isEditable = false;
@@ -108,6 +114,13 @@ export class AccountDetailsComponent implements OnInit, OnDestroy {
         fieldName,
         this.createControl(this.addrLabel[key])
       );
+      const associatedfieldName = this.addrLabel[key].associatedfieldName;
+      if (associatedfieldName) {
+        this.accountDetailsForm.addControl(
+          associatedfieldName,
+          this.createControl(this.addrLabel[key])
+        );
+      }
     });
     Object.keys(this.descLabel).forEach((key: string) => {
       this.descLabel[key].isEditable = false;
@@ -117,11 +130,16 @@ export class AccountDetailsComponent implements OnInit, OnDestroy {
         fieldName,
         this.createControl(this.descLabel[key])
       );
+      const associatedfieldName = this.descLabel[key].associatedfieldName;
+      if (associatedfieldName) {
+        this.accountDetailsForm.addControl(
+          associatedfieldName,
+          this.createControl(this.descLabel[key])
+        );
+      }
     });
-    console.log(this.accountDetailsForm);
   }
   private createControl(field: FormField): any {
-    const fieldName = field.fieldName;
     const validation: ValidatorFn[] = [];
     const disabled = false;
     const value = '';
@@ -134,7 +152,7 @@ export class AccountDetailsComponent implements OnInit, OnDestroy {
   private fetchRequiredDetails(): void {
     const reqs: Observable<any>[] = [];
     const getAccounts$ = this.genericService.getAccounts();
-    const getLeadOwners$ = this.genericService.getLeadOwners();
+    const getLeadOwners$ = this.genericService.getLeadOwnersWithUserFilter();
     const getMasterData$ = this.genericService.getMasterData();
     const getStages$ = this.genericService.getStages();
     const getDealsFromAccount$ = this.genericService.getDealsFromAccount(
@@ -180,7 +198,6 @@ export class AccountDetailsComponent implements OnInit, OnDestroy {
                     ? this.accountDetails.Contact_ID
                     : '0';
                   this.getContactByAccountId(this.contactId);
-                  console.log('accountDetails=', this.accountDetails);
                   this.setFormControlValue();
                 }
               } else if (accountList?.error?.name === 'TokenExpiredError') {
@@ -189,7 +206,8 @@ export class AccountDetailsComponent implements OnInit, OnDestroy {
               }
             }
             if (results[1]) {
-              this.leadOwners = results[1].message ? results[1].message : '';
+              this.leadOwners = results[1] ? results[1] : [];
+              console.log(this.leadOwners);
             }
             if (results[2]) {
               const masterData = results[2];
@@ -293,38 +311,17 @@ export class AccountDetailsComponent implements OnInit, OnDestroy {
       });
     }
   }
-  public editSaveField(fieldName: string) {
-    if (this.targetField && this.targetField !== fieldName) {
-      let prevTargetControl = this.elementRef.nativeElement.querySelector(
-        '[formcontrolname="' + this.targetField + '"]'
-      );
-      if (!prevTargetControl.readOnly) {
-        prevTargetControl.readOnly = true;
-        prevTargetControl.parentNode.nextSibling.classList.remove('checkIcon');
-      }
-    }
-    let targetControl = this.elementRef.nativeElement.querySelector(
-      '[formcontrolname="' + fieldName + '"]'
-    );
-    this.targetField = fieldName;
-    targetControl.readOnly = !targetControl.readOnly;
-    if (!targetControl.readOnly) {
-      targetControl.parentNode.nextSibling.classList.add('checkIcon');
-      targetControl.focus();
-    } else {
-      targetControl.parentNode.nextSibling.classList.remove('checkIcon');
-    }
-  }
   public onChangeParentAccount(term: string): void {
     this.searchTerm$.next(term);
-    console.log('term=', term);
   }
 
   public saveAccount(): void {
-      console.log(this.accountDetailsForm.value);
-      this.accountDetailsForm.patchValue({
-        login_id: this.userDetails ? this.userDetails.user_loginId : '',
-      });
+    if (this.accountDetailsForm.valid) {
+      const saveData = {
+        ...this.accountDetailsForm.getRawValue(),
+        Account_ID: this.accountId,
+      };
+      console.log('saveData=', saveData);
       Swal.fire({
         text: 'Do You Want To Save Changes?',
         icon: 'question',
@@ -335,23 +332,25 @@ export class AccountDetailsComponent implements OnInit, OnDestroy {
         showCancelButton: true,
         cancelButtonText: 'No',
       }).then((res) => {
-        this.genericService
-          .addModifyAccounts(this.accountDetailsForm.value)
-          .pipe(takeUntil(this.unsubscribe$))
-          .subscribe(
-            (dataValue: any) => {
-              console.log(dataValue);
-              const successMsg = 'Account Details Updated Succesfully';
-              this.notificationService.success(
-                successMsg,
-                '/post-auth/accounts'
-              );
-            },
-            (error: any) => {
-              const errMsg = 'Unable To Save Account Details';
-              this.notificationService.error(errMsg);
-            }
-          );
+        if (res.isConfirmed) {
+          this.genericService
+            .addModifyAccounts(saveData)
+            .pipe(takeUntil(this.unsubscribe$))
+            .subscribe(
+              (dataValue: any) => {
+                const successMsg = 'Account Details Updated Succesfully';
+                this.notificationService.success(
+                  successMsg,
+                  '/post-auth/accounts'
+                );
+              },
+              (error: any) => {
+                const errMsg = 'Unable To Save Account Details';
+                this.notificationService.error(errMsg);
+              }
+            );
+        }
       });
+    }
   }
 }

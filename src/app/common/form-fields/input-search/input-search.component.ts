@@ -27,6 +27,7 @@ export class InputSearchComponent implements OnInit {
   @Input() public label: string = '';
   @Input() public type: string = 'text';
   @Input() public fieldName: string = '';
+  @Input() public associatedfieldName: string = '';
   @Input() public placeholder: string = '';
   @Input() public class: string = '';
   @Input() public isNewDesing: boolean = false;
@@ -60,6 +61,9 @@ export class InputSearchComponent implements OnInit {
   get groupControl(): AbstractControl | null {
     return this.group.get(this.fieldName);
   }
+  get associatedControl(): AbstractControl | null {
+    return this.group.get(this.associatedfieldName);
+  }
   get searchObs$(): Observable<[]> {
     return this.searchValues$;
   }
@@ -75,7 +79,15 @@ export class InputSearchComponent implements OnInit {
       searchVal && searchVal[this.optionConfig!.labelKey]
         ? searchVal[this.optionConfig!.labelKey]
         : '';
+    const value =
+      searchVal && searchVal[this.optionConfig!.valueKey]
+        ? searchVal[this.optionConfig!.valueKey]
+        : '';
+    console.log('label=', label, '==value==', value);
     this.groupControl?.patchValue(label);
+    if (this.associatedfieldName && this.associatedControl) {
+      this.associatedControl.patchValue(value);
+    }
     this.showModal = false;
   }
 

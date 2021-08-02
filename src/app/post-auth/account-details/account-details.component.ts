@@ -87,8 +87,10 @@ export class AccountDetailsComponent implements OnInit, OnDestroy {
       Modified_Time: [''],
     });
     Object.keys(this.label).forEach((key: string) => {
-      this.label[key].isEditable = false;
-      this.label[key].placeholder = '-';
+      if (key !== 'accountOwner') {
+        this.label[key].isEditable = false;
+        this.label[key].placeholder = '-';
+      }
       const fieldName = this.label[key].fieldName;
       this.accountDetailsForm.addControl(
         fieldName,

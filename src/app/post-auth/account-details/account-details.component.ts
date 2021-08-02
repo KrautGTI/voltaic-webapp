@@ -1,4 +1,5 @@
 import { Component, ElementRef, OnDestroy, OnInit } from '@angular/core';
+import { UserDetailsModel } from 'src/app/shared/models/util.model';
 import {
   AbstractControl,
   FormBuilder,
@@ -18,6 +19,7 @@ import {
   AddressInformationLabels,
   DescriptionInformationLabels,
 } from 'src/app/shared/constants/account.constant';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-account-details',
@@ -49,6 +51,7 @@ export class AccountDetailsComponent implements OnInit, OnDestroy {
   private targetField: string = '';
   private searchTerm$ = new Subject<string>();
   private unsubscribe$: Subject<boolean> = new Subject();
+  userDetails: UserDetailsModel | null = null;
 
   readonly searchValues$ = this.searchTerm$.pipe(
     // liveSearch((term) => this.genericService.getAccounts())
@@ -313,5 +316,40 @@ export class AccountDetailsComponent implements OnInit, OnDestroy {
   public onChangeParentAccount(term: string): void {
     this.searchTerm$.next(term);
     console.log('term=', term);
+  }
+
+  public saveAccount(): void {
+      console.log(this.accountDetailsForm.value);
+      this.accountDetailsForm.patchValue({
+        login_id: this.userDetails ? this.userDetails.user_loginId : '',
+      });
+      Swal.fire({
+        text: 'Do You Want To Save Changes?',
+        icon: 'question',
+        confirmButtonColor: '#A239CA',
+        position: 'center',
+        confirmButtonText: 'Yes',
+        showConfirmButton: true,
+        showCancelButton: true,
+        cancelButtonText: 'No',
+      }).then((res) => {
+        this.genericService
+          .addModifyAccounts(this.accountDetailsForm.value)
+          .pipe(takeUntil(this.unsubscribe$))
+          .subscribe(
+            (dataValue: any) => {
+              console.log(dataValue);
+              const successMsg = 'Account Details Updated Succesfully';
+              this.notificationService.success(
+                successMsg,
+                '/post-auth/accounts'
+              );
+            },
+            (error: any) => {
+              const errMsg = 'Unable To Save Account Details';
+              this.notificationService.error(errMsg);
+            }
+          );
+      });
   }
 }

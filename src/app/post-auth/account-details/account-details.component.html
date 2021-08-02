@@ -645,6 +645,14 @@
           </div>
         </div>
       </div>
+      <div class="d-flex align-center justify-content-center mb-4">
+        <app-btn-primary
+          [btnName]="'Submit'"
+          [btnType]="'submit'"
+          [disabled]="false"
+          (btnClick)="saveAccount()"
+        ></app-btn-primary>
+      </div>
     </div>
     <div class="card shadow">
       <div

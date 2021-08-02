@@ -9,7 +9,7 @@ export const DealInformationLabels: { [key: string]: FormField } = {
     isRequired: true,
     isDisabled: false,
     options: [],
-    optionConfig: { labelKey: 'name', valueKey: 'id' },
+    optionConfig: { labelKey: 'name', valueKey: 'login_id', mergeValueKey: true },
     errors: [
       {
         type: ErrorType.REQUIRED,
@@ -40,7 +40,7 @@ export const DealInformationLabels: { [key: string]: FormField } = {
     isRequired: true,
     isDisabled: false,
     options: [],
-    optionConfig: { labelKey: 'Account_Name', valueKey: 'Account_ID' },
+    optionConfig: { labelKey: 'Account_Name', valueKey: 'Account_ID', mergeValueKey: true },
     errors: [
       {
         type: ErrorType.REQUIRED,
@@ -101,7 +101,7 @@ export const DealInformationLabels: { [key: string]: FormField } = {
     isRequired: true,
     isDisabled: false,
     options: [],
-    optionConfig: { labelKey: 'First_Name', additionalLabelKey: 'Last_Name', valueKey: 'Contact_ID' },
+    optionConfig: { labelKey: 'First_Name', additionalLabelKey: 'Last_Name', valueKey: 'Contact_ID', mergeValueKey: true },
     errors: [
       {
         type: ErrorType.REQUIRED,
@@ -157,11 +157,10 @@ export const DealInformationLabels: { [key: string]: FormField } = {
   closing_date: {
     fieldLabel: 'Closing Date',
     fieldName: 'closing_date',
-    placeholder: '',
+    placeholder: 'DD/MM/YYYY',
     fieldType: FieldTypes.DATE,
     isRequired: true,
     isDisabled: false,
-    options: [],
     errors: [
       {
         type: ErrorType.REQUIRED,
@@ -373,11 +372,10 @@ export const DealInformationLabels: { [key: string]: FormField } = {
   quiet_cool_installed: {
     fieldLabel: 'Quiet Cool Installed',
     fieldName: 'quiet_cool_installed',
-    placeholder: '',
     fieldType: FieldTypes.DATE,
+    placeholder: 'DD/MM/YYYY',
     isRequired: false,
     isDisabled: false,
-    options: [],
     errors: [
       {
         type: ErrorType.REQUIRED,
@@ -803,11 +801,10 @@ export const DealInformationLabels: { [key: string]: FormField } = {
   date: {
     fieldLabel: 'Date 17',
     fieldName: 'date',
-    placeholder: '',
+    placeholder: 'DD/MM/YYYY',
     fieldType: FieldTypes.DATE,
     isRequired: false,
     isDisabled: false,
-    options: [],
     errors: [
       {
         type: ErrorType.REQUIRED,
@@ -818,11 +815,10 @@ export const DealInformationLabels: { [key: string]: FormField } = {
   ss_date: {
     fieldLabel: 'SS Date/time',
     fieldName: 'ss_date',
-    placeholder: '',
+    placeholder: 'DD/MM/YYYY',
     fieldType: FieldTypes.DATE,
     isRequired: false,
     isDisabled: false,
-    options: [],
     errors: [
       {
         type: ErrorType.REQUIRED,
@@ -838,7 +834,7 @@ export const DealInformationLabels: { [key: string]: FormField } = {
     isRequired: false,
     isDisabled: false,
     options: [],
-    optionConfig: { labelKey: 'value', valueKey: 'id' },
+    optionConfig: { labelKey: 'value', valueKey: 'value' },
     errors: [
       {
         type: ErrorType.REQUIRED,
@@ -896,11 +892,10 @@ export const DealInformationLabels: { [key: string]: FormField } = {
   ss_date_complete: {
     fieldLabel: 'SS Date Complete',
     fieldName: 'ss_date_complete',
-    placeholder: '',
+    placeholder: 'DD/MM/YYYY',
     fieldType: FieldTypes.DATE,
     isRequired: false,
     isDisabled: false,
-    options: [],
     errors: [
       {
         type: ErrorType.REQUIRED,
@@ -957,11 +952,10 @@ export const DealInformationLabels: { [key: string]: FormField } = {
   qc_fail_date: {
     fieldLabel: 'QC Fail',
     fieldName: 'qc_fail_date',
-    placeholder: '',
+    placeholder: 'DD/MM/YYYY',
     fieldType: FieldTypes.DATE,
     isRequired: false,
     isDisabled: false,
-    options: [],
     errors: [
       {
         type: ErrorType.REQUIRED,
@@ -977,7 +971,7 @@ export const DealInformationLabels: { [key: string]: FormField } = {
     isRequired: false,
     isDisabled: false,
     options: [],
-    optionConfig: { labelKey: 'value', valueKey: 'id' },
+    optionConfig: { labelKey: 'value', valueKey: 'value' },
     errors: [
       {
         type: ErrorType.REQUIRED,
@@ -1003,11 +997,10 @@ export const DealInformationLabels: { [key: string]: FormField } = {
   qc_pass_date: {
     fieldLabel: 'QC Pass',
     fieldName: 'qc_pass_date',
-    placeholder: '',
+    placeholder: 'DD/MM/YYYY',
     fieldType: FieldTypes.DATE,
     isRequired: false,
     isDisabled: false,
-    options: [],
     errors: [
       {
         type: ErrorType.REQUIRED,
@@ -1023,7 +1016,7 @@ export const DealInformationLabels: { [key: string]: FormField } = {
     isRequired: false,
     isDisabled: false,
     options: [],
-    optionConfig: { labelKey: 'value', valueKey: 'id' },
+    optionConfig: { labelKey: 'value', valueKey: 'value' },
     errors: [
       {
         type: ErrorType.REQUIRED,
@@ -1050,11 +1043,10 @@ export const DealInformationLabels: { [key: string]: FormField } = {
   fl_received_date: {
     fieldLabel: 'FL Received',
     fieldName: 'fl_received_date',
-    placeholder: '',
+    placeholder: 'DD/MM/YYYY',
     fieldType: FieldTypes.DATE,
     isRequired: false,
     isDisabled: false,
-    options: [],
     errors: [
       {
         type: ErrorType.REQUIRED,
@@ -1070,7 +1062,7 @@ export const DealInformationLabels: { [key: string]: FormField } = {
     isRequired: false,
     isDisabled: false,
     options: [],
-    optionConfig: { labelKey: 'value', valueKey: 'id' },
+    optionConfig: { labelKey: 'value', valueKey: 'value' },
     errors: [
       {
         type: ErrorType.REQUIRED,
@@ -1128,11 +1120,10 @@ export const DealInformationLabels: { [key: string]: FormField } = {
   fla: {
     fieldLabel: 'FLA',
     fieldName: 'fla',
-    placeholder: '',
+    placeholder: 'DD/MM/YYYY',
     fieldType: FieldTypes.DATE,
     isRequired: false,
     isDisabled: false,
-    options: [],
     errors: [
       {
         type: ErrorType.REQUIRED,
@@ -1156,14 +1147,13 @@ export const DealInformationLabels: { [key: string]: FormField } = {
       },
     ],
   },
-  NTP: {
+  ntp: {
     fieldLabel: 'NTP',
-    fieldName: 'NTP',
-    placeholder: '',
+    fieldName: 'ntp',
+    placeholder: 'DD/MM/YYYY',
     fieldType: FieldTypes.DATE,
     isRequired: false,
     isDisabled: false,
-    options: [],
     errors: [
       {
         type: ErrorType.REQUIRED,
@@ -1189,11 +1179,10 @@ export const DealInformationLabels: { [key: string]: FormField } = {
   vsa: {
     fieldLabel: 'VSA',
     fieldName: 'vsa',
-    placeholder: '',
+    placeholder: 'DD/MM/YYYY',
     fieldType: FieldTypes.DATE,
     isRequired: false,
     isDisabled: false,
-    options: [],
     errors: [
       {
         type: ErrorType.REQUIRED,
@@ -1251,11 +1240,10 @@ export const DealInformationLabels: { [key: string]: FormField } = {
   pr_sow_approved: {
     fieldLabel: 'PR SOW Approved',
     fieldName: 'pr_sow_approved',
-    placeholder: '',
+    placeholder: 'DD/MM/YYYY',
     fieldType: FieldTypes.DATE,
     isRequired: false,
     isDisabled: false,
-    options: [],
     errors: [
       {
         type: ErrorType.REQUIRED,
@@ -1282,11 +1270,10 @@ export const DealInformationLabels: { [key: string]: FormField } = {
   permit_submitted: {
     fieldLabel: 'Permit Submitted',
     fieldName: 'permit_submitted',
-    placeholder: '',
+    placeholder: 'DD/MM/YYYY',
     fieldType: FieldTypes.DATE,
     isRequired: false,
     isDisabled: false,
-    options: [],
     errors: [
       {
         type: ErrorType.REQUIRED,
@@ -1313,11 +1300,10 @@ export const DealInformationLabels: { [key: string]: FormField } = {
   mone_paid: {
     fieldLabel: 'M1 Paid',
     fieldName: 'mone_paid',
-    placeholder: '',
+    placeholder: 'DD/MM/YYYY',
     fieldType: FieldTypes.DATE,
     isRequired: false,
     isDisabled: false,
-    options: [],
     errors: [
       {
         type: ErrorType.REQUIRED,
@@ -1344,11 +1330,10 @@ export const DealInformationLabels: { [key: string]: FormField } = {
   volt_paid_mone_date: {
     fieldLabel: 'Volt Paid M1',
     fieldName: 'volt_paid_mone_date',
-    placeholder: '',
+    placeholder: 'DD/MM/YYYY',
     fieldType: FieldTypes.DATE,
     isRequired: false,
     isDisabled: false,
-    options: [],
     errors: [
       {
         type: ErrorType.REQUIRED,
@@ -1364,7 +1349,7 @@ export const DealInformationLabels: { [key: string]: FormField } = {
     isRequired: false,
     isDisabled: false,
     options: [],
-    optionConfig: { labelKey: 'value', valueKey: 'id' },
+    optionConfig: { labelKey: 'value', valueKey: 'value' },
     errors: [
       {
         type: ErrorType.REQUIRED,
@@ -1391,11 +1376,10 @@ export const DealInformationLabels: { [key: string]: FormField } = {
   rep_clawback: {
     fieldLabel: 'Rep Clawback',
     fieldName: 'rep_clawback',
-    placeholder: '',
+    placeholder: 'DD/MM/YYYY',
     fieldType: FieldTypes.DATE,
     isRequired: false,
     isDisabled: false,
-    options: [],
     errors: [
       {
         type: ErrorType.REQUIRED,
@@ -1422,11 +1406,10 @@ export const DealInformationLabels: { [key: string]: FormField } = {
   volt_clawback: {
     fieldLabel: 'Volt Clawback',
     fieldName: 'volt_clawback',
-    placeholder: '',
+    placeholder: 'DD/MM/YYYY',
     fieldType: FieldTypes.DATE,
     isRequired: false,
     isDisabled: false,
-    options: [],
     errors: [
       {
         type: ErrorType.REQUIRED,
@@ -1452,11 +1435,10 @@ export const DealInformationLabels: { [key: string]: FormField } = {
   permit_approved: {
     fieldLabel: 'Permit Approved',
     fieldName: 'permit_approved',
-    placeholder: '',
+    placeholder: 'DD/MM/YYYY',
     fieldType: FieldTypes.DATE,
     isRequired: false,
     isDisabled: false,
-    options: [],
     errors: [
       {
         type: ErrorType.REQUIRED,
@@ -1483,11 +1465,10 @@ export const DealInformationLabels: { [key: string]: FormField } = {
   install_scheduled: {
     fieldLabel: 'Install Scheduled',
     fieldName: 'install_scheduled',
-    placeholder: '',
+    placeholder: 'DD/MM/YYYY',
     fieldType: FieldTypes.DATE,
     isRequired: false,
     isDisabled: false,
-    options: [],
     errors: [
       {
         type: ErrorType.REQUIRED,
@@ -1513,11 +1494,10 @@ export const DealInformationLabels: { [key: string]: FormField } = {
   install_completed: {
     fieldLabel: 'Install Completed',
     fieldName: 'install_completed',
-    placeholder: '',
+    placeholder: 'DD/MM/YYYY',
     fieldType: FieldTypes.DATE,
     isRequired: false,
     isDisabled: false,
-    options: [],
     errors: [
       {
         type: ErrorType.REQUIRED,
@@ -1528,11 +1508,10 @@ export const DealInformationLabels: { [key: string]: FormField } = {
   mpu_scheduled: {
     fieldLabel: 'MPU Scheduled',
     fieldName: 'mpu_scheduled',
-    placeholder: '',
+    placeholder: 'DD/MM/YYYY',
     fieldType: FieldTypes.DATE,
     isRequired: false,
     isDisabled: false,
-    options: [],
     errors: [
       {
         type: ErrorType.REQUIRED,
@@ -1543,11 +1522,10 @@ export const DealInformationLabels: { [key: string]: FormField } = {
   m_two_paid: {
     fieldLabel: 'M2 Paid',
     fieldName: 'm_two_paid',
-    placeholder: '',
+    placeholder: 'DD/MM/YYYY',
     fieldType: FieldTypes.DATE,
     isRequired: false,
     isDisabled: false,
-    options: [],
     errors: [
       {
         type: ErrorType.REQUIRED,
@@ -1558,11 +1536,10 @@ export const DealInformationLabels: { [key: string]: FormField } = {
   mpu_complete: {
     fieldLabel: 'MPU Complete',
     fieldName: 'mpu_complete',
-    placeholder: '',
+    placeholder: 'DD/MM/YYYY',
     fieldType: FieldTypes.DATE,
     isRequired: false,
     isDisabled: false,
-    options: [],
     errors: [
       {
         type: ErrorType.REQUIRED,
@@ -1573,11 +1550,10 @@ export const DealInformationLabels: { [key: string]: FormField } = {
   volt_paid_mtwo_date: {
     fieldLabel: 'Volt Paid M2',
     fieldName: 'volt_paid_mtwo_date',
-    placeholder: '',
+    placeholder: 'DD/MM/YYYY',
     fieldType: FieldTypes.DATE,
     isRequired: false,
     isDisabled: false,
-    options: [],
     errors: [
       {
         type: ErrorType.REQUIRED,
@@ -1593,7 +1569,7 @@ export const DealInformationLabels: { [key: string]: FormField } = {
     isRequired: false,
     isDisabled: false,
     options: [],
-    optionConfig: { labelKey: 'value', valueKey: 'id' },
+    optionConfig: { labelKey: 'value', valueKey: 'value' },
     errors: [
       {
         type: ErrorType.REQUIRED,
@@ -1604,11 +1580,10 @@ export const DealInformationLabels: { [key: string]: FormField } = {
   rookie_card_vc: {
     fieldLabel: 'Rookie Card VC',
     fieldName: 'rookie_card_vc',
-    placeholder: '',
+    placeholder: 'DD/MM/YYYY',
     fieldType: FieldTypes.DATE,
     isRequired: false,
     isDisabled: false,
-    options: [],
     errors: [
       {
         type: ErrorType.REQUIRED,
@@ -1619,11 +1594,10 @@ export const DealInformationLabels: { [key: string]: FormField } = {
   packaging_commission_paid: {
     fieldLabel: 'Packaging Commission Paid',
     fieldName: 'packaging_commission_paid',
-    placeholder: '',
+    placeholder: 'DD/MM/YYYY',
     fieldType: FieldTypes.DATE,
     isRequired: false,
     isDisabled: false,
-    options: [],
     errors: [
       {
         type: ErrorType.REQUIRED,
@@ -1680,11 +1654,10 @@ export const DealInformationLabels: { [key: string]: FormField } = {
   fi_pass: {
     fieldLabel: 'FI PASS',
     fieldName: 'fi_pass',
-    placeholder: '',
+    placeholder: 'DD/MM/YYYY',
     fieldType: FieldTypes.DATE,
     isRequired: false,
     isDisabled: false,
-    options: [],
     errors: [
       {
         type: ErrorType.REQUIRED,
@@ -1710,11 +1683,10 @@ export const DealInformationLabels: { [key: string]: FormField } = {
   pto_submitted_date: {
     fieldLabel: 'PTO Submitted',
     fieldName: 'pto_submitted_date',
-    placeholder: '',
+    placeholder: 'DD/MM/YYYY',
     fieldType: FieldTypes.DATE,
     isRequired: false,
     isDisabled: false,
-    options: [],
     errors: [
       {
         type: ErrorType.REQUIRED,
@@ -1730,7 +1702,7 @@ export const DealInformationLabels: { [key: string]: FormField } = {
     isRequired: false,
     isDisabled: false,
     options: [],
-    optionConfig: { labelKey: 'value', valueKey: 'id' },
+    optionConfig: { labelKey: 'value', valueKey: 'value' },
     errors: [
       {
         type: ErrorType.REQUIRED,
@@ -1756,11 +1728,10 @@ export const DealInformationLabels: { [key: string]: FormField } = {
   pto: {
     fieldLabel: 'PTO',
     fieldName: 'pto',
-    placeholder: '',
+    placeholder: 'DD/MM/YYYY',
     fieldType: FieldTypes.DATE,
     isRequired: false,
     isDisabled: false,
-    options: [],
     errors: [
       {
         type: ErrorType.REQUIRED,
@@ -1833,11 +1804,10 @@ export const DealInformationLabels: { [key: string]: FormField } = {
   retention_date: {
     fieldLabel: 'Retention Date',
     fieldName: 'retention_date',
-    placeholder: '',
+    placeholder: 'DD/MM/YYYY',
     fieldType: FieldTypes.DATE,
     isRequired: false,
     isDisabled: false,
-    options: [],
     errors: [
       {
         type: ErrorType.REQUIRED,

@@ -126,7 +126,15 @@
 ></app-input>
               </div>
               <div class="col-md-6 mb-4">
-              date_ipsi  
+                <app-date
+                [isRequired]="label.closing_date.isRequired"
+                [label]="label.closing_date.fieldLabel"
+                [fieldName]="label.closing_date.fieldName"
+                [placeholder]="label.closing_date.placeholder"
+                [placeholder]="label.closing_date.placeholder"
+                [errors]="label.closing_date.errors"
+                [group]="dealForm"
+                ></app-date> 
               </div>
               <div class="col-md-6 mb-4">
                 <app-input
@@ -273,7 +281,14 @@
                 ></app-input>
               </div>
               <div class="col-md-6 mb-4">
-               date_ipsi
+                <app-date
+                [isRequired]="label.quiet_cool_installed.isRequired"
+                [label]="label.quiet_cool_installed.fieldLabel"
+                [fieldName]="label.quiet_cool_installed.fieldName"
+                [placeholder]="label.quiet_cool_installed.placeholder"
+                [errors]="label.quiet_cool_installed.errors"
+                [group]="dealForm"
+                ></app-date> 
               </div>
               <div class="col-md-6 mb-4">
                 <app-input
@@ -573,10 +588,35 @@
 ></app-select>
               </div>
               <div class="col-md-6 mb-4">
-                date_ipsi
+                <app-date
+                [isRequired]="label.date.isRequired"
+                [label]="label.date.fieldLabel"
+                [fieldName]="label.date.fieldName"
+                [placeholder]="label.date.placeholder"
+                [errors]="label.date.errors"
+                [group]="dealForm"
+                ></app-date> 
               </div>
-              <div class="col-md-6 mb-4">
-                date_time_ipsi
+              <div class="col-md-4 mb-4 dateTimeDiv">
+                    <app-date
+                    [isRequired]="label.ss_date.isRequired"
+                    [label]="label.ss_date.fieldLabel"
+                    [fieldName]="label.ss_date.fieldName"
+                    [placeholder]="label.ss_date.placeholder"
+                    [errors]="label.ss_date.errors"
+                    [group]="dealForm"
+                    [isDateTime]="true"
+                    ></app-date>    
+              </div>
+              <div class="col-md-2 mb-4 timeDiv">
+                <app-select
+                [isRequired]="label.ss_time.isRequired"
+                [fieldName]="label.ss_time.fieldName"
+                [options]="masterData['Time']"
+                [optionConfig]="label.ss_time.optionConfig"
+                [group]="dealForm"
+                [isTime]="true"
+                ></app-select>
               </div>
               <div class="col-md-6 mb-4">
                 <app-select
@@ -612,7 +652,14 @@
 ></app-select>
               </div>
               <div class="col-md-6 mb-4">
-                date_ipsi
+                <app-date
+[isRequired]="label.ss_date_complete.isRequired"
+[label]="label.ss_date_complete.fieldLabel"
+[fieldName]="label.ss_date_complete.fieldName"
+[placeholder]="label.ss_date_complete.placeholder"
+[errors]="label.ss_date_complete.errors"
+[group]="dealForm"
+></app-date> 
               </div>
               <div class="col-md-6 mb-4">
                 <app-select
@@ -647,9 +694,29 @@
                   [group]="dealForm"
                 ></app-input>
               </div>
-              <div class="col-md-6 mb-4">
-               date_time_ipsi
-              </div>
+
+                <div class="col-md-4 mb-4 dateTimeDiv">
+                  <app-date
+                  [isRequired]="label.qc_fail_date.isRequired"
+                  [label]="label.qc_fail_date.fieldLabel"
+                  [fieldName]="label.qc_fail_date.fieldName"
+                  [placeholder]="label.qc_fail_date.placeholder"
+                  [errors]="label.qc_fail_date.errors"
+                  [group]="dealForm"
+                  [isDateTime]="true"
+                  ></app-date>    
+                  </div>
+                  <div class="col-md-2 mb-4 timeDiv">
+                  <app-select
+                  [isRequired]="label.qc_fail_time.isRequired"
+                  [fieldName]="label.qc_fail_time.fieldName"
+                  [options]="masterData['Time']"
+                  [optionConfig]="label.qc_fail_time.optionConfig"
+                  [group]="dealForm"
+                  [isTime]="true"
+                  ></app-select>
+                  </div>
+
               <div class="col-md-6 mb-4">
                 <app-input
                   [type]="label.ahj.fieldType"
@@ -661,9 +728,29 @@
                   [group]="dealForm"
                 ></app-input>
               </div>
-              <div class="col-md-6 mb-4">
-                date_time_ipsi
-              </div>
+
+                <div class="col-md-4 mb-4 dateTimeDiv">
+                  <app-date
+                  [isRequired]="label.qc_pass_date.isRequired"
+                  [label]="label.qc_pass_date.fieldLabel"
+                  [fieldName]="label.qc_pass_date.fieldName"
+                  [placeholder]="label.qc_pass_date.placeholder"
+                  [errors]="label.qc_pass_date.errors"
+                  [group]="dealForm"
+                  [isDateTime]="true"
+                  ></app-date>    
+                  </div>
+                  <div class="col-md-2 mb-4 timeDiv">
+                  <app-select
+                  [isRequired]="label.qc_pass_time.isRequired"
+                  [fieldName]="label.qc_pass_time.fieldName"
+                  [options]="masterData['Time']"
+                  [optionConfig]="label.qc_pass_time.optionConfig"
+                  [group]="dealForm"
+                  [isTime]="true"
+                  ></app-select>
+                  </div>
+
               <div class="col-md-6 mb-4">
                 <app-select
 [isRequired]="label.roof_waiver.isRequired"
@@ -675,12 +762,29 @@
 [group]="dealForm"
 ></app-select>
               </div>
-              <div class="col-md-6 mb-4">
-                date_time_ipsi
-              </div>
-              <div class="col-md-6 mb-4">
-                date_time_ipsi
-              </div>
+
+                <div class="col-md-4 mb-4 dateTimeDiv">
+                  <app-date
+                  [isRequired]="label.fl_received_date.isRequired"
+                  [label]="label.fl_received_date.fieldLabel"
+                  [fieldName]="label.fl_received_date.fieldName"
+                  [placeholder]="label.fl_received_date.placeholder"
+                  [errors]="label.fl_received_date.errors"
+                  [group]="dealForm"
+                  [isDateTime]="true"
+                  ></app-date>    
+                  </div>
+                  <div class="col-md-2 mb-4 timeDiv">
+                  <app-select
+                  [isRequired]="label.fl_received_time.isRequired"
+                  [fieldName]="label.fl_received_time.fieldName"
+                  [options]="masterData['Time']"
+                  [optionConfig]="label.fl_received_time.optionConfig"
+                  [group]="dealForm"
+                  [isTime]="true"
+                  ></app-select>
+                  </div>
+
               <div class="col-md-6 mb-4">
                 <app-select
 [isRequired]="label.roofing_required.isRequired"
@@ -715,7 +819,14 @@
                 ></app-select>
               </div>
               <div class="col-md-6 mb-4">
-                date_ipsi
+                <app-date
+[isRequired]="label.fla.isRequired"
+[label]="label.fla.fieldLabel"
+[fieldName]="label.fla.fieldName"
+[placeholder]="label.fla.placeholder"
+[errors]="label.fla.errors"
+[group]="dealForm"
+></app-date> 
               </div>
               <div class="col-md-6 mb-4">
                 <app-select
@@ -729,7 +840,14 @@
                 ></app-select>
               </div>
               <div class="col-md-6 mb-4">
-                date_ipsi
+                <app-date
+[isRequired]="label.ntp.isRequired"
+[label]="label.ntp.fieldLabel"
+[fieldName]="label.ntp.fieldName"
+[placeholder]="label.ntp.placeholder"
+[errors]="label.ntp.errors"
+[group]="dealForm"
+></app-date> 
               </div>
               <div class="col-md-6 mb-4">
                 <app-input
@@ -743,7 +861,14 @@
                 ></app-input>
               </div>
               <div class="col-md-6 mb-4">
-                date_ipsi
+                <app-date
+[isRequired]="label.vsa.isRequired"
+[label]="label.vsa.fieldLabel"
+[fieldName]="label.vsa.fieldName"
+[placeholder]="label.vsa.placeholder"
+[errors]="label.vsa.errors"
+[group]="dealForm"
+></app-date> 
               </div>
               <div class="col-md-6 mb-4">
                 <app-select
@@ -779,7 +904,14 @@
                 ></app-input>
               </div>
               <div class="col-md-6 mb-4">
-                date_ipsi
+                <app-date
+[isRequired]="label.pr_sow_approved.isRequired"
+[label]="label.pr_sow_approved.fieldLabel"
+[fieldName]="label.pr_sow_approved.fieldName"
+[placeholder]="label.pr_sow_approved.placeholder"
+[errors]="label.pr_sow_approved.errors"
+[group]="dealForm"
+></app-date> 
               </div>
               <div class="col-md-6 mb-4">
                 <app-select
@@ -793,7 +925,14 @@
 ></app-select>
               </div>
               <div class="col-md-6 mb-4">
-                date_ipsi
+                <app-date
+[isRequired]="label.permit_submitted.isRequired"
+[label]="label.permit_submitted.fieldLabel"
+[fieldName]="label.permit_submitted.fieldName"
+[placeholder]="label.permit_submitted.placeholder"
+[errors]="label.permit_submitted.errors"
+[group]="dealForm"
+></app-date> 
               </div>
               <div class="col-md-6 mb-4">
                 <app-select
@@ -807,7 +946,14 @@
 ></app-select>
               </div>
               <div class="col-md-6 mb-4">
-                date_ipsi
+                <app-date
+[isRequired]="label.mone_paid.isRequired"
+[label]="label.mone_paid.fieldLabel"
+[fieldName]="label.mone_paid.fieldName"
+[placeholder]="label.mone_paid.placeholder"
+[errors]="label.mone_paid.errors"
+[group]="dealForm"
+></app-date> 
               </div>
               <div class="col-md-6 mb-4">
                 <app-select
@@ -820,9 +966,29 @@
 [group]="dealForm"
 ></app-select>
               </div>
-              <div class="col-md-6 mb-4">
-               ipsi_date_time
-              </div>
+
+                <div class="col-md-4 mb-4 dateTimeDiv">
+                  <app-date
+                  [isRequired]="label.volt_paid_mone_date.isRequired"
+                  [label]="label.volt_paid_mone_date.fieldLabel"
+                  [fieldName]="label.volt_paid_mone_date.fieldName"
+                  [placeholder]="label.volt_paid_mone_date.placeholder"
+                  [errors]="label.volt_paid_mone_date.errors"
+                  [group]="dealForm"
+                  [isDateTime]="true"
+                  ></app-date>    
+                  </div>
+                  <div class="col-md-2 mb-4 timeDiv">
+                  <app-select
+                  [isRequired]="label.volt_paid_mone_time.isRequired"
+                  [fieldName]="label.volt_paid_mone_time.fieldName"
+                  [options]="masterData['Time']"
+                  [optionConfig]="label.volt_paid_mone_time.optionConfig"
+                  [group]="dealForm"
+                  [isTime]="true"
+                  ></app-select>
+                  </div>
+
               <div class="col-md-6 mb-4">
                 <app-select
                 [isRequired]="label.mpu_required.isRequired"
@@ -835,7 +1001,14 @@
                 ></app-select>
               </div>
               <div class="col-md-6 mb-4">
-                date_ipsi
+                <app-date
+[isRequired]="label.rep_clawback.isRequired"
+[label]="label.rep_clawback.fieldLabel"
+[fieldName]="label.rep_clawback.fieldName"
+[placeholder]="label.rep_clawback.placeholder"
+[errors]="label.rep_clawback.errors"
+[group]="dealForm"
+></app-date> 
               </div>
               <div class="col-md-6 mb-4">
                 <app-select
@@ -849,7 +1022,14 @@
                 ></app-select>
               </div>
               <div class="col-md-6 mb-4">
-                date_ipsi
+                <app-date
+[isRequired]="label.volt_clawback.isRequired"
+[label]="label.volt_clawback.fieldLabel"
+[fieldName]="label.volt_clawback.fieldName"
+[placeholder]="label.volt_clawback.placeholder"
+[errors]="label.volt_clawback.errors"
+[group]="dealForm"
+></app-date> 
               </div>
               <div class="col-md-6 mb-4">
                 <app-input
@@ -863,7 +1043,14 @@
                 ></app-input>
               </div>
               <div class="col-md-6 mb-4">
-                date_ipsi
+                <app-date
+[isRequired]="label.permit_approved.isRequired"
+[label]="label.permit_approved.fieldLabel"
+[fieldName]="label.permit_approved.fieldName"
+[placeholder]="label.permit_approved.placeholder"
+[errors]="label.permit_approved.errors"
+[group]="dealForm"
+></app-date> 
               </div>
               <div class="col-md-6 mb-4">
                 <app-select
@@ -877,7 +1064,14 @@
 ></app-select>
               </div>
               <div class="col-md-6 mb-4">
-               date
+                <app-date
+                [isRequired]="label.install_scheduled.isRequired"
+                [label]="label.install_scheduled.fieldLabel"
+                [fieldName]="label.install_scheduled.fieldName"
+                [placeholder]="label.install_scheduled.placeholder"
+                [errors]="label.install_scheduled.errors"
+                [group]="dealForm"
+                ></app-date> 
               </div>
               <div class="col-md-6 mb-4">
                 <app-input
@@ -891,25 +1085,87 @@
                 ></app-input>
               </div>
               <div class="col-md-6 mb-4">
-                date_ipsi
+                <app-date
+[isRequired]="label.install_completed.isRequired"
+[label]="label.install_completed.fieldLabel"
+[fieldName]="label.install_completed.fieldName"
+[placeholder]="label.install_completed.placeholder"
+[errors]="label.install_completed.errors"
+[group]="dealForm"
+></app-date> 
               </div>
               <div class="col-md-6 mb-4">
-                date_ipsi
+                <app-date
+[isRequired]="label.mpu_scheduled.isRequired"
+[label]="label.mpu_scheduled.fieldLabel"
+[fieldName]="label.mpu_scheduled.fieldName"
+[placeholder]="label.mpu_scheduled.placeholder"
+[errors]="label.mpu_scheduled.errors"
+[group]="dealForm"
+></app-date> 
               </div>
               <div class="col-md-6 mb-4">
-                date_ipsi
+                <app-date
+[isRequired]="label.m_two_paid.isRequired"
+[label]="label.m_two_paid.fieldLabel"
+[fieldName]="label.m_two_paid.fieldName"
+[placeholder]="label.m_two_paid.placeholder"
+[errors]="label.m_two_paid.errors"
+[group]="dealForm"
+></app-date> 
               </div>
               <div class="col-md-6 mb-4">
-                date_ipsi
+                <app-date
+[isRequired]="label.mpu_complete.isRequired"
+[label]="label.mpu_complete.fieldLabel"
+[fieldName]="label.mpu_complete.fieldName"
+[placeholder]="label.mpu_complete.placeholder"
+[errors]="label.mpu_complete.errors"
+[group]="dealForm"
+></app-date> 
+              </div>
+
+                <div class="col-md-4 mb-4 dateTimeDiv">
+                  <app-date
+                  [isRequired]="label.volt_paid_mtwo_date.isRequired"
+                  [label]="label.volt_paid_mtwo_date.fieldLabel"
+                  [fieldName]="label.volt_paid_mtwo_date.fieldName"
+                  [placeholder]="label.volt_paid_mtwo_date.placeholder"
+                  [errors]="label.volt_paid_mtwo_date.errors"
+                  [group]="dealForm"
+                  [isDateTime]="true"
+                  ></app-date>    
+                  </div>
+                  <div class="col-md-2 mb-4 timeDiv">
+                  <app-select
+                  [isRequired]="label.volt_paid_mtwo_time.isRequired"
+                  [fieldName]="label.volt_paid_mtwo_time.fieldName"
+                  [options]="masterData['Time']"
+                  [optionConfig]="label.volt_paid_mtwo_time.optionConfig"
+                  [group]="dealForm"
+                  [isTime]="true"
+                  ></app-select>
+                  </div>
+
+              <div class="col-md-6 mb-4">
+                <app-date
+[isRequired]="label.rookie_card_vc.isRequired"
+[label]="label.rookie_card_vc.fieldLabel"
+[fieldName]="label.rookie_card_vc.fieldName"
+[placeholder]="label.rookie_card_vc.placeholder"
+[errors]="label.rookie_card_vc.errors"
+[group]="dealForm"
+></app-date> 
               </div>
               <div class="col-md-6 mb-4">
-                date_time_ipsi
-              </div>
-              <div class="col-md-6 mb-4">
-                date_ipsi
-              </div>
-              <div class="col-md-6 mb-4">
-                date_ipsi
+                <app-date
+                [isRequired]="label.packaging_commission_paid.isRequired"
+                [label]="label.packaging_commission_paid.fieldLabel"
+                [fieldName]="label.packaging_commission_paid.fieldName"
+                [placeholder]="label.packaging_commission_paid.placeholder"
+                [errors]="label.packaging_commission_paid.errors"
+                [group]="dealForm"
+                ></app-date> 
               </div>
               <div class="col-md-6 mb-4">
                 <app-input
@@ -945,7 +1201,14 @@
                 ></app-input>
               </div>
               <div class="col-md-6 mb-4">
-               date_ipsi
+                <app-date
+                [isRequired]="label.fi_pass.isRequired"
+                [label]="label.fi_pass.fieldLabel"
+                [fieldName]="label.fi_pass.fieldName"
+                [placeholder]="label.fi_pass.placeholder"
+                [errors]="label.fi_pass.errors"
+                [group]="dealForm"
+                ></app-date> 
               </div>
               <div class="col-md-6 mb-4">
                 <app-input
@@ -958,9 +1221,29 @@
                   [group]="dealForm"
                 ></app-input>
               </div>
-              <div class="col-md-6 mb-4">
-                date_time_ipsi
-              </div>
+
+                <div class="col-md-4 mb-4 dateTimeDiv">
+                  <app-date
+                  [isRequired]="label.pto_submitted_date.isRequired"
+                  [label]="label.pto_submitted_date.fieldLabel"
+                  [fieldName]="label.pto_submitted_date.fieldName"
+                  [placeholder]="label.pto_submitted_date.placeholder"
+                  [errors]="label.pto_submitted_date.errors"
+                  [group]="dealForm"
+                  [isDateTime]="true"
+                  ></app-date>    
+                  </div>
+                  <div class="col-md-2 mb-4 timeDiv">
+                  <app-select
+                  [isRequired]="label.pto_submitted_time.isRequired"
+                  [fieldName]="label.pto_submitted_time.fieldName"
+                  [options]="masterData['Time']"
+                  [optionConfig]="label.pto_submitted_time.optionConfig"
+                  [group]="dealForm"
+                  [isTime]="true"
+                  ></app-select>
+                  </div>
+
               <div class="col-md-6 mb-4">
                 <app-input
                   [type]="label.hic.fieldType"
@@ -973,7 +1256,14 @@
                 ></app-input>
               </div>
               <div class="col-md-6 mb-4">
-                date_ipsi
+                <app-date
+[isRequired]="label.pto.isRequired"
+[label]="label.pto.fieldLabel"
+[fieldName]="label.pto.fieldName"
+[placeholder]="label.pto.placeholder"
+[errors]="label.pto.errors"
+[group]="dealForm"
+></app-date> 
               </div>
               <div class="col-md-6 mb-4">
                 <app-input
@@ -1020,7 +1310,14 @@
                 ></app-input>
               </div>
               <div class="col-md-6 mb-4">
-                date_ipsi
+                <app-date
+[isRequired]="label.retention_date.isRequired"
+[label]="label.retention_date.fieldLabel"
+[fieldName]="label.retention_date.fieldName"
+[placeholder]="label.retention_date.placeholder"
+[errors]="label.retention_date.errors"
+[group]="dealForm"
+></app-date> 
               </div>             
             </div>
           </div>

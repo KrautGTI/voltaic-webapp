@@ -6,7 +6,7 @@ import {
   Output,
 } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup } from '@angular/forms';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { forkJoin, Observable, Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { GenericService } from 'src/app/service/generic.service';
@@ -28,7 +28,7 @@ export class BasicInfoComponent implements OnInit, OnDestroy {
   public label: { [key: string]: FormField } = BasicInfoFieldLabel;
   public basicInfoForm: FormGroup = new FormGroup({});
   private unsubscribe$: Subject<boolean> = new Subject();
-  public masterData: any = '';
+  public selectFolderArr: any[] = [];
 
   constructor(
     private fb: FormBuilder,
@@ -58,16 +58,18 @@ export class BasicInfoComponent implements OnInit, OnDestroy {
   }
   private fetchRequiredData(): void {
     const reqs: Observable<any>[] = [];
-    const getMasterData$ = this.genericService.getMasterData();
-    reqs.push(getMasterData$);
+    const getFolders$ = this.genericService.getFolders();
+    reqs.push(getFolders$);
     forkJoin(reqs)
       .pipe(takeUntil(this.unsubscribe$))
       .subscribe(
         (results) => {
           if (results && Array.isArray(results)) {
             if (results[0]) {
-              const masterData = results[0];
-              this.masterData = masterData;
+              this.selectFolderArr =
+                results[0].message && Array.isArray(results[0].message)
+                  ? results[0].message
+                  : [];
             }
           }
         },
@@ -90,7 +92,11 @@ export class BasicInfoComponent implements OnInit, OnDestroy {
     this.openDialog();
   }
   private openDialog() {
-    const dialogRef = this.dialog.open(FolderCreateComponent);
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.height = 'auto';
+    dialogConfig.maxHeight = '550px';
+    dialogConfig.width = '650px';
+    const dialogRef = this.dialog.open(FolderCreateComponent, dialogConfig);
 
     dialogRef.afterClosed().subscribe((result) => {
       console.log(`Dialog result: ${result}`);

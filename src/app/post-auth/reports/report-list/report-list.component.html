@@ -1,9 +1,24 @@
-<div class="container-fluid" style="margin-top: 30px">
-  <app-ui-table
-    [tabData]="tabData"
-    [columnDefsConfigs]="columnDefsConfigs"
-    [rowSelection]="'multiple'"
-    (gridReady)="onGridReady($event)"
-    (rowClick)="onRowClick($event)"
-  ></app-ui-table>
+<div class="container-fluid wraper-container">
+  <div class="side-panel">
+    <div class="header-wraper">
+      <h5 class="page-title mb-0">Folders</h5>
+    </div>
+    <ul class="folder-list list-group">
+      <li
+        class="folder-item list-group-item"
+        *ngFor="let item of selectFolderArr"
+      >
+        {{ item.FOLDER_NAME }}
+      </li>
+    </ul>
+  </div>
+  <div class="main-container">
+    <app-ui-table
+      [tabData]="tabData"
+      [columnDefsConfigs]="columnDefsConfigs"
+      [rowSelection]="'multiple'"
+      (gridReady)="onGridReady($event)"
+      (rowClick)="onRowClick($event)"
+    ></app-ui-table>
+  </div>
 </div>

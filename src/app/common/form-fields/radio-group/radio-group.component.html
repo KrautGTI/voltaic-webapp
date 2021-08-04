@@ -1,19 +1,24 @@
 <div class="input-radio" [formGroup]="group">
-  <label class="form-label" *ngIf="label">
-    {{ label }}
-  </label>
-  <div class="radio-grp-container">
-    <mat-radio-group
-      aria-label="Select an option"
-      [formControlName]="fieldName"
-      [name]="fieldName"
-      (change)="onChange($event)"
+  <div class="row">
+    <label class="form-label col-4" *ngIf="label">
+      {{ label }}
+    </label>
+    <div
+      class="radio-grp-container col-8"
+      [ngClass]="{ 'col-8': label, 'col-12': !label }"
     >
-      <ng-container *ngFor="let option of options">
-        <mat-radio-button [value]="option.value" [checked]="option.checked">{{
-          option.label
-        }}</mat-radio-button>
-      </ng-container>
-    </mat-radio-group>
+      <mat-radio-group
+        aria-label="Select an option"
+        [formControlName]="fieldName"
+        [name]="fieldName"
+        (change)="onChange($event)"
+      >
+        <ng-container *ngFor="let option of modifiedOptions">
+          <mat-radio-button [value]="option.value" [checked]="option.checked">{{
+            option.label
+          }}</mat-radio-button>
+        </ng-container>
+      </mat-radio-group>
+    </div>
   </div>
 </div>

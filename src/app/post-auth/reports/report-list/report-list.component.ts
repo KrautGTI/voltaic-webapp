@@ -1,7 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { forkJoin, Observable, Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 import { GenericService } from 'src/app/service/generic.service';
 import { NotificationService } from 'src/app/service/notification.service';
+import { ColumnDefsConfigs } from 'src/app/shared/constants/report.constant';
 import { ColumnDefs } from 'src/app/shared/models/util.model';
 
 @Component({
@@ -9,11 +12,15 @@ import { ColumnDefs } from 'src/app/shared/models/util.model';
   templateUrl: './report-list.component.html',
   styleUrls: ['./report-list.component.scss'],
 })
-export class ReportListComponent implements OnInit {
+export class ReportListComponent implements OnInit, OnDestroy {
   public tabData: any = [];
-  public columnDefsConfigs: ColumnDefs[] = [];
+  public columnDefsConfigs: ColumnDefs[] = ColumnDefsConfigs;
   public gridApi: any;
   public gridColumnApi: any;
+  public selectFolderArr: any[] = [];
+  public isVisibleTable: boolean = false;
+  public selectedFolder: any = null;
+  private unsubscribe$: Subject<boolean> = new Subject();
 
   constructor(
     private genericService: GenericService,
@@ -22,20 +29,34 @@ export class ReportListComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.columnDefsConfigs = [
-      {
-        headerName: 'Report Name',
-        field: 'Account_Name',
-      },
-      {
-        headerName: 'Description',
-        field: 'Description',
-      },
-      {
-        headerName: 'Last Run Date',
-        field: 'Created_Time',
-      },
-    ];
+    this.fetchRequiredData();
+  }
+  ngOnDestroy(): void {
+    this.unsubscribe$.next(true);
+    this.unsubscribe$.complete();
+  }
+  private fetchRequiredData(): void {
+    const reqs: Observable<any>[] = [];
+    const getFolders$ = this.genericService.getFolders();
+    reqs.push(getFolders$);
+    forkJoin(reqs)
+      .pipe(takeUntil(this.unsubscribe$))
+      .subscribe(
+        (results) => {
+          if (results && Array.isArray(results)) {
+            if (results[0]) {
+              this.selectFolderArr =
+                results[0].message && Array.isArray(results[0].message)
+                  ? results[0].message
+                  : [];
+            }
+          }
+        },
+        (error) => {
+          const errMsg = 'Unable To fetch data. Please try again.';
+          this.notificationService.error(errMsg, false);
+        }
+      );
   }
   public onGridReady(params: any): void {
     this.gridApi = params.api;

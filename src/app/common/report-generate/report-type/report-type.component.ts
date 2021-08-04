@@ -14,11 +14,6 @@ export class ReportTypeComponent implements OnInit {
   public isVisibleBtn: boolean = false;
   public label: { [key: string]: FormField } = ReportModuleLabels;
   public reportTypeForm: FormGroup = new FormGroup({});
-  public reportTypeArr: OptionModel[] = [
-    { label: 'Tabular Report', value: 'tabularReport', checked: true },
-    { label: 'Summary Report', value: 'summaryReport', checked: false },
-    { label: 'Matrix Report', value: 'matrixReport', checked: false },
-  ];
 
   constructor(private fb: FormBuilder) {}
 

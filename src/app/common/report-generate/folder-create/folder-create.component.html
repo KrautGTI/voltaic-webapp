@@ -1,8 +1,87 @@
-<h2 mat-dialog-title>Folder Create</h2>
-<mat-dialog-content class="mat-typography">
-  <p>folder-create works!</p>
-</mat-dialog-content>
-<mat-dialog-actions align="end">
-  <button mat-button mat-dialog-close>Cancel</button>
-  <button mat-button [mat-dialog-close]="true" cdkFocusInitial>Install</button>
-</mat-dialog-actions>
+<div class="folder-main-container">
+  <h2 mat-dialog-title>Create Report Folder</h2>
+  <mat-dialog-content class="mat-typography">
+    <div class="folder-container">
+      <div class="row my-4">
+        <div class="col-12">
+          <app-input
+            [type]="label.folderName.fieldType"
+            [isRequired]="label.folderName.isRequired"
+            [label]="label.folderName.fieldLabel"
+            [fieldName]="label.folderName.fieldName"
+            [placeholder]="label.folderName.placeholder"
+            [errors]="label.folderName.errors"
+            [group]="folderForm"
+          ></app-input>
+        </div>
+      </div>
+      <div class="row mb-4">
+        <div class="col-12">
+          <app-radio-group
+            [isRequired]="label.viewType.isRequired"
+            [label]="label.viewType.fieldLabel"
+            [fieldName]="label.viewType.fieldName"
+            [options]="label.viewType.options"
+            [optionConfig]="label.viewType.optionConfig"
+            [errors]="label.viewType.errors"
+            [group]="folderForm"
+          ></app-radio-group>
+        </div>
+      </div>
+      <div class="row mb-4" *ngIf="viewType?.value === 'selectedUser'">
+        <div class="col-12">
+          <app-multi-select
+            [isRequired]="label.selectedGroups.isRequired"
+            [label]="label.selectedGroups.fieldLabel"
+            [fieldName]="label.selectedGroups.fieldName"
+            [options]="masterData[label.selectedGroups.fieldName]"
+            [optionConfig]="label.selectedGroups.optionConfig"
+            [errors]="label.selectedGroups.errors"
+            [group]="folderForm"
+          ></app-multi-select>
+        </div>
+      </div>
+      <div class="row mb-4" *ngIf="viewType?.value === 'selectedUser'">
+        <div class="col-12">
+          <app-multi-select
+            [isRequired]="label.selectedUsers.isRequired"
+            [label]="label.selectedUsers.fieldLabel"
+            [fieldName]="label.selectedUsers.fieldName"
+            [options]="leadOwners"
+            [optionConfig]="label.selectedUsers.optionConfig"
+            [errors]="label.selectedUsers.errors"
+            [group]="folderForm"
+          ></app-multi-select>
+        </div>
+      </div>
+      <div class="row mb-4" *ngIf="viewType?.value === 'selectedUser'">
+        <div class="col-12">
+          <app-multi-select
+            [isRequired]="label.selectedRoles.isRequired"
+            [label]="label.selectedRoles.fieldLabel"
+            [fieldName]="label.selectedRoles.fieldName"
+            [options]="masterData[label.selectedRoles.fieldName]"
+            [optionConfig]="label.selectedRoles.optionConfig"
+            [errors]="label.selectedRoles.errors"
+            [group]="folderForm"
+          ></app-multi-select>
+        </div>
+      </div>
+    </div>
+  </mat-dialog-content>
+  <mat-dialog-actions class="d-flex justify-content-end">
+    <div class="me-4">
+      <app-btn-primary
+        [btnName]="'Cancel'"
+        [class]="'btn-light'"
+        (btnClick)="onCancel()"
+      ></app-btn-primary>
+    </div>
+    <div>
+      <app-btn-primary
+        [btnName]="'Save'"
+        (btnClick)="onSave()"
+      ></app-btn-primary>
+    </div>
+  </mat-dialog-actions>
+</div>

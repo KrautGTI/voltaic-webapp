@@ -1,4 +1,4 @@
-<form [formGroup]="moduleForm">
+<form [formGroup]="moduleForm" *ngIf="isVisibleForm">
   <div class="row mb-4">
     <div class="col-6">
       <label class="header-label">Select Module</label>
@@ -7,6 +7,7 @@
   <div class="row mb-4">
     <div class="col-6">
       <app-select
+        [isEditable]="isEditable"
         [isRequired]="label.selectModule.isRequired"
         [label]="label.selectModule.fieldLabel"
         [fieldName]="label.selectModule.fieldName"
@@ -33,18 +34,19 @@
           <app-checkbox
             [label]="getGroup(i).get('fieldLabel')!.value"
             [fieldName]="'selectItem'"
+            [isEditable]="isEditable"
             [group]="getGroup(i)"
           ></app-checkbox>
         </div>
       </div>
     </div>
   </div>
-  <div class="row mb-4" *ngIf="isVisibleBtn">
-    <div class="col-6">
-      <app-btn-primary
-        [btnName]="'Continue'"
-        (btnClick)="onContinue()"
-      ></app-btn-primary>
-    </div>
-  </div>
 </form>
+<div class="row mb-4" *ngIf="isVisibleBtn">
+  <div class="col-6">
+    <app-btn-primary
+      [btnName]="'Continue'"
+      (btnClick)="onContinue()"
+    ></app-btn-primary>
+  </div>
+</div>

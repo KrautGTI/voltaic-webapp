@@ -26,6 +26,7 @@ export class CheckboxComponent implements OnInit {
 
   ngOnInit(): void {
     this.class = `${this.fieldName} ${this.class}`;
+    this.setEditableStatus();
   }
   get groupControl(): AbstractControl | null {
     return this.group.get(this.fieldName);

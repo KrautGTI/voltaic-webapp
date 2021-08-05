@@ -1,18 +1,144 @@
-<form [formGroup]="reportTypeForm">
+<form [formGroup]="reportFilterForm">
   <div class="row mb-4">
     <div class="col-12">
       <label class="header-label">Standard Filters</label>
     </div>
   </div>
   <div class="row mb-4">
-    <div class="col-12"></div>
+    <div class="col-12">
+      <div class="row mb-4">
+        <div class="col-12 d-flex justify-content-start">
+          <div class="filter-cell me-3">
+            <app-select
+              [defaultOption]="false"
+              [isTime]="true"
+              [isRequired]="label.standardFilterSelect.isRequired"
+              [label]="label.standardFilterSelect.fieldLabel"
+              [fieldName]="label.standardFilterSelect.fieldName"
+              [options]="standardFilterOptions"
+              [optionConfig]="label.standardFilterSelect.optionConfig"
+              [errors]="label.standardFilterSelect.errors"
+              [group]="reportFilterForm"
+            ></app-select>
+          </div>
+          <div class="filter-cell me-3">
+            <app-select
+              [defaultOption]="false"
+              [isTime]="true"
+              [isRequired]="label.standardFilterCondition.isRequired"
+              [label]="label.standardFilterCondition.fieldLabel"
+              [fieldName]="label.standardFilterCondition.fieldName"
+              [options]="standardFilterConditionsOptions"
+              [optionConfig]="label.standardFilterCondition.optionConfig"
+              [errors]="label.standardFilterCondition.errors"
+              [group]="reportFilterForm"
+            ></app-select>
+          </div>
+          <div class="filter-cell me-3">
+            <app-date
+              [type]="label.startDate.fieldType"
+              [isRequired]="label.startDate.isRequired"
+              [label]="label.startDate.fieldLabel"
+              [fieldName]="label.startDate.fieldName"
+              [placeholder]="label.startDate.placeholder"
+              [errors]="label.startDate.errors"
+              [isFullSize]="true"
+              [group]="reportFilterForm"
+            ></app-date>
+          </div>
+          <div class="filter-cell">
+            <app-date
+              [type]="label.endDate.fieldType"
+              [isRequired]="label.endDate.isRequired"
+              [label]="label.endDate.fieldLabel"
+              [fieldName]="label.endDate.fieldName"
+              [placeholder]="label.endDate.placeholder"
+              [errors]="label.endDate.errors"
+              [isFullSize]="true"
+              [group]="reportFilterForm"
+            ></app-date>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row mb-4">
+    <div class="col-12">
+      <label class="header-label">Advanced Filters</label>
+    </div>
+  </div>
+  <div class="row mb-4">
+    <div class="col-12">
+      <div
+        class="row mb-4"
+        [formArrayName]="'advancedFilter'"
+        *ngFor="let item of advancedFilter!.controls; let i = index"
+      >
+        <div class="col-12 d-flex justify-content-start">
+          <div class="filter-cell me-3">
+            <app-select
+              [isTime]="true"
+              [isRequired]="label.advanceFilterSelect.isRequired"
+              [label]="label.advanceFilterSelect.fieldLabel"
+              [fieldName]="label.advanceFilterSelect.fieldName"
+              [options]="advanceFilterOptions"
+              [optionConfig]="label.advanceFilterSelect.optionConfig"
+              [errors]="label.advanceFilterSelect.errors"
+              [group]="getGroup(i)"
+            ></app-select>
+          </div>
+          <div class="filter-cell me-3">
+            <app-input
+              [type]="label.advancedFilterValue.fieldType"
+              [isRequired]="label.advancedFilterValue.isRequired"
+              [label]="label.advancedFilterValue.fieldLabel"
+              [fieldName]="label.advancedFilterValue.fieldName"
+              [placeholder]="label.advancedFilterValue.placeholder"
+              [errors]="label.advancedFilterValue.errors"
+              [group]="getGroup(i)"
+            ></app-input>
+          </div>
+          <div
+            class="flex-center me-3"
+            *ngIf="i > 0 || advancedFilter.length > 1"
+            (click)="onRemove(i)"
+          >
+            <label class="icon mb-0">-</label>
+          </div>
+          <div
+            class="flex-center me-3"
+            *ngIf="i === advancedFilter.length - 1"
+            (click)="onAdd(i)"
+          >
+            <label class="icon mb-0">+</label>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
   <div class="row mb-4" *ngIf="isVisibleBtn">
     <div class="col-6">
-      <app-btn-primary
-        [btnName]="'Continue'"
-        (btnClick)="onContinue()"
-      ></app-btn-primary>
+      <div class="btn-wraper">
+        <span class="me-3">
+          <app-btn-primary
+            [btnName]="'Continue'"
+            (btnClick)="onContinue()"
+          ></app-btn-primary>
+        </span>
+        <span class="me-3">
+          <app-btn-primary
+            [btnName]="'Run'"
+            (btnClick)="onRun()"
+          ></app-btn-primary>
+        </span>
+        <span class="me-1">
+          <app-btn-primary
+            [btnName]="'Cancel'"
+            [class]="'btn-light'"
+            (btnClick)="onCancel()"
+          ></app-btn-primary>
+        </span>
+      </div>
     </div>
   </div>
 </form>

@@ -5,7 +5,11 @@
       <span *ngIf="isRequired" class="mandatory-style">*</span>
     </label>
 
-    <div [ngClass]="isTime ? 'col-12' : 'col-8'" class="eachInfo" *ngIf="!isNewDesing">
+    <div
+      [ngClass]="isTime ? 'col-12' : 'col-8'"
+      class="eachInfo"
+      *ngIf="!isNewDesing"
+    >
       <div class="blueTxt">
         <select
           [name]="fieldName"
@@ -20,7 +24,7 @@
           (change)="onChange($event)"
           #inputRef
         >
-          <option value="">Select None</option>
+          <option *ngIf="defaultOption" value="">Select None</option>
           <option *ngFor="let option of modifiedOptions" [value]="option.value">
             {{ option.label }}
           </option>
@@ -57,7 +61,7 @@
             (change)="onChange($event)"
             #inputRef
           >
-            <option value="">Select None</option>
+            <option *ngIf="defaultOption" value="">Select None</option>
             <option
               *ngFor="let option of modifiedOptions"
               [value]="option.value"

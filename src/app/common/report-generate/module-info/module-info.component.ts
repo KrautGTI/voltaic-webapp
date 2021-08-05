@@ -36,7 +36,9 @@ export class ModuleInfoComponent implements OnInit, OnDestroy {
   private unsubscribe$: Subject<boolean> = new Subject();
   public filteredModuleData: any = [];
   public isInvalidForm: boolean = true;
+  public isVisibleForm: boolean = true;
   public isVisibleBtn: boolean = false;
+  public isEditable: boolean = true;
 
   constructor(private fb: FormBuilder) {}
 
@@ -109,7 +111,12 @@ export class ModuleInfoComponent implements OnInit, OnDestroy {
       moduleIdArr.push(control.get('fieldName')!.value);
     });
     this.btnSubmit.emit(moduleIdArr);
-    this.isVisibleBtn = false;
+    this.isVisibleForm = false;
+    this.isEditable = false;
+    setTimeout(() => {
+      this.isVisibleForm = true;
+      this.isVisibleBtn = false;
+    });
   }
   private getSelectedModules(): FormArray {
     const resArr = this.availableModules.controls.filter(

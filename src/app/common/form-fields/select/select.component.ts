@@ -29,7 +29,7 @@ import {
 export class SelectComponent implements OnInit, OnChanges {
   @Input() public group: FormGroup;
   @Input() public label: string = '';
-  @Input() public type: string = 'text';
+  @Input() public type: string = 'select';
   @Input() public fieldName: string = '';
   @Input() public class: string = '';
   @Input() public isFixed: boolean = true;

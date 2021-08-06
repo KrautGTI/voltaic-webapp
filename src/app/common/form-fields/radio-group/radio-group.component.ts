@@ -1,4 +1,12 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnChanges,
+  OnInit,
+  Output,
+  SimpleChanges,
+} from '@angular/core';
 import { AbstractControl, FormGroup } from '@angular/forms';
 import {
   FormFieldError,
@@ -11,7 +19,7 @@ import {
   templateUrl: './radio-group.component.html',
   styleUrls: ['./radio-group.component.scss'],
 })
-export class RadioGroupComponent implements OnInit {
+export class RadioGroupComponent implements OnInit, OnChanges {
   @Input() public group: FormGroup = new FormGroup({});
   @Input() public label: string = '';
   @Input() public type: string = 'radio';
@@ -22,12 +30,49 @@ export class RadioGroupComponent implements OnInit {
   @Input() public isFixed: boolean = true;
   @Input() public isEditable: boolean = true;
   @Input() public isRequired: boolean = false;
-  @Input() public options: OptionModel[] = [];
+  @Input() public options: OptionModel[] | undefined = [];
+  @Input() public optionConfig: OptionConfig | undefined = new OptionConfig();
   @Input() public errors: FormFieldError[] = [];
   @Output() public cstChange = new EventEmitter<any>();
 
+  public modifiedOptions: OptionModel[] = [];
+
   constructor() {}
 
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes.options) {
+      if (this.options && Array.isArray(this.options)) {
+        if (
+          this.optionConfig &&
+          this.optionConfig.labelKey &&
+          this.optionConfig.valueKey
+        ) {
+          this.options.forEach((option: any) => {
+            const optionModel: OptionModel = new OptionModel();
+            optionModel.label =
+              this.optionConfig &&
+              this.optionConfig.labelKey &&
+              option[this.optionConfig.labelKey]
+                ? option[this.optionConfig.labelKey]
+                : '';
+            optionModel.value =
+              this.optionConfig &&
+              this.optionConfig.valueKey &&
+              option[this.optionConfig.valueKey]
+                ? option[this.optionConfig.valueKey]
+                : '';
+            optionModel.checked =
+              this.optionConfig &&
+              this.optionConfig.checkedKey &&
+              option[this.optionConfig.checkedKey]
+                ? option[this.optionConfig.checkedKey]
+                : false;
+            this.modifiedOptions.push(optionModel);
+          });
+        }
+      }
+    }
+  }
   ngOnInit(): void {
     this.class = `${this.fieldName} ${this.class}`;
   }

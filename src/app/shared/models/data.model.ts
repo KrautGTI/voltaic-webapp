@@ -1,0 +1,45 @@
+export class Folder {
+  id: string = '';
+  folder_name: string = '';
+  folder_desc: string = '';
+  view_only_user: string = '';
+  view_all: string = '';
+  view_by_group: string = '';
+  view_by_user: string = '';
+  view_by_role: string = '';
+}
+
+export class Account {
+  Account_ID: string = '';
+  Rating: string = '';
+  Account_Name: string = '';
+  Account_Owner_ID: string = '';
+  Phone: string = '';
+  Account_Site: string = '';
+  Fax: string = '';
+  Parent_Account_ID: string = '';
+  Website: string = '';
+  Account_Number: string = '';
+  Ticker_Symbol: string = '';
+  Account_Type: string = '';
+  Ownership: string = '';
+  Industry: string = '';
+  Employees: string = '';
+  Annual_Revenue: string = '';
+  SIC_Code: string = '';
+  login_id: string = '';
+  Billing_Street: string = '';
+  Shipping_Street: string = '';
+  Billing_City: string = '';
+  Shipping_City: string = '';
+  Billing_State: string = '';
+  Shipping_State: string = '';
+  Billing_Code: string = '';
+  Shipping_Code: string = '';
+  Billing_Country: string = '';
+  Shipping_Country: string = '';
+  Description: string = '';
+  Tag: string = '';
+  Average_Bill: string = '';
+  Reschedule_Cycle_Time: string = '';
+}

@@ -5,6 +5,8 @@ import { HttpClient } from '@angular/common/http';
 import { FormBuilder } from '@angular/forms';
 import Swal from 'sweetalert2';
 import { NotificationService } from 'src/app/service/notification.service';
+import { AuthService } from 'src/app/service/auth.service';
+import { UserDetailsModel } from 'src/app/shared/models/util.model';
 // import {DatePickerComponent} from 'ng2-date-picker';
 
 @Component({
@@ -13,6 +15,7 @@ import { NotificationService } from 'src/app/service/notification.service';
   styleUrls: ['./deal-details.component.scss'],
 })
 export class DealDetailsComponent implements OnInit {
+  userDetails: UserDetailsModel | null = null;
   dealDetailsForm: any;
   dealId: string = '';
   dealInfoVisible = true;
@@ -30,6 +33,9 @@ export class DealDetailsComponent implements OnInit {
   masterData: any;
   // contactDetails:any;
   contactList: any;
+  isSubmitClicked = false;
+  querySubscription: any;
+  isAdmin: boolean = false;
   // contactList = [{Contact_Name: 'Armando Andrade', Phone: '(562) 822-4613', Email: 'Elalemanandrade@gmail.com', Role_Name: ''}]
   constructor(
     private genericService: GenericService,
@@ -38,10 +44,14 @@ export class DealDetailsComponent implements OnInit {
     private httpClient: HttpClient,
     private elementRef: ElementRef,
     private formBuilder: FormBuilder,
-    private notificationService: NotificationService
+    private notificationService: NotificationService,
+    private authService: AuthService,
   ) {}
 
   ngOnInit(): void {
+    this.userDetails = this.authService.getUserDetails();
+    this.isAdmin = this.authService.getIsAdmin();
+
     this.dealDetailsForm = this.formBuilder.group({
       AHJ: ['-'],
       APS_Reservation_Number: ['-'],
@@ -157,7 +167,7 @@ export class DealDetailsComponent implements OnInit {
       UB_Page_1: ['-'],
       UB_Page_2: ['-'],
       Usage_Page: ['-'],
-      Utility: ['-'],
+      Utility: ['-1'],
       Utility_Rate_Plan: ['-1'],
       VCR_Completed: ['-1'],
       VSA: [''],
@@ -199,6 +209,10 @@ export class DealDetailsComponent implements OnInit {
     this.genericService.getLeadOwners().subscribe((data: any) => {
       this.leadOwners = data.message;
       console.log(this.leadOwners);
+      if (!this.isAdmin)
+        this.dealDetailsForm.patchValue({
+          Deal_Owner: this.userDetails ? this.userDetails.user_loginId : '',
+        });
     });
     this.genericService.getEnergyConsultant().subscribe((data: any) => {
       this.energyConsultant = data.message;
@@ -265,11 +279,14 @@ export class DealDetailsComponent implements OnInit {
             //  console.log(this.contactList);
           });
 
+          
+          console.log('accounts name: ' + " " + this.dealDetails?.Account_Name + '#?#' + this.dealDetails?.Account_ID);
+
           this.dealDetailsForm.patchValue({
             Account_Name:
               this.dealDetails?.Account_Name == null
                 ? '-1'
-                : this.dealDetails?.Account_Name,
+                : (this.dealDetails?.Account_Name + '#?#' + this.dealDetails?.Account_ID),
             Channel_Partner:
               this.dealDetails?.Channel_Partner == null
                 ? '-1'
@@ -281,11 +298,11 @@ export class DealDetailsComponent implements OnInit {
             Contact_Name:
               this.dealDetails?.Contact_Name == null
                 ? '-1'
-                : this.dealDetails?.Contact_Name,
+                : (this.dealDetails?.Contact_Name + '#?#' + (this.dealDetails?.Contact_ID)),
             Deal_Owner:
               this.dealDetails?.Deal_Owner == null
                 ? '-1'
-                : this.dealDetails?.Deal_Owner,
+                : (this.dealDetails?.Deal_Owner + '#?#' + (this.dealDetails?.Deal_Owner_ID)),
             Derate:
               this.dealDetails?.Derate == null
                 ? '-1'
@@ -333,6 +350,8 @@ export class DealDetailsComponent implements OnInit {
                 : this.dealDetails?.Meter_Spot,
             PROMO:
               this.dealDetails?.PROMO == null ? '-1' : this.dealDetails?.PROMO,
+            Utility:
+              this.dealDetails?.Utility == null ? '-1' : this.dealDetails?.Utility,
             PR_SOW_Received:
               this.dealDetails?.PR_SOW_Received == null
                 ? '-1'
@@ -444,5 +463,177 @@ export class DealDetailsComponent implements OnInit {
         this.notificationService.error(errMsg);
       }
     );
+  }
+
+  submitDealDetails() {
+    this.isSubmitClicked = true;
+    Swal.fire({
+      text: 'Do You Want To Save Changes?',
+      icon: 'question',
+      confirmButtonColor: '#A239CA',
+      position: 'center',
+      confirmButtonText: 'Yes',
+      showConfirmButton: true,
+      showCancelButton: true,
+      cancelButtonText: 'No',
+    }).then((res) => {
+      if (res.isConfirmed) {
+        const dealDetailsData = {
+          deal_id: this.dealId,
+          deal_owner_id: this.dealDetailsForm.value.Deal_Owner == '-1' ? '' : this.dealDetailsForm.value.Deal_Owner.split('#?#')[1],
+          account_name: this.dealDetailsForm.value.Account_Name == '-1' ? '' : this.dealDetailsForm.value.Account_Name.split('#?#')[0],
+          account_id: this.dealDetailsForm.value.Account_Name == '-1' ? '' : this.dealDetailsForm.value.Account_Name.split('#?#')[1],
+          deal_owner: this.dealDetailsForm.value.Deal_Owner == '-1' ? '' : this.dealDetailsForm.value.Deal_Owner.split('#?#')[0],
+          deal_name: this.dealDetailsForm.value.Deal_Name == '-' ? '' : this.dealDetailsForm.value.Deal_Name,
+          contact_name: this.dealDetailsForm.value.Contact_Name == '-1' ? '' : this.dealDetailsForm.value.Contact_Name.split('#?#')[0],
+          contact_id: this.dealDetailsForm.value.Contact_Name == '-1' ? '' : this.dealDetailsForm.value.Contact_Name.split('#?#')[1],
+		      email: this.dealDetailsForm.value.dealerEmail == '-' ? '' : this.dealDetailsForm.value.dealerEmail,
+          closing_date: this.dealDetailsForm.value.Closing_Date == '-' ? '' : this.dealDetailsForm.value.Closing_Date,
+          product_id: this.dealDetailsForm.value.Products == '-1' ? '' : this.dealDetailsForm.value.Products,
+          lead_source_id: this.dealDetailsForm.value.Lead_Source == '-1' ? '' : this.dealDetailsForm.value.Lead_Source,
+          retention_rep_id: this.dealDetailsForm.value.Retention_Rep == '-1' ? '' : this.dealDetailsForm.value.Retention_Rep,
+          mentor_id: this.dealDetailsForm.value.Mentor == '-1' ? '' : this.dealDetailsForm.value.Mentor,
+          region: this.dealDetailsForm.value.Region == '-1' ? '' : this.dealDetailsForm.value.Region,
+          qc_ready_to_schedule: this.dealDetailsForm.value.QC_Ready_To_Schedule == '-1' ? '' : this.dealDetailsForm.value.QC_Ready_To_Schedule,
+          quiet_cool_installed: this.dealDetailsForm.value.Quiet_Cool_Installed == '-' ? '' : this.dealDetailsForm.value.Quiet_Cool_Installed,
+          fan_size: this.dealDetailsForm.value.Fan_Size == '-1' ? '' : this.dealDetailsForm.value.Fan_Size,
+          marketer: this.dealDetailsForm.value.Marketer == '-1' ? '' : this.dealDetailsForm.value.Marketer,
+          stage_id: this.dealDetailsForm.value.Stage == '-1' ? '' : this.dealDetailsForm.value.Stage,
+          annual_consumption: this.dealDetailsForm.value.Annual_Consumption == '-' ? '' : this.dealDetailsForm.value.Annual_Consumption,
+          annual_bill: this.dealDetailsForm.value.Annual_Bill == '-' ? '' : this.dealDetailsForm.value.Annual_Bill,
+          energy_consultant_id: this.dealDetailsForm.value.Energy_Consultant == '-1' ? '' : this.dealDetailsForm.value.Energy_Consultant,
+          reschedule_cycle_time: this.dealDetailsForm.value.Reschedule_Cycle_Time == '-' ? '' : this.dealDetailsForm.value.Reschedule_Cycle_Time,
+          date: this.dealDetailsForm.value.Date == '-' ? '' : this.dealDetailsForm.value.Date,
+          promo: this.dealDetailsForm.value.PROMO == '-1' ? '' : this.dealDetailsForm.value.PROMO,
+          utility: this.dealDetailsForm.value.Utility == '-1' ? '' : this.dealDetailsForm.value.Utility,
+          hoa: this.dealDetailsForm.value.HOA == '-1' ? '' : this.dealDetailsForm.value.HOA,
+          hoa_info: this.dealDetailsForm.value.HOA_INFO == '-' ? '' : this.dealDetailsForm.value.HOA_INFO,
+          ahj: this.dealDetailsForm.value.AHJ == '-' ? '' : this.dealDetailsForm.value.AHJ,
+          roof_waiver: this.dealDetailsForm.value.Roof_Waiver == '-1' ? '' : this.dealDetailsForm.value.Roof_Waiver,
+          roofing_required: this.dealDetailsForm.value.Roofing_Required == '-1' ? '' : this.dealDetailsForm.value.Roofing_Required,
+          blended_rate: this.dealDetailsForm.value.Blended_Rate == '-' ? '' : this.dealDetailsForm.value.Blended_Rate,
+          utility_rate_plan: this.dealDetailsForm.value.Utility_Rate_Plan == '-1' ? '' : this.dealDetailsForm.value.Utility_Rate_Plan,
+          aps_reservation_number: this.dealDetailsForm.value.APS_Reservation_Number == '-' ? '' : this.dealDetailsForm.value.APS_Reservation_Number,
+          channel_partner: this.dealDetailsForm.value.Channel_Partner == '-1' ? '' : this.dealDetailsForm.value.Channel_Partner,
+          home_sq_ft: this.dealDetailsForm.value.Home_Sq_Ft == '-' ? '' : this.dealDetailsForm.value.Home_Sq_Ft,
+          project_docs: this.dealDetailsForm.value.Project_Docs == '-' ? '' : this.dealDetailsForm.value.Project_Docs,
+          resign_required: this.dealDetailsForm.value.Resign_Required == '-1' ? '' : this.dealDetailsForm.value.Resign_Required,
+          resigned_for_roofing: this.dealDetailsForm.value.Resigned_for_Roofing == '-1' ? '' : this.dealDetailsForm.value.Resigned_for_Roofing,
+          roofer: this.dealDetailsForm.value.Roofer == '-' ? '' : this.dealDetailsForm.value.Roofer,
+          scope_of_reroof: this.dealDetailsForm.value.Scope_of_Reroof == '-1' ? '' : this.dealDetailsForm.value.Scope_of_Reroof,
+          //roof_pics: this.dealDetailsForm.value.Roof_Pics == '-' ? '' : this.dealDetailsForm.value.Roof_Pics,
+          roof_pics: '',
+          hvac_sow: this.dealDetailsForm.value.HVAC_SOW == '-1' ? '' : this.dealDetailsForm.value.HVAC_SOW,
+          hvac_size: this.dealDetailsForm.value.HVAC_size == '-1' ? '' : this.dealDetailsForm.value.HVAC_size,
+          derate: this.dealDetailsForm.value.Derate == '-1' ? '' : this.dealDetailsForm.value.Derate,
+          mpu_required: this.dealDetailsForm.value.MPU_Required == '-1' ? '' : this.dealDetailsForm.value.MPU_Required,
+          mpu_sold: this.dealDetailsForm.value.MPU_Sold == '-1' ? '' : this.dealDetailsForm.value.MPU_Sold,
+         // msp_pics: this.dealDetailsForm.value.MSP_Pics == '-' ? '' : this.dealDetailsForm.value.MSP_Pics,
+         msp_pics: '', 
+         meter_spot: this.dealDetailsForm.value.Meter_Spot == '-1' ? '' : this.dealDetailsForm.value.Meter_Spot,
+          relocation_distance: this.dealDetailsForm.value.Relocation_Distance == '-' ? '' : this.dealDetailsForm.value.Relocation_Distance,
+          mpu_scheduled: this.dealDetailsForm.value.MPU_Scheduled == '-' ? '' : this.dealDetailsForm.value.MPU_Scheduled,
+          mpu_complete: this.dealDetailsForm.value.MPU_Complete == '-' ? '' : this.dealDetailsForm.value.MPU_Complete,
+          rookie_card_vc: this.dealDetailsForm.value.Rookie_Card_VC == '-' ? '' : this.dealDetailsForm.value.Rookie_Card_VC,
+          ub_page_one: this.dealDetailsForm.value.UB_Page_1 == '-' ? '' : this.dealDetailsForm.value.UB_Page_1,
+          ub_page_two: this.dealDetailsForm.value.UB_Page_2 == '-' ? '' : this.dealDetailsForm.value.UB_Page_2,
+          usage_page: this.dealDetailsForm.value.Usage_Page == '-' ? '' : this.dealDetailsForm.value.Usage_Page,
+          hic: this.dealDetailsForm.value.HIC == '-' ? '' : this.dealDetailsForm.value.HIC,
+          company_cam: this.dealDetailsForm.value.Company_Cam == '-' ? '' : this.dealDetailsForm.value.Company_Cam,
+          second_marketer: this.dealDetailsForm.value.Second_Marketer == '-1' ? '' : this.dealDetailsForm.value.Second_Marketer,
+          retention_date: this.dealDetailsForm.value.Retention_Date == '-' ? '' : this.dealDetailsForm.value.Retention_Date,
+          contract_price: this.dealDetailsForm.value.Contract_Price == '-' ? '' : this.dealDetailsForm.value.Contract_Price,
+          mpu: this.dealDetailsForm.value.MPU == '-' ? '' : this.dealDetailsForm.value.MPU,
+          nest_price: this.dealDetailsForm.value.Nest_Price == '-' ? '' : this.dealDetailsForm.value.Nest_Price,
+          ring_price: this.dealDetailsForm.value.Ring_Price == '-' ? '' : this.dealDetailsForm.value.Ring_Price,
+          led_price: this.dealDetailsForm.value.LED_Price == '-' ? '' : this.dealDetailsForm.value.LED_Price,
+          storedge_inverter: this.dealDetailsForm.value.Storedge_Inverter == '-' ? '' : this.dealDetailsForm.value.Storedge_Inverter,
+          level_two_ev: this.dealDetailsForm.value.Level_2_EV == '-' ? '' : this.dealDetailsForm.value.Level_2_EV,
+          battery_price: this.dealDetailsForm.value.Battery_Price == '-' ? '' : this.dealDetailsForm.value.Battery_Price,
+          hvac_price: this.dealDetailsForm.value.HVAC_Price == '-' ? '' : this.dealDetailsForm.value.HVAC_Price,
+          insulation_price: this.dealDetailsForm.value.Insulation_Price == '-' ? '' : this.dealDetailsForm.value.Insulation_Price,
+          pool_pump_price: this.dealDetailsForm.value.Pool_Pump_Price == '-' ? '' : this.dealDetailsForm.value.Pool_Pump_Price,
+          quiet_cool_price: this.dealDetailsForm.value.Quiet_Cool_Price == '-' ? '' : this.dealDetailsForm.value.Quiet_Cool_Price,
+          roof_price: this.dealDetailsForm.value.Roof_Price == '-' ? '' : this.dealDetailsForm.value.Roof_Price,
+          solar_price: this.dealDetailsForm.value.Solar_Price == '-' ? '' : this.dealDetailsForm.value.Solar_Price,
+          artificial_grass: this.dealDetailsForm.value.Artificial_Grass == '-' ? '' : this.dealDetailsForm.value.Artificial_Grass,
+          window_price: this.dealDetailsForm.value.Window_Price == '-' ? '' : this.dealDetailsForm.value.Window_Price,
+          additional_scope: this.dealDetailsForm.value.Additional_Scope == '-' ? '' : this.dealDetailsForm.value.Additional_Scope,
+          monitoring: this.dealDetailsForm.value.Monitoring == '-' ? '' : this.dealDetailsForm.value.Monitoring,
+          program: this.dealDetailsForm.value.Program == '-1' ? '' : this.dealDetailsForm.value.Program,
+          escalator: this.dealDetailsForm.value.Channel_Partner == '-1' ? '' : this.dealDetailsForm.value.Channel_Partner,
+          dealer_fee: this.dealDetailsForm.value.Dealer_Fee == '-' ? '' : this.dealDetailsForm.value.Dealer_Fee,
+          system_size: this.dealDetailsForm.value.System_Size == '-' ? '' : this.dealDetailsForm.value.System_Size,
+          down_payment: this.dealDetailsForm.value.Down_Payment == '-' ? '' : this.dealDetailsForm.value.Down_Payment,
+          cash_adders: this.dealDetailsForm.value.Cash_Adders == '-' ? '' : this.dealDetailsForm.value.Cash_Adders,
+          sales_concierge: this.dealDetailsForm.value.Sales_Concierge == '-1' ? '' : this.dealDetailsForm.value.Sales_Concierge,
+          complimentary_concierge: this.dealDetailsForm.value.Complimentary_Concierge == '-1' ? '' : this.dealDetailsForm.value.Complimentary_Concierge,
+          ss_date: this.dealDetailsForm.value.SS_Date == '-' ? '' : this.dealDetailsForm.value.SS_Date,
+          ss_time: this.dealDetailsForm.value.SS_Time == '-1' ? '' : this.dealDetailsForm.value.SS_Time,
+          ss_arrival_window: this.dealDetailsForm.value.SS_Arrival_Window == '-' ? '' : this.dealDetailsForm.value.SS_Arrival_Window,
+          ss_date_complete: this.dealDetailsForm.value.SS_Date_Complete == '-' ? '' : this.dealDetailsForm.value.SS_Date_Complete,
+          sr_approval: this.dealDetailsForm.value.SR_Approval == '-' ? '' : this.dealDetailsForm.value.SR_Approval,
+          qc_fail_date: this.dealDetailsForm.value.QC_Fail_Date == '-' ? '' : this.dealDetailsForm.value.QC_Fail_Date,
+          qc_fail_time: this.dealDetailsForm.value.QC_Fail_Time == '-1' ? '' : this.dealDetailsForm.value.QC_Fail_Time,
+          qc_pass_date: this.dealDetailsForm.value.QC_Pass_Date == '-' ? '' : this.dealDetailsForm.value.QC_Pass_Date,
+          qc_pass_time: this.dealDetailsForm.value.QC_Pass_Time == '-1' ? '' : this.dealDetailsForm.value.QC_Pass_Time,
+          fl_received_date: this.dealDetailsForm.value.FL_Received_Date == '-' ? '' : this.dealDetailsForm.value.FL_Received_Date,
+          fl_received_time: this.dealDetailsForm.value.FL_Received_Time == '-1' ? '' : this.dealDetailsForm.value.FL_Received_Time,
+          final_layout: this.dealDetailsForm.value.Final_Layout == '-' ? '' : this.dealDetailsForm.value.Final_Layout,
+          fla: this.dealDetailsForm.value.FLA == '-' ? '' : this.dealDetailsForm.value.FLA,
+          ntp: this.dealDetailsForm.value.NTP == '-' ? '' : this.dealDetailsForm.value.NTP,
+          vsa: this.dealDetailsForm.value.VSA == '-' ? '' : this.dealDetailsForm.value.VSA,
+          pr_sow_received: this.dealDetailsForm.value.PR_SOW_Received == '-1' ? '' : this.dealDetailsForm.value.PR_SOW_Received,
+          pr_sow_approved: this.dealDetailsForm.value.PR_SOW_Approved == '-' ? '' : this.dealDetailsForm.value.PR_SOW_Approved,
+          permit_submitted: this.dealDetailsForm.value.Permit_Submitted == '-' ? '' : this.dealDetailsForm.value.Permit_Submitted,
+          mone_paid: this.dealDetailsForm.value.M1_Paid == '-' ? '' : this.dealDetailsForm.value.M1_Paid,
+          volt_paid_mone_date: this.dealDetailsForm.value.Volt_Paid_M1_Date == '-' ? '' : this.dealDetailsForm.value.Volt_Paid_M1_Date,
+          volt_paid_mone_time: this.dealDetailsForm.value.Volt_Paid_M1_Time == '-1' ? '' : this.dealDetailsForm.value.Volt_Paid_M1_Time,
+          rep_clawback: this.dealDetailsForm.value.Rep_Clawback == '-' ? '' : this.dealDetailsForm.value.Rep_Clawback,
+          volt_clawback: this.dealDetailsForm.value.Volt_Clawback == '-' ? '' : this.dealDetailsForm.value.Volt_Clawback,
+          permit_approved: this.dealDetailsForm.value.Permit_Approved == '-' ? '' : this.dealDetailsForm.value.Permit_Approved,
+          install_scheduled: this.dealDetailsForm.value.Install_Scheduled == '-' ? '' : this.dealDetailsForm.value.Install_Scheduled,
+          install_completed: this.dealDetailsForm.value.Install_Completed == '-' ? '' : this.dealDetailsForm.value.Install_Completed,
+          m_two_paid: this.dealDetailsForm.value.M2_Paid == '-' ? '' : this.dealDetailsForm.value.M2_Paid,
+          volt_paid_mtwo_date: this.dealDetailsForm.value.Volt_Paid_M2_Date == '-' ? '' : this.dealDetailsForm.value.Volt_Paid_M2_Date,
+          volt_paid_mtwo_time: this.dealDetailsForm.value.Volt_Paid_M2_Time == '-1' ? '' : this.dealDetailsForm.value.Volt_Paid_M2_Time,
+          packaging_commission_paid: this.dealDetailsForm.value.Packaging_Commission_Paid == '-' ? '' : this.dealDetailsForm.value.Packaging_Commission_Paid,
+          fi_scheduled : this.dealDetailsForm.value.FI_SCHEDULED == '-1' ? '' : this.dealDetailsForm.value.FI_SCHEDULED,
+          fi_pass: this.dealDetailsForm.value.FI_PASS == '-' ? '' : this.dealDetailsForm.value.FI_PASS,
+          pto_submitted_date: this.dealDetailsForm.value.PTO_Submitted_Date == '-' ? '' : this.dealDetailsForm.value.PTO_Submitted_Date,
+          pto_submitted_time: this.dealDetailsForm.value.PTO_Submitted_Time == '-1' ? '' : this.dealDetailsForm.value.PTO_Submitted_Time,
+          pto: this.dealDetailsForm.value.PTO == '-' ? '' : this.dealDetailsForm.value.PTO,
+          vcr_completed: this.dealDetailsForm.value.VCR_Completed == '-1' ? '' : this.dealDetailsForm.value.VCR_Completed,
+          expected_profit: this.dealDetailsForm.value.Expected_Profit == '-' ? '' : this.dealDetailsForm.value.Expected_Profit,
+          description: this.dealDetailsForm.value.Description == '-' ? '' : this.dealDetailsForm.value.Description,
+        };
+        console.log(dealDetailsData);
+        this.querySubscription = this.genericService
+          .addModifyDeals(dealDetailsData)
+          .subscribe(
+            (dataValue: any) => {
+              console.log(dataValue);
+              const successMsg = 'Deal Details Updated Succesfully';
+              Swal.fire({
+                text: successMsg,
+                icon: 'success',
+                confirmButtonColor: '#A239CA',
+                confirmButtonText: 'OK',
+              }).then((res) => {
+                window.location.href = '/post-auth/deals/';
+              });
+            },
+            (error: any) => {
+              const errMsg = 'Unable To Save Deal Details';
+              Swal.fire({
+                text: errMsg,
+                icon: 'error',
+                confirmButtonColor: '#A239CA',
+                confirmButtonText: 'OK',
+              });
+            }
+          );
+      }
+    });
   }
 }

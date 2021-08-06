@@ -1,311 +1,1363 @@
 <div class="container-fluid" style="margin-top: 30px">
     <form [formGroup]="dealForm">
-        <div class="card shadow">
-            <div class="card-body contactInfo contactDetails">
-                <div class="p-3 font-size-15rem font-weight-600 d-flex justify-content-between cardHeader">
-                    Deal Information
-                </div>
-                <!-- <div class="col-12 pr-3">
-                    <div class="row">
-                        <div class="col-6">
-                            <div class="mb-4 eachInfoDiv">
-                                <div class="row">
-                                    <div class="col-4 titleTxt">Contact Owner: </div>
-                                    <div class="col-8 eachInfo selectDiv">                        
-                                        <div class="blueTxt">
-                                            <select formControlName="ownerName" class="form-control">
-                                                <option value="-1">Select None</option>
-                                                <option *ngFor="let leadOwner of leadOwners" [value]="leadOwner.id">{{leadOwner.name}}</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>       
-                        </div>
-                        <div class="col-6">
-                            <div class="mb-4 eachInfoDiv">
-                                <div class="row">
-                                    <div class="col-4 titleTxt">Home Sq Ft: </div>
-                                    <div class="col-8 eachInfo">                        
-                                        <div class="blueTxt">
-                                            <input type="text"
-                                            class="form-control" formControlName="Home_Sq_Ft"
-                                            id="Home_Sq_Ft" autocomplete="off"/>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>       
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-6">
-                            <div class="mb-4 eachInfoDiv">
-                                <div class="row">
-                                    <div class="col-4 titleTxt">First Name: </div>
-                                    <div class="col-8 eachInfo">                        
-                                        <div class="blueTxt">
-                                            <input type="text"
-                                            class="form-control" formControlName="First_Name"
-                                            id="First_Name" autocomplete="off"/>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>       
-                        </div>
-                        <div class="col-6">
-                            <div class="mb-4 eachInfoDiv">
-                                <div class="row">
-                                    <div class="col-4 titleTxt">Last Name: </div>
-                                    <div class="col-8 eachInfo">                        
-                                        <div class="blueTxt">
-                                            <input type="text"
-                                            class="form-control" formControlName="Last_Name"
-                                            id="Last_Name"/>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>       
-                        </div>
-                    </div>
+      <div class="card shadow">
+        <div class="card-body contactInfo dealDetails">
+          <div
+            class="
+              p-3
+              font-size-15rem font-weight-600
+              d-flex
+              justify-content-between
+              cardHeader
+            "
+          >
+            Deal Information
+          </div>
+          <div>
+            <div class="row">
+              <div class="col-md-6 mb-4">
+                <app-select
+                  [isRequired]="label.deal_owner_id.isRequired"
+                  [label]="label.deal_owner_id.fieldLabel"
+                  [fieldName]="label.deal_owner_id.fieldName"
+                  [options]="leadOwners"
+                  [optionConfig]="label.deal_owner_id.optionConfig"
+                  [errors]="label.deal_owner_id.errors"
+                  [group]="dealForm"
+                  ></app-select>
+              </div>
+              <div class="col-md-6 mb-4">
+                <app-input
+[type]="label.contract_price.fieldType"
+[isRequired]="label.contract_price.isRequired"
+[label]="label.contract_price.fieldLabel"
+[fieldName]="label.contract_price.fieldName"
+[placeholder]="label.contract_price.placeholder"
+[errors]="label.contract_price.errors"
+[group]="dealForm"
+></app-input>
+              </div>
+              <div class="col-md-6 mb-4">
+                <app-select
+[isRequired]="label.account_name.isRequired"
+[label]="label.account_name.fieldLabel"
+[fieldName]="label.account_name.fieldName"
+[options]="accounts"
+[optionConfig]="label.account_name.optionConfig"
+[errors]="label.account_name.errors"
+[group]="dealForm"
+></app-select>
+              </div>
+              <div class="col-md-6 mb-4">
+                <app-input
+                [type]="label.mpu.fieldType"
+                [isRequired]="label.mpu.isRequired"
+                [label]="label.mpu.fieldLabel"
+                [fieldName]="label.mpu.fieldName"
+                [placeholder]="label.mpu.placeholder"
+                [errors]="label.mpu.errors"
+                [group]="dealForm"
+                ></app-input>
+              </div>
+              <div class="col-md-6 mb-4">
+                <app-input
+[type]="label.deal_name.fieldType"
+[isRequired]="label.deal_name.isRequired"
+[label]="label.deal_name.fieldLabel"
+[fieldName]="label.deal_name.fieldName"
+[placeholder]="label.deal_name.placeholder"
+[errors]="label.deal_name.errors"
+[group]="dealForm"
+></app-input>
+              </div>
+              <div class="col-md-6 mb-4">
+                <app-input
+                [type]="label.nest_price.fieldType"
+                [isRequired]="label.nest_price.isRequired"
+                [label]="label.nest_price.fieldLabel"
+                [fieldName]="label.nest_price.fieldName"
+                [placeholder]="label.nest_price.placeholder"
+                [errors]="label.nest_price.errors"
+                [group]="dealForm"
+                ></app-input>
+              </div>
+              <div class="col-md-6 mb-4">
+                <app-select
+                [isRequired]="label.contact_name.isRequired"
+                [label]="label.contact_name.fieldLabel"
+                [fieldName]="label.contact_name.fieldName"
+                [options]="contacts"
+                [optionConfig]="label.contact_name.optionConfig"
+                [errors]="label.contact_name.errors"
+                [group]="dealForm"
+                ></app-select>
+              </div>
+              <div class="col-md-6 mb-4">
+                <app-input
+[type]="label.ring_price.fieldType"
+[isRequired]="label.ring_price.isRequired"
+[label]="label.ring_price.fieldLabel"
+[fieldName]="label.ring_price.fieldName"
+[placeholder]="label.ring_price.placeholder"
+[errors]="label.ring_price.errors"
+[group]="dealForm"
+></app-input>
+              </div>
+              <div class="col-md-6 mb-4">
+                <app-input
+[type]="label.email.fieldType"
+[isRequired]="label.email.isRequired"
+[label]="label.email.fieldLabel"
+[fieldName]="label.email.fieldName"
+[placeholder]="label.email.placeholder"
+[errors]="label.email.errors"
+[group]="dealForm"
+></app-input>
+              </div>
+              <div class="col-md-6 mb-4">
+                <app-input
+[type]="label.led_price.fieldType"
+[isRequired]="label.led_price.isRequired"
+[label]="label.led_price.fieldLabel"
+[fieldName]="label.led_price.fieldName"
+[placeholder]="label.led_price.placeholder"
+[errors]="label.led_price.errors"
+[group]="dealForm"
+></app-input>
+              </div>
+              <div class="col-md-6 mb-4">
+                <app-date
+                [isRequired]="label.closing_date.isRequired"
+                [label]="label.closing_date.fieldLabel"
+                [fieldName]="label.closing_date.fieldName"
+                [placeholder]="label.closing_date.placeholder"
+                [placeholder]="label.closing_date.placeholder"
+                [errors]="label.closing_date.errors"
+                [group]="dealForm"
+                ></app-date> 
+              </div>
+              <div class="col-md-6 mb-4">
+                <app-input
+[type]="label.storedge_inverter.fieldType"
+[isRequired]="label.storedge_inverter.isRequired"
+[label]="label.storedge_inverter.fieldLabel"
+[fieldName]="label.storedge_inverter.fieldName"
+[placeholder]="label.storedge_inverter.placeholder"
+[errors]="label.storedge_inverter.errors"
+[group]="dealForm"
+></app-input>
+              </div>
+              <div class="col-md-6 mb-4">
+                <app-select
+[isRequired]="label.product_id.isRequired"
+[label]="label.product_id.fieldLabel"
+[fieldName]="label.product_id.fieldName"
+[options]="masterData['Products']"
+[optionConfig]="label.product_id.optionConfig"
+[errors]="label.product_id.errors"
+[group]="dealForm"
+></app-select>
+              </div>
+              <div class="col-md-6 mb-4">
+                <app-input
+                  [type]="label.level_two_ev.fieldType"
+                  [isRequired]="label.level_two_ev.isRequired"
+                  [label]="label.level_two_ev.fieldLabel"
+                  [fieldName]="label.level_two_ev.fieldName"
+                  [placeholder]="label.level_two_ev.placeholder"
+                  [errors]="label.level_two_ev.errors"
+                  [group]="dealForm"
+                ></app-input>
+              </div>
+              <div class="col-md-6 mb-4">
+                <app-select
+[isRequired]="label.lead_source_id.isRequired"
+[label]="label.lead_source_id.fieldLabel"
+[fieldName]="label.lead_source_id.fieldName"
+[options]="leadSources"
+[optionConfig]="label.lead_source_id.optionConfig"
+[errors]="label.lead_source_id.errors"
+[group]="dealForm"
+></app-select>
+              </div>
+              <div class="col-md-6 mb-4">
+                <app-input
+                  [type]="label.battery_price.fieldType"
+                  [isRequired]="label.battery_price.isRequired"
+                  [label]="label.battery_price.fieldLabel"
+                  [fieldName]="label.battery_price.fieldName"
+                  [placeholder]="label.battery_price.placeholder"
+                  [errors]="label.battery_price.errors"
+                  [group]="dealForm"
+                ></app-input>
+              </div>
+              <div class="col-md-6 mb-4">
+                <app-select
+[isRequired]="label.retention_rep_id.isRequired"
+[label]="label.retention_rep_id.fieldLabel"
+[fieldName]="label.retention_rep_id.fieldName"
+[options]="masterData['Retention_Rep']"
+[optionConfig]="label.retention_rep_id.optionConfig"
+[errors]="label.retention_rep_id.errors"
+[group]="dealForm"
+></app-select>
+              </div>
+              <div class="col-md-6 mb-4">
+                <app-input
+                  [type]="label.hvac_price.fieldType"
+                  [isRequired]="label.hvac_price.isRequired"
+                  [label]="label.hvac_price.fieldLabel"
+                  [fieldName]="label.hvac_price.fieldName"
+                  [placeholder]="label.hvac_price.placeholder"
+                  [errors]="label.hvac_price.errors"
+                  [group]="dealForm"
+                ></app-input>
+              </div>
 
-                    <div class="row">
-                        <div class="col-6">
-                            <div class="mb-4 eachInfoDiv">
-                                <div class="row">
-                                    <div class="col-4 titleTxt">Spouse Name: </div>
-                                    <div class="col-8 eachInfo">                        
-                                        <div class="blueTxt">
-                                            <input type="text"
-                                            class="form-control" formControlName="Spouse_Name"
-                                            id="Spouse_Name" autocomplete="off"/>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>       
-                        </div>
-                        <div class="col-6">
-                            <div class="mb-4 eachInfoDiv">
-                                <div class="row">
-                                    <div class="col-4 titleTxt">Freedom ID: </div>
-                                    <div class="col-8 eachInfo">                        
-                                        <div class="blueTxt">
-                                            <input type="text"
-                                            class="form-control" formControlName="Freedom_ID"
-                                            id="Freedom_ID" autocomplete="off"/>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>       
-                        </div>
-                    </div>
+              <div class="col-md-6 mb-4">
+                <app-select
+[isRequired]="label.mentor_id.isRequired"
+[label]="label.mentor_id.fieldLabel"
+[fieldName]="label.mentor_id.fieldName"
+[options]="mentors"
+[optionConfig]="label.mentor_id.optionConfig"
+[errors]="label.mentor_id.errors"
+[group]="dealForm"
+></app-select>
+              </div>
+              <div class="col-md-6 mb-4">
+                <app-input
+                  [type]="label.insulation_price.fieldType"
+                  [isRequired]="label.insulation_price.isRequired"
+                  [label]="label.insulation_price.fieldLabel"
+                  [fieldName]="label.insulation_price.fieldName"
+                  [placeholder]="label.insulation_price.placeholder"
+                  [errors]="label.insulation_price.errors"
+                  [group]="dealForm"
+                ></app-input>
+              </div>
+              <div class="col-md-6 mb-4">
+                <app-select
+[isRequired]="label.region.isRequired"
+[label]="label.region.fieldLabel"
+[fieldName]="label.region.fieldName"
+[options]="masterData['Region']"
+[optionConfig]="label.region.optionConfig"
+[errors]="label.region.errors"
+[group]="dealForm"
+></app-select>
+              </div>
+              <div class="col-md-6 mb-4">
+                <app-input
+                  [type]="label.pool_pump_price.fieldType"
+                  [isRequired]="label.pool_pump_price.isRequired"
+                  [label]="label.pool_pump_price.fieldLabel"
+                  [fieldName]="label.pool_pump_price.fieldName"
+                  [placeholder]="label.pool_pump_price.placeholder"
+                  [errors]="label.pool_pump_price.errors"
+                  [group]="dealForm"
+                ></app-input>
+              </div>
+              <div class="col-md-6 mb-4">
+                <app-select
+[isRequired]="label.qc_ready_to_schedule.isRequired"
+[label]="label.qc_ready_to_schedule.fieldLabel"
+[fieldName]="label.qc_ready_to_schedule.fieldName"
+[options]="masterData['YesNoChoice']"
+[optionConfig]="label.qc_ready_to_schedule.optionConfig"
+[errors]="label.qc_ready_to_schedule.errors"
+[group]="dealForm"
+></app-select>
+              </div>
+              <div class="col-md-6 mb-4">
+                <app-input
+                  [type]="label.quiet_cool_price.fieldType"
+                  [isRequired]="label.quiet_cool_price.isRequired"
+                  [label]="label.quiet_cool_price.fieldLabel"
+                  [fieldName]="label.quiet_cool_price.fieldName"
+                  [placeholder]="label.quiet_cool_price.placeholder"
+                  [errors]="label.quiet_cool_price.errors"
+                  [group]="dealForm"
+                ></app-input>
+              </div>
+              <div class="col-md-6 mb-4">
+                <app-date
+                [isRequired]="label.quiet_cool_installed.isRequired"
+                [label]="label.quiet_cool_installed.fieldLabel"
+                [fieldName]="label.quiet_cool_installed.fieldName"
+                [placeholder]="label.quiet_cool_installed.placeholder"
+                [errors]="label.quiet_cool_installed.errors"
+                [group]="dealForm"
+                ></app-date> 
+              </div>
+              <div class="col-md-6 mb-4">
+                <app-input
+                  [type]="label.roof_price.fieldType"
+                  [isRequired]="label.roof_price.isRequired"
+                  [label]="label.roof_price.fieldLabel"
+                  [fieldName]="label.roof_price.fieldName"
+                  [placeholder]="label.roof_price.placeholder"
+                  [errors]="label.roof_price.errors"
+                  [group]="dealForm"
+                ></app-input>
+              </div>
+              <div class="col-md-6 mb-4">
+                <app-select
+[isRequired]="label.fan_size.isRequired"
+[label]="label.fan_size.fieldLabel"
+[fieldName]="label.fan_size.fieldName"
+[options]="masterData['Fan_Size']"
+[optionConfig]="label.fan_size.optionConfig"
+[errors]="label.fan_size.errors"
+[group]="dealForm"
+></app-select>
+              </div>
+              <div class="col-md-6 mb-4">
+                <app-input
+                  [type]="label.solar_price.fieldType"
+                  [isRequired]="label.solar_price.isRequired"
+                  [label]="label.solar_price.fieldLabel"
+                  [fieldName]="label.solar_price.fieldName"
+                  [placeholder]="label.solar_price.placeholder"
+                  [errors]="label.solar_price.errors"
+                  [group]="dealForm"
+                ></app-input>
+              </div>
+              <div class="col-md-6 mb-4">
+                <app-select
+[isRequired]="label.marketer.isRequired"
+[label]="label.marketer.fieldLabel"
+[fieldName]="label.marketer.fieldName"
+[options]="marketers"
+[optionConfig]="label.marketer.optionConfig"
+[errors]="label.marketer.errors"
+[group]="dealForm"
+></app-select>
+              </div>
+              <div class="col-md-6 mb-4">
+                <app-input
+                  [type]="label.artificial_grass.fieldType"
+                  [isRequired]="label.artificial_grass.isRequired"
+                  [label]="label.artificial_grass.fieldLabel"
+                  [fieldName]="label.artificial_grass.fieldName"
+                  [placeholder]="label.artificial_grass.placeholder"
+                  [errors]="label.artificial_grass.errors"
+                  [group]="dealForm"
+                ></app-input>
+              </div>
+              <div class="col-md-6 mb-4">
+                <app-select
+[isRequired]="label.stage_id.isRequired"
+[label]="label.stage_id.fieldLabel"
+[fieldName]="label.stage_id.fieldName"
+[options]="stages"
+[optionConfig]="label.stage_id.optionConfig"
+[errors]="label.stage_id.errors"
+[group]="dealForm"
+></app-select>
+              </div>
+              <div class="col-md-6 mb-4">
+                <app-input
+                  [type]="label.window_price.fieldType"
+                  [isRequired]="label.window_price.isRequired"
+                  [label]="label.window_price.fieldLabel"
+                  [fieldName]="label.window_price.fieldName"
+                  [placeholder]="label.window_price.placeholder"
+                  [errors]="label.window_price.errors"
+                  [group]="dealForm"
+                ></app-input>
+              </div>
+              <div class="col-md-6 mb-4">
+                <app-input
+                  [type]="label.annual_consumption.fieldType"
+                  [isRequired]="label.annual_consumption.isRequired"
+                  [label]="label.annual_consumption.fieldLabel"
+                  [fieldName]="label.annual_consumption.fieldName"
+                  [placeholder]="label.annual_consumption.placeholder"
+                  [errors]="label.annual_consumption.errors"
+                  [group]="dealForm"
+                ></app-input>
+              </div>
+              <div class="col-md-6 mb-4">
+                <app-input
+                  [type]="label.additional_scope.fieldType"
+                  [isRequired]="label.additional_scope.isRequired"
+                  [label]="label.additional_scope.fieldLabel"
+                  [fieldName]="label.additional_scope.fieldName"
+                  [placeholder]="label.additional_scope.placeholder"
+                  [errors]="label.additional_scope.errors"
+                  [group]="dealForm"
+                ></app-input>
+              </div>
+              <div class="col-md-6 mb-4">
+                <app-input
+                  [type]="label.annual_bill.fieldType"
+                  [isRequired]="label.annual_bill.isRequired"
+                  [label]="label.annual_bill.fieldLabel"
+                  [fieldName]="label.annual_bill.fieldName"
+                  [placeholder]="label.annual_bill.placeholder"
+                  [errors]="label.annual_bill.errors"
+                  [group]="dealForm"
+                ></app-input>
+              </div>
+              <div class="col-md-6 mb-4">
+                <app-input
+                  [type]="label.monitoring.fieldType"
+                  [isRequired]="label.monitoring.isRequired"
+                  [label]="label.monitoring.fieldLabel"
+                  [fieldName]="label.monitoring.fieldName"
+                  [placeholder]="label.monitoring.placeholder"
+                  [errors]="label.monitoring.errors"
+                  [group]="dealForm"
+                ></app-input>
+              </div>
+              <div class="col-md-6 mb-4">
+                <app-select
+                [isRequired]="label.energy_consultant_id.isRequired"
+                [label]="label.energy_consultant_id.fieldLabel"
+                [fieldName]="label.energy_consultant_id.fieldName"
+                [options]="energyConsultant"
+                [optionConfig]="label.energy_consultant_id.optionConfig"
+                [errors]="label.energy_consultant_id.errors"
+                [group]="dealForm"
+                ></app-select>
+              </div>
+              <div class="col-md-6 mb-4">
+                <app-select
+[isRequired]="label.program.isRequired"
+[label]="label.program.fieldLabel"
+[fieldName]="label.program.fieldName"
+[options]="masterData['Program']"
+[optionConfig]="label.program.optionConfig"
+[errors]="label.program.errors"
+[group]="dealForm"
+></app-select>
+              </div>
+              <div class="col-md-6 mb-4">
+                <app-input
+                  [type]="label.blended_rate.fieldType"
+                  [isRequired]="label.blended_rate.isRequired"
+                  [label]="label.blended_rate.fieldLabel"
+                  [fieldName]="label.blended_rate.fieldName"
+                  [placeholder]="label.blended_rate.placeholder"
+                  [errors]="label.blended_rate.errors"
+                  [group]="dealForm"
+                ></app-input>
+              </div>
+              <div class="col-md-6 mb-4">
+                <app-select
+[isRequired]="label.escalator.isRequired"
+[label]="label.escalator.fieldLabel"
+[fieldName]="label.escalator.fieldName"
+[options]="masterData['Rate_Term_Escalator']"
+[optionConfig]="label.escalator.optionConfig"
+[errors]="label.escalator.errors"
+[group]="dealForm"
+></app-select>
+              </div>
+              <div class="col-md-6 mb-4">
+                <app-select
+[isRequired]="label.utility_rate_plan.isRequired"
+[label]="label.utility_rate_plan.fieldLabel"
+[fieldName]="label.utility_rate_plan.fieldName"
+[options]="masterData['Utility_Rate_Plan']"
+[optionConfig]="label.utility_rate_plan.optionConfig"
+[errors]="label.utility_rate_plan.errors"
+[group]="dealForm"
+></app-select>
+              </div>
+              <div class="col-md-6 mb-4">
+                <app-input
+                  [type]="label.dealer_fee.fieldType"
+                  [isRequired]="label.dealer_fee.isRequired"
+                  [label]="label.dealer_fee.fieldLabel"
+                  [fieldName]="label.dealer_fee.fieldName"
+                  [placeholder]="label.dealer_fee.placeholder"
+                  [errors]="label.dealer_fee.errors"
+                  [group]="dealForm"
+                ></app-input>
+              </div>
+              <div class="col-md-6 mb-4">
+                <app-input
+                  [type]="label.aps_reservation_number.fieldType"
+                  [isRequired]="label.aps_reservation_number.isRequired"
+                  [label]="label.aps_reservation_number.fieldLabel"
+                  [fieldName]="label.aps_reservation_number.fieldName"
+                  [placeholder]="label.aps_reservation_number.placeholder"
+                  [errors]="label.aps_reservation_number.errors"
+                  [group]="dealForm"
+                ></app-input>
+              </div>
+              <div class="col-md-6 mb-4">
+                <app-input
+                  [type]="label.system_size.fieldType"
+                  [isRequired]="label.system_size.isRequired"
+                  [label]="label.system_size.fieldLabel"
+                  [fieldName]="label.system_size.fieldName"
+                  [placeholder]="label.system_size.placeholder"
+                  [errors]="label.system_size.errors"
+                  [group]="dealForm"
+                ></app-input>
+              </div>
+              <div class="col-md-6 mb-4">
+                <app-select
+                [isRequired]="label.channel_partner.isRequired"
+                [label]="label.channel_partner.fieldLabel"
+                [fieldName]="label.channel_partner.fieldName"
+                [options]="masterData['Channel_Partner']"
+                [optionConfig]="label.channel_partner.optionConfig"
+                [errors]="label.channel_partner.errors"
+                [group]="dealForm"
+                ></app-select>
+              </div>
+              <div class="col-md-6 mb-4">
+                <app-input
+                  [type]="label.down_payment.fieldType"
+                  [isRequired]="label.down_payment.isRequired"
+                  [label]="label.down_payment.fieldLabel"
+                  [fieldName]="label.down_payment.fieldName"
+                  [placeholder]="label.down_payment.placeholder"
+                  [errors]="label.down_payment.errors"
+                  [group]="dealForm"
+                ></app-input>
+              </div>
+              <div class="col-md-6 mb-4">
+                <app-input
+                  [type]="label.home_sq_ft.fieldType"
+                  [isRequired]="label.home_sq_ft.isRequired"
+                  [label]="label.home_sq_ft.fieldLabel"
+                  [fieldName]="label.home_sq_ft.fieldName"
+                  [placeholder]="label.home_sq_ft.placeholder"
+                  [errors]="label.home_sq_ft.errors"
+                  [group]="dealForm"
+                ></app-input>
+              </div>
+              <div class="col-md-6 mb-4">
+                <app-input
+                  [type]="label.cash_adders.fieldType"
+                  [isRequired]="label.cash_adders.isRequired"
+                  [label]="label.cash_adders.fieldLabel"
+                  [fieldName]="label.cash_adders.fieldName"
+                  [placeholder]="label.cash_adders.placeholder"
+                  [errors]="label.cash_adders.errors"
+                  [group]="dealForm"
+                ></app-input>
+              </div>
+              <div class="col-md-6 mb-4">
+                <app-input
+                  [type]="label.project_docs.fieldType"
+                  [isRequired]="label.project_docs.isRequired"
+                  [label]="label.project_docs.fieldLabel"
+                  [fieldName]="label.project_docs.fieldName"
+                  [placeholder]="label.project_docs.placeholder"
+                  [errors]="label.project_docs.errors"
+                  [group]="dealForm"
+                ></app-input>
+              </div>
+              <div class="col-md-6 mb-4">
+                <app-select
+[isRequired]="label.sales_concierge.isRequired"
+[label]="label.sales_concierge.fieldLabel"
+[fieldName]="label.sales_concierge.fieldName"
+[options]="masterData['YesNoChoice']"
+[optionConfig]="label.sales_concierge.optionConfig"
+[errors]="label.sales_concierge.errors"
+[group]="dealForm"
+></app-select>
+              </div>
+              <div class="col-md-6 mb-4">
+                <app-input
+                  [type]="label.reschedule_cycle_time.fieldType"
+                  [isRequired]="label.reschedule_cycle_time.isRequired"
+                  [label]="label.reschedule_cycle_time.fieldLabel"
+                  [fieldName]="label.reschedule_cycle_time.fieldName"
+                  [placeholder]="label.reschedule_cycle_time.placeholder"
+                  [errors]="label.reschedule_cycle_time.errors"
+                  [group]="dealForm"
+                ></app-input>
+              </div>
+              <div class="col-md-6 mb-4">
+                <app-select
+[isRequired]="label.complimentary_concierge.isRequired"
+[label]="label.complimentary_concierge.fieldLabel"
+[fieldName]="label.complimentary_concierge.fieldName"
+[options]="masterData['YesNoChoice']"
+[optionConfig]="label.complimentary_concierge.optionConfig"
+[errors]="label.complimentary_concierge.errors"
+[group]="dealForm"
+></app-select>
+              </div>
+              <div class="col-md-6 mb-4">
+                <app-date
+                [isRequired]="label.date.isRequired"
+                [label]="label.date.fieldLabel"
+                [fieldName]="label.date.fieldName"
+                [placeholder]="label.date.placeholder"
+                [errors]="label.date.errors"
+                [group]="dealForm"
+                ></app-date> 
+              </div>
+              <div class="col-md-4 mb-4 dateTimeDiv">
+                    <app-date
+                    [isRequired]="label.ss_date.isRequired"
+                    [label]="label.ss_date.fieldLabel"
+                    [fieldName]="label.ss_date.fieldName"
+                    [placeholder]="label.ss_date.placeholder"
+                    [errors]="label.ss_date.errors"
+                    [group]="dealForm"
+                    [isDateTime]="true"
+                    ></app-date>    
+              </div>
+              <div class="col-md-2 mb-4 timeDiv">
+                <app-select
+                [isRequired]="label.ss_time.isRequired"
+                [fieldName]="label.ss_time.fieldName"
+                [options]="masterData['Time']"
+                [optionConfig]="label.ss_time.optionConfig"
+                [group]="dealForm"
+                [isTime]="true"
+                ></app-select>
+              </div>
+              <div class="col-md-6 mb-4">
+                <app-select
+[isRequired]="label.promo.isRequired"
+[label]="label.promo.fieldLabel"
+[fieldName]="label.promo.fieldName"
+[options]="masterData['Promo']"
+[optionConfig]="label.promo.optionConfig"
+[errors]="label.promo.errors"
+[group]="dealForm"
+></app-select>
+              </div>
+              <div class="col-md-6 mb-4">
+                <app-input
+                  [type]="label.ss_arrival_window.fieldType"
+                  [isRequired]="label.ss_arrival_window.isRequired"
+                  [label]="label.ss_arrival_window.fieldLabel"
+                  [fieldName]="label.ss_arrival_window.fieldName"
+                  [placeholder]="label.ss_arrival_window.placeholder"
+                  [errors]="label.ss_arrival_window.errors"
+                  [group]="dealForm"
+                ></app-input>
+              </div>
+              <div class="col-md-6 mb-4">
+                <app-select
+[isRequired]="label.utility.isRequired"
+[label]="label.utility.fieldLabel"
+[fieldName]="label.utility.fieldName"
+[options]="masterData['Utility']"
+[optionConfig]="label.utility.optionConfig"
+[errors]="label.utility.errors"
+[group]="dealForm"
+></app-select>
+              </div>
+              <div class="col-md-6 mb-4">
+                <app-date
+[isRequired]="label.ss_date_complete.isRequired"
+[label]="label.ss_date_complete.fieldLabel"
+[fieldName]="label.ss_date_complete.fieldName"
+[placeholder]="label.ss_date_complete.placeholder"
+[errors]="label.ss_date_complete.errors"
+[group]="dealForm"
+></app-date> 
+              </div>
+              <div class="col-md-6 mb-4">
+                <app-select
+[isRequired]="label.hoa.isRequired"
+[label]="label.hoa.fieldLabel"
+[fieldName]="label.hoa.fieldName"
+[options]="masterData['YesNoChoice']"
+[optionConfig]="label.hoa.optionConfig"
+[errors]="label.hoa.errors"
+[group]="dealForm"
+></app-select>
+              </div>
+              <div class="col-md-6 mb-4">
+                <app-input
+                  [type]="label.sr_approval.fieldType"
+                  [isRequired]="label.sr_approval.isRequired"
+                  [label]="label.sr_approval.fieldLabel"
+                  [fieldName]="label.sr_approval.fieldName"
+                  [placeholder]="label.sr_approval.placeholder"
+                  [errors]="label.sr_approval.errors"
+                  [group]="dealForm"
+                ></app-input>
+              </div>
+              <div class="col-md-6 mb-4">
+                <app-input
+                  [type]="label.hoa_info.fieldType"
+                  [isRequired]="label.hoa_info.isRequired"
+                  [label]="label.hoa_info.fieldLabel"
+                  [fieldName]="label.hoa_info.fieldName"
+                  [placeholder]="label.hoa_info.placeholder"
+                  [errors]="label.hoa_info.errors"
+                  [group]="dealForm"
+                ></app-input>
+              </div>
 
-                    <div class="row">
-                        <div class="col-6">
-                            <div class="mb-4 eachInfoDiv">
-                                <div class="row">
-                                    <div class="col-4 titleTxt">Email: </div>
-                                    <div class="col-8 eachInfo">
-                                        <div class="blueTxt">
-                                            <input type="text"
-                                            class="form-control" formControlName="Email"
-                                            id="Email" autocomplete="off"/>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>       
-                        </div>
-                        <div class="col-6">
-                            <div class="mb-4 eachInfoDiv">
-                                <div class="row">
-                                    <div class="col-4 titleTxt">Phone: </div>
-                                    <div class="col-8 eachInfo">                        
-                                        <div class="blueTxt">
-                                            <input type="text"
-                                            class="form-control" formControlName="Phone"
-                                            id="Phone" autocomplete="off"/>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>       
-                        </div>
-                    </div>
+                <div class="col-md-4 mb-4 dateTimeDiv">
+                  <app-date
+                  [isRequired]="label.qc_fail_date.isRequired"
+                  [label]="label.qc_fail_date.fieldLabel"
+                  [fieldName]="label.qc_fail_date.fieldName"
+                  [placeholder]="label.qc_fail_date.placeholder"
+                  [errors]="label.qc_fail_date.errors"
+                  [group]="dealForm"
+                  [isDateTime]="true"
+                  ></app-date>    
+                  </div>
+                  <div class="col-md-2 mb-4 timeDiv">
+                  <app-select
+                  [isRequired]="label.qc_fail_time.isRequired"
+                  [fieldName]="label.qc_fail_time.fieldName"
+                  [options]="masterData['Time']"
+                  [optionConfig]="label.qc_fail_time.optionConfig"
+                  [group]="dealForm"
+                  [isTime]="true"
+                  ></app-select>
+                  </div>
 
-                    <div class="row">
-                        <div class="col-6">
-                            <div class="mb-4 eachInfoDiv">
-                                <div class="row">
-                                    <div class="col-4 titleTxt">Average Bill: </div>
-                                    <div class="col-8 eachInfo">                        
-                                        <div class="blueTxt">
-                                            <input type="text"
-                                            class="form-control" formControlName="Average_Bill"
-                                            id="Average_Bill" autocomplete="off"/>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>       
-                        </div>
-                        <div class="col-6">
-                            <div class="mb-4 eachInfoDiv">
-                                <div class="row">
-                                    <div class="col-4 titleTxt">LeadIdCPY: </div>
-                                    <div class="col-8 eachInfo">                        
-                                        <div class="blueTxt">
-                                            <input type="text"
-                                            class="form-control" formControlName="LeadIdCPY"
-                                            id="LeadIdCPY" autocomplete="off"/>
-                                        </div>
-                                        
-                                    </div>
-                                </div>
-                            </div>       
-                        </div>
-                    </div>
+              <div class="col-md-6 mb-4">
+                <app-input
+                  [type]="label.ahj.fieldType"
+                  [isRequired]="label.ahj.isRequired"
+                  [label]="label.ahj.fieldLabel"
+                  [fieldName]="label.ahj.fieldName"
+                  [placeholder]="label.ahj.placeholder"
+                  [errors]="label.ahj.errors"
+                  [group]="dealForm"
+                ></app-input>
+              </div>
 
-                    <div class="row">
-                        <div class="col-6">
-                            <div class="mb-4 eachInfoDiv">
-                                <div class="row">
-                                    <div class="col-4 titleTxt">Date Created: </div>
-                                    <div class="col-8 eachInfo">                        
-                                        <div class="blueTxt">
-                                            <input type="text"
-                                            class="form-control" formControlName="Date_Created"
-                                            id="Date_Created" autocomplete="off"/>
-                                        </div>
-                                        
-                                    </div>
-                                </div>
-                            </div>       
-                        </div>
-                        <div class="col-6">
-                            <div class="mb-4 eachInfoDiv">
-                                <div class="row">
-                                    <div class="col-4 titleTxt">2nd Marketer: </div>
-                                    <div class="col-8 eachInfo selectDiv">                        
-                                        <div class="blueTxt">
-                                            <select formControlName="Second_Marketer" class="form-control">
-                                                <option value="-1">Select None</option>
-                                                <option *ngFor="let secondMarketer of secondMarketers" [value]="secondMarketer.id">{{secondMarketer.name}}</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>       
-                        </div>
-                    </div>
+                <div class="col-md-4 mb-4 dateTimeDiv">
+                  <app-date
+                  [isRequired]="label.qc_pass_date.isRequired"
+                  [label]="label.qc_pass_date.fieldLabel"
+                  [fieldName]="label.qc_pass_date.fieldName"
+                  [placeholder]="label.qc_pass_date.placeholder"
+                  [errors]="label.qc_pass_date.errors"
+                  [group]="dealForm"
+                  [isDateTime]="true"
+                  ></app-date>    
+                  </div>
+                  <div class="col-md-2 mb-4 timeDiv">
+                  <app-select
+                  [isRequired]="label.qc_pass_time.isRequired"
+                  [fieldName]="label.qc_pass_time.fieldName"
+                  [options]="masterData['Time']"
+                  [optionConfig]="label.qc_pass_time.optionConfig"
+                  [group]="dealForm"
+                  [isTime]="true"
+                  ></app-select>
+                  </div>
 
-                    <div class="row">
-                        <div class="col-6">
-                            <div class="mb-4 eachInfoDiv">
-                                <div class="row">
-                                    <div class="col-4 titleTxt">Lead Source: </div>
-                                    <div class="col-8 eachInfo selectDiv">                        
-                                        <div class="blueTxt">
-                                            <select formControlName="Lead_Source" class="form-control">
-                                                <option value="-1">Select None</option>
-                                                <option *ngFor="let leadSrc of leadSources" [value]="leadSrc.id">{{leadSrc.name}}</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>       
-                        </div>
-                        <div class="col-6">
-                            <div class="mb-4 eachInfoDiv">
-                                <div class="row">
-                                    <div class="col-4 titleTxt">Date/Time Scheduled: </div>
-                                    <div class="col-8 eachInfo">                        
-                                        <div class="blueTxt">
-                                            <input type="text"
-                                            class="form-control" formControlName="DateTime_Scheduled"
-                                            id="DateTime_Scheduled" autocomplete="off"/>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>       
-                        </div>
-                    </div>
+              <div class="col-md-6 mb-4">
+                <app-select
+[isRequired]="label.roof_waiver.isRequired"
+[label]="label.roof_waiver.fieldLabel"
+[fieldName]="label.roof_waiver.fieldName"
+[options]="masterData['YesNoChoice']"
+[optionConfig]="label.roof_waiver.optionConfig"
+[errors]="label.roof_waiver.errors"
+[group]="dealForm"
+></app-select>
+              </div>
 
-                    <div class="row">
-                        <div class="col-6">
-                            <div class="mb-4 eachInfoDiv">
-                                <div class="row">
-                                    <div class="col-4 titleTxt">Energy Consultant: </div>
-                                    <div class="col-8 eachInfo selectDiv">                        
-                                        <div class="blueTxt">
-                                            <select formControlName="Energy_Consultant" class="form-control">
-                                                <option value="-1">Select None</option>
-                                                <option *ngFor="let ec of energyConsultant" [value]="ec.id">{{ec.name}}</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>       
-                        </div>
-                        <div class="col-6">
-                            <div class="mb-4 eachInfoDiv">
-                                <div class="row">
-                                    <div class="col-4 titleTxt">Qualified By: </div>
-                                    <div class="col-8 eachInfo">                        
-                                        <div class="blueTxt">
-                                            <input type="text"
-                                            class="form-control" formControlName="Qualified_By"
-                                            id="Qualified_By" autocomplete="off"/>
-                                        </div>
-                                    </div> 
-                                </div>
-                            </div>       
-                        </div>
-                    </div>
+                <div class="col-md-4 mb-4 dateTimeDiv">
+                  <app-date
+                  [isRequired]="label.fl_received_date.isRequired"
+                  [label]="label.fl_received_date.fieldLabel"
+                  [fieldName]="label.fl_received_date.fieldName"
+                  [placeholder]="label.fl_received_date.placeholder"
+                  [errors]="label.fl_received_date.errors"
+                  [group]="dealForm"
+                  [isDateTime]="true"
+                  ></app-date>    
+                  </div>
+                  <div class="col-md-2 mb-4 timeDiv">
+                  <app-select
+                  [isRequired]="label.fl_received_time.isRequired"
+                  [fieldName]="label.fl_received_time.fieldName"
+                  [options]="masterData['Time']"
+                  [optionConfig]="label.fl_received_time.optionConfig"
+                  [group]="dealForm"
+                  [isTime]="true"
+                  ></app-select>
+                  </div>
 
-                    <div class="row">
-                        <div class="col-6">
-                            <div class="mb-4 eachInfoDiv">
-                                <div class="row">
-                                    <div class="col-4 titleTxt">Marketer: </div>
-                                    <div class="col-8 eachInfo selectDiv">                        
-                                        <div class="blueTxt">
-                                            <select formControlName="Marketer" class="form-control">
-                                                <option value="-1">Select None</option>
-                                                <option *ngFor="let markets of marketers" [value]="markets.id">{{markets.name}}</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>       
-                        </div>
-                    </div>
-                </div> -->
+              <div class="col-md-6 mb-4">
+                <app-select
+[isRequired]="label.roofing_required.isRequired"
+[label]="label.roofing_required.fieldLabel"
+[fieldName]="label.roofing_required.fieldName"
+[options]="masterData['YesNoChoice']"
+[optionConfig]="label.roofing_required.optionConfig"
+[errors]="label.roofing_required.errors"
+[group]="dealForm"
+></app-select>
+              </div>
+              <div class="col-md-6 mb-4">
+                <app-input
+                  [type]="label.final_layout.fieldType"
+                  [isRequired]="label.final_layout.isRequired"
+                  [label]="label.final_layout.fieldLabel"
+                  [fieldName]="label.final_layout.fieldName"
+                  [placeholder]="label.final_layout.placeholder"
+                  [errors]="label.final_layout.errors"
+                  [group]="dealForm"
+                ></app-input>
+              </div>
+              <div class="col-md-6 mb-4">
+                <app-select
+                [isRequired]="label.resign_required.isRequired"
+                [label]="label.resign_required.fieldLabel"
+                [fieldName]="label.resign_required.fieldName"
+                [options]="masterData['YesNoChoice']"
+                [optionConfig]="label.resign_required.optionConfig"
+                [errors]="label.resign_required.errors"
+                [group]="dealForm"
+                ></app-select>
+              </div>
+              <div class="col-md-6 mb-4">
+                <app-date
+[isRequired]="label.fla.isRequired"
+[label]="label.fla.fieldLabel"
+[fieldName]="label.fla.fieldName"
+[placeholder]="label.fla.placeholder"
+[errors]="label.fla.errors"
+[group]="dealForm"
+></app-date> 
+              </div>
+              <div class="col-md-6 mb-4">
+                <app-select
+                [isRequired]="label.resigned_for_roofing.isRequired"
+                [label]="label.resigned_for_roofing.fieldLabel"
+                [fieldName]="label.resigned_for_roofing.fieldName"
+                [options]="masterData['YesNoChoice']"
+                [optionConfig]="label.resigned_for_roofing.optionConfig"
+                [errors]="label.resigned_for_roofing.errors"
+                [group]="dealForm"
+                ></app-select>
+              </div>
+              <div class="col-md-6 mb-4">
+                <app-date
+[isRequired]="label.ntp.isRequired"
+[label]="label.ntp.fieldLabel"
+[fieldName]="label.ntp.fieldName"
+[placeholder]="label.ntp.placeholder"
+[errors]="label.ntp.errors"
+[group]="dealForm"
+></app-date> 
+              </div>
+              <div class="col-md-6 mb-4">
+                <app-input
+                  [type]="label.roofer.fieldType"
+                  [isRequired]="label.roofer.isRequired"
+                  [label]="label.roofer.fieldLabel"
+                  [fieldName]="label.roofer.fieldName"
+                  [placeholder]="label.roofer.placeholder"
+                  [errors]="label.roofer.errors"
+                  [group]="dealForm"
+                ></app-input>
+              </div>
+              <div class="col-md-6 mb-4">
+                <app-date
+[isRequired]="label.vsa.isRequired"
+[label]="label.vsa.fieldLabel"
+[fieldName]="label.vsa.fieldName"
+[placeholder]="label.vsa.placeholder"
+[errors]="label.vsa.errors"
+[group]="dealForm"
+></app-date> 
+              </div>
+              <div class="col-md-6 mb-4">
+                <app-select
+[isRequired]="label.scope_of_reroof.isRequired"
+[label]="label.scope_of_reroof.fieldLabel"
+[fieldName]="label.scope_of_reroof.fieldName"
+[options]="masterData['Scope_of_Reroof']"
+[optionConfig]="label.scope_of_reroof.optionConfig"
+[errors]="label.scope_of_reroof.errors"
+[group]="dealForm"
+></app-select>
+              </div>
+              <div class="col-md-6 mb-4">
+                <app-select
+                [isRequired]="label.pr_sow_received.isRequired"
+                [label]="label.pr_sow_received.fieldLabel"
+                [fieldName]="label.pr_sow_received.fieldName"
+                [options]="masterData['YesNoChoice']"
+                [optionConfig]="label.pr_sow_received.optionConfig"
+                [errors]="label.pr_sow_received.errors"
+                [group]="dealForm"
+                ></app-select>
+              </div>
+              <div class="col-md-6 mb-4">
+                <app-input
+                  [type]="label.roof_pics.fieldType"
+                  [isRequired]="label.roof_pics.isRequired"
+                  [label]="label.roof_pics.fieldLabel"
+                  [fieldName]="label.roof_pics.fieldName"
+                  [placeholder]="label.roof_pics.placeholder"
+                  [errors]="label.roof_pics.errors"
+                  [group]="dealForm"
+                ></app-input>
+              </div>
+              <div class="col-md-6 mb-4">
+                <app-date
+[isRequired]="label.pr_sow_approved.isRequired"
+[label]="label.pr_sow_approved.fieldLabel"
+[fieldName]="label.pr_sow_approved.fieldName"
+[placeholder]="label.pr_sow_approved.placeholder"
+[errors]="label.pr_sow_approved.errors"
+[group]="dealForm"
+></app-date> 
+              </div>
+              <div class="col-md-6 mb-4">
+                <app-select
+[isRequired]="label.hvac_sow.isRequired"
+[label]="label.hvac_sow.fieldLabel"
+[fieldName]="label.hvac_sow.fieldName"
+[options]="masterData['HVAC_SOW']"
+[optionConfig]="label.hvac_sow.optionConfig"
+[errors]="label.hvac_sow.errors"
+[group]="dealForm"
+></app-select>
+              </div>
+              <div class="col-md-6 mb-4">
+                <app-date
+[isRequired]="label.permit_submitted.isRequired"
+[label]="label.permit_submitted.fieldLabel"
+[fieldName]="label.permit_submitted.fieldName"
+[placeholder]="label.permit_submitted.placeholder"
+[errors]="label.permit_submitted.errors"
+[group]="dealForm"
+></app-date> 
+              </div>
+              <div class="col-md-6 mb-4">
+                <app-select
+[isRequired]="label.hvac_size.isRequired"
+[label]="label.hvac_size.fieldLabel"
+[fieldName]="label.hvac_size.fieldName"
+[options]="masterData['HVAC_Size']"
+[optionConfig]="label.hvac_size.optionConfig"
+[errors]="label.hvac_size.errors"
+[group]="dealForm"
+></app-select>
+              </div>
+              <div class="col-md-6 mb-4">
+                <app-date
+[isRequired]="label.mone_paid.isRequired"
+[label]="label.mone_paid.fieldLabel"
+[fieldName]="label.mone_paid.fieldName"
+[placeholder]="label.mone_paid.placeholder"
+[errors]="label.mone_paid.errors"
+[group]="dealForm"
+></app-date> 
+              </div>
+              <div class="col-md-6 mb-4">
+                <app-select
+[isRequired]="label.derate.isRequired"
+[label]="label.derate.fieldLabel"
+[fieldName]="label.derate.fieldName"
+[options]="masterData['YesNoChoice']"
+[optionConfig]="label.derate.optionConfig"
+[errors]="label.derate.errors"
+[group]="dealForm"
+></app-select>
+              </div>
+
+                <div class="col-md-4 mb-4 dateTimeDiv">
+                  <app-date
+                  [isRequired]="label.volt_paid_mone_date.isRequired"
+                  [label]="label.volt_paid_mone_date.fieldLabel"
+                  [fieldName]="label.volt_paid_mone_date.fieldName"
+                  [placeholder]="label.volt_paid_mone_date.placeholder"
+                  [errors]="label.volt_paid_mone_date.errors"
+                  [group]="dealForm"
+                  [isDateTime]="true"
+                  ></app-date>    
+                  </div>
+                  <div class="col-md-2 mb-4 timeDiv">
+                  <app-select
+                  [isRequired]="label.volt_paid_mone_time.isRequired"
+                  [fieldName]="label.volt_paid_mone_time.fieldName"
+                  [options]="masterData['Time']"
+                  [optionConfig]="label.volt_paid_mone_time.optionConfig"
+                  [group]="dealForm"
+                  [isTime]="true"
+                  ></app-select>
+                  </div>
+
+              <div class="col-md-6 mb-4">
+                <app-select
+                [isRequired]="label.mpu_required.isRequired"
+                [label]="label.mpu_required.fieldLabel"
+                [fieldName]="label.mpu_required.fieldName"
+                [options]="masterData['YesNoChoice']"
+                [optionConfig]="label.mpu_required.optionConfig"
+                [errors]="label.mpu_required.errors"
+                [group]="dealForm"
+                ></app-select>
+              </div>
+              <div class="col-md-6 mb-4">
+                <app-date
+[isRequired]="label.rep_clawback.isRequired"
+[label]="label.rep_clawback.fieldLabel"
+[fieldName]="label.rep_clawback.fieldName"
+[placeholder]="label.rep_clawback.placeholder"
+[errors]="label.rep_clawback.errors"
+[group]="dealForm"
+></app-date> 
+              </div>
+              <div class="col-md-6 mb-4">
+                <app-select
+                [isRequired]="label.mpu_sold.isRequired"
+                [label]="label.mpu_sold.fieldLabel"
+                [fieldName]="label.mpu_sold.fieldName"
+                [options]="masterData['YesNoChoice']"
+                [optionConfig]="label.mpu_sold.optionConfig"
+                [errors]="label.mpu_sold.errors"
+                [group]="dealForm"
+                ></app-select>
+              </div>
+              <div class="col-md-6 mb-4">
+                <app-date
+[isRequired]="label.volt_clawback.isRequired"
+[label]="label.volt_clawback.fieldLabel"
+[fieldName]="label.volt_clawback.fieldName"
+[placeholder]="label.volt_clawback.placeholder"
+[errors]="label.volt_clawback.errors"
+[group]="dealForm"
+></app-date> 
+              </div>
+              <div class="col-md-6 mb-4">
+                <app-input
+                  [type]="label.msp_pics.fieldType"
+                  [isRequired]="label.msp_pics.isRequired"
+                  [label]="label.msp_pics.fieldLabel"
+                  [fieldName]="label.msp_pics.fieldName"
+                  [placeholder]="label.msp_pics.placeholder"
+                  [errors]="label.msp_pics.errors"
+                  [group]="dealForm"
+                ></app-input>
+              </div>
+              <div class="col-md-6 mb-4">
+                <app-date
+[isRequired]="label.permit_approved.isRequired"
+[label]="label.permit_approved.fieldLabel"
+[fieldName]="label.permit_approved.fieldName"
+[placeholder]="label.permit_approved.placeholder"
+[errors]="label.permit_approved.errors"
+[group]="dealForm"
+></app-date> 
+              </div>
+              <div class="col-md-6 mb-4">
+                <app-select
+[isRequired]="label.meter_spot.isRequired"
+[label]="label.meter_spot.fieldLabel"
+[fieldName]="label.meter_spot.fieldName"
+[options]="masterData['Meter_Spot']"
+[optionConfig]="label.meter_spot.optionConfig"
+[errors]="label.meter_spot.errors"
+[group]="dealForm"
+></app-select>
+              </div>
+              <div class="col-md-6 mb-4">
+                <app-date
+                [isRequired]="label.install_scheduled.isRequired"
+                [label]="label.install_scheduled.fieldLabel"
+                [fieldName]="label.install_scheduled.fieldName"
+                [placeholder]="label.install_scheduled.placeholder"
+                [errors]="label.install_scheduled.errors"
+                [group]="dealForm"
+                ></app-date> 
+              </div>
+              <div class="col-md-6 mb-4">
+                <app-input
+                  [type]="label.relocation_distance.fieldType"
+                  [isRequired]="label.relocation_distance.isRequired"
+                  [label]="label.relocation_distance.fieldLabel"
+                  [fieldName]="label.relocation_distance.fieldName"
+                  [placeholder]="label.relocation_distance.placeholder"
+                  [errors]="label.relocation_distance.errors"
+                  [group]="dealForm"
+                ></app-input>
+              </div>
+              <div class="col-md-6 mb-4">
+                <app-date
+[isRequired]="label.install_completed.isRequired"
+[label]="label.install_completed.fieldLabel"
+[fieldName]="label.install_completed.fieldName"
+[placeholder]="label.install_completed.placeholder"
+[errors]="label.install_completed.errors"
+[group]="dealForm"
+></app-date> 
+              </div>
+              <div class="col-md-6 mb-4">
+                <app-date
+[isRequired]="label.mpu_scheduled.isRequired"
+[label]="label.mpu_scheduled.fieldLabel"
+[fieldName]="label.mpu_scheduled.fieldName"
+[placeholder]="label.mpu_scheduled.placeholder"
+[errors]="label.mpu_scheduled.errors"
+[group]="dealForm"
+></app-date> 
+              </div>
+              <div class="col-md-6 mb-4">
+                <app-date
+[isRequired]="label.m_two_paid.isRequired"
+[label]="label.m_two_paid.fieldLabel"
+[fieldName]="label.m_two_paid.fieldName"
+[placeholder]="label.m_two_paid.placeholder"
+[errors]="label.m_two_paid.errors"
+[group]="dealForm"
+></app-date> 
+              </div>
+              <div class="col-md-6 mb-4">
+                <app-date
+[isRequired]="label.mpu_complete.isRequired"
+[label]="label.mpu_complete.fieldLabel"
+[fieldName]="label.mpu_complete.fieldName"
+[placeholder]="label.mpu_complete.placeholder"
+[errors]="label.mpu_complete.errors"
+[group]="dealForm"
+></app-date> 
+              </div>
+
+                <div class="col-md-4 mb-4 dateTimeDiv">
+                  <app-date
+                  [isRequired]="label.volt_paid_mtwo_date.isRequired"
+                  [label]="label.volt_paid_mtwo_date.fieldLabel"
+                  [fieldName]="label.volt_paid_mtwo_date.fieldName"
+                  [placeholder]="label.volt_paid_mtwo_date.placeholder"
+                  [errors]="label.volt_paid_mtwo_date.errors"
+                  [group]="dealForm"
+                  [isDateTime]="true"
+                  ></app-date>    
+                  </div>
+                  <div class="col-md-2 mb-4 timeDiv">
+                  <app-select
+                  [isRequired]="label.volt_paid_mtwo_time.isRequired"
+                  [fieldName]="label.volt_paid_mtwo_time.fieldName"
+                  [options]="masterData['Time']"
+                  [optionConfig]="label.volt_paid_mtwo_time.optionConfig"
+                  [group]="dealForm"
+                  [isTime]="true"
+                  ></app-select>
+                  </div>
+
+              <div class="col-md-6 mb-4">
+                <app-date
+[isRequired]="label.rookie_card_vc.isRequired"
+[label]="label.rookie_card_vc.fieldLabel"
+[fieldName]="label.rookie_card_vc.fieldName"
+[placeholder]="label.rookie_card_vc.placeholder"
+[errors]="label.rookie_card_vc.errors"
+[group]="dealForm"
+></app-date> 
+              </div>
+              <div class="col-md-6 mb-4">
+                <app-date
+                [isRequired]="label.packaging_commission_paid.isRequired"
+                [label]="label.packaging_commission_paid.fieldLabel"
+                [fieldName]="label.packaging_commission_paid.fieldName"
+                [placeholder]="label.packaging_commission_paid.placeholder"
+                [errors]="label.packaging_commission_paid.errors"
+                [group]="dealForm"
+                ></app-date> 
+              </div>
+              <div class="col-md-6 mb-4">
+                <app-input
+                  [type]="label.ub_page_one.fieldType"
+                  [isRequired]="label.ub_page_one.isRequired"
+                  [label]="label.ub_page_one.fieldLabel"
+                  [fieldName]="label.ub_page_one.fieldName"
+                  [placeholder]="label.ub_page_one.placeholder"
+                  [errors]="label.ub_page_one.errors"
+                  [group]="dealForm"
+                ></app-input>
+              </div>
+              <div class="col-md-6 mb-4">
+                <app-select
+[isRequired]="label.fi_scheduled.isRequired"
+[label]="label.fi_scheduled.fieldLabel"
+[fieldName]="label.fi_scheduled.fieldName"
+[options]="masterData['YesNoChoice']"
+[optionConfig]="label.fi_scheduled.optionConfig"
+[errors]="label.fi_scheduled.errors"
+[group]="dealForm"
+></app-select>
+              </div>
+              <div class="col-md-6 mb-4">
+                <app-input
+                  [type]="label.ub_page_two.fieldType"
+                  [isRequired]="label.ub_page_two.isRequired"
+                  [label]="label.ub_page_two.fieldLabel"
+                  [fieldName]="label.ub_page_two.fieldName"
+                  [placeholder]="label.ub_page_two.placeholder"
+                  [errors]="label.ub_page_two.errors"
+                  [group]="dealForm"
+                ></app-input>
+              </div>
+              <div class="col-md-6 mb-4">
+                <app-date
+                [isRequired]="label.fi_pass.isRequired"
+                [label]="label.fi_pass.fieldLabel"
+                [fieldName]="label.fi_pass.fieldName"
+                [placeholder]="label.fi_pass.placeholder"
+                [errors]="label.fi_pass.errors"
+                [group]="dealForm"
+                ></app-date> 
+              </div>
+              <div class="col-md-6 mb-4">
+                <app-input
+                  [type]="label.usage_page.fieldType"
+                  [isRequired]="label.usage_page.isRequired"
+                  [label]="label.usage_page.fieldLabel"
+                  [fieldName]="label.usage_page.fieldName"
+                  [placeholder]="label.usage_page.placeholder"
+                  [errors]="label.usage_page.errors"
+                  [group]="dealForm"
+                ></app-input>
+              </div>
+
+                <div class="col-md-4 mb-4 dateTimeDiv">
+                  <app-date
+                  [isRequired]="label.pto_submitted_date.isRequired"
+                  [label]="label.pto_submitted_date.fieldLabel"
+                  [fieldName]="label.pto_submitted_date.fieldName"
+                  [placeholder]="label.pto_submitted_date.placeholder"
+                  [errors]="label.pto_submitted_date.errors"
+                  [group]="dealForm"
+                  [isDateTime]="true"
+                  ></app-date>    
+                  </div>
+                  <div class="col-md-2 mb-4 timeDiv">
+                  <app-select
+                  [isRequired]="label.pto_submitted_time.isRequired"
+                  [fieldName]="label.pto_submitted_time.fieldName"
+                  [options]="masterData['Time']"
+                  [optionConfig]="label.pto_submitted_time.optionConfig"
+                  [group]="dealForm"
+                  [isTime]="true"
+                  ></app-select>
+                  </div>
+
+              <div class="col-md-6 mb-4">
+                <app-input
+                  [type]="label.hic.fieldType"
+                  [isRequired]="label.hic.isRequired"
+                  [label]="label.hic.fieldLabel"
+                  [fieldName]="label.hic.fieldName"
+                  [placeholder]="label.hic.placeholder"
+                  [errors]="label.hic.errors"
+                  [group]="dealForm"
+                ></app-input>
+              </div>
+              <div class="col-md-6 mb-4">
+                <app-date
+[isRequired]="label.pto.isRequired"
+[label]="label.pto.fieldLabel"
+[fieldName]="label.pto.fieldName"
+[placeholder]="label.pto.placeholder"
+[errors]="label.pto.errors"
+[group]="dealForm"
+></app-date> 
+              </div>
+              <div class="col-md-6 mb-4">
+                <app-input
+                  [type]="label.company_cam.fieldType"
+                  [isRequired]="label.company_cam.isRequired"
+                  [label]="label.company_cam.fieldLabel"
+                  [fieldName]="label.company_cam.fieldName"
+                  [placeholder]="label.company_cam.placeholder"
+                  [errors]="label.company_cam.errors"
+                  [group]="dealForm"
+                ></app-input>
+              </div>
+              <div class="col-md-6 mb-4">
+                <app-select
+[isRequired]="label.vcr_completed.isRequired"
+[label]="label.vcr_completed.fieldLabel"
+[fieldName]="label.vcr_completed.fieldName"
+[options]="masterData['YesNoChoice']"
+[optionConfig]="label.vcr_completed.optionConfig"
+[errors]="label.vcr_completed.errors"
+[group]="dealForm"
+></app-select>
+              </div>
+              <div class="col-md-6 mb-4">
+                <app-select
+[isRequired]="label.second_marketer.isRequired"
+[label]="label.second_marketer.fieldLabel"
+[fieldName]="label.second_marketer.fieldName"
+[options]="secondMarketers"
+[optionConfig]="label.second_marketer.optionConfig"
+[errors]="label.second_marketer.errors"
+[group]="dealForm"
+></app-select>
+              </div>
+              <div class="col-md-6 mb-4">
+                <app-input
+                  [type]="label.expected_profit.fieldType"
+                  [isRequired]="label.expected_profit.isRequired"
+                  [label]="label.expected_profit.fieldLabel"
+                  [fieldName]="label.expected_profit.fieldName"
+                  [placeholder]="label.expected_profit.placeholder"
+                  [errors]="label.expected_profit.errors"
+                  [group]="dealForm"
+                ></app-input>
+              </div>
+              <div class="col-md-6 mb-4">
+                <app-date
+[isRequired]="label.retention_date.isRequired"
+[label]="label.retention_date.fieldLabel"
+[fieldName]="label.retention_date.fieldName"
+[placeholder]="label.retention_date.placeholder"
+[errors]="label.retention_date.errors"
+[group]="dealForm"
+></app-date> 
+              </div>             
             </div>
-
-            <div class="card-body contactInfo contactDetails">
-                <div class="p-3 font-size-15rem font-weight-600 d-flex justify-content-between cardHeader">
-                    Description Information
-                </div>
-                <div class="col-12 pr-3">
-                    <div class="row">
-                        <div class="col-11">
-                            <div class="mb-4 eachInfoDiv">
-                                <div class="row">
-                                    <div class="col-2 titleTxt">Description: </div>
-                                    <div class="col-9 eachInfo">                        
-                                        <div class="blueTxt">
-                                            <input type="text"
-                                            class="form-control" formControlName="Description"
-                                            id="Description" autocomplete="off"/>
-                                        </div>    
-                                    </div>
-                                </div>
-                            </div>       
-                        </div>
-                    </div>
-                </div>
-            </div>
+          </div>
         </div>
+        <div class="card-body contactInfo dealDetails">
+          <div
+            class="
+              p-3
+              font-size-15rem font-weight-600
+              d-flex
+              justify-content-between
+              cardHeader
+            "
+          >
+            Description Information
+          </div>
+          <div>
+            <div class="row">
+              <div class="col-md-6 mb-4">
+                <app-textarea
+                  [type]="descLabel.description.fieldType"
+                  [isRequired]="descLabel.description.isRequired"
+                  [label]="descLabel.description.fieldLabel"
+                  [fieldName]="descLabel.description.fieldName"
+                  [placeholder]="descLabel.description.placeholder"
+                  [errors]="descLabel.description.errors"
+                  [group]="dealForm"
+                ></app-textarea>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="d-flex align-center justify-content-center mb-4">
+          <button
+            class="btn btn-primary createBtn"
+            type="submit"
+            (click)="saveDeal()">
+            Create Deal
+        </button>
+          </div>
+      </div>
     </form>
-</div>
-
-
-
-
+  </div>

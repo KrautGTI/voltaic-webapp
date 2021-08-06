@@ -15,16 +15,20 @@ export class FormField {
   fieldName = '';
   placeholder = '';
   fieldType = '';
-  isEditable = true;
+  associatedfieldName = '';
+  isEditable?: any = true;
   isRequired = false;
   isDisabled? = false;
-  options? = [];
+  options?: any[] = [];
   optionConfig?: OptionConfig = new OptionConfig();
   errors: FormFieldError[] = [];
 }
 export class OptionConfig {
   labelKey: string = '';
   valueKey: string = '';
+  checkedKey?: string = '';
+  additionalLabelKey?: string = '';
+  mergeValueKey?: boolean = false;
 }
 export class OptionModel {
   label: string = '';
@@ -51,11 +55,18 @@ export class ModuleColumn {
   id: string = '';
   name: string = '';
   active: boolean = false;
+  selected?: boolean = false;
+  filterType: string = '';
 }
 export class ModuleRef {
   id: string = '';
   name: string = '';
+  label?: string = '';
   columns: ModuleColumn[] = [];
+}
+export class FilterCondition {
+  id: string = '';
+  name: string = '';
 }
 export class RoutingStep {
   stepId: string = '';
@@ -63,6 +74,10 @@ export class RoutingStep {
   isVisible: boolean = false;
 }
 
+export enum FilterType {
+  ADVANCE = 'ADVANCE',
+  STANDARD = 'STANDARD',
+}
 export enum FieldTypes {
   TEXT = 'text',
   EMAIL = 'email',

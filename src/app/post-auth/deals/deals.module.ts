@@ -9,6 +9,9 @@ import { ReactiveFormsModule, FormsModule } from "@angular/forms";
 import { DealDetailsComponent } from './deal-details/deal-details.component';
 import { NgSelectModule } from "@ng-select/ng-select";
 import {DpDatePickerModule} from 'ng2-date-picker';
+import { FormFieldsModule } from 'src/app/common/form-fields/form-fields.module';
+import { UiElementsModule } from 'src/app/common/ui-elements/ui-elements.module';
+import { MatDatepickerModule } from '@angular/material/datepicker';
 
 @NgModule({
   declarations: [
@@ -24,7 +27,8 @@ import {DpDatePickerModule} from 'ng2-date-picker';
       //   disallowedRoutes: ["http://example.com/examplebadroute/"],
       // },
     }), 
-    DragDropModule, ReactiveFormsModule, FormsModule, NgSelectModule, DpDatePickerModule
+    DragDropModule, ReactiveFormsModule, FormsModule, NgSelectModule, DpDatePickerModule,
+    FormFieldsModule, UiElementsModule, MatDatepickerModule
   ]
 })
 export class DealsModule { }

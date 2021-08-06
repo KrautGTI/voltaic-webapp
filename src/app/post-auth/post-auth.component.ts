@@ -1,4 +1,10 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  ViewChild,
+  ChangeDetectorRef,
+  AfterViewInit,
+} from '@angular/core';
 import {
   Router,
   Event,
@@ -15,13 +21,17 @@ import { LocationStrategy } from '@angular/common';
   templateUrl: './post-auth.component.html',
   styleUrls: ['./post-auth.component.scss'],
 })
-export class PostAuthComponent implements OnInit {
+export class PostAuthComponent implements OnInit, AfterViewInit {
   @ViewChild(HeaderComponent)
   // private headerComp: HeaderComponent;
   public toggleLogoEvent = false;
   isDashboard = false;
   urlname = '';
-  constructor(public router: Router, private route: ActivatedRoute) {
+  constructor(
+    public router: Router,
+    private route: ActivatedRoute,
+    private cd: ChangeDetectorRef
+  ) {
     this.router.events.subscribe((event: Event) => {
       if (event instanceof NavigationStart) {
         // Show loading indicator
@@ -42,6 +52,9 @@ export class PostAuthComponent implements OnInit {
       this.toggleLogoEvent = false;
     }, 100);
     this.showBreadcrumb();
+  }
+  ngAfterViewInit(): void {
+    this.cd.detectChanges();
   }
   showBreadcrumb() {
     this.isDashboard = this.router.url.includes('dashboard') ? true : false;
@@ -82,6 +95,7 @@ export class PostAuthComponent implements OnInit {
   }
 
   toggleHeaderLogo(evnt: any) {
+    console.log(evnt);
     this.toggleLogoEvent = evnt.isShowLogo;
   }
 

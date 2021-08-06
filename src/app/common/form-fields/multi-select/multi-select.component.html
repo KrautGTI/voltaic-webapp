@@ -10,25 +10,17 @@
       class="eachInfo"
       *ngIf="!isNewDesing"
     >
-      <div class="blueTxt">
-        <select
-          [name]="fieldName"
-          [formControlName]="fieldName"
-          [ngClass]="{
-            'select-error':
-              groupControl!.invalid &&
-              (groupControl!.dirty || groupControl!.touched)
-          }"
-          [class]="'select-data form-control ' + class"
-          (blur)="onBlur($event)"
-          (change)="onChange($event)"
-          #inputRef
+      <div class="multi-select">
+        <mat-label class="default-label" *ngIf="!groupControl?.value || !groupControl?.value.length"
+          >Select None</mat-label
         >
-          <option *ngIf="defaultOption" value="">Select None</option>
-          <option *ngFor="let option of modifiedOptions" [value]="option.value">
-            {{ option.label }}
-          </option>
-        </select>
+        <mat-select [formControl]="groupControl" multiple>
+          <mat-option
+            *ngFor="let option of modifiedOptions"
+            [value]="option.value"
+            >{{ option.label }}</mat-option
+          >
+        </mat-select>
         <div
           class="form-error"
           *ngIf="
@@ -61,7 +53,7 @@
             (change)="onChange($event)"
             #inputRef
           >
-            <option *ngIf="defaultOption" value="">Select None</option>
+            <option value="">Select None</option>
             <option
               *ngFor="let option of modifiedOptions"
               [value]="option.value"

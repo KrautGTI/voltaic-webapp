@@ -45,6 +45,7 @@ export class DateComponent implements OnInit {
   @Input() public isNewDesing: boolean = false;
   @Input() public isFixed: boolean = true;
   @Input() public isEditable: boolean = true;
+  @Input() public isFullSize: boolean = false;
   @Input() public isRequired: boolean = false;
   @Input() public errors: FormFieldError[] = [];
   @Input() public picker = '';
@@ -52,6 +53,7 @@ export class DateComponent implements OnInit {
   @Input() public maxDate: Date | null = null;
   @Input() public startRange: number | null = null;
   @Input() public endRange: number | null = null;
+  @Input() public isDateTime: boolean = false;
   @Output() public cstBlur = new EventEmitter<any>();
   @Output() public cstChange = new EventEmitter<any>();
   @ViewChild('inputRef') private inputRef: ElementRef | null = null;

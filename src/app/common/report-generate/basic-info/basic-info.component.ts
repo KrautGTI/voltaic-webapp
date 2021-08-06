@@ -6,12 +6,14 @@ import {
   Output,
 } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup } from '@angular/forms';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { forkJoin, Observable, Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { GenericService } from 'src/app/service/generic.service';
 import { NotificationService } from 'src/app/service/notification.service';
 import { BasicInfoFieldLabel } from 'src/app/shared/constants/report.constant';
 import { FormField } from 'src/app/shared/models/util.model';
+import { FolderCreateComponent } from '../folder-create/folder-create.component';
 
 @Component({
   selector: 'app-basic-info',
@@ -26,12 +28,13 @@ export class BasicInfoComponent implements OnInit, OnDestroy {
   public label: { [key: string]: FormField } = BasicInfoFieldLabel;
   public basicInfoForm: FormGroup = new FormGroup({});
   private unsubscribe$: Subject<boolean> = new Subject();
-  public masterData: any = '';
+  public selectFolderArr: any[] = [];
 
   constructor(
     private fb: FormBuilder,
     private genericService: GenericService,
-    private notificationService: NotificationService
+    private notificationService: NotificationService,
+    public dialog: MatDialog
   ) {}
   ngOnDestroy(): void {
     this.unsubscribe$.next(true);
@@ -55,16 +58,18 @@ export class BasicInfoComponent implements OnInit, OnDestroy {
   }
   private fetchRequiredData(): void {
     const reqs: Observable<any>[] = [];
-    const getMasterData$ = this.genericService.getMasterData();
-    reqs.push(getMasterData$);
+    const getFolders$ = this.genericService.getFolders();
+    reqs.push(getFolders$);
     forkJoin(reqs)
       .pipe(takeUntil(this.unsubscribe$))
       .subscribe(
         (results) => {
           if (results && Array.isArray(results)) {
             if (results[0]) {
-              const masterData = results[0];
-              this.masterData = masterData;
+              this.selectFolderArr =
+                results[0].message && Array.isArray(results[0].message)
+                  ? results[0].message
+                  : [];
             }
           }
         },
@@ -82,5 +87,19 @@ export class BasicInfoComponent implements OnInit, OnDestroy {
   }
   public onCancel(): void {
     this.onCancelBtn.emit(this.basicInfoForm!.value);
+  }
+  public onCreateFolder(): void {
+    this.openDialog();
+  }
+  private openDialog() {
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.height = 'auto';
+    dialogConfig.maxHeight = '550px';
+    dialogConfig.width = '650px';
+    const dialogRef = this.dialog.open(FolderCreateComponent, dialogConfig);
+
+    dialogRef.afterClosed().subscribe((result) => {
+      console.log(`Dialog result: ${result}`);
+    });
   }
 }

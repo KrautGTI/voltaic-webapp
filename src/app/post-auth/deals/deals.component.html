@@ -15,11 +15,13 @@
                 <span>{{ opportunity?.name }} <span>({{opportunity?.deatils?.count}})</span></span>
                 <div class="w-100 d-flex" style="overflow-x: auto;" >
                     <div class="d-flex m-2 justify-content-start col-3 border shadow p-4 rounded flex-column" *ngFor="let item of opportunity?.deatils?.dataList">
-                        <div class="w-100" (click)="onDealsClick(item.Deal_ID)" class="dealName">{{item.Deal_Name}}</div>
+                        <div class="deal-wrapper col-12" (click)="onDealsClick(item.Deal_ID)">
+                        <div class="w-100" class="dealName">{{item.Deal_Name}}</div>
                         <div class="w-100">{{item.Closing_Date | date }}</div>
                         <div class="w-100">{{item.Deal_Owner}}</div>
                         <div class="w-100">{{item.Channel_Partner}}</div>
                         <div class="w-100">{{item.SS_Date | date}}</div>
+                        </div>
                     </div>
                 </div>
             </div>

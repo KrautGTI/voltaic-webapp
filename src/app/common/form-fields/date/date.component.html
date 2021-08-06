@@ -1,10 +1,22 @@
 <div class="input" [formGroup]="group">
   <div class="row">
-    <label class="form-label col-4" *ngIf="label">
+    <label
+      [ngClass]="isDateTime ? 'col-6' : 'col-4'"
+      class="form-label"
+      *ngIf="label"
+    >
       {{ label }}
       <span *ngIf="isRequired" class="mandatory-style">*</span>
     </label>
-    <div class="col-8 eachInfo" *ngIf="!isNewDesing">
+    <div
+      [ngClass]="{
+        'col-12': isFullSize,
+        'col-6 p_l_6': isDateTime,
+        'col-8': !isDateTime && !isFullSize
+      }"
+      class="eachInfo"
+      *ngIf="!isNewDesing"
+    >
       <div class="blueTxt">
         <div class="date-picker-style">
           <input
@@ -47,7 +59,7 @@
         </div>
       </div>
     </div>
-    <div class="col-8" *ngIf="isNewDesing">
+    <div [ngClass]="isDateTime ? 'col-6' : 'col-8'" *ngIf="isNewDesing">
       <div class="eachInfoWraper">
         <div class="blueTxt w-100">
           <div class="date-picker-style">

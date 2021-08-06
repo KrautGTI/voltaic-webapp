@@ -9,6 +9,8 @@ import { ReportRouteComponent } from './report-route/report-route.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FormFieldsModule } from '../form-fields/form-fields.module';
 import { ColumnsSelectionComponent } from './columns-selection/columns-selection.component';
+import { FolderCreateComponent } from './folder-create/folder-create.component';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
@@ -19,8 +21,15 @@ import { ColumnsSelectionComponent } from './columns-selection/columns-selection
     BasicInfoComponent,
     ReportRouteComponent,
     ColumnsSelectionComponent,
+    FolderCreateComponent,
   ],
-  imports: [CommonModule, FormsModule, ReactiveFormsModule, FormFieldsModule],
+  imports: [
+    CommonModule,
+    MatDialogModule,
+    FormsModule,
+    ReactiveFormsModule,
+    FormFieldsModule,
+  ],
   exports: [
     ModuleInfoComponent,
     ReportTypeComponent,

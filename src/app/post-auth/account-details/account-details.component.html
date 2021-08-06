@@ -173,20 +173,6 @@
           <div class="row">
             <div class="col-md-6 mb-4">
               <app-select
-                [isRequired]="label.accountOwner.isRequired"
-                [isEditable]="label.accountOwner.isEditable"
-                [isNewDesing]="true"
-                [isFixed]="false"
-                [label]="label.accountOwner.fieldLabel"
-                [fieldName]="label.accountOwner.fieldName"
-                [options]="leadOwners"
-                [optionConfig]="label.accountOwner.optionConfig"
-                [errors]="label.accountOwner.errors"
-                [group]="accountDetailsForm"
-              ></app-select>
-            </div>
-            <div class="col-md-6 mb-4">
-              <app-select
                 [isRequired]="label.rating.isRequired"
                 [isEditable]="label.rating.isEditable"
                 [isNewDesing]="true"
@@ -212,20 +198,6 @@
                 [errors]="label.accountName.errors"
                 [group]="accountDetailsForm"
               ></app-input>
-            </div>
-            <div class="col-md-6 mb-4">
-              <app-input-number
-                [isRequired]="label.phone.isRequired"
-                [isEditable]="label.phone.isEditable"
-                [isNewDesing]="true"
-                [isFixed]="false"
-                [type]="label.phone.fieldType"
-                [label]="label.phone.fieldLabel"
-                [fieldName]="label.phone.fieldName"
-                [placeholder]="label.phone.placeholder"
-                [errors]="label.phone.errors"
-                [group]="accountDetailsForm"
-              ></app-input-number>
             </div>
             <div class="col-md-6 mb-4">
               <app-input
@@ -264,6 +236,7 @@
                 [type]="label.parentAccount.fieldType"
                 [label]="label.parentAccount.fieldLabel"
                 [fieldName]="label.parentAccount.fieldName"
+                [associatedfieldName]="label.parentAccount.associatedfieldName"
                 [placeholder]="label.parentAccount.placeholder"
                 [errors]="label.parentAccount.errors"
                 [searchValues]="searchValues$"
@@ -341,48 +314,6 @@
                 [errors]="label.ownership.errors"
                 [group]="accountDetailsForm"
               ></app-select>
-            </div>
-            <div class="col-md-6 mb-4">
-              <app-select
-                [isRequired]="label.industry.isRequired"
-                [isEditable]="label.industry.isEditable"
-                [isNewDesing]="true"
-                [isFixed]="false"
-                [label]="label.industry.fieldLabel"
-                [fieldName]="label.industry.fieldName"
-                [options]="masterData[label.industry.fieldName]"
-                [optionConfig]="label.industry.optionConfig"
-                [errors]="label.industry.errors"
-                [group]="accountDetailsForm"
-              ></app-select>
-            </div>
-            <div class="col-md-6 mb-4">
-              <app-input
-                [isRequired]="label.employees.isRequired"
-                [isEditable]="label.employees.isEditable"
-                [isNewDesing]="true"
-                [isFixed]="false"
-                [type]="label.employees.fieldType"
-                [label]="label.employees.fieldLabel"
-                [fieldName]="label.employees.fieldName"
-                [placeholder]="label.employees.placeholder"
-                [errors]="label.employees.errors"
-                [group]="accountDetailsForm"
-              ></app-input>
-            </div>
-            <div class="col-md-6 mb-4">
-              <app-input-number
-                [isRequired]="label.annualRevenue.isRequired"
-                [isEditable]="label.annualRevenue.isEditable"
-                [isNewDesing]="true"
-                [isFixed]="false"
-                [type]="label.annualRevenue.fieldType"
-                [label]="label.annualRevenue.fieldLabel"
-                [fieldName]="label.annualRevenue.fieldName"
-                [placeholder]="label.annualRevenue.placeholder"
-                [errors]="label.annualRevenue.errors"
-                [group]="accountDetailsForm"
-              ></app-input-number>
             </div>
             <div class="col-md-6 mb-4">
               <app-input
@@ -644,6 +575,14 @@
             </div>
           </div>
         </div>
+      </div>
+      <div class="d-flex align-center justify-content-center mb-4">
+        <app-btn-primary
+          [btnName]="'Submit'"
+          [btnType]="'submit'"
+          [disabled]="false"
+          (btnClick)="saveAccount()"
+        ></app-btn-primary>
       </div>
     </div>
     <div class="card shadow">

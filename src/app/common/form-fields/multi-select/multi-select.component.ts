@@ -12,6 +12,7 @@ import {
 import {
   AbstractControl,
   FormBuilder,
+  FormControl,
   FormGroup,
   Validators,
 } from '@angular/forms';
@@ -22,14 +23,14 @@ import {
 } from 'src/app/shared/models/util.model';
 
 @Component({
-  selector: 'app-select',
-  templateUrl: './select.component.html',
-  styleUrls: ['./select.component.scss'],
+  selector: 'app-multi-select',
+  templateUrl: './multi-select.component.html',
+  styleUrls: ['./multi-select.component.scss'],
 })
-export class SelectComponent implements OnInit, OnChanges {
+export class MultiSelectComponent implements OnInit, OnChanges {
   @Input() public group: FormGroup;
   @Input() public label: string = '';
-  @Input() public type: string = 'select';
+  @Input() public type: string = 'text';
   @Input() public fieldName: string = '';
   @Input() public class: string = '';
   @Input() public isFixed: boolean = true;
@@ -107,8 +108,8 @@ export class SelectComponent implements OnInit, OnChanges {
     this.setEditableStatus();
   }
 
-  get groupControl(): AbstractControl | null {
-    return this.group.get(this.fieldName);
+  get groupControl(): FormControl {
+    return this.group.get(this.fieldName) as FormControl;
   }
   public onBlur(e: any): void {
     this.cstBlur.emit(e.target.value);

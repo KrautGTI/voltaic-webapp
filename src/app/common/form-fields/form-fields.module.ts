@@ -20,7 +20,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatMomentDateModule } from '@angular/material-moment-adapter';
 import { MatCheckboxModule } from '@angular/material/checkbox';
-import {MatRadioModule} from '@angular/material/radio';
+import { MatRadioModule } from '@angular/material/radio';
+import { MatSelectModule } from '@angular/material/select';
+import { MultiSelectComponent } from './multi-select/multi-select.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +42,7 @@ import {MatRadioModule} from '@angular/material/radio';
     SelectComponent,
     SwitchComponent,
     TextareaComponent,
+    MultiSelectComponent,
   ],
   imports: [
     CommonModule,
@@ -48,7 +51,8 @@ import {MatRadioModule} from '@angular/material/radio';
     MatDatepickerModule,
     MatMomentDateModule,
     MatCheckboxModule,
-    MatRadioModule
+    MatRadioModule,
+    MatSelectModule,
   ],
   exports: [
     BtnPrimaryComponent,
@@ -67,6 +71,7 @@ import {MatRadioModule} from '@angular/material/radio';
     SelectComponent,
     SwitchComponent,
     TextareaComponent,
+    MultiSelectComponent,
   ],
 })
 export class FormFieldsModule {}

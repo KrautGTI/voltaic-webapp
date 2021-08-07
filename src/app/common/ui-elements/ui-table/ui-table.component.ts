@@ -32,6 +32,8 @@ export class UiTableComponent implements OnInit, OnChanges {
   public paginationPageSize: any;
   public paginationNumberFormatter: any;
   public rowHeight: any;
+  public rowStyle: any;
+  public headerHeight: any;
 
   constructor() {}
   ngOnChanges(changes: SimpleChanges): void {
@@ -63,6 +65,9 @@ export class UiTableComponent implements OnInit, OnChanges {
       enablePivot: true,
       enableValue: true,
     };
+    this.rowHeight = 45;
+    this.rowStyle = { background: 'white', padding: '8px'};
+    this.headerHeight = 35;
     // const firstColumn = this.columnDefsConfigs[0]
     //   ? this.columnDefsConfigs[0]
     //   : null;

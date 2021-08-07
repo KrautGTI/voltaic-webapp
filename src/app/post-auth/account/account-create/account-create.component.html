@@ -1,4 +1,4 @@
-<div class="container-fluid" style="margin-top: 30px">
+<div class="container-fluid" style="margin-top: 10px">
   <form [formGroup]="accountForm">
     <div class="card shadow">
       <div class="card-body contactInfo accountDetails">
@@ -375,13 +375,26 @@
           </div>
         </div>
       </div>
-      <div class="d-flex align-center justify-content-center mb-4">
+      <!-- <div class="d-flex align-center justify-content-center mb-4">
         <app-btn-primary
           [btnName]="'Create Account'"
           [disabled]="accountForm.invalid"
           (btnClick)="saveAccount()"
         ></app-btn-primary>
-      </div>
+      </div> -->
+      <div class="row mb-4">
+        <div class="col-12 eachInfoDiv btnDiv">
+            <div class="eachInfo">
+                <!-- <button class="btn btn-primary bold saveBtn pl-5 pr-5 mr-2" 
+                type="submit" (click)="saveDeal()">Create Deal</button> -->
+                <app-btn-primary
+                  [btnName]="'Create Account'"
+                  [disabled]="accountForm.invalid"
+                  (btnClick)="saveAccount()"
+                ></app-btn-primary>
+            </div>
+        </div>
+    </div>
     </div>
   </form>
 </div>

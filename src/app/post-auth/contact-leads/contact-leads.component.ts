@@ -36,6 +36,8 @@ export class ContactLeadsComponent implements OnInit {
   rowHeight: any;
   paginationNumberFormatter: any;
   sortingOrder: any;
+  rowStyle: any;
+  headerHeight:any;
 
   constructor(
     private genericService: GenericService,
@@ -210,15 +212,17 @@ export class ContactLeadsComponent implements OnInit {
       sortable: true,
       resizable: true,
       flex: 1,
-      rowHeight: 20,
+      rowHeight: 45,
       minWidth: 150,
       filter: true,
       enableRowGroup: true,
       enablePivot: true,
       enableValue: true,
+      paginationAutoPageSize: true,
+      autoHeight: true,
     };
 
-    this.paginationPageSize = 15;
+    this.paginationPageSize = 20;
     this.rowSelection = 'single';
     this.paginationNumberFormatter = function (params: any) {
       return '[' + params.value.toLocaleString() + ']';
@@ -239,6 +243,8 @@ export class ContactLeadsComponent implements OnInit {
     this.domLayout = 'autoHeight';
     this.sortingOrder = ['desc', 'asc', null];
     this.rowHeight = 45;
+    this.rowStyle = { background: 'white', padding: '8px'};
+    this.headerHeight = 35;
   }
 
   sizeToFit() {

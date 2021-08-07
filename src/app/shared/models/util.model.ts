@@ -22,6 +22,7 @@ export class FormField {
   options? = [];
   optionConfig?: OptionConfig = new OptionConfig();
   errors: FormFieldError[] = [];
+  isImage? = true;
 }
 export class OptionConfig {
   labelKey: string = '';

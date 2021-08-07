@@ -1,28 +1,12 @@
-
-.footer {
-  background-color: #0e0b16;
-  padding: 0.7rem 0 0.8rem;
-  font-size: 13px;
-  letter-spacing: 0.4px;
-}
-.line {
-  width: 1px;
-  background-color: #ffffff;
-  height: 12px;
-  margin: 0.5rem 0.8rem;
-}
 .auth-bg {
-  //   background: linear-gradient(to bottom, $color-primary, $color-secondary)
-  //     no-repeat center;
-  background-image: url("/assets/images/loginBG2.png");
-  background-size: cover;
-  min-height: calc(100vh - 52px);
+  min-height: 100vh;
+  background-color: #400A48;
 }
 .auth-container {
   width: min(380px, 100%);
   background-color: transparent;
   border-radius: 5px;
-  // box-shadow: 0px 0px 5px 0px $color-primary;
+
   .card {
     width: 94%;
     margin: 0 auto;
@@ -38,12 +22,9 @@
         border-radius: 0;
         padding: 1rem 0;
         background-color: #e0e0e0;
-        // color: $color-secondary;
         border-color: #e0e0e0;
         &.active {
-          // background-color: $color-secondary;
           color: #e0e0e0;
-          // border-color: $color-secondary;
         }
       }
     }
@@ -53,29 +34,28 @@
         box-shadow: none;
       }
     }
+
+    input::placeholder {
+      color:#e2d4d4;
+    }
     .form-control {
-      background-color: #f2f2f2;
-      border-radius: 0 10px 10px 0;
       border-style: solid;
-      border-color: #9eadbd;
-      border-width: 1px 1px 1px 0;
+      border-color: #e6e3e3;
+      border-width: 0px 0px 1px 0px;
+      background-color: transparent;
+      border-radius: 0;
+      color: #fff;
+      font-size:14px;
     }
     .input-group-text {
-      border-radius: 10px 0 0 10px;
       border-style: solid;
-      border-color: #9eadbd;
-      border-width: 1px 0 1px 1px;
+      border-color: #e6e3e3;
+      border-width: 0px 0px 1px 0px;
       padding: 0.7rem 0.5rem;
-      background-color: #f2f2f2;
-      i {
-        border-radius: 50%;
-        width: 1rem;
-        height: 1rem;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        background-color: #9eadbd;
-        color: #ffffff;
+      background-color: transparent;
+      border-radius: 0;
+      svg {
+        fill:#fff;
       }
     }
   }
@@ -98,7 +78,17 @@
   }
 }
 .login-card-width {
-  width: 450px;
+  width: 400px;
+
+  .card {
+    background-image: url("/assets/images/loginBg.png");
+    background-size: cover;
+    border-radius: 0;
+  }
+  .card.resetBg {
+    background-color: #fff!important;
+    background-image: none;
+  }
 }
 .override-alert {
   padding: 10px 16px !important;
@@ -106,18 +96,32 @@
 }
 
 .btn-primary.loginBtn {
-  background-color: #a239ca;
+  background-color: #3C0053;
   font-size: 14px;
-  padding-left: 30px;
-  padding-right: 30px;
+  padding: 9px 40px;
   letter-spacing: 0.5px;
   border: 0;
+  border-radius: 0;
 }
 
 .forgotPswrd a,
 .forgotPswrd span {
-  color: #bc51e8;
-  font-size: 15px;
+  color: #e6e3e3;
+  font-size: 14px;
+}
+
+.login {
+  color: #fff;
+    font-size: 25px;
+    font-weight: 500;
+    margin-bottom: 30px;
+}
+
+.reset {
+  color: #A13FC7;
+    font-size: 23px;
+    font-weight: 500;
+    margin-bottom: 30px;
 }
 
 .regHere {
@@ -134,4 +138,62 @@
 
 .swal2-styled.swal2-confirm {
   background-color: #a239ca;
+}
+
+
+.footer {
+  background-color:#ecebec;
+  padding: 0.7rem 0 0.8rem;
+  font-size: 13px;
+  letter-spacing: 0.4px;
+  padding-right:20px;
+  div{
+    font-size: 14px;
+  }
+}
+.line {
+  width: 1px;
+  background-color: #9362f3;
+  height: 14px;
+  margin: 0rem 0.8rem;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.privacySec {
+  margin-left:7px;
+}
+
+.baseColor {
+  color:#9362f3;
+}
+
+.copyRight {
+  color:#a09f9f;
+}
+
+.card.resetBg {
+  input, .form-control, .input-group-text {
+    border-color:#c6c8ca!important;
+    color: #000!important;
+    font-size:14px;
+  }
+  input::placeholder {
+    color:#a6aaaf!important;
+  }
+  // svg {
+  //   fill:#8898AA;
+  // }
+  
+}
+
+.auth-container .card.resetBg .input-group-text svg {
+  fill:#a6aaaf;
+}
+
+.error-border {
+  border:none !important;
+  border-bottom: 1px solid #f15353!important;
+  border-radius:0 !important;
+  border-color:#f15353!important;
 }

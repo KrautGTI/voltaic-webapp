@@ -51,7 +51,7 @@ export class PostAuthComponent implements OnInit, AfterViewInit {
     setTimeout(() => {
       this.toggleLogoEvent = false;
     }, 100);
-    this.showBreadcrumb();
+   this.showBreadcrumb();
   }
   ngAfterViewInit(): void {
     this.cd.detectChanges();

@@ -1126,5 +1126,57 @@
     { "id": "Deal Reports", "value": "Deal Reports" },
     { "id": "Email Reports", "value": "Email Reports" },
     { "id": "Account Reports", "value": "Account Reports" }
+  ],
+  "view_by_group": [
+    { "id": "AZ Reps", "value": "AZ Reps" },
+    { "id": "Call Center", "value": "Call Center" },
+    { "id": "Excluding Divine", "value": "Excluding Divine" },
+    { "id": "Divine", "value": "Divine" },
+    { "id": "Divine:Brandon", "value": "Divine:Brandon" },
+    { "id": "CA Region", "value": "CA Region" },
+    { "id": "Call Center Access", "value": "Call Center Access" }
+  ],
+  "view_by_user": [
+    {
+      "id": "AZ Reps",
+      "value": "AZ Reps",
+      "email": "nirupamjana.dev@gmail.com"
+    },
+    {
+      "id": "Call Center",
+      "value": "Call Center",
+      "email": "nirupamjana.dev@gmail.com"
+    },
+    {
+      "id": "Excluding Divine",
+      "value": "Excluding Divine",
+      "email": "nirupamjana.dev@gmail.com"
+    },
+    { "id": "Divine", "value": "Divine", "email": "nirupamjana.dev@gmail.com" },
+    {
+      "id": "Divine:Brandon",
+      "value": "Divine:Brandon",
+      "email": "nirupamjana.dev@gmail.com"
+    },
+    {
+      "id": "CA Region",
+      "value": "CA Region",
+      "email": "nirupamjana.dev@gmail.com"
+    },
+    {
+      "id": "Call Center Access",
+      "value": "Call Center Access",
+      "email": "nirupamjana.dev@gmail.com"
+    }
+  ],
+  "view_by_role": [
+    { "id": "CEO", "value": "CEO" },
+    { "id": "Manager", "value": "Manager" },
+    { "id": "Voltanic Rep", "value": "Voltanic Rep" },
+    { "id": "Executive", "value": "Executive" },
+    { "id": "Divine Energy", "value": "Divine Energy" },
+    { "id": "CA Users", "value": "CA Users" },
+    { "id": "CA", "value": "CA" },
+    { "id": "Mentor", "value": "Mentor" }
   ]
 }

@@ -201,6 +201,6 @@ export class GenericService {
   }
   public getFolders() {
     const url = this.authServiceUrl + 'folder/getFolders';
-    return this.httpClient.get(url);
+    return this.httpClient.post(url, null);
   }
 }

@@ -19,7 +19,7 @@ export class FormField {
   isEditable?: any = true;
   isRequired = false;
   isDisabled? = false;
-  options? = [];
+  options?: any[] = [];
   optionConfig?: OptionConfig = new OptionConfig();
   errors: FormFieldError[] = [];
   isImage? = true;
@@ -27,6 +27,7 @@ export class FormField {
 export class OptionConfig {
   labelKey: string = '';
   valueKey: string = '';
+  checkedKey?: string = '';
   additionalLabelKey?: string = '';
   mergeValueKey?: boolean = false;
 }
@@ -55,6 +56,7 @@ export class ModuleColumn {
   id: string = '';
   name: string = '';
   active: boolean = false;
+  filterType: string = '';
 }
 export class ModuleRef {
   id: string = '';
@@ -67,6 +69,10 @@ export class RoutingStep {
   isVisible: boolean = false;
 }
 
+export enum FilterType {
+  ADVANCE = 'ADVANCE',
+  STANDARD = 'STANDARD',
+}
 export enum FieldTypes {
   TEXT = 'text',
   EMAIL = 'email',

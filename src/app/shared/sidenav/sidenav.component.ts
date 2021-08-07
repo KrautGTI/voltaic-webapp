@@ -12,7 +12,18 @@ export class SidenavComponent implements OnInit {
   isNavOpen = true;
   userDetails: any;
   // svpRoles = ['Hiring Manager','Hiring Manager 1', 'Hiring Manager 2']
-  constructor(private router: Router, private genericService: GenericService) {}
+
+
+  isDashboardActive = this.router.url.includes('dashboard') ? true : false;
+  isLeadActive = this.router.url.includes('leads') ? true : false;
+  isContactActive = this.router.url.includes('contacts') ? true : false;
+  isAccountActive = this.router.url.includes('accounts') ? true : false;
+  isJobReportActive = this.router.url.includes('job-reports') ? true : false;
+  isManageUserActive = this.router.url.includes('manage') ? true : false;
+  isDealActive = this.router.url.includes('deals') ? true : false;
+  isReportActive = this.router.url.includes('reports') ? true : false;
+
+  constructor(public router: Router, private genericService: GenericService) {}
 
   ngOnInit(): void {
     let userData = sessionStorage.getItem('user');
@@ -40,5 +51,16 @@ export class SidenavComponent implements OnInit {
 
   hasAccess() {
     return this.userDetails.user_role === 'admin' ? true : false;
+  }
+
+  actviateNav(value: string) {
+    this.isDashboardActive = value == 'dashboard' ? true : false;
+    this.isLeadActive = value == 'leads' ? true : false;
+    this.isContactActive = value == 'contacts' ? true : false;
+    this.isAccountActive = value == 'accounts' ? true : false;
+    this.isJobReportActive = value == 'job-reports' ? true : false;
+    this.isManageUserActive = value == 'manage' ? true : false;
+    this.isDealActive = value == 'deals' ? true : false;
+    this.isReportActive = value == 'reports' ? true : false;
   }
 }

@@ -14,11 +14,9 @@
         <select
           [name]="fieldName"
           [formControlName]="fieldName"
-          [ngClass]="{
-            'select-error':
-              groupControl!.invalid &&
-              (groupControl!.dirty || groupControl!.touched)
-          }"
+          [ngClass]="[isRequired ? 'requiredField' : '', 
+          (groupControl!.invalid &&
+          (groupControl!.dirty || groupControl!.touched)) ? 'select-error' : '']"
           [class]="'select-data form-control ' + class"
           (blur)="onBlur($event)"
           (change)="onChange($event)"

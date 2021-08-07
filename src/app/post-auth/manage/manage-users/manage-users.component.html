@@ -1,4 +1,4 @@
-<div class="container-fluid" style="margin-top: 30px">
+<div class="container-fluid" style="margin-top: 10px">
     <ag-grid-angular
       #agGrid
       id="agGrid"
@@ -23,6 +23,7 @@
       [paginationNumberFormatter]="paginationNumberFormatter"
       (cellClicked)="onRowClick($event)"
       [rowHeight]="rowHeight"
-  
+      [rowStyle]="rowStyle"
+      [headerHeight]="headerHeight" 
     ></ag-grid-angular>
   </div>

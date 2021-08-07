@@ -1,34 +1,19 @@
-.footer {
-  background-color: #0e0b16;
-  padding: 0.7rem 0 0.8rem;
-  font-size: 13px;
-  letter-spacing: 0.4px;
-}
-.line {
-  width: 1px;
-  background-color: #fff;
-  height: 12px;
-  margin: 0.5rem 0.8rem;
-}
 .auth-bg {
-  //   background: linear-gradient(to bottom, $color-primary, $color-secondary)
-  //     no-repeat center;
-  background-image: url("/assets/images/loginBG2.png");
-  background-size: cover;
-  min-height: calc(100vh - 52px);
+  min-height: 100vh;
+  background-color: #400A48;
 }
 .auth-container {
   width: min(380px, 100%);
-  background-color: transparent;
-  border-radius: 5px;
-  // box-shadow: 0px 0px 5px 0px $color-primary;
+  background-color: #fff;
+  border-radius: 0px;
   .card {
     width: 94%;
     margin: 0 auto;
-    border-radius: 5px;
-    background-color: #f2f2f2;
+    border-radius: 0px;
+    background-color: #fff;
     margin-bottom: 13px !important;
     margin-top: 13px !important;
+    border:none;
     .card-header {
       display: flex;
       padding: 0;
@@ -36,15 +21,15 @@
         width: 50%;
         border-radius: 0;
         padding: 1rem 0;
-        background-color: #e0e0e0;
-        // color: $color-secondary;
-        border-color: #e0e0e0;
+        background-color: #fff;
+        border-color: #fff;
         &.active {
-          // background-color: $color-secondary;
-          color: #e0e0e0;
-          // border-color: $color-secondary;
+          color: #fff;
         }
       }
+    }
+    .input-group {
+      width:50%;
     }
     input {
       padding-left: 8px;
@@ -52,29 +37,29 @@
         box-shadow: none;
       }
     }
-    .form-control {
-      background-color: #f2f2f2;
-      border-radius: 0 10px 10px 0;
-      border-style: solid;
-      border-color: #9eadbd;
-      border-width: 1px 1px 1px 0;
+    input::placeholder {
+      color:#a6aaaf;
     }
-    .input-group-text {
-      border-radius: 10px 0 0 10px;
+    .form-control, input[type=date], select {
       border-style: solid;
-      border-color: #9eadbd;
-      border-width: 1px 0 1px 1px;
+      border-width: 0px 0px 1px 0px;
+      background-color: transparent;
+      border-radius: 0;
+      border-color:#c6c8ca!important;
+      color: #000!important;
+      font-size:14px;
+    }
+    .input-group-text{
+      border-style: solid;
+      border-color:#c6c8ca!important;
+      color: #000!important;
+      font-size:14px;
+      border-width: 0px 0px 1px 0px;
       padding: 0.7rem 0.5rem;
-      background-color: #f2f2f2;
-      i {
-        border-radius: 50%;
-        width: 1rem;
-        height: 1rem;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        background-color: #9eadbd;
-        color: #fff;
+      background-color: transparent;
+      border-radius: 0;
+      svg {
+        fill:#a6aaaf;
       }
     }
   }
@@ -97,7 +82,7 @@
   }
 }
 .login-card-width {
-  width: 450px;
+  width: 650px;
 }
 .override-alert {
   padding: 10px 16px !important;
@@ -105,12 +90,12 @@
 }
 
 .btn-primary.loginBtn {
-  background-color: #a239ca;
+  background-color: #3C0053;
   font-size: 14px;
-  padding-left: 30px;
-  padding-right: 30px;
+  padding: 9px 40px;
   letter-spacing: 0.5px;
   border: 0;
+  border-radius: 0;
 }
 
 .forgotPswrd a,
@@ -133,4 +118,23 @@
 
 .swal2-styled.swal2-confirm {
   background-color: #a239ca;
+}
+
+.register {
+  color: #A13FC7;
+    font-size: 23px;
+    font-weight: 500;
+    margin-bottom: 30px;
+}
+
+.auth-container .card input.error-border-text,
+.auth-container .card select.error-border-text,
+.auth-container .card .input-group-prepend.error-border-text {
+  border:none !important;
+  border-bottom: 1px solid #f15353!important;
+  border-radius:0 !important;
+  border-color:#f15353!important;
+}
+.auth-container .card .error-border-text .input-group-text {
+  border-color:transparent!important;
 }

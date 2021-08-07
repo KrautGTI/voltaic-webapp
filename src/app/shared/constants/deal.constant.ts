@@ -1320,10 +1320,10 @@ export const DealInformationLabels: { [key: string]: FormField } = {
     fieldName: 'roof_pics',
     placeholder: '',
     associatedfieldName: '',
-    fieldType: FieldTypes.TEXT,
+    fieldType: FieldTypes.FILE,
     isRequired: false,
     isDisabled: false,
-    options: [],
+    isImage: true,
     errors: [
       {
         type: ErrorType.REQUIRED,
@@ -1528,10 +1528,10 @@ export const DealInformationLabels: { [key: string]: FormField } = {
     fieldName: 'msp_pics',
     placeholder: '',
     associatedfieldName: '',
-    fieldType: FieldTypes.TEXT,
+    fieldType: FieldTypes.FILE,
     isRequired: false,
     isDisabled: false,
-    options: [],
+    isImage: true,
     errors: [
       {
         type: ErrorType.REQUIRED,

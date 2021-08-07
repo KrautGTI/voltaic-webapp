@@ -11,28 +11,12 @@
 
 .titleTxt {
     font-weight: 500;
-    font-size: 16px;
+    font-size: 14px;
     display: inline-block;
-    color: #616e88;
+    color: #000;
     vertical-align: top;
     text-align: right;
-    padding-right: 30px;
-}
-
-.saveBtn {
-    background-color: #03478e;
-    border-color: #03478e;
-}
-
-.btnDiv .eachInfo {
-    text-align: center;
-    margin-top: 20px;
-    border-bottom:none;
-
-    button {
-        width: 250px;
-        font-size: 18px;
-    }
+    padding-right: 10px;
 }
 
 ::ng-deep .customDatePicker input {
@@ -62,6 +46,15 @@
 
   .requireSign {
       color:#EF5350;
+  }
+
+  input, select, textarea {
+    padding: 0.3rem 0.75rem;
+    font-size:14px;
+  }
+
+  .requiredField {
+    border-left: 3px solid #9362f3;
   }
 
 

@@ -34,6 +34,9 @@ export class ManageUsersComponent implements OnInit {
   rowHeight: any;
   paginationNumberFormatter: any;
   sortingOrder: any;
+  rowStyle: any;
+  headerHeight:any;
+  
   constructor(
     private genericService: GenericService,
     private router: Router,
@@ -106,6 +109,8 @@ export class ManageUsersComponent implements OnInit {
     this.domLayout = 'autoHeight';
     this.sortingOrder = ['desc', 'asc', null];
     this.rowHeight = 45;
+    this.rowStyle = { background: 'white', padding: '8px'};
+    this.headerHeight = 35;
   }
 
   sizeToFit() {

@@ -1,12 +1,12 @@
 <div class="select" [formGroup]="group">
   <div class="row">
-    <label class="form-label col-4" *ngIf="label">
+    <label class="form-label col-12" *ngIf="label">
       {{ label }}
       <span *ngIf="isRequired" class="mandatory-style">*</span>
     </label>
 
     <div
-      [ngClass]="isTime ? 'col-12' : 'col-8'"
+      [ngClass]="isTime ? 'col-12' : 'col-12'"
       class="eachInfo"
       *ngIf="!isNewDesing"
     >
@@ -14,11 +14,9 @@
         <select
           [name]="fieldName"
           [formControlName]="fieldName"
-          [ngClass]="{
-            'select-error':
-              groupControl!.invalid &&
-              (groupControl!.dirty || groupControl!.touched)
-          }"
+          [ngClass]="[isRequired ? 'requiredField' : '', 
+          (groupControl!.invalid &&
+          (groupControl!.dirty || groupControl!.touched)) ? 'select-error' : '']"
           [class]="'select-data form-control ' + class"
           (blur)="onBlur($event)"
           (change)="onChange($event)"

@@ -1,11 +1,11 @@
 .form-label {
   font-weight: 500;
-  font-size: 16px;
+  font-size: 14px;
   display: inline-block;
-  color: #616e88;
+  color: #000;
   vertical-align: top;
-  text-align: right;
-  padding-right: 30px;
+  text-align: left;
+  padding-right: 10px;
 }
 .mandatory-style {
   font-size: 16px;
@@ -57,4 +57,11 @@
 .form-control[readonly] {
   background-color: #fff;
   opacity: 1;
+}
+input {
+  padding: 0.3rem 0.75rem;
+  font-size:14px;
+}
+.requiredField {
+  border-left: 3px solid #9362f3;
 }

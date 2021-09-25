@@ -1,4 +1,4 @@
-<div class="container-fluid" style="margin-top: 30px">
+<div class="container-fluid" style="margin-top: 10px">
     <form [formGroup]="contactForm">
         <div class="card shadow">
             <div class="card-body contactInfo contactDetails">
@@ -13,7 +13,7 @@
                                     <div class="col-4 titleTxt">Contact Owner: <span class="requireSign">*</span></div>
                                     <div class="col-8 eachInfo selectDiv">                        
                                         <div class="blueTxt">
-                                            <select formControlName="ownerName" class="form-control"
+                                            <select formControlName="ownerName" class="form-control requiredField"
                                             [ngClass]="{'required-border': isSubmitClicked && 
                                             contactForm.controls['ownerName']?.value == '-1'}" required [disabled]="!isAdmin">
                                                 <option value="-1">Select None</option>
@@ -45,7 +45,7 @@
                                 <div class="row">
                                     <div class="col-4 titleTxt">First Name: <span class="requireSign">*</span></div>
                                     <div class="col-2 eachInfo selectDiv dateDiv">
-                                        <select formControlName="Salutation" class="form-control"
+                                        <select formControlName="Salutation" class="form-control requiredField"
                                         [ngClass]="{
                                             'required-border':
                                             isSubmitClicked && contactForm.controls['Salutation']?.value == '-1'
@@ -75,7 +75,7 @@
                                     <div class="col-8 eachInfo">                        
                                         <div class="blueTxt">
                                             <input type="text"
-                                            class="form-control" formControlName="Last_Name"
+                                            class="form-control requiredField" formControlName="Last_Name"
                                             id="Last_Name" [ngClass]="{
                                                 'required-border':
                                                 isSubmitClicked && contactForm?.controls?.Last_Name?.errors?.required
@@ -126,7 +126,7 @@
                                     <div class="col-8 eachInfo">
                                         <div class="blueTxt">
                                             <input type="text"
-                                            class="form-control" formControlName="Email"
+                                            class="form-control requiredField" formControlName="Email"
                                             id="Email" autocomplete="off" [ngClass]="{
                                                 'required-border':
                                                 isSubmitClicked && contactForm?.controls?.Email?.errors?.required
@@ -143,7 +143,7 @@
                                     <div class="col-8 eachInfo">                        
                                         <div class="blueTxt">
                                             <input type="text"
-                                            class="form-control" formControlName="Phone"
+                                            class="form-control requiredField" formControlName="Phone"
                                             id="Phone" autocomplete="off" [ngClass]="{
                                                 'required-border':
                                                 isSubmitClicked && contactForm?.controls?.Phone?.errors?.required
@@ -163,7 +163,7 @@
                                     <div class="col-8 eachInfo">                        
                                         <div class="blueTxt">
                                             <input type="text"
-                                            class="form-control" formControlName="Average_Bill"
+                                            class="form-control requiredField" formControlName="Average_Bill"
                                             id="Average_Bill" autocomplete="off" [ngClass]="{
                                                 'required-border':
                                                 isSubmitClicked && contactForm?.controls?.Average_Bill?.errors?.required
@@ -243,7 +243,7 @@
                                     <div class="col-4 titleTxt">Date/Time Scheduled: <span class="requireSign">*</span></div>
                                     <div class="col-4 eachInfo dateDiv">                        
                                         <div class="blueTxt">
-                                            <dp-date-picker formControlName="Date_Scheduled" class="form-control customDatePicker"
+                                            <dp-date-picker formControlName="Date_Scheduled" class="form-control customDatePicker requiredField"
                                             [ngClass]="{
                                                 'required-border':
                                                 isSubmitClicked && contactForm?.controls?.Date_Scheduled?.errors?.required
@@ -307,7 +307,7 @@
                                     <div class="col-4 titleTxt">Marketer: <span class="requireSign">*</span></div>
                                     <div class="col-8 eachInfo selectDiv">                        
                                         <div class="blueTxt">
-                                            <select formControlName="Marketer" class="form-control"
+                                            <select formControlName="Marketer" class="form-control requiredField"
                                             [ngClass]="{
                                                 'required-border':
                                                 isSubmitClicked && contactForm.controls['Marketer']?.value == '-1'
@@ -402,11 +402,11 @@
                             <div class="mb-4 eachInfoDiv">
                                 <div class="row">
                                     <div class="col-2 titleTxt">Description: </div>
-                                    <div class="col-9 eachInfo">                        
+                                    <div class="col-5 eachInfo">                        
                                         <div class="blueTxt">
-                                            <input type="text"
+                                            <textarea
                                             class="form-control" formControlName="Description"
-                                            id="Description" autocomplete="off"/>
+                                            id="Description" autocomplete="off"></textarea>
                                         </div>    
                                     </div>
                                 </div>
@@ -419,7 +419,7 @@
                 <div class="col-12 eachInfoDiv btnDiv">
                     <div class="eachInfo">
                         <button class="btn btn-primary bold saveBtn pl-5 pr-5 mr-2" 
-                        type="submit" (click)="createContact()">Submit</button>
+                        type="submit" (click)="createContact()">Create Contact</button>
                     </div>
                 </div>
             </div>

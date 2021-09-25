@@ -1,4 +1,4 @@
-<div class="container-fluid" style="margin-top: 30px">
+<div class="container-fluid" style="margin-top: 10px">
     <form [formGroup]="dealForm">
       <div class="card shadow">
         <div class="card-body contactInfo dealDetails">
@@ -893,15 +893,15 @@
                 ></app-select>
               </div>
               <div class="col-md-6 mb-4">
-                <app-input
+                <app-file-upload
                   [type]="label.roof_pics.fieldType"
                   [isRequired]="label.roof_pics.isRequired"
                   [label]="label.roof_pics.fieldLabel"
                   [fieldName]="label.roof_pics.fieldName"
-                  [placeholder]="label.roof_pics.placeholder"
                   [errors]="label.roof_pics.errors"
                   [group]="dealForm"
-                ></app-input>
+                  (cstChange)="getImage($event, label.roof_pics.fieldName)"
+                ></app-file-upload>
               </div>
               <div class="col-md-6 mb-4">
                 <app-date
@@ -1032,15 +1032,15 @@
 ></app-date> 
               </div>
               <div class="col-md-6 mb-4">
-                <app-input
+                <app-file-upload
                   [type]="label.msp_pics.fieldType"
                   [isRequired]="label.msp_pics.isRequired"
                   [label]="label.msp_pics.fieldLabel"
                   [fieldName]="label.msp_pics.fieldName"
-                  [placeholder]="label.msp_pics.placeholder"
                   [errors]="label.msp_pics.errors"
                   [group]="dealForm"
-                ></app-input>
+                  (cstChange)="getImage($event, label.msp_pics.fieldName)"
+                ></app-file-upload>
               </div>
               <div class="col-md-6 mb-4">
                 <app-date
@@ -1350,14 +1350,22 @@
             </div>
           </div>
         </div>
-        <div class="d-flex align-center justify-content-center mb-4">
+        <!-- <div class="d-flex align-center justify-content-center mb-4">
           <button
             class="btn btn-primary createBtn"
             type="submit"
             (click)="saveDeal()">
             Create Deal
         </button>
-          </div>
+          </div> -->
+          <div class="row mb-4">
+            <div class="col-12 eachInfoDiv btnDiv">
+                <div class="eachInfo">
+                    <button class="btn btn-primary bold saveBtn pl-5 pr-5 mr-2" 
+                    type="submit" (click)="saveDeal()">Create Deal</button>
+                </div>
+            </div>
+        </div>
       </div>
     </form>
   </div>

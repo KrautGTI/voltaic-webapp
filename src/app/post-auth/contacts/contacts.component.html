@@ -1,4 +1,4 @@
-<div class="container-fluid" style="margin-top: 30px">
+<div class="container-fluid" style="margin-top: 10px">
   <!-- <div>
     <button class="btn btn-primary createBtn" type="submit" (click)="goToCreateContact()">
       Create Contact
@@ -28,6 +28,8 @@
       [paginationNumberFormatter]="paginationNumberFormatter"
       (cellClicked)="onRowClick($event)"
       [rowHeight]="rowHeight"
+      [rowStyle]="rowStyle"
+      [headerHeight]="headerHeight"
   
     ></ag-grid-angular>
   </div>

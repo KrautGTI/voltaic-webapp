@@ -36,6 +36,9 @@ export class ContactsComponent implements OnInit {
   rowHeight: any;
   paginationNumberFormatter: any;
   sortingOrder: any;
+  rowStyle: any;
+  headerHeight:any;
+  
 
   constructor(
     private genericService: GenericService,
@@ -49,7 +52,7 @@ export class ContactsComponent implements OnInit {
       {
         headerName: 'First Name',
         cellStyle: {
-          color: '#212121',
+          color: '#748494',
           'font-size': '14px',
           height: '40px',
           cursor: 'pointer',
@@ -59,7 +62,7 @@ export class ContactsComponent implements OnInit {
       {
         headerName: 'Last Name',
         cellStyle: {
-          color: '#212121',
+          color: '#748494',
           'font-size': '14px',
           height: '40px',
           cursor: 'pointer',
@@ -68,7 +71,7 @@ export class ContactsComponent implements OnInit {
       },
       // {
       //   headerName: 'Contact Name',
-      //   cellStyle: { color: '#212121', 'font-size': '14px', height: '40px', cursor: 'pointer' },
+      //   cellStyle: { color: '#748494', 'font-size': '14px', height: '40px', cursor: 'pointer' },
       //   field: 'First_Name&Last_Name',
       //   valueGetter: (params:any) => {
       //     return params.data.First_Name + ' ' + params.data.Last_Name;
@@ -81,7 +84,7 @@ export class ContactsComponent implements OnInit {
         headerName: 'Email',
         field: 'Email',
         cellStyle: {
-          color: '#212121',
+          color: '#748494',
           'font-size': '14px',
           height: '40px',
           cursor: 'pointer',
@@ -91,7 +94,7 @@ export class ContactsComponent implements OnInit {
         headerName: 'Phone',
         field: 'Phone',
         cellStyle: {
-          color: '#212121',
+          color: '#748494',
           'font-size': '14px',
           height: '40px',
           cursor: 'pointer',
@@ -101,7 +104,7 @@ export class ContactsComponent implements OnInit {
         headerName: 'Contact Owner',
         field: 'ownerName',
         cellStyle: {
-          color: '#212121',
+          color: '#748494',
           'font-size': '14px',
           height: '40px',
           cursor: 'pointer',
@@ -141,6 +144,8 @@ export class ContactsComponent implements OnInit {
     this.domLayout = 'autoHeight';
     this.sortingOrder = ['desc', 'asc', null];
     this.rowHeight = 45;
+    this.rowStyle = { background: 'white', padding: '8px'};
+    this.headerHeight = 35;
   }
 
   sizeToFit() {

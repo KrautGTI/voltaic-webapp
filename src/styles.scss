@@ -93,34 +93,9 @@ body {
 }
 //------------Display Flex -------------//
 
-//---------Background Color------------//
-.bg-green {
-  background-color: #74cb80;
-}
-.bg-blue {
-  background-color: #08aeea;
-}
-.bg-teal {
-  background-color: #8cbabb;
-}
-.bg-cream {
-  background-color: #f6a96d;
-}
-.bg-yellow {
-  background-color: #fbc11e;
-}
-.bg-brown{
-  background-color: #c5a070;
-}
-.bg-red{
-  background-color: #f56b62;
-}
 .required-border {
     border: 1px solid $color-error !important;
   }
-.bg-blue-dark {
-  background-color: #558dca;
-}
 
 .ng-select.customNgSelect {
   .ng-select-container {
@@ -145,12 +120,6 @@ body {
 
 .ng-autocomplete.required .autocomplete-container .input-container input {
   border:1px solid #EF5350 !important;
-}
-.bg-violet {
-  background-color: #bd75a7;
-}
-.bg-blue-medium {
-  background-color: #7597BD;
 }
 
 //----------ng-deep-----------//
@@ -179,11 +148,65 @@ body {
   display: inline-block;
   color: #1f1f1f;
   margin-bottom: 5px;
-  //width:100%;
 }
 
 .form-bg {
   background-color: #f8f8f8 !important;
 }
 //---------Form---------//
+
+.ag-header-row-column{
+  background: #FFF;
+  border-bottom:2px solid #efeaea;
+}
+.ag-header-cell.ag-focus-managed.ag-header-cell-sortable {
+  color: #000;
+  font-weight: 600;
+  //padding: 1.5rem auto;
+}
+.ag-header-cell-menu-button:not(.ag-header-menu-always-show) {
+  color: #fff;
+}
+.ag-root-wrapper {
+  border-radius:6px;
+}
+
+.ag-theme-balham .ag-row-odd {
+  background-color: #fff;
+}
+
+
+.cardHeader {
+  color: #9362f3!important;
+}
+
+.btnDiv .eachInfo {
+  text-align: right;
+  margin-top: 20px;
+  border-bottom:none;
+
+  button {
+    font-size: 13px !important;
+      padding: 9px 35px;
+      color: #fff;
+      font-weight: 600;
+      background-color: #A239CA;
+      border: none;
+      margin-right: 30px;
+  }
+  
+}
+
+.card.shadow:first-child {
+  margin-top: 10px!important;
+}
+
+.noAttach {
+  font-size:14px!important;
+}
+
+.card-body.contactsInfo p{
+  font-size:14px!important;
+}
+    
 

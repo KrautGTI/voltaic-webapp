@@ -92,6 +92,9 @@ export class PostAuthComponent implements OnInit, AfterViewInit {
     if (this.router.url.includes('deals/create-deal')) {
       this.urlname = 'Create Deal';
     }
+    if (this.router.url.includes('proposals')) {
+      this.urlname = 'Proposals';
+    }
   }
 
   toggleHeaderLogo(evnt: any) {
@@ -108,6 +111,9 @@ export class PostAuthComponent implements OnInit, AfterViewInit {
   }
   public goToCreateAccount(): void {
     this.router.navigate(['post-auth/accounts/create-account']);
+  }
+  public goToProposal(): void {
+    this.router.navigate(['post-auth/proposals/create-proposal']);
   }
   public goToCreateReport(): void {
     this.router.navigate(['post-auth/reports/create-report']);

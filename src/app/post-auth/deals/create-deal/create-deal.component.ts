@@ -43,6 +43,8 @@ export class CreateDealComponent implements OnInit {
   accounts: any = [];
   public masterData: any = '';
   dealData: any;
+  roofPicsImageData:any;
+  mspPicsImageData:any;
 
   constructor(
     private fb: FormBuilder,
@@ -186,8 +188,16 @@ export class CreateDealComponent implements OnInit {
       );
   }
 
+  getImage(event: any, fieldName: any) {
+    if(fieldName == 'roof_pics')
+      this.roofPicsImageData = event;
+    if(fieldName == 'msp_pics')
+      this.mspPicsImageData = event;
+  }
+
   public saveDeal(): void {
-    console.log(this.dealForm);
+    console.log(this.dealForm.value);
+    console.log(this.roofPicsImageData);
     if (this.dealForm.valid) {
       Swal.fire({
         text: 'Do You Want To Save Changes?',
@@ -207,6 +217,8 @@ export class CreateDealComponent implements OnInit {
       this.dealData['contact_id'] = this.dealForm.value.contact_name.split('#?#')[1];
       this.dealData['account_name'] = this.dealForm.value.account_name.split('#?#')[0];
       this.dealData['account_id'] = this.dealForm.value.account_name.split('#?#')[1];
+      this.dealData['roof_pics'] = this.roofPicsImageData;
+      this.dealData['msp_pics'] = this.mspPicsImageData;
 
       console.log(this.dealData);
       this.genericService

@@ -1,6 +1,6 @@
 <!-- <p>deals works!</p> -->
 <div class="w-100">
-    <div class="d-flex flex-column w-100 mb-2">
+    <div class="d-flex mb-2">
         <!-- <div class="p-2 d-flex w-100 flex">
             <div class="text-size-1.5rem text-blue px-2 font-weight-700">Interview Scheduled</div>
             <div class="status bg-teal">
@@ -10,18 +10,22 @@
             </div>
             <span></span>
         </div> -->
-        <div class="w-100 d-flex flex-column">
-            <div class="m-2 p-2 shadow border rounded my-2 d-flex flex-column w-100"*ngFor="let opportunity of opportunityDetails; let i = index">
-                <span>{{ opportunity?.name }} <span>({{opportunity?.deatils?.count}})</span></span>
-                <div class="w-100 d-flex" style="overflow-x: auto;" >
-                    <div class="d-flex m-2 justify-content-start col-3 border shadow p-4 rounded flex-column" *ngFor="let item of opportunity?.deatils?.dataList">
-                        <div class="deal-wrapper col-12" (click)="onDealsClick(item.Deal_ID)">
+        <div class="d-flex dealBox" style="overflow-x: auto;" >
+            <div class="m-2 p-2 shadow border rounded my-2 w-100 eachBox"*ngFor="let opportunity of opportunityDetails; let i = index">
+                <p class="justify-content-start stageNameClass"><span class="stageName">{{ opportunity?.name }}</span></p>
+                <div class="count justify-content-start" [ngClass]="'countData_'+i">{{opportunity?.deatils?.count}} Data</div>
+                <div class="w-100">
+                    <div class="m-2 border shadow p-3 rounded eachDealBox" *ngFor="let item of opportunity?.deatils?.dataList">
+                        <div class="deal-wrapper" (click)="onDealsClick(item.Deal_ID)">
                         <div class="w-100" class="dealName">{{item.Deal_Name}}</div>
-                        <div class="w-100">{{item.Closing_Date | date }}</div>
-                        <div class="w-100">{{item.Deal_Owner}}</div>
-                        <div class="w-100">{{item.Channel_Partner}}</div>
-                        <div class="w-100">{{item.SS_Date | date}}</div>
+                        <div class="w-100" *ngIf="item.Closing_Date"><span class="boldTxt">Closing Date: </span> <span class="plainTxt">{{item.Closing_Date ? (item.Closing_Date | date) : '---'}}</span></div>
+                        <div class="w-100" *ngIf="item.Deal_Owner"><span class="boldTxt">Owner: </span> <span class="plainTxt">{{item.Deal_Owner ? (item.Deal_Owner) : '---'}}</span></div>
+                        <div class="w-100" *ngIf="item.Channel_Partner"><span class="boldTxt">Channel Partner: </span> <span class="plainTxt">{{item.Channel_Partner ? (item.Channel_Partner) : '---'}}</span></div>
+                        <div class="w-100" *ngIf="item.SS_Date"><span class="boldTxt">SS Date: </span> <span class="plainTxt">{{item.SS_Date ? (item.SS_Date | date) : '---'}}</span></div>
                         </div>
+                    </div>
+                    <div *ngIf="opportunity?.deatils?.count == 0" class="noData">
+                        <p>No Data Available</p>
                     </div>
                 </div>
             </div>

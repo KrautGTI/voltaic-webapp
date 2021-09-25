@@ -14,12 +14,12 @@
 }
 .form-label {
   font-weight: 500;
-  font-size: 16px;
+  font-size: 14px;
   display: inline-block;
-  color: #616e88;
+  color: #000;
   vertical-align: top;
   text-align: right;
-  padding-right: 30px;
+  padding-right: 10px;
 }
 .mandatory-style {
   font-size: 16px;
@@ -28,7 +28,7 @@
 
 .form-error {
   label {
-    font-size: 14px;
+    font-size: 13px;
     color: #ec1616;
     margin-bottom: 0;
     margin-top: 5px;
@@ -78,4 +78,17 @@
   input {
     border-right:none;
   }
+}
+
+input {
+  padding: 0.335rem 0.75rem;
+  font-size:14px;
+}
+
+::ng-deep .mat-button-wrapper svg {
+  fill:#9362f3 !important;
+}
+
+.requiredField {
+  border-left: 3px solid #9362f3;
 }

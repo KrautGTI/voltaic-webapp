@@ -1,11 +1,12 @@
 <section class="auth-bg d-flex justify-content-center flex-column">
-    <img src="../../../assets/images/logo_voltaic.png" class="mb-2" alt="logo"/>
+    <img src="../../../assets/images/logo_voltaic.png" class="mb-3" alt="logo"/>
     <div class="flex-center mb-3">
       <div class="auth-container mt-6 login-card-width">
         <form #loginForm="ngForm">
-          <div class="card mb-5 shadow-lg pt-4 pb-3">
+          <div class="card mb-5 shadow-lg pt-4 pb-3" [ngClass]="{'resetBg' : isForgotPassword}">
             <div class="card-body">
-              <h4 class="text-center margin-bottom-XS" *ngIf="isForgotPassword">Reset Password</h4>
+              <h4 class="text-center margin-bottom-XS reset" *ngIf="isForgotPassword">Reset Password</h4>
+              <h4 class="text-center margin-bottom-XS login" *ngIf="!isForgotPassword">Login</h4>
               <div class="auth-inputs d-flex flex-column">
                 <!-- <img src="../../../assets/images/logo_voltaic.png" class="mb-2" alt="logo"/> -->
                 <div class="input-group mb-3" [ngClass]="isForgotPassword ? (!fullname.value && isLoginClicked ? 'error-border' : '') : 'hiddeneField'">
@@ -67,16 +68,16 @@
               (fullname?.value && password?.value && email?.value) && (!confirmpassword?.value || !isPasswordMatched)">
                 <span class="titleErrorTxt">Password fields are not identical.</span>
               </div>
-              <div class="flex-center mb-2 forgotPswrd" *ngIf="!isForgotPassword">
+              <div class="flex-end mb-2 forgotPswrd" *ngIf="!isForgotPassword">
                 <a class="pointer" [routerLink]="" (click)="forgotPassword()">Forgot Password?</a>
               </div>
               <div class="flex-center">
-                <button class="btn btn-primary loginBtn" type="submit" (click)="loginUser(loginForm);" >
+                <button class="btn btn-primary loginBtn mt-4" type="submit" (click)="loginUser(loginForm);" >
                   {{buttonName}}
                 </button>
               </div>
 
-              <div class="flex-center mb-2 forgotPswrd mt-2" *ngIf="!isForgotPassword">
+              <div class="flex-center mb-2 forgotPswrd mt-3" *ngIf="!isForgotPassword">
                 <span>New user? Register <a class="pointer regHere" [routerLink]="'/registration'">here</a></span>
               </div>
             </div>
@@ -85,7 +86,7 @@
       </div>
     </div>
   </section>
-  <footer class="flex-center footer">
+  <!-- <footer class="flex-center footer">
     <div class="text-center text-white d-flex">
       <div class="flex-center">
         <a routerLink="">Privacy Policy</a>
@@ -95,5 +96,5 @@
         <a routerLink="">@Copyright Voltaic 2021</a>
       </div>
     </div>
-  </footer>
+  </footer> -->
   

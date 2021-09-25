@@ -31,7 +31,7 @@ export class LoginComponent implements OnInit {
       history.pushState(false, '', null);
     }
     this.isForgotPassword = history?.state?.formResetPassword;
-    this.buttonName = this.isForgotPassword ? 'Reset Password' : 'Login';
+    this.buttonName = this.isForgotPassword ? 'Reset Password' : 'Login To Your Account';
     if (this.isForgotPassword) {
       const userData = sessionStorage.getItem('user');
       this.userDetails = userData ? JSON.parse(userData) : null;

@@ -8,41 +8,51 @@
         <div class="rightContentDiv">
             <div class="rightMarginDiv">
                 <div class="breadcrumbDiv" *ngIf="!isDashboard">
-                    <ul class="breadcrumb">
-                        <li><a>Dashboard</a></li>
+                    <!-- <ul class="d-flex">
+                        <li><a>Dashboard <span><img src="../../assets/images/chevron-right.svg" class="rigtArw"></span></a></li>
                         <li><a>{{urlname}}</a></li>
                         <li></li>
-                    </ul>
+                    </ul> -->
+                    <p>{{urlname}}</p>
                 </div>
                 <div class="createBtnDiv">
                     <div *ngIf="router.url.includes('contacts') && !router.url.includes('create-contact')">
                         <button class="btn btn-primary createBtn" type="submit" (click)="goToCreateContact()">
-                            Create Contact
+                            <span class="plusImg"><img src="../../assets/images/plus-lg.svg"></span> Create Contact
                         </button>
                     </div>  
                     <div *ngIf="router.url.includes('accounts') && !router.url.includes('create-account')">
                         <button class="btn btn-primary createBtn" type="submit" (click)="goToCreateAccount()">
-                            Create Account
+                            <span class="plusImg"><img src="../../assets/images/plus-lg.svg"></span>  Create Account
                         </button>
                     </div>
                     <div *ngIf="router.url.includes('deals') && !router.url.includes('create-deal')">
                         <button class="btn btn-primary createBtn" type="submit" (click)="goToCreateDeal()">
-                            Create Deal
+                           <span class="plusImg"><img src="../../assets/images/plus-lg.svg"></span> Create Deal
                         </button>
                     </div> 
                     <div *ngIf="router.url.includes('reports') && !router.url.includes('create-report')">
                         <button class="btn btn-primary createBtn" type="submit" (click)="goToCreateReport()">
-                            Create Report
+                            <span class="plusImg"><img src="../../assets/images/plus-lg.svg"></span> Create Report
+                        </button>
+                    </div> 
+                    <div *ngIf="router.url.includes('proposals') && !router.url.includes('create-proposal')">
+                        <button class="btn btn-primary createBtn" type="submit" (click)="goToProposal()">
+                           <span class="plusImg"><img src="../../assets/images/plus-lg.svg"></span> Create Proposal
                         </button>
                     </div> 
                 </div> 
             </div>
-        <router-outlet></router-outlet>
+            <div class="mainSection">
+                <router-outlet></router-outlet>
+            </div>
+        
+        <div class="footerDiv">
+            <app-footer></app-footer> 
+        </div>
         </div>
     </div>
 </div>
-<div class="footerDiv">
-    <app-footer></app-footer> 
-</div>
+
 
     

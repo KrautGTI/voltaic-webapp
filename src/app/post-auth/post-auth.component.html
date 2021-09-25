@@ -36,6 +36,11 @@
                             <span class="plusImg"><img src="../../assets/images/plus-lg.svg"></span> Create Report
                         </button>
                     </div> 
+                    <div *ngIf="router.url.includes('proposals') && !router.url.includes('create-proposal')">
+                        <button class="btn btn-primary createBtn" type="submit" (click)="goToProposal()">
+                           <span class="plusImg"><img src="../../assets/images/plus-lg.svg"></span> Create Proposal
+                        </button>
+                    </div> 
                 </div> 
             </div>
             <div class="mainSection">

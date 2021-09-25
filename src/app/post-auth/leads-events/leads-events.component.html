@@ -1,0 +1,90 @@
+
+<div style="position: relative;">
+  <div style = "margin-left: 20px; position: absolute; right: 25px;">
+    <button  (click)=createNew() class="btn btn-primary" mat-button >
+        New Event
+    </button>
+  </div>
+</div>
+
+<div class = "d-flex mt-5 ml-2">
+  <div class="input-group" style = "width: 25%;">
+    <div class="input-group mb-2">
+      <input style="border-radius: 25px"
+       id="filter-text-input"
+       class="search-box form-control input_pass"
+       type="text"
+       autocomplete="off"
+       placeholder="Search"
+       attr.aria-label="Search"/>
+      <div class="input-group-append">
+        <!-- <button class="input-group-text" style="background-color: #fff;" mat-button >
+          <mat-icon svgIcon="search_icon"></mat-icon>
+        </button> -->
+      </div>
+    </div>
+  </div>
+  <div style = "margin-left: 20px;">
+    <button class="input-group-text" style="border-radius: 25px; background-color: #fff;" mat-button >
+      Filter
+    </button>
+  </div>
+  <div style = "margin-left: 20px;">
+    <button class="input-group-text" style="border-radius: 25px; background-color: #fff;" mat-button >
+      Date
+    </button>
+  </div>
+  <div style = "margin-left: 20px;">
+    <button class="input-group-text" style="border-radius: 25px; background-color: #fff;" mat-button >
+      Task
+    </button>
+  </div>
+  <div style = "margin-left: 20px;">
+    <button class="input-group-text" style="border-radius: 25px; background-color: #fff;" mat-button >
+      Status
+    </button>
+  </div>
+  <div style = "margin-left: 20px;">
+    <button class="input-group-text" style="border-radius: 25px; background-color: #fff;" mat-button >
+      Office
+    </button>
+  </div>
+  <div style = "margin-left: 20px;">
+    <button class="input-group-text" style="border-radius: 25px; background-color: #fff;" mat-button >
+      Source
+    </button>
+  </div>
+</div>
+
+
+<div class="container-fluid" style="margin-top: 30px">
+    <ag-grid-angular
+      #agGrid
+      id="agGrid"
+      class="ag-theme-balham"
+      [modules]="modules" 
+      [columnDefs]="columnDefs"
+      [defaultColDef]="defaultColDef"
+      [rowGroupPanelShow]="rowGroupPanelShow"
+      [groupMultiAutoColumn]="true"
+      [autoGroupColumnDef]="autoGroupColumnDef"
+      [domLayout]="domLayout"
+      (RowGroupOpened)="onRowGroupOpeneds($event)"
+      [pivotPanelShow]="pivotPanelShow"
+      [debug]="true"
+      [rowSelection]="rowSelection"
+      [enableBrowserTooltips]="true"
+      [pagination]="true"
+      [rowData]="rowData"
+      [animateRows]="true"
+      (gridReady)="onGridReady($event)"
+      [paginationPageSize]="paginationPageSize"
+      [paginationNumberFormatter]="paginationNumberFormatter"
+      (cellClicked)="onRowClick($event)"
+      [rowHeight]="rowHeight"
+  
+    ></ag-grid-angular>
+  </div>
+
+  <!-- [sideBar]="sideBar" -->
+

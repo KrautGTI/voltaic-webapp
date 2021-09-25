@@ -34,6 +34,16 @@ const routes: Routes = [
           import('./contacts/contacts.module').then((m) => m.ContactsModule),
       },
       {
+        path: 'events',
+        loadChildren: () =>
+          import('./leads-events/leads-events.module').then((m) => m.LeadsEventsModule),
+      },
+      {
+        path: 'create-events',
+        loadChildren: () =>
+          import('./create-events/create-events.module').then((m) => m.CreateEventsModule),
+      },
+      {
         path: 'accounts',
         loadChildren: () =>
           import('./account/account.module').then((m) => m.AccountModule),

@@ -71,6 +71,12 @@ export class PostAuthComponent implements OnInit, AfterViewInit {
     if (this.router.url.includes('leads')) {
       this.urlname = 'Leads';
     }
+    if (this.router.url.includes('events')) {
+      this.urlname = 'Events';
+    }
+    if (this.router.url.includes('create-events')) {
+      this.urlname = 'Events - Create Events';
+    }
     if (this.router.url.includes('contacts')) {
       this.urlname = 'Contacts';
     }

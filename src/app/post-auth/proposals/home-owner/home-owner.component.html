@@ -128,4 +128,62 @@
     </div>
     <div class="col-md-6"></div>
   </div>
+  <div class="row">
+    <div class="col-md-6 mb-4">
+      <app-checkbox
+        [label]="label.addCoSigner.fieldLabel"
+        [fieldName]="label.addCoSigner.fieldName"
+        [group]="group"
+      ></app-checkbox>
+    </div>
+    <div class="col-md-6 mb-4"></div>
+  </div>
+  <div class="row" *ngIf="addCoSigner!.value">
+    <div class="col-md-6 mb-4">
+      <app-input
+        [type]="label.coSignerFirstName.fieldType"
+        [isRequired]="label.coSignerFirstName.isRequired"
+        [label]="label.coSignerFirstName.fieldLabel"
+        [fieldName]="label.coSignerFirstName.fieldName"
+        [placeholder]="label.coSignerFirstName.placeholder"
+        [errors]="label.coSignerFirstName.errors"
+        [group]="group"
+      ></app-input>
+    </div>
+    <div class="col-md-6 mb-4">
+      <app-input
+        [type]="label.coSignerLastName.fieldType"
+        [isRequired]="label.coSignerLastName.isRequired"
+        [label]="label.coSignerLastName.fieldLabel"
+        [fieldName]="label.coSignerLastName.fieldName"
+        [placeholder]="label.coSignerLastName.placeholder"
+        [errors]="label.coSignerLastName.errors"
+        [group]="group"
+      ></app-input>
+    </div>
+  </div>
+  <div class="row" *ngIf="addCoSigner!.value">
+    <div class="col-md-6 mb-4">
+      <app-input-email
+        [type]="label.coSignerEmail.fieldType"
+        [isRequired]="label.coSignerEmail.isRequired"
+        [label]="label.coSignerEmail.fieldLabel"
+        [fieldName]="label.coSignerEmail.fieldName"
+        [placeholder]="label.coSignerEmail.placeholder"
+        [errors]="label.coSignerEmail.errors"
+        [group]="group"
+      ></app-input-email>
+    </div>
+    <div class="col-md-6 mb-4">
+      <app-input-number
+        [type]="label.coSignerPhone.fieldType"
+        [isRequired]="label.coSignerPhone.isRequired"
+        [label]="label.coSignerPhone.fieldLabel"
+        [fieldName]="label.coSignerPhone.fieldName"
+        [placeholder]="label.coSignerPhone.placeholder"
+        [errors]="label.coSignerPhone.errors"
+        [group]="group"
+      ></app-input-number>
+    </div>
+  </div>
 </ng-container>

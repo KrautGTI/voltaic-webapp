@@ -11,13 +11,12 @@
           [placeholder]="placeholder"
           [name]="fieldName"
           [class]="'text-input form-control ' + class"
-          [ngClass]="[
-            isRequired ? 'requiredField' : '',
-            groupControl!.invalid &&
-            (groupControl!.dirty || groupControl!.touched)
-              ? 'input-error'
-              : ''
-          ]"
+          [ngClass]="{
+            requiredField: isRequired,
+            'input-error':
+              groupControl!.invalid &&
+              (groupControl!.dirty || groupControl!.touched)
+          }"
           [formControlName]="fieldName"
           autocomplete="off"
           maxlength="250"

@@ -1,0 +1,71 @@
+<div class="container-fluid" style="margin-top: 10px">
+    <form [formGroup]="utilityInfoForm">
+        <div class="card shadow">
+            <div class="card-body sectionDetails">
+                <div class="p-3 font-size-15rem font-weight-600 d-flex justify-content-between cardHeader">
+                    Utility Information
+                </div>
+                <div class="col-12 pr-3">
+                    <div class="row">
+                        <div class="col-md-6 mb-4">
+                            <app-select
+                                [isRequired]="label.utilityCompany.isRequired"
+                                [label]="label.utilityCompany.fieldLabel"
+                                [fieldName]="label.utilityCompany.fieldName"
+                                [options]="utilityCompany"
+                                [optionConfig]="label.utilityCompany.optionConfig"
+                                [errors]="label.utilityCompany.errors"
+                                [group]="utilityInfoForm"
+                            ></app-select>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 mb-4">
+                            <app-file-upload
+                                [type]="label.utilityBillOne.fieldType"
+                                [isRequired]="label.utilityBillOne.isRequired"
+                                [label]="label.utilityBillOne.fieldLabel"
+                                [fieldName]="label.utilityBillOne.fieldName"
+                                [errors]="label.utilityBillOne.errors"
+                                [group]="utilityInfoForm"
+                            ></app-file-upload>
+                        </div>
+                        <div class="col-md-6 mb-4">
+                            <app-file-upload
+                                [type]="label.utilityBillTwo.fieldType"
+                                [isRequired]="label.utilityBillTwo.isRequired"
+                                [label]="label.utilityBillTwo.fieldLabel"
+                                [fieldName]="label.utilityBillTwo.fieldName"
+                                [errors]="label.utilityBillTwo.errors"
+                                [group]="utilityInfoForm"
+                            ></app-file-upload>
+                        </div>
+                        <div class="col-md-6 mb-4">
+                            <app-input
+                                [type]="label.annualBill.fieldType"
+                                [isRequired]="label.annualBill.isRequired"
+                                [label]="label.annualBill.fieldLabel"
+                                [fieldName]="label.annualBill.fieldName"
+                                [placeholder]="label.annualBill.placeholder"
+                                [errors]="label.annualBill.errors"
+                                [group]="utilityInfoForm"
+                            ></app-input>
+                        </div>
+                        <div class="col-md-6 mb-4">
+                            <app-input
+                                [type]="label.annualUsage.fieldType"
+                                [isRequired]="label.annualUsage.isRequired"
+                                [label]="label.annualUsage.fieldLabel"
+                                [fieldName]="label.annualUsage.fieldName"
+                                [placeholder]="label.annualUsage.placeholder"
+                                [errors]="label.annualUsage.errors"
+                                [group]="utilityInfoForm"
+                            ></app-input>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+

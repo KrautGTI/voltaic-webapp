@@ -1,0 +1,87 @@
+import { ErrorType, FieldTypes, FormField } from '../models/util.model';
+
+export const AddressLabels: { [key: string]: FormField } = {
+      address: {
+        fieldLabel: 'Address',
+        fieldName: 'Address',
+        placeholder: '',
+        associatedfieldName: '',
+        fieldType: FieldTypes.TEXT,
+        isEditable: false,
+        isRequired: true,
+        isDisabled: false,
+        errors: [{
+            type: ErrorType.REQUIRED,
+            message: 'This field is required.',
+          }],
+      },
+      street1: {
+        fieldLabel: 'Street 1',
+        fieldName: 'Street_1',
+        placeholder: '',
+        associatedfieldName: '',
+        fieldType: FieldTypes.TEXT,
+        isEditable: false,
+        isRequired: true,
+        isDisabled: false,
+        errors: [{
+            type: ErrorType.REQUIRED,
+            message: 'This field is required.',
+          }],
+      },
+      street2: {
+        fieldLabel: 'Street 2',
+        fieldName: 'Street_2',
+        placeholder: '',
+        associatedfieldName: '',
+        fieldType: FieldTypes.TEXT,
+        isEditable: false,
+        isRequired: false,
+        isDisabled: false,
+        errors: [],
+      },
+      city: {
+        fieldLabel: 'City',
+        fieldName: 'City',
+        placeholder: '',
+        associatedfieldName: '',
+        fieldType: FieldTypes.TEXT,
+        isEditable: false,
+        isRequired: true,
+        isDisabled: false,
+        errors: [{
+            type: ErrorType.REQUIRED,
+            message: 'This field is required.',
+          }],
+      },
+      state: {
+        fieldLabel: 'State/Region',
+        fieldName: 'State',
+        placeholder: '',
+        associatedfieldName: '',
+        fieldType: FieldTypes.SELECT,
+        isEditable: false,
+        isRequired: true,
+        isDisabled: false,
+        options: [],
+        optionConfig: { labelKey: 'name', valueKey: 'name' },
+        errors: [{
+            type: ErrorType.REQUIRED,
+            message: 'This field is required.',
+          }]
+      },
+      postalCode: {
+        fieldLabel: 'Postal Code',
+        fieldName: 'Postal_Code',
+        placeholder: '',
+        associatedfieldName: '',
+        fieldType: FieldTypes.TEXT,
+        isEditable: false,
+        isRequired: true,
+        isDisabled: false,
+        errors: [{
+            type: ErrorType.REQUIRED,
+            message: 'This field is required.',
+          }],
+      },
+}

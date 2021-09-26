@@ -1,0 +1,49 @@
+<div class="container-fluid" style="margin-top: 10px">
+    <form [formGroup]="leadInfoForm">
+        <div class="card shadow">
+            <div class="card-body sectionDetails">
+                <div class="p-3 font-size-15rem font-weight-600 d-flex justify-content-between cardHeader">
+                    Lead Information
+                </div>
+                <div class="col-12 pr-3">
+                    <div class="row">
+                        <div class="col-md-6 mb-4">
+                            <app-select
+                                [isRequired]="label.leadSource.isRequired"
+                                [label]="label.leadSource.fieldLabel"
+                                [fieldName]="label.leadSource.fieldName"
+                                [options]="leadSources"
+                                [optionConfig]="label.leadSource.optionConfig"
+                                [errors]="label.leadSource.errors"
+                                [group]="leadInfoForm"
+                            ></app-select>
+                        </div>
+                        <div class="col-md-6 mb-4">
+                            <app-select
+                                [isRequired]="label.leadGenerator.isRequired"
+                                [label]="label.leadGenerator.fieldLabel"
+                                [fieldName]="label.leadGenerator.fieldName"
+                                [options]="leadGenerators"
+                                [optionConfig]="label.leadGenerator.optionConfig"
+                                [errors]="label.leadGenerator.errors"
+                                [group]="leadInfoForm"
+                            ></app-select>
+                        </div>
+                        <div class="col-md-6 mb-4">
+                            <app-select
+                                [isRequired]="label.salesRep.isRequired"
+                                [label]="label.salesRep.fieldLabel"
+                                [fieldName]="label.salesRep.fieldName"
+                                [options]="salesReps"
+                                [optionConfig]="label.salesRep.optionConfig"
+                                [errors]="label.salesRep.errors"
+                                [group]="leadInfoForm"
+                            ></app-select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+

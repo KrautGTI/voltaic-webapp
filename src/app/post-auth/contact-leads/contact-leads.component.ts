@@ -252,8 +252,10 @@ export class ContactLeadsComponent implements OnInit {
   }
 
   onRowClick(event: any) {
-    // console.log(event.data.id);
-    // this.router.navigate(['post-auth/contact/details'], { queryParams: { contactId: event.data.id } });
+    console.log(event.data.id);
+    this.router.navigate(['post-auth/leads/lead-details'], {
+      queryParams: { leadId: event.data.id, action: 'view' }
+    });
   }
 
   onRowGroupOpeneds(params: any) {}

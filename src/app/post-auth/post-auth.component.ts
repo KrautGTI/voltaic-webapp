@@ -112,4 +112,10 @@ export class PostAuthComponent implements OnInit, AfterViewInit {
   public goToCreateReport(): void {
     this.router.navigate(['post-auth/reports/create-report']);
   }
+  public goToCreateLead(action: string): void {
+    this.router.navigate(['post-auth/leads/lead-details'], {
+      queryParams: { action: action }
+    });
+  }
+  
 }

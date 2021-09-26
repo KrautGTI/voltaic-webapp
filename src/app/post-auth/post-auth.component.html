@@ -21,6 +21,11 @@
                             <span class="plusImg"><img src="../../assets/images/plus-lg.svg"></span> Create Contact
                         </button>
                     </div>  
+                    <div *ngIf="router.url.includes('leads') && !router.url.includes('lead-details')">
+                        <button class="btn btn-primary createBtn" type="submit" (click)="goToCreateLead('create')">
+                            <span class="plusImg"><img src="../../assets/images/plus-lg.svg"></span> Create Lead
+                        </button>
+                    </div>  
                     <div *ngIf="router.url.includes('accounts') && !router.url.includes('create-account')">
                         <button class="btn btn-primary createBtn" type="submit" (click)="goToCreateAccount()">
                             <span class="plusImg"><img src="../../assets/images/plus-lg.svg"></span>  Create Account

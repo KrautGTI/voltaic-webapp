@@ -1,7 +1,7 @@
 <div class="input" [formGroup]="group">
   <div class="row">
     <label
-      [ngClass]="isDateTime ? 'col-6' : 'col-4'"
+      [ngClass]="isDateTime ? 'col-12' : 'col-6'"
       class="form-label"
       *ngIf="label"
     >
@@ -10,9 +10,8 @@
     </label>
     <div
       [ngClass]="{
-        'col-12': isFullSize,
-        'col-6 p_l_6': isDateTime,
-        'col-8': !isDateTime && !isFullSize
+        'col-12': isFullSize || (!isDateTime && !isFullSize),
+        'col-6 p_l_6': isDateTime
       }"
       class="eachInfo"
       *ngIf="!isNewDesing"
@@ -32,6 +31,7 @@
             [max]="maxDate"
             autocomplete="off"
             maxlength="10"
+            [readonly]="!isEditable"
             (dateChange)="onDateChange($event)"
             (input)="onChange($event)"
             #inputRef

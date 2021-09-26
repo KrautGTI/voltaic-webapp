@@ -8,6 +8,19 @@
                 <div class="col-12 pr-3">
                     <div class="row">
                         <div class="col-md-6 mb-4">
+                            <app-select
+                                [isRequired]="label.salesRep.isRequired"
+                                [label]="label.salesRep.fieldLabel"
+                                [fieldName]="label.salesRep.fieldName"
+                                [options]="salesReps"
+                                [optionConfig]="label.salesRep.optionConfig"
+                                [errors]="label.salesRep.errors"
+                                [group]="scheduleAppointmemtForm"
+                            ></app-select>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 mb-4">
                             <app-date
                                 [type]="label.date.fieldType"
                                 [isRequired]="label.date.isRequired"
@@ -28,6 +41,17 @@
                                 [errors]="label.time.errors"
                                 [group]="scheduleAppointmemtForm"
                             ></app-select>
+                        </div>
+                    </div>
+                    <div class="row mb-4" *ngIf="action == 'create' || action == 'edit'">
+                        <div class="col-12 eachInfoDiv btnDiv">
+                          <div class="eachInfo">
+                            <app-btn-primary
+                              [btnName]="'Save & Next'"
+                              [disabled]="scheduleAppointmemtForm.invalid"
+                              (btnClick)="submitSceduleAppointmentInfo()"
+                            ></app-btn-primary>
+                          </div>
                         </div>
                     </div>
                 </div>

@@ -1178,5 +1178,19 @@
     { "id": "CA Users", "value": "CA Users" },
     { "id": "CA", "value": "CA" },
     { "id": "Mentor", "value": "Mentor" }
+  ],
+  "primaryLang": [
+    { "id": "English", "value": "English" },
+    { "id": "Spanish", "value": "Spanish" }
+  ],
+  "homeType": [
+    { "id": "Single Family Home", "value": "Single Family Home" },
+    { "id": "Townhouse", "value": "Townhouse" },
+    { "id": "Mobile Home", "value": "Mobile Home" },
+    { "id": "Vertically Split Duplex", "value": "Vertically Split Duplex" }
+  ],
+  "hoa": [
+    { "id": "No", "value": "No" },
+    { "id": "Yes", "value": "Yes" }
   ]
 }

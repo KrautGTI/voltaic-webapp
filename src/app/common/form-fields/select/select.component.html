@@ -18,6 +18,7 @@
           (groupControl!.invalid &&
           (groupControl!.dirty || groupControl!.touched)) ? 'select-error' : '']"
           [class]="'select-data form-control ' + class"
+          [disabled]="!isEditable"
           (blur)="onBlur($event)"
           (change)="onChange($event)"
           #inputRef

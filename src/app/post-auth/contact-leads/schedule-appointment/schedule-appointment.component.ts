@@ -12,6 +12,7 @@ import { AuthService } from 'src/app/service/auth.service';
 import { NotificationService } from 'src/app/service/notification.service';
 
 import { ScheduleAppointmentLabels } from 'src/app/shared/constants/lead.constant';
+import { DataService } from 'src/app/service/data.service';
 
 @Component({
   selector: 'app-schedule-appointment',
@@ -24,7 +25,12 @@ export class ScheduleAppointmentComponent implements OnInit {
   public label: { [key: string]: FormField } = ScheduleAppointmentLabels;
   isSubmitClicked = false;
   timeIntervals = [];
+  salesReps = [];
   masterData:any;
+  leadId = '';
+  action = '';
+  sub: any;
+  progressStatus:any;
   constructor(
     private genericService: GenericService,
     private route: ActivatedRoute,
@@ -32,20 +38,37 @@ export class ScheduleAppointmentComponent implements OnInit {
     private httpClient: HttpClient,
     private formBuilder: FormBuilder,
     private authService: AuthService,
-    private notificationService: NotificationService
+    private notificationService: NotificationService,
+    private dataService: DataService
   ) { }
 
   ngOnInit(): void {
+    this.sub = this.route.queryParams.subscribe((params) => {
+      this.leadId = params.leadId;
+      this.action = params.action;
+      if(this.action == 'create' || this.action == 'edit') {
+        this.changeProgressBar('active');
+      }
+    });
     this.httpClient.get('assets/json/master.json').subscribe((masterData) => {
       this.masterData = masterData;
       this.timeIntervals = this.masterData.Time;
-      this.createForm();
     });
-    // this.scheduleAppointmemtForm = this.formBuilder.group({
-    //   scheduleDate: [''],
-    //   scheduleTime: [''],
-    //   salesRep: ['']
-    // });
+    this.genericService.getSources().subscribe((data: any) => {
+      this.salesReps = data.message;
+    });
+    this.createForm();
+  }
+
+  changeProgressBar(status: string) {
+    let progressdata = localStorage.getItem('userSessionProgressData');
+      if (progressdata) {
+        this.progressStatus = JSON.parse(progressdata);
+      } else {
+        this.dataService.currentPogressData.subscribe(progressStatus => this.progressStatus = progressStatus);
+      }
+      this.progressStatus.appointment = status;
+      this.dataService.changeStatus(this.progressStatus);
   }
 
   private createForm(): void {
@@ -92,9 +115,14 @@ export class ScheduleAppointmentComponent implements OnInit {
           const scheduleAppointmentData = {
           };
           console.log(scheduleAppointmentData);
+          if(this.action == 'create' || this.action == 'edit') {
+            this.changeProgressBar('completed');
+          }
         }
       });
     }
   }
-
+  ngOnDestroy() {
+    this.sub.unsubscribe();
+  }
 }

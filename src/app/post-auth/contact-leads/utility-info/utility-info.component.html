@@ -2,8 +2,15 @@
     <form [formGroup]="utilityInfoForm">
         <div class="card shadow">
             <div class="card-body sectionDetails">
-                <div class="p-3 font-size-15rem font-weight-600 d-flex justify-content-between cardHeader">
-                    Utility Information
+                <div class="d-flex justify-content-between editSection">
+                    <div class="p-3 font-size-15rem font-weight-600 cardHeader">
+                        Utility Information
+                    </div>
+                    <div *ngIf="action == 'view'">
+                        <button class="btn btn-primary createBtn" type="submit" (click)="editUtilityInfo()">
+                            <span class="plusImg"><img src="../../assets/images/pencil-fill-white.svg"></span> Edit 
+                        </button>
+                    </div>  
                 </div>
                 <div class="col-12 pr-3">
                     <div class="row">
@@ -15,6 +22,7 @@
                                 [options]="utilityCompany"
                                 [optionConfig]="label.utilityCompany.optionConfig"
                                 [errors]="label.utilityCompany.errors"
+                                [isEditable]="action == 'edit' || action == 'create'"
                                 [group]="utilityInfoForm"
                             ></app-select>
                         </div>
@@ -48,6 +56,7 @@
                                 [fieldName]="label.annualBill.fieldName"
                                 [placeholder]="label.annualBill.placeholder"
                                 [errors]="label.annualBill.errors"
+                                [isEditable]="action == 'edit' || action == 'create'"
                                 [group]="utilityInfoForm"
                             ></app-input>
                         </div>
@@ -59,8 +68,20 @@
                                 [fieldName]="label.annualUsage.fieldName"
                                 [placeholder]="label.annualUsage.placeholder"
                                 [errors]="label.annualUsage.errors"
+                                [isEditable]="action == 'edit' || action == 'create'"
                                 [group]="utilityInfoForm"
                             ></app-input>
+                        </div>
+                    </div>
+                    <div class="row mb-4" *ngIf="action == 'create' || action == 'edit'">
+                        <div class="col-12 eachInfoDiv btnDiv">
+                          <div class="eachInfo">
+                            <app-btn-primary
+                              [btnName]="'Save & Next'"
+                              [disabled]="utilityInfoForm.invalid"
+                              (btnClick)="submitUtilityInfo()"
+                            ></app-btn-primary>
+                          </div>
                         </div>
                     </div>
                 </div>

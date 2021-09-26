@@ -1,1 +1,66 @@
-<p>progress-bar works!</p>
+<div class="container">
+    <div class="d-flex position-relative">
+        <div class="d-flex justify-content-between mx-auto status-line-width position-absolute line-position">
+            <div class="line-width"
+                [ngClass]="{'border-style': progressStatus.contactInfo !== 'completed','border-style-active': progressStatus.contactInfo == 'completed'}">
+            </div>
+            <div class="line-width"
+                [ngClass]="{'border-style': progressStatus.utilityInfo !== 'completed','border-style-active': progressStatus.utilityInfo == 'completed'}">
+            </div>
+            <div class="line-width"
+                [ngClass]="{'border-style': progressStatus.leadInfo !== 'completed','border-style-active': progressStatus.leadInfo == 'completed'}">
+            </div>
+            <!-- <div class="line-width"
+                [ngClass]="{'border-style': progressStatus.appointment !== 'completed','border-style-active': progressStatus.appointment == 'completed'}">
+            </div> -->
+        </div>
+    </div>
+    <div class="d-flex justify-content-around">
+        <div class="d-flex flex-column status-width text-center">
+            <div class="p-3 rounded-circle cursor-pointer d-flex justify-content-center align-items-center cicular-pogress mx-auto"
+                [ngClass]="{ 'bg-violet text-white': progressStatus.contactInfo == 'active' || progressStatus.contactInfo == 'completed', 'bg-white text-orange': progressStatus.contactInfo == 'notVisited'}"
+                (click)="navigateToContactInfo()">
+                <span *ngIf="progressStatus.contactInfo !== 'completed'">1</span>
+                <span *ngIf="progressStatus.contactInfo == 'completed'">&#x2714;</span>
+            </div>
+            <div class="py-2">
+                Contact Info
+            </div>
+        </div>
+        <div class="d-flex flex-column status-width text-center">
+            <div class="p-3 rounded-circle cursor-pointer d-flex justify-content-center align-items-center cicular-pogress mx-auto"
+                [ngClass]="{ 'bg-violet text-white': progressStatus.utilityInfo == 'active' || progressStatus.utilityInfo == 'completed', 'bg-white text-orange': progressStatus.utilityInfo == 'notVisited'}"
+                (click)="navigateToUtilityInfo()">
+                <span *ngIf="progressStatus.utilityInfo !== 'completed'">2</span>
+                <span *ngIf="progressStatus.utilityInfo == 'completed'">&#x2714;</span>
+            </div>
+            <div class="py-2">
+                Utility Info
+            </div>
+        </div>
+        <div class="d-flex flex-column status-width text-center">
+            <div class="p-3 rounded-circle cursor-pointer d-flex justify-content-center align-items-center cicular-pogress mx-auto"
+                [ngClass]="{ 'bg-violet text-white': progressStatus.leadInfo == 'active' || progressStatus.leadInfo == 'completed', 'bg-white text-orange': progressStatus.leadInfo == 'notVisited'}"
+                (click)="navigateToLeadInfo()">
+                <span *ngIf="progressStatus.leadInfo !== 'completed'">3</span>
+                <span *ngIf="progressStatus.leadInfo == 'completed'">&#x2714;</span>
+            </div>
+            <div class="py-2">
+                Lead Info
+            </div>
+        </div>
+        <div class="d-flex flex-column status-width text-center">
+            <div class="p-3 rounded-circle cursor-pointer d-flex justify-content-center align-items-center cicular-pogress mx-auto"
+                [ngClass]="{ 'bg-violet text-white': progressStatus.appointment == 'active' || progressStatus.appointment == 'completed', 'bg-white text-orange': progressStatus.appointment == 'notVisited'}"
+                (click)="navigateToScheduleAppointment()">
+                <span *ngIf="progressStatus.appointment !== 'completed'">4</span>
+                <span *ngIf="progressStatus.appointment == 'completed'">&#x2714;</span>
+            </div>
+            <div class="py-2">
+                Schedule Appointment
+            </div>
+        </div>
+       
+    </div>
+
+</div>

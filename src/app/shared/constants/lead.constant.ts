@@ -2,7 +2,7 @@ import { ErrorType, FieldTypes, FormField } from '../models/util.model';
 
 export const ContactInfoLabels: { [key: string]: FormField } = {
   firstNamePrimary: {
-    fieldLabel: 'Primary Homeowner First Name',
+    fieldLabel: 'First Name',
     fieldName: 'Primary_Owner_1',
     placeholder: '',
     associatedfieldName: '',
@@ -33,7 +33,7 @@ export const ContactInfoLabels: { [key: string]: FormField } = {
     fieldName: 'Phone_Primary',
     placeholder: '',
     associatedfieldName: '',
-    fieldType: FieldTypes.NUMBER,
+    fieldType: FieldTypes.TEXT,
     isEditable: false,
     isRequired: true,
     isDisabled: false,
@@ -56,7 +56,7 @@ export const ContactInfoLabels: { [key: string]: FormField } = {
     errors: [],
   },
   firstNameSecondary: {
-    fieldLabel: 'Secondary Homeowner First Name',
+    fieldLabel: 'First Name',
     fieldName: 'Secondary_Owner_1',
     placeholder: '',
     associatedfieldName: '',
@@ -82,7 +82,7 @@ export const ContactInfoLabels: { [key: string]: FormField } = {
     fieldName: 'Phone_Secondary',
     placeholder: '',
     associatedfieldName: '',
-    fieldType: FieldTypes.NUMBER,
+    fieldType: FieldTypes.TEXT,
     isEditable: false,
     isRequired: false,
     isDisabled: false,
@@ -189,7 +189,7 @@ export const LeadInfoLabels: { [key: string]: FormField } = {
         isRequired: false,
         isDisabled: false,
         options: [],
-        optionConfig: { labelKey: 'name', valueKey: 'name' },
+        optionConfig: { labelKey: 'name', valueKey: 'id' },
         errors: []
     },
     leadGenerator: {
@@ -202,7 +202,7 @@ export const LeadInfoLabels: { [key: string]: FormField } = {
       isRequired: false,
       isDisabled: false,
       options: [],
-      optionConfig: { labelKey: 'name', valueKey: 'name' },
+      optionConfig: { labelKey: 'name', valueKey: 'id' },
       errors: []
     },
     salesRep: {
@@ -215,7 +215,7 @@ export const LeadInfoLabels: { [key: string]: FormField } = {
       isRequired: false,
       isDisabled: false,
       options: [],
-      optionConfig: { labelKey: 'name', valueKey: 'name' },
+      optionConfig: { labelKey: 'name', valueKey: 'id' },
       errors: []
     },
     primaryLanguage: {
@@ -228,7 +228,7 @@ export const LeadInfoLabels: { [key: string]: FormField } = {
       isRequired: false,
       isDisabled: false,
       options: [],
-      optionConfig: { labelKey: 'name', valueKey: 'name' },
+      optionConfig: { labelKey: 'value', valueKey: 'id' },
       errors: []
     },
     homeType: {
@@ -241,7 +241,7 @@ export const LeadInfoLabels: { [key: string]: FormField } = {
       isRequired: false,
       isDisabled: false,
       options: [],
-      optionConfig: { labelKey: 'name', valueKey: 'name' },
+      optionConfig: { labelKey: 'value', valueKey: 'id' },
       errors: []
     },
     hoa: {
@@ -254,12 +254,25 @@ export const LeadInfoLabels: { [key: string]: FormField } = {
       isRequired: false,
       isDisabled: false,
       options: [],
-      optionConfig: { labelKey: 'name', valueKey: 'name' },
+      optionConfig: { labelKey: 'value', valueKey: 'id' },
       errors: []
     },
 };
 
 export const ScheduleAppointmentLabels: { [key: string]: FormField } = {
+  salesRep: {
+    fieldLabel: 'Sales Rep',
+    fieldName: 'Sales_Rep',
+    placeholder: '',
+    associatedfieldName: '',
+    fieldType: FieldTypes.SELECT,
+    isEditable: false,
+    isRequired: false,
+    isDisabled: false,
+    options: [],
+    optionConfig: { labelKey: 'name', valueKey: 'id' },
+    errors: []
+  },
     date: {
         fieldLabel: 'Date',
         fieldName: 'Date',

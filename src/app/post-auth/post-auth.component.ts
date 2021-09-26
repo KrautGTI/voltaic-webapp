@@ -15,6 +15,7 @@ import {
 } from '@angular/router';
 import { HeaderComponent } from '../shared/header/header.component';
 import { LocationStrategy } from '@angular/common';
+import { DataService } from 'src/app/service/data.service';
 
 @Component({
   selector: 'app-post-auth',
@@ -27,10 +28,14 @@ export class PostAuthComponent implements OnInit, AfterViewInit {
   public toggleLogoEvent = false;
   isDashboard = false;
   urlname = '';
+  sub: any;
+  leadId = '';
+  progressStatus:any;
   constructor(
     public router: Router,
     private route: ActivatedRoute,
-    private cd: ChangeDetectorRef
+    private cd: ChangeDetectorRef,
+    private dataService: DataService,
   ) {
     this.router.events.subscribe((event: Event) => {
       if (event instanceof NavigationStart) {
@@ -52,6 +57,9 @@ export class PostAuthComponent implements OnInit, AfterViewInit {
       this.toggleLogoEvent = false;
     }, 100);
     this.showBreadcrumb();
+    // this.sub = this.route.queryParams.subscribe((params) => {
+    //   this.leadId = params.leadId;
+    // });
   }
   ngAfterViewInit(): void {
     this.cd.detectChanges();
@@ -108,6 +116,21 @@ export class PostAuthComponent implements OnInit, AfterViewInit {
     this.toggleLogoEvent = evnt.isShowLogo;
   }
 
+  changeProgressBar() {
+    let progressdata = localStorage.getItem('userSessionProgressData');
+      if (progressdata) {
+        this.progressStatus = JSON.parse(progressdata);
+      } else {
+        this.dataService.currentPogressData.subscribe(progressStatus => this.progressStatus = progressStatus);
+      }
+      this.progressStatus.contactInfo = 'notVisited';
+      this.progressStatus.utilityInfo = 'notVisited';
+      this.progressStatus.leadInfo = 'notVisited';
+      this.progressStatus.appointment = 'notVisited';
+      this.dataService.changeStatus(this.progressStatus);
+  }
+
+
   goToCreateContact() {
     this.router.navigate(['post-auth/contacts/create-contact']);
   }
@@ -124,10 +147,15 @@ export class PostAuthComponent implements OnInit, AfterViewInit {
   public goToCreateReport(): void {
     this.router.navigate(['post-auth/reports/create-report']);
   }
-  public goToCreateLead(action: string): void {
+  public goToLeadForm(action: string): void {
+    this.changeProgressBar();
     this.router.navigate(['post-auth/leads/lead-details'], {
       queryParams: { action: action }
     });
   }
+
+  // ngOnDestroy() {
+  //   this.sub.unsubscribe();
+  // }
   
 }

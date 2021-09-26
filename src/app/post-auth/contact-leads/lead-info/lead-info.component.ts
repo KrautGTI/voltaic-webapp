@@ -12,6 +12,8 @@ import { AuthService } from 'src/app/service/auth.service';
 import { NotificationService } from 'src/app/service/notification.service';
 
 import { LeadInfoLabels } from 'src/app/shared/constants/lead.constant';
+import { DataService } from 'src/app/service/data.service';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-lead-info',
@@ -22,9 +24,17 @@ export class LeadInfoComponent implements OnInit {
   isSubmitClicked = false;
   public leadInfoForm: FormGroup = new FormGroup({});
   public label: { [key: string]: FormField } = LeadInfoLabels;
-  leadSources = [{name: 'ipsi'}, {name: 'sumitava'}];
-  leadGenerators = [{name: 'ipsi_lg'}, {name: 'sumitava_lg'}];
-  salesReps = [{name: 'ipsi_sr'}, {name: 'sumitava_sr'}];
+  leadSources = [];
+  leadGenerators = [];
+  salesReps = [];
+  primaryLangs = [];
+  homeTypes = [];
+  hoa = [];
+  leadId = '';
+  action = '';
+  sub: any;
+  masterData: any;
+  progressStatus:any;
   constructor(
     private genericService: GenericService,
     private route: ActivatedRoute,
@@ -32,15 +42,44 @@ export class LeadInfoComponent implements OnInit {
     private httpClient: HttpClient,
     private formBuilder: FormBuilder,
     private authService: AuthService,
-    private notificationService: NotificationService
+    private notificationService: NotificationService,
+    private dataService: DataService,
+    private location: Location
   ) { }
 
   ngOnInit(): void {
+    this.sub = this.route.queryParams.subscribe((params) => {
+      this.leadId = params.leadId;
+      this.action = params.action;
+      if(this.action == 'create' || this.action == 'edit') {
+        this.changeProgressBar('active');
+      }
+    });
+    this.httpClient.get('assets/json/master.json').subscribe((masterData) => {
+      this.masterData = masterData;
+      this.primaryLangs = this.masterData.primaryLang;
+      this.homeTypes = this.masterData.homeType;
+      this.hoa = this.masterData.hoa;
+    });
+    this.genericService.getLeadOwners().subscribe((data: any) => {
+      this.leadGenerators = data.message;
+    });
+    this.genericService.getSources().subscribe((data: any) => {
+      this.leadSources = data.message;
+      this.salesReps = data.message;
+    });
     this.createForm();
-    // this.leadInfoForm = this.formBuilder.group({
-    //   source: ['', Validators.required],
-    //   leadGenerator: ['', Validators.required]
-    // });
+  }
+
+  changeProgressBar(status: string) {
+    let progressdata = localStorage.getItem('userSessionProgressData');
+      if (progressdata) {
+        this.progressStatus = JSON.parse(progressdata);
+      } else {
+        this.dataService.currentPogressData.subscribe(progressStatus => this.progressStatus = progressStatus);
+      }
+      this.progressStatus.leadInfo = status;
+      this.dataService.changeStatus(this.progressStatus);
   }
 
   private createForm(): void {
@@ -87,7 +126,33 @@ export class LeadInfoComponent implements OnInit {
           const leadInfoData = {
           };
           console.log(leadInfoData);
+          if(this.action == 'create' || this.action == 'edit') {
+            this.changeProgressBar('completed');
+          }
+          this.navigateToScheduleAppointment(); 
         }
+      });
+    }
+  }
+
+  ngOnDestroy() {
+    this.sub.unsubscribe();
+  }
+
+  editLeadInfo() {
+    this.action = 'edit';
+    this.location.replaceState('post-auth/leads/lead-details/schedule-appointment?leadId=' + 
+    this.leadId + '&action=' + this.action);   
+  }
+
+  navigateToScheduleAppointment(){
+    if(this.action == 'create') {
+      this.router.navigate(['post-auth/leads/lead-details/schedule-appointment'], {
+        queryParams: { action: this.action }
+      });
+    } else if(this.action == 'edit'){
+      this.router.navigate(['post-auth/leads/lead-details/schedule-appointment'], {
+        queryParams: { leadId: this.leadId, action: this.action }
       });
     }
   }

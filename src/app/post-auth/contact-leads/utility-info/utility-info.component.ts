@@ -12,6 +12,8 @@ import { AuthService } from 'src/app/service/auth.service';
 import { NotificationService } from 'src/app/service/notification.service';
 
 import { UtilityInfoLabels } from 'src/app/shared/constants/lead.constant';
+import { DataService } from 'src/app/service/data.service';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-utility-info',
@@ -24,6 +26,10 @@ export class UtilityInfoComponent implements OnInit {
   isSubmitClicked = false;
   public label: { [key: string]: FormField } = UtilityInfoLabels;
   utilityCompany = [];
+  leadId = '';
+  action = '';
+  sub: any;
+  progressStatus:any;
   constructor(
     private genericService: GenericService,
     private route: ActivatedRoute,
@@ -31,17 +37,31 @@ export class UtilityInfoComponent implements OnInit {
     private httpClient: HttpClient,
     private formBuilder: FormBuilder,
     private authService: AuthService,
-    private notificationService: NotificationService
+    private notificationService: NotificationService,
+    private dataService: DataService,
+    private location: Location
   ) { }
 
   ngOnInit(): void {
+    this.sub = this.route.queryParams.subscribe((params) => {
+      this.leadId = params.leadId;
+      this.action = params.action;
+      if(this.action == 'create' || this.action == 'edit') {
+        this.changeProgressBar('active');
+      }
+    });
     this.createForm();
-    // this.utilityInfoForm = this.formBuilder.group({
-    //   utilityCompany: [''],
-    //   utilityBill: [''],
-    //   annualBill: [''],
-    //   annualUsage: ['']
-    // });
+  }
+
+  changeProgressBar(status: string) {
+    let progressdata = localStorage.getItem('userSessionProgressData');
+      if (progressdata) {
+        this.progressStatus = JSON.parse(progressdata);
+      } else {
+        this.dataService.currentPogressData.subscribe(progressStatus => this.progressStatus = progressStatus);
+      }
+      this.progressStatus.utilityInfo = status;
+      this.dataService.changeStatus(this.progressStatus);
   }
 
   private createForm(): void {
@@ -88,7 +108,33 @@ export class UtilityInfoComponent implements OnInit {
           const utilityInfoData = {
           };
           console.log(utilityInfoData);
+          if(this.action == 'create' || this.action == 'edit') {
+            this.changeProgressBar('completed');
+          }
+          this.navigateToLeadInfo();
         }
+      });
+    }
+  }
+
+  ngOnDestroy() {
+    this.sub.unsubscribe();
+  }
+
+  editUtilityInfo() {
+    this.action = 'edit';
+    this.location.replaceState('post-auth/leads/lead-details/utility-info?leadId=' + 
+    this.leadId + '&action=' + this.action);   
+  }
+
+  navigateToLeadInfo() {
+    if(this.action == 'create') {
+      this.router.navigate(['post-auth/leads/lead-details/lead-info'], {
+        queryParams: { action: this.action }
+      });
+    } else if(this.action == 'edit'){
+      this.router.navigate(['post-auth/leads/lead-details/lead-info'], {
+        queryParams: { leadId: this.leadId, action: this.action }
       });
     }
   }

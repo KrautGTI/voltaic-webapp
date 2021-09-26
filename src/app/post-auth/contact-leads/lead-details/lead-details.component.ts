@@ -15,12 +15,15 @@ export class LeadDetailsComponent implements OnInit {
   ngOnInit(): void {
    this.sub = this.route.queryParams.subscribe((params) => {
       this.leadId = params.leadId;
-      this.action = params.action
+      this.action = params.action;
+      this.router.navigate(['post-auth/leads/lead-details/contact-info'], {
+        queryParams: { leadId: this.leadId, action: this.action }
+      });
     });
   }
 
   ngOnDestroy() {
     this.sub.unsubscribe();
-}
+  }
 
 }

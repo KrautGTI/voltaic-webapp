@@ -128,56 +128,6 @@ export class ContactLeadsComponent implements OnInit {
         },
       },
       {
-        headerName: 'Company',
-        field: 'company',
-        cellStyle: {
-          color: '#212121',
-          'font-size': '14px',
-          height: '40px',
-          cursor: 'pointer',
-        },
-      },
-      {
-        headerName: 'Avg. Monthly Bill',
-        field: 'average_monthly_bill',
-        cellStyle: {
-          color: '#212121',
-          'font-size': '14px',
-          height: '40px',
-          cursor: 'pointer',
-        },
-      },
-      {
-        headerName: 'Description',
-        field: 'description',
-        cellStyle: {
-          color: '#212121',
-          'font-size': '14px',
-          height: '40px',
-          cursor: 'pointer',
-        },
-      },
-      {
-        headerName: 'Owner',
-        field: 'ownerName',
-        cellStyle: {
-          color: '#212121',
-          'font-size': '14px',
-          height: '40px',
-          cursor: 'pointer',
-        },
-      },
-      {
-        headerName: 'Owner Email',
-        field: 'ownerEmail',
-        cellStyle: {
-          color: '#212121',
-          'font-size': '14px',
-          height: '40px',
-          cursor: 'pointer',
-        },
-      },
-      {
         headerName: 'Lead Source',
         field: 'master_lead_source_id',
         cellStyle: {
@@ -188,8 +138,8 @@ export class ContactLeadsComponent implements OnInit {
         },
       },
       {
-        headerName: 'Lead Status',
-        field: 'master_lead_status',
+        headerName: 'Lead Generator',
+        field: 'ownerName',
         cellStyle: {
           color: '#212121',
           'font-size': '14px',
@@ -198,8 +148,8 @@ export class ContactLeadsComponent implements OnInit {
         },
       },
       {
-        headerName: 'Energy Consultant',
-        field: 'master_energy_consultant_id',
+        headerName: 'Primary Language',
+        field: 'primary_lang',
         cellStyle: {
           color: '#212121',
           'font-size': '14px',
@@ -207,6 +157,56 @@ export class ContactLeadsComponent implements OnInit {
           cursor: 'pointer',
         },
       },
+      {
+        headerName: 'Sales Rep',
+        field: 'sales_rep_id',
+        cellStyle: {
+          color: '#212121',
+          'font-size': '14px',
+          height: '40px',
+          cursor: 'pointer',
+        },
+      },
+      {
+        headerName: 'Events',
+        field: 'events',
+        cellStyle: {
+          color: '#212121',
+          'font-size': '14px',
+          height: '40px',
+          cursor: 'pointer',
+        },
+      },
+      {
+        headerName: 'Proposals',
+        field: 'proposals',
+        cellStyle: {
+          color: '#212121',
+          'font-size': '14px',
+          height: '40px',
+          cursor: 'pointer',
+        },
+      },
+      {
+        headerName: 'Projects',
+        field: 'projects',
+        cellStyle: {
+          color: '#212121',
+          'font-size': '14px',
+          height: '40px',
+          cursor: 'pointer',
+        },
+      },
+      {
+        headerName: 'Date/Time Created',
+        field: 'created_at',
+        cellStyle: {
+          color: '#212121',
+          'font-size': '14px',
+          height: '40px',
+          cursor: 'pointer',
+        },
+      }
     ];
     this.defaultColDef = {
       sortable: true,

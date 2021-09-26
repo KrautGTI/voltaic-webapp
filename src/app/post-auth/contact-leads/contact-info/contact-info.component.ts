@@ -13,6 +13,7 @@ import { NotificationService } from 'src/app/service/notification.service';
 
 import { ContactInfoLabels } from 'src/app/shared/constants/lead.constant';
 import { AddressLabels } from 'src/app/shared/constants/address.constant';
+import { DataService } from 'src/app/service/data.service';
 
 
 @Component({
@@ -28,6 +29,11 @@ export class ContactInfoComponent implements OnInit {
 
   public contactInfoForm: FormGroup = new FormGroup({});
 
+  leadId = '';
+  action = '';
+  sub: any;
+  progressStatus:any;
+
   constructor(
     private genericService: GenericService,
     private route: ActivatedRoute,
@@ -35,23 +41,32 @@ export class ContactInfoComponent implements OnInit {
     private httpClient: HttpClient,
     private formBuilder: FormBuilder,
     private authService: AuthService,
-    private notificationService: NotificationService
+    private notificationService: NotificationService,
+    private dataService: DataService
   ) { }
 
   ngOnInit(): void {
+    this.sub = this.route.queryParams.subscribe((params) => {
+      this.leadId = params.leadId;
+      this.action = params.action;
+      if(this.action == 'create' || this.action == 'edit') {
+        this.changeProgressBar('active');
+      }
+    });
     this.createForm();
-    // this.contactInfoForm = this.formBuilder.group({
-    //   firstOwnerFirstName: ['', Validators.required],
-    //   firstOwnerLastName: ['', Validators.required],
-    //   firstOwnerPhone: ['', Validators.required],
-    //   firstOwnerEmail: [''],
-    //   secondaryOwnerFirstName: [''],
-    //   secondaryOwnerLastName: [''],
-    //   secondaryOwnerPhone: [''],
-    //   secondaryOwnerEmail: [''],
-    //   notes: ['']
-    // });
   }
+
+  changeProgressBar(status: string) {
+    let progressdata = localStorage.getItem('userSessionProgressData');
+      if (progressdata) {
+        this.progressStatus = JSON.parse(progressdata);
+      } else {
+        this.dataService.currentPogressData.subscribe(progressStatus => this.progressStatus = progressStatus);
+      }
+      this.progressStatus.contactInfo = status;
+      this.dataService.changeStatus(this.progressStatus);
+  }
+
   private createForm(): void {
     this.contactInfoForm = this.formBuilder.group({
     });
@@ -101,9 +116,35 @@ export class ContactInfoComponent implements OnInit {
           const contactInfoData = {
           };
           console.log(contactInfoData);
+          if(this.action == 'create' || this.action == 'edit') {
+            this.changeProgressBar('completed');
+          }
+          this.navigateToUtilityInfo();
         }
       });
     }
   }
-
+  
+  ngOnDestroy() {
+    this.sub.unsubscribe();
+  }
+  editContactInfo() {
+    this.action = 'edit';
+    // this.location.replaceState('post-auth/leads/lead-details/contact-info?leadId=' + 
+    // this.leadId + '&action=' + this.action);   
+    this.router.navigate(['post-auth/leads/lead-details/contact-info'], {
+      queryParams: { leadId: this.leadId, action: this.action }
+    });
+  }
+  navigateToUtilityInfo() {
+    if(this.action == 'create') {
+      this.router.navigate(['post-auth/leads/lead-details/utility-info'], {
+        queryParams: { action: this.action }
+      });
+    } else if(this.action == 'edit'){
+      this.router.navigate(['post-auth/leads/lead-details/utility-info'], {
+        queryParams: { leadId: this.leadId, action: this.action }
+      });
+    }
+  }
 }

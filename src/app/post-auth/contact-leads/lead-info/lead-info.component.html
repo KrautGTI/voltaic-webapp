@@ -2,8 +2,15 @@
     <form [formGroup]="leadInfoForm">
         <div class="card shadow">
             <div class="card-body sectionDetails">
-                <div class="p-3 font-size-15rem font-weight-600 d-flex justify-content-between cardHeader">
-                    Lead Information
+                <div class="d-flex justify-content-between editSection">
+                    <div class="p-3 font-size-15rem font-weight-600 cardHeader">
+                        Lead Information
+                    </div>
+                    <div *ngIf="action == 'view'">
+                        <button class="btn btn-primary createBtn" type="submit" (click)="editLeadInfo()">
+                            <span class="plusImg"><img src="../../assets/images/pencil-fill-white.svg"></span> Edit 
+                        </button>
+                    </div>  
                 </div>
                 <div class="col-12 pr-3">
                     <div class="row">
@@ -29,7 +36,7 @@
                                 [group]="leadInfoForm"
                             ></app-select>
                         </div>
-                        <div class="col-md-6 mb-4">
+                        <div class="col-md-6 mb-4" *ngIf="action == 'view' || action == 'edit'">
                             <app-select
                                 [isRequired]="label.salesRep.isRequired"
                                 [label]="label.salesRep.fieldLabel"
@@ -39,6 +46,50 @@
                                 [errors]="label.salesRep.errors"
                                 [group]="leadInfoForm"
                             ></app-select>
+                        </div>
+                        <div class="col-md-6 mb-4" *ngIf="action == 'view' || action == 'edit'">
+                            <app-select
+                                [isRequired]="label.primaryLanguage.isRequired"
+                                [label]="label.primaryLanguage.fieldLabel"
+                                [fieldName]="label.primaryLanguage.fieldName"
+                                [options]="primaryLangs"
+                                [optionConfig]="label.primaryLanguage.optionConfig"
+                                [errors]="label.primaryLanguage.errors"
+                                [group]="leadInfoForm"
+                            ></app-select>
+                        </div>
+                        <div class="col-md-6 mb-4" *ngIf="action == 'view' || action == 'edit'">
+                            <app-select
+                                [isRequired]="label.homeType.isRequired"
+                                [label]="label.homeType.fieldLabel"
+                                [fieldName]="label.homeType.fieldName"
+                                [options]="homeTypes"
+                                [optionConfig]="label.homeType.optionConfig"
+                                [errors]="label.homeType.errors"
+                                [group]="leadInfoForm"
+                            ></app-select>
+                        </div>
+                        <div class="col-md-6 mb-4" *ngIf="action == 'view' || action == 'edit'">
+                            <app-select
+                                [isRequired]="label.hoa.isRequired"
+                                [label]="label.hoa.fieldLabel"
+                                [fieldName]="label.hoa.fieldName"
+                                [options]="hoa"
+                                [optionConfig]="label.hoa.optionConfig"
+                                [errors]="label.hoa.errors"
+                                [group]="leadInfoForm"
+                            ></app-select>
+                        </div>
+                    </div>
+                    <div class="row mb-4" *ngIf="action == 'create' || action == 'edit'">
+                        <div class="col-12 eachInfoDiv btnDiv">
+                          <div class="eachInfo">
+                            <app-btn-primary
+                              [btnName]="'Save & Next'"
+                              [disabled]="leadInfoForm.invalid"
+                              (btnClick)="submitLeadInfo()"
+                            ></app-btn-primary>
+                          </div>
                         </div>
                     </div>
                 </div>

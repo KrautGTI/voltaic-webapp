@@ -2,11 +2,21 @@
     <form [formGroup]="contactInfoForm">
         <div class="card shadow">
             <div class="card-body sectionDetails">
-                <div class="p-3 font-size-15rem font-weight-600 d-flex justify-content-between cardHeader">
-                    Contact Information
+                <div class="d-flex justify-content-between editSection">
+                    <div class="p-3 font-size-15rem font-weight-600 cardHeader">
+                        Contact Information
+                    </div>
+                    <div *ngIf="action == 'view'">
+                        <button class="btn btn-primary createBtn" type="submit" (click)="editContactInfo()">
+                            <span class="plusImg"><img src="../../assets/images/pencil-fill-white.svg"></span> Edit 
+                        </button>
+                    </div>  
                 </div>
                 <div class="col-12 pr-3">
                     <div class="row">
+                        <div class="col-md-12 ownerTxt">
+                            Primary Homeowner
+                        </div>
                         <div class="col-md-6 mb-4">
                             <app-input
                                 [type]="label.firstNamePrimary.fieldType"
@@ -15,6 +25,7 @@
                                 [fieldName]="label.firstNamePrimary.fieldName"
                                 [placeholder]="label.firstNamePrimary.placeholder"
                                 [errors]="label.firstNamePrimary.errors"
+                                [isEditable]="action == 'edit' || action == 'create'"
                                 [group]="contactInfoForm"
                             ></app-input>
                         </div>
@@ -26,19 +37,21 @@
                                 [fieldName]="label.lastNamePrimary.fieldName"
                                 [placeholder]="label.lastNamePrimary.placeholder"
                                 [errors]="label.lastNamePrimary.errors"
+                                [isEditable]="action == 'edit' || action == 'create'"
                                 [group]="contactInfoForm"
                             ></app-input>
                         </div>
                         <div class="col-md-6 mb-4">
-                            <app-input-number
+                            <app-input
                                 [type]="label.phonePrimary.fieldType"
                                 [isRequired]="label.phonePrimary.isRequired"
                                 [label]="label.phonePrimary.fieldLabel"
                                 [fieldName]="label.phonePrimary.fieldName"
                                 [placeholder]="label.phonePrimary.placeholder"
                                 [errors]="label.phonePrimary.errors"
+                                [isEditable]="action == 'edit' || action == 'create'"
                                 [group]="contactInfoForm"
-                            ></app-input-number>
+                            ></app-input>
                         </div>
                         <div class="col-md-6 mb-4">
                             <app-input-email
@@ -48,8 +61,15 @@
                                 [fieldName]="label.emailPrimary.fieldName"
                                 [placeholder]="label.emailPrimary.placeholder"
                                 [errors]="label.emailPrimary.errors"
+                                [isEditable]="action == 'edit' || action == 'create'"
                                 [group]="contactInfoForm"
                             ></app-input-email>
+                        </div>
+                    </div>
+                    <div class="borderDiv"></div>
+                    <div class="row">
+                        <div class="col-md-12 ownerTxt">
+                            Secondary Homeowner 
                         </div>
                         <div class="col-md-6 mb-4">
                             <app-input
@@ -59,6 +79,7 @@
                                 [fieldName]="label.firstNameSecondary.fieldName"
                                 [placeholder]="label.firstNameSecondary.placeholder"
                                 [errors]="label.firstNameSecondary.errors"
+                                [isEditable]="action == 'edit' || action == 'create'"
                                 [group]="contactInfoForm"
                             ></app-input>
                         </div>
@@ -70,19 +91,21 @@
                                 [fieldName]="label.lastNameSecondary.fieldName"
                                 [placeholder]="label.lastNameSecondary.placeholder"
                                 [errors]="label.lastNameSecondary.errors"
+                                [isEditable]="action == 'edit' || action == 'create'"
                                 [group]="contactInfoForm"
                             ></app-input>
                         </div>
                         <div class="col-md-6 mb-4">
-                            <app-input-number
+                            <app-input
                                 [type]="label.phoneSecondary.fieldType"
                                 [isRequired]="label.phoneSecondary.isRequired"
                                 [label]="label.phoneSecondary.fieldLabel"
                                 [fieldName]="label.phoneSecondary.fieldName"
                                 [placeholder]="label.phoneSecondary.placeholder"
                                 [errors]="label.phoneSecondary.errors"
+                                [isEditable]="action == 'edit' || action == 'create'"
                                 [group]="contactInfoForm"
-                            ></app-input-number>
+                            ></app-input>
                         </div>
                         <div class="col-md-6 mb-4">
                             <app-input-email
@@ -92,10 +115,13 @@
                                 [fieldName]="label.emailSecondary.fieldName"
                                 [placeholder]="label.emailSecondary.placeholder"
                                 [errors]="label.emailSecondary.errors"
+                                [isEditable]="action == 'edit' || action == 'create'"
                                 [group]="contactInfoForm"
                             ></app-input-email>
                         </div>
-
+                    </div>
+                    <div class="borderDiv"></div>
+                    <div class="row">
                         <div class="col-md-6 mb-4">
                             <app-input
                                 [type]="addrLabel.address.fieldType"
@@ -104,6 +130,7 @@
                                 [fieldName]="addrLabel.address.fieldName"
                                 [placeholder]="addrLabel.address.placeholder"
                                 [errors]="addrLabel.address.errors"
+                                [isEditable]="action == 'edit' || action == 'create'"
                                 [group]="contactInfoForm"
                             ></app-input>
                         </div>
@@ -115,6 +142,7 @@
                                 [fieldName]="addrLabel.street1.fieldName"
                                 [placeholder]="addrLabel.street1.placeholder"
                                 [errors]="addrLabel.street1.errors"
+                                [isEditable]="action == 'edit' || action == 'create'"
                                 [group]="contactInfoForm"
                             ></app-input>
                         </div>
@@ -126,6 +154,7 @@
                                 [fieldName]="addrLabel.street2.fieldName"
                                 [placeholder]="addrLabel.street2.placeholder"
                                 [errors]="addrLabel.street2.errors"
+                                [isEditable]="action == 'edit' || action == 'create'"
                                 [group]="contactInfoForm"
                             ></app-input>
                         </div>
@@ -137,6 +166,7 @@
                                 [fieldName]="addrLabel.city.fieldName"
                                 [placeholder]="addrLabel.city.placeholder"
                                 [errors]="addrLabel.city.errors"
+                                [isEditable]="action == 'edit' || action == 'create'"
                                 [group]="contactInfoForm"
                             ></app-input>
                         </div>
@@ -148,6 +178,7 @@
                                 [fieldName]="addrLabel.state.fieldName"
                                 [placeholder]="addrLabel.state.placeholder"
                                 [errors]="addrLabel.state.errors"
+                                [isEditable]="action == 'edit' || action == 'create'"
                                 [group]="contactInfoForm"
                             ></app-input>
                         </div>
@@ -159,6 +190,7 @@
                                 [fieldName]="addrLabel.postalCode.fieldName"
                                 [placeholder]="addrLabel.postalCode.placeholder"
                                 [errors]="addrLabel.postalCode.errors"
+                                [isEditable]="action == 'edit' || action == 'create'"
                                 [group]="contactInfoForm"
                             ></app-input>
                         </div>
@@ -171,8 +203,20 @@
                                 [fieldName]="label.notes.fieldName"
                                 [placeholder]="label.notes.placeholder"
                                 [errors]="label.notes.errors"
+                                [isEditable]="action == 'edit' || action == 'create'"
                                 [group]="contactInfoForm"
                             ></app-textarea>
+                        </div>
+                    </div>
+                    <div class="row mb-4" *ngIf="action == 'create' || action == 'edit'">
+                        <div class="col-12 eachInfoDiv btnDiv">
+                          <div class="eachInfo">
+                            <app-btn-primary
+                              [btnName]="'Save & Next'"
+                              [disabled]="contactInfoForm.invalid"
+                              (btnClick)="submitContactInfo()"
+                            ></app-btn-primary>
+                          </div>
                         </div>
                     </div>
                 </div>

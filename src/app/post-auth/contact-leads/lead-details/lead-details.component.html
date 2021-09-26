@@ -1,8 +1,7 @@
-<!-- <app-pogress-bar></app-pogress-bar> -->
-<ul>
-    <li><a [routerLink]="['contact-info']">contact</a></li>
-    <li><a [routerLink]="['utility-info']">utility</a></li>
-</ul>
+<ng-container *ngIf="action == 'create' || action == 'edit'">
+  <app-progress-bar></app-progress-bar>
+</ng-container>
+
 <div class="container">
   <router-outlet></router-outlet>
 </div>

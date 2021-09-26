@@ -16,6 +16,7 @@ export class SidenavComponent implements OnInit {
 
   isDashboardActive = this.router.url.includes('dashboard') ? true : false;
   isLeadActive = this.router.url.includes('leads') ? true : false;
+  isProposalActive = this.router.url.includes('proposals') ? true : false;
   isContactActive = this.router.url.includes('contacts') ? true : false;
   isAccountActive = this.router.url.includes('accounts') ? true : false;
   isJobReportActive = this.router.url.includes('job-reports') ? true : false;
@@ -58,6 +59,7 @@ export class SidenavComponent implements OnInit {
     this.isLeadActive = value == 'leads' ? true : false;
     this.isContactActive = value == 'contacts' ? true : false;
     this.isAccountActive = value == 'accounts' ? true : false;
+    this.isProposalActive = value == 'proposals' ? true : false;
     this.isJobReportActive = value == 'job-reports' ? true : false;
     this.isManageUserActive = value == 'manage' ? true : false;
     this.isDealActive = value == 'deals' ? true : false;

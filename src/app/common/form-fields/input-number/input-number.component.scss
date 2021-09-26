@@ -4,7 +4,7 @@
   display: inline-block;
   color: #000;
   vertical-align: top;
-  text-align: right;
+  text-align: left;
   padding-right: 10px;
 }
 .mandatory-style {
@@ -62,4 +62,8 @@
 input {
   padding: 0.3rem 0.75rem;
   font-size:14px;
+}
+
+.requiredField {
+  border-left: 3px solid #9362f3;
 }

@@ -51,7 +51,7 @@ export class PostAuthComponent implements OnInit, AfterViewInit {
     setTimeout(() => {
       this.toggleLogoEvent = false;
     }, 100);
-   this.showBreadcrumb();
+    this.showBreadcrumb();
   }
   ngAfterViewInit(): void {
     this.cd.detectChanges();
@@ -70,6 +70,12 @@ export class PostAuthComponent implements OnInit, AfterViewInit {
     }
     if (this.router.url.includes('leads')) {
       this.urlname = 'Leads';
+    }
+    if (this.router.url.includes('events')) {
+      this.urlname = 'Events';
+    }
+    if (this.router.url.includes('create-events')) {
+      this.urlname = 'Events - Create Events';
     }
     if (this.router.url.includes('contacts')) {
       this.urlname = 'Contacts';
@@ -92,6 +98,9 @@ export class PostAuthComponent implements OnInit, AfterViewInit {
     if (this.router.url.includes('deals/create-deal')) {
       this.urlname = 'Create Deal';
     }
+    if (this.router.url.includes('proposals')) {
+      this.urlname = 'Proposals';
+    }
   }
 
   toggleHeaderLogo(evnt: any) {
@@ -108,6 +117,9 @@ export class PostAuthComponent implements OnInit, AfterViewInit {
   }
   public goToCreateAccount(): void {
     this.router.navigate(['post-auth/accounts/create-account']);
+  }
+  public goToProposal(): void {
+    this.router.navigate(['post-auth/proposals/create-proposal']);
   }
   public goToCreateReport(): void {
     this.router.navigate(['post-auth/reports/create-report']);

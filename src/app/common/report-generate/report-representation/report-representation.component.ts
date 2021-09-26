@@ -56,6 +56,17 @@ export class ReportRepresentationComponent implements OnInit {
               moduleName: module.name,
             })
           );
+          if (column.selected) {
+            this.selectedColumns.push(
+              this.fb.group({
+                id: column.id,
+                name: column.name,
+                active: this.fb.control(column.active),
+                moduleId: module.id,
+                moduleName: module.name,
+              })
+            );
+          }
         });
       }
       return this.selectedModuleArr.includes(module.id);

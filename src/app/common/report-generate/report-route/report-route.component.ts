@@ -32,6 +32,7 @@ export class ReportRouteComponent implements OnInit {
         console.log('type=', data);
         break;
       case 'reportFilter':
+        console.log('type=', data);
         break;
     }
     this.setNextStepVisible(stepId, i);

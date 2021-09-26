@@ -49,6 +49,11 @@ export class ReportListComponent implements OnInit, OnDestroy {
                 results[0].message && Array.isArray(results[0].message)
                   ? results[0].message
                   : [];
+              this.selectedFolder =
+                this.selectFolderArr && this.selectFolderArr[0]
+                  ? this.selectFolderArr[0]
+                  : null;
+              this.isVisibleTable = true;
             }
           }
         },
@@ -85,5 +90,13 @@ export class ReportListComponent implements OnInit, OnDestroy {
   }
   public onRowClick(event: any): void {
     console.log(this.gridApi.getSelectedRows());
+  }
+  public onClickFolder(item: any): void {
+    this.selectedFolder = item;
+    console.log(item);
+    this.isVisibleTable = false;
+    setTimeout(() => {
+      this.isVisibleTable = true;
+    });
   }
 }

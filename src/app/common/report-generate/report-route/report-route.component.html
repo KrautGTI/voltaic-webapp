@@ -25,6 +25,7 @@
         </ng-container>
         <ng-container *ngSwitchCase="'reportFilter'">
           <app-report-filter
+            [selectedModuleArr]="selectedModuleArr"
             (reportfiltered)="btnSubmit($event, step.stepId, i)"
           ></app-report-filter>
         </ng-container>

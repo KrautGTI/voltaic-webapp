@@ -4,7 +4,7 @@
   display: inline-block;
   color: #616e88;
   vertical-align: top;
-  text-align: right;
+  text-align: left;
   padding-right: 30px;
 }
 .mandatory-style {
@@ -57,4 +57,7 @@
 .form-control[readonly] {
   background-color: #fff;
   opacity: 1;
+}
+.requiredField {
+  border-left: 3px solid #9362f3;
 }

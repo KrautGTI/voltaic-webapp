@@ -1,62 +1,111 @@
-<div class="left_menu text-center p-2 pt-0" id="leftNav" [ngClass]="{'open_left_menu': isNavOpen}">
-    <nav class="leftNav text-left p-2 pt-0">
-      <ul>
-        <li>
-          <div class="menuIconDiv">
-          <img src="../../../assets/images/voltaic-logo-v2.png" alt="logo" *ngIf="isNavOpen" />
-          <div class="menuIcon" (click)="toggleNav({ isShowLogo: false, param1: $event });">
-          <img class="justifyIcon" src="../../../assets/images/justify.svg">
+<div
+  class="left_menu text-center p-2 pt-0"
+  id="leftNav"
+  [ngClass]="{ open_left_menu: isNavOpen }"
+>
+  <nav class="leftNav text-left p-2 pt-0">
+    <ul>
+      <li>
+        <div class="menuIconDiv">
+          <img
+            src="../../../assets/images/voltaic-logo-v2.png"
+            alt="logo"
+            *ngIf="isNavOpen"
+          />
+          <div
+            class="menuIcon"
+            (click)="toggleNav({ isShowLogo: false, param1: $event })"
+          >
+            <img class="justifyIcon" src="../../../assets/images/justify.svg" />
+          </div>
         </div>
-        </div>
-        </li>
-        <li title="Dashboard" [ngClass]="{'activeMenu': isDashboardActive}" (click)="actviateNav('dashboard')">
-          <a routerLink="/post-auth/dashboard">
-            <img src="../../../assets/images/dashboard-web.svg" class="sideMenuIcon"/>
-            <span>Dashboard</span>
-          </a>
-        </li>
-        <li title="Leads" [ngClass]="{'activeMenu': isLeadActive}" (click)="actviateNav('leads')">
-          <a routerLink="/post-auth/leads">
-            <img src="../../../assets/images/people.svg" class="sideMenuIcon"/>
-            <span>Leads</span>
-          </a>
-        </li>
-        <li title="Contacts" [ngClass]="{'activeMenu': isContactActive}" (click)="actviateNav('contacts')">
+      </li>
+      <li
+        title="Dashboard"
+        [ngClass]="{ activeMenu: isDashboardActive }"
+        (click)="actviateNav('dashboard')"
+      >
+        <a routerLink="/post-auth/dashboard">
+          <img
+            src="../../../assets/images/dashboard-web.svg"
+            class="sideMenuIcon"
+          />
+          <span>Dashboard</span>
+        </a>
+      </li>
+      <li
+        title="Leads"
+        [ngClass]="{ activeMenu: isLeadActive }"
+        (click)="actviateNav('leads')"
+      >
+        <a routerLink="/post-auth/leads">
+          <img src="../../../assets/images/people.svg" class="sideMenuIcon" />
+          <span>Leads</span>
+        </a>
+      </li>
+      <li
+        title="Proposals"
+        [ngClass]="{ activeMenu: isProposalActive }"
+        (click)="actviateNav('proposals')"
+      >
+        <a routerLink="/post-auth/proposals">
+          <img src="../../../assets/images/list.svg" class="sideMenuIcon" />
+          <span>Proposals</span>
+        </a>
+      </li>
+      <li title="Events">
+        <a routerLink="/post-auth/events">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clipboard-data" viewBox="0 0 16 16">
+            <path d="M4 11a1 1 0 1 1 2 0v1a1 1 0 1 1-2 0v-1zm6-4a1 1 0 1 1 2 0v5a1 1 0 1 1-2 0V7zM7 9a1 1 0 0 1 2 0v3a1 1 0 1 1-2 0V9z"/>
+            <path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z"/>
+            <path d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3z"/>
+          </svg>
+          <span>Events</span>
+        </a>
+      </li>
+      <!-- <li title="Contacts" [ngClass]="{'activeMenu': isContactActive}" (click)="actviateNav('contacts')">
           <a routerLink="/post-auth/contacts">
             <img src="../../../assets/images/user-alt-4.svg" class="sideMenuIcon"/>
             <span>Contacts</span>
           </a>
-        </li>
-        <!-- <li title="Accounts" [ngClass]="{'activeMenu': isAccountActive}" (click)="actviateNav('accounts')">
+        </li> -->
+      <!-- <li title="Accounts" [ngClass]="{'activeMenu': isAccountActive}" (click)="actviateNav('accounts')">
           <a routerLink="/post-auth/accounts">
             <img src="../../../assets/images/users.svg" class="sideMenuIcon"/>
             <span>Accounts</span>
           </a>
-        </li>
-        <li title="Job Reports" [ngClass]="{'activeMenu': isJobReportActive}" (click)="actviateNav('job-reports')">
+        </li> -->
+      <!-- <li title="Job Reports" [ngClass]="{'activeMenu': isJobReportActive}" (click)="actviateNav('job-reports')">
           <a routerLink="/post-auth/job-reports">
             <img src="../../../assets/images/chart-pie.svg" class="sideMenuIcon"/>
             <span>Job Reports</span>
           </a>
         </li> -->
-        <li title="Manage Users" [ngClass]="{'activeMenu': isManageUserActive}" (click)="actviateNav('manage')">
-          <a routerLink="/post-auth/manage/users">
-            <img src="../../../assets/images/settings-alt.svg" class="sideMenuIcon"/>
-            <span>Manage Users</span>
-          </a>
-        </li>
-        <!-- <li title="Deals" [ngClass]="{'activeMenu': isDealActive}" (click)="actviateNav('deals')">
+      <li
+        title="Manage Users"
+        [ngClass]="{ activeMenu: isManageUserActive }"
+        (click)="actviateNav('manage')"
+      >
+        <a routerLink="/post-auth/manage/users">
+          <img
+            src="../../../assets/images/settings-alt.svg"
+            class="sideMenuIcon"
+          />
+          <span>Manage Users</span>
+        </a>
+      </li>
+      <!-- <li title="Deals" [ngClass]="{'activeMenu': isDealActive}" (click)="actviateNav('deals')">
           <a routerLink="/post-auth/deals">
             <img src="../../../assets/images/label.svg" class="sideMenuIcon"/>
             <span>Deals</span>
           </a>
-        </li>
-        <li title="Reports" [ngClass]="{'activeMenu': isReportActive}" (click)="actviateNav('reports')">
+        </li> -->
+      <!-- <li title="Reports" [ngClass]="{'activeMenu': isReportActive}" (click)="actviateNav('reports')">
           <a routerLink="/post-auth/reports">
             <img src="../../../assets/images/list.svg" class="sideMenuIcon"/>
             <span>Reports</span>
           </a>
         </li> -->
-      </ul>
-    </nav>
-  </div>
+    </ul>
+  </nav>
+</div>

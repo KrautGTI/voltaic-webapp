@@ -1,0 +1,8 @@
+<div class="container-fluid" style="margin-top: 10px">
+  <app-ui-table
+    [tabData]="tabData"
+    [columnDefsConfigs]="columnDefsConfigs"
+    (gridReady)="onGridReady($event)"
+    (rowClick)="onRowClick($event)"
+  ></app-ui-table>
+</div>

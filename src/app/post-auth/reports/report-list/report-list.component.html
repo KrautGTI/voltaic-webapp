@@ -8,17 +8,21 @@
         class="folder-item list-group-item"
         *ngFor="let item of selectFolderArr"
       >
-        {{ item.FOLDER_NAME }}
+        <label class="mb-0 pointer" (click)="onClickFolder(item)">{{
+          item.FOLDER_NAME
+        }}</label>
       </li>
     </ul>
   </div>
   <div class="main-container">
-    <app-ui-table
-      [tabData]="tabData"
-      [columnDefsConfigs]="columnDefsConfigs"
-      [rowSelection]="'multiple'"
-      (gridReady)="onGridReady($event)"
-      (rowClick)="onRowClick($event)"
-    ></app-ui-table>
+    <ng-container *ngIf="isVisibleTable">
+      <app-ui-table
+        [tabData]="tabData"
+        [columnDefsConfigs]="columnDefsConfigs"
+        [rowSelection]="'multiple'"
+        (gridReady)="onGridReady($event)"
+        (rowClick)="onRowClick($event)"
+      ></app-ui-table>
+    </ng-container>
   </div>
 </div>

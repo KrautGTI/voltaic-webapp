@@ -12,6 +12,7 @@
           [name]="fieldName"
           [class]="'text-textarea form-control ' + class"
           [ngClass]="{
+            requiredField: isRequired,
             'input-error':
               groupControl!.invalid &&
               (groupControl!.dirty || groupControl!.touched)

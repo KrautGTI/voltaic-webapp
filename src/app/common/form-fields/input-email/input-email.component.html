@@ -1,10 +1,10 @@
 <div class="input-email" [formGroup]="group">
   <div class="row">
-    <label class="form-label col-4" *ngIf="label">
+    <label class="form-label col-12" *ngIf="label">
       {{ label }}
       <span *ngIf="isRequired" class="mandatory-style">*</span>
     </label>
-    <div class="col-8 eachInfo" *ngIf="!isNewDesing">
+    <div class="col-12 eachInfo" *ngIf="!isNewDesing">
       <div class="blueTxt">
         <input
           [type]="type"
@@ -12,6 +12,7 @@
           [name]="fieldName"
           [class]="'text-input form-control ' + class"
           [ngClass]="{
+            requiredField: isRequired,
             'input-error':
               groupControl!.invalid &&
               (groupControl!.dirty || groupControl!.touched)

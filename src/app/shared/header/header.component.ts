@@ -85,6 +85,9 @@ export class HeaderComponent implements OnInit {
     if (this.router.url.includes('deals/create-deal')) {
       this.urlname = 'Create Deal';
     }
+    if (this.router.url.includes('proposals')) {
+      this.urlname = 'Proposals';
+    }
   }
 
   logout() {

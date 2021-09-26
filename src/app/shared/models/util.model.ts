@@ -56,12 +56,18 @@ export class ModuleColumn {
   id: string = '';
   name: string = '';
   active: boolean = false;
+  selected?: boolean = false;
   filterType: string = '';
 }
 export class ModuleRef {
   id: string = '';
   name: string = '';
+  label?: string = '';
   columns: ModuleColumn[] = [];
+}
+export class FilterCondition {
+  id: string = '';
+  name: string = '';
 }
 export class RoutingStep {
   stepId: string = '';

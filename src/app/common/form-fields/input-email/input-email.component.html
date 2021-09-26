@@ -20,6 +20,7 @@
           [formControlName]="fieldName"
           autocomplete="off"
           maxlength="250"
+          [readonly]="!isEditable"
           (blur)="onBlur($event)"
           (input)="onChange($event)"
           #inputRef

@@ -141,8 +141,12 @@ export class LeadInfoComponent implements OnInit {
 
   editLeadInfo() {
     this.action = 'edit';
-    this.location.replaceState('post-auth/leads/lead-details/schedule-appointment?leadId=' + 
-    this.leadId + '&action=' + this.action);   
+    this.changeProgressBar('active');
+    this.router.navigate(['post-auth/leads/lead-details/schedule-appointment'], {
+      queryParams: { leadId: this.leadId, action: this.action }
+    });
+    // this.location.replaceState('post-auth/leads/lead-details/schedule-appointment?leadId=' + 
+    // this.leadId + '&action=' + this.action);   
   }
 
   navigateToScheduleAppointment(){
@@ -150,10 +154,8 @@ export class LeadInfoComponent implements OnInit {
       this.router.navigate(['post-auth/leads/lead-details/schedule-appointment'], {
         queryParams: { action: this.action }
       });
-    } else if(this.action == 'edit'){
-      this.router.navigate(['post-auth/leads/lead-details/schedule-appointment'], {
-        queryParams: { leadId: this.leadId, action: this.action }
-      });
+    } else if(this.action == 'edit') {
+      this.router.navigate(['post-auth/leads']);
     }
   }
 

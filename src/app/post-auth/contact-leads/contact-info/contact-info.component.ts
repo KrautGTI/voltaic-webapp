@@ -49,9 +49,9 @@ export class ContactInfoComponent implements OnInit {
     this.sub = this.route.queryParams.subscribe((params) => {
       this.leadId = params.leadId;
       this.action = params.action;
-      if(this.action == 'create' || this.action == 'edit') {
-        this.changeProgressBar('active');
-      }
+      // if(this.action == 'create' || this.action == 'edit') {
+      //   this.changeProgressBar('active');
+      // }
     });
     this.createForm();
   }
@@ -132,6 +132,7 @@ export class ContactInfoComponent implements OnInit {
     this.action = 'edit';
     // this.location.replaceState('post-auth/leads/lead-details/contact-info?leadId=' + 
     // this.leadId + '&action=' + this.action);   
+    this.changeProgressBar('active');
     this.router.navigate(['post-auth/leads/lead-details/contact-info'], {
       queryParams: { leadId: this.leadId, action: this.action }
     });

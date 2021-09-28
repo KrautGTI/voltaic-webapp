@@ -46,6 +46,7 @@ export class ContactLeadsComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    localStorage.removeItem('userSessionProgressData');
     this.columnDefs = [
       {
         headerName: 'First Name',
@@ -253,7 +254,7 @@ export class ContactLeadsComponent implements OnInit {
 
   onRowClick(event: any) {
     console.log(event.data.id);
-    this.router.navigate(['post-auth/leads/lead-details'], {
+    this.router.navigate(['post-auth/leads/lead-details/contact-info'], {
       queryParams: { leadId: event.data.id, action: 'view' }
     });
   }

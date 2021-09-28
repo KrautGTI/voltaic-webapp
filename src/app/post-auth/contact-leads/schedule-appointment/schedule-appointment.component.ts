@@ -115,14 +115,15 @@ export class ScheduleAppointmentComponent implements OnInit {
           const scheduleAppointmentData = {
           };
           console.log(scheduleAppointmentData);
-          if(this.action == 'create' || this.action == 'edit') {
+          if(this.action == 'create') {
             this.changeProgressBar('completed');
           }
+          this.router.navigate(['post-auth/leads']);
         }
       });
     }
   }
   ngOnDestroy() {
-    this.sub.unsubscribe();
+    this.sub?.unsubscribe();
   }
 }

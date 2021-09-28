@@ -123,8 +123,12 @@ export class UtilityInfoComponent implements OnInit {
 
   editUtilityInfo() {
     this.action = 'edit';
-    this.location.replaceState('post-auth/leads/lead-details/utility-info?leadId=' + 
-    this.leadId + '&action=' + this.action);   
+    this.changeProgressBar('active');
+    this.router.navigate(['post-auth/leads/lead-details/utility-info'], {
+      queryParams: { leadId: this.leadId, action: this.action }
+    });
+    // this.location.replaceState('post-auth/leads/lead-details/utility-info?leadId=' + 
+    // this.leadId + '&action=' + this.action);   
   }
 
   navigateToLeadInfo() {

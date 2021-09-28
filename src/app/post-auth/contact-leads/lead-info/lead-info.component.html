@@ -21,6 +21,7 @@
                                 [fieldName]="label.leadSource.fieldName"
                                 [options]="leadSources"
                                 [optionConfig]="label.leadSource.optionConfig"
+                                [isEditable]="action == 'edit' || action == 'create'"
                                 [errors]="label.leadSource.errors"
                                 [group]="leadInfoForm"
                             ></app-select>
@@ -32,6 +33,7 @@
                                 [fieldName]="label.leadGenerator.fieldName"
                                 [options]="leadGenerators"
                                 [optionConfig]="label.leadGenerator.optionConfig"
+                                [isEditable]="action == 'edit' || action == 'create'"
                                 [errors]="label.leadGenerator.errors"
                                 [group]="leadInfoForm"
                             ></app-select>
@@ -43,6 +45,7 @@
                                 [fieldName]="label.salesRep.fieldName"
                                 [options]="salesReps"
                                 [optionConfig]="label.salesRep.optionConfig"
+                                [isEditable]="action == 'edit'"
                                 [errors]="label.salesRep.errors"
                                 [group]="leadInfoForm"
                             ></app-select>
@@ -54,6 +57,7 @@
                                 [fieldName]="label.primaryLanguage.fieldName"
                                 [options]="primaryLangs"
                                 [optionConfig]="label.primaryLanguage.optionConfig"
+                                [isEditable]="action == 'edit'"
                                 [errors]="label.primaryLanguage.errors"
                                 [group]="leadInfoForm"
                             ></app-select>
@@ -65,6 +69,7 @@
                                 [fieldName]="label.homeType.fieldName"
                                 [options]="homeTypes"
                                 [optionConfig]="label.homeType.optionConfig"
+                                [isEditable]="action == 'edit'"
                                 [errors]="label.homeType.errors"
                                 [group]="leadInfoForm"
                             ></app-select>
@@ -76,6 +81,7 @@
                                 [fieldName]="label.hoa.fieldName"
                                 [options]="hoa"
                                 [optionConfig]="label.hoa.optionConfig"
+                                [isEditable]="action == 'edit'"
                                 [errors]="label.hoa.errors"
                                 [group]="leadInfoForm"
                             ></app-select>

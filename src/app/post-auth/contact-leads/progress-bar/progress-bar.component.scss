@@ -7,31 +7,40 @@
 .status-width{
     width:150px;
 }
-.status-line-width {
-  //  width: 78%;
-    width:75%;
-}
-
 .bg-violet {
     background-color:#9362f3;
+}
+.line-position {
+    top: 19px;
+    right:166px;
+    z-index: 0;
+}
+.status-line-width {
+    width:70%;
+}
+.line-width{
+    width: 50%;
+}
+.createProgressBar{
+    .line-position {
+        right:130px;
+    }
+    .status-line-width {
+        width:75%;
+    }
+    .line-width{
+        width: 34%;
+    }
 }
 @media (max-width: 480px) {
     .line-position {
         right: 55px !important;
     }
 }
-.line-width{
-    width: 34%;
-}
+
 .border-style{
     border-top: 4px solid #e1e1e1;
 }
 .border-style-active{
     border-top: 4px solid #bc9df9;
-}
-.line-position{
-    top: 19px;
-   // right: 123px;
-    right:130px;
-    z-index: 0;
 }

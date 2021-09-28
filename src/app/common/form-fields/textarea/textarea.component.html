@@ -27,7 +27,7 @@
         <div
           class="form-error"
           *ngIf="
-            groupControl!.invalid &&
+          isEditable && groupControl!.invalid &&
             (groupControl!.dirty || groupControl!.touched)
           "
         >

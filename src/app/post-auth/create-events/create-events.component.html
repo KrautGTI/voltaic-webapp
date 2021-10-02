@@ -1,1 +1,335 @@
-<p>create-events works!</p>
+<div class="container-fluid bg-white">
+    <div class="row">
+        <div class="col-4 form-group mb-2 pt-2">
+            <label>Task</label>
+            <select class="form-control" id="sel1">
+                <option>Appointment</option>
+            </select>
+        </div>
+        <div class="col-4 mb-2 pt-2">
+            <label>Assigned To</label>
+            <select class="form-control" id="sel1">
+                <option>Aaron Adams</option>
+                <option>Aaron Thompson</option>
+                <option>Adroan Licon</option>
+                <option>Ajon Efferson</option>
+            </select>
+        </div>
+        <div class="col-4 form-group mb-2 pt-2"></div>
+        <div class="col-12 px-1 py-3 border shadow d-flex justify-content-between mx-1 my-3">
+            <span class="font-weight-700 heading">Event Details</span>
+            <span>
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                    class="bi bi-caret-down-fill" viewBox="0 0 16 16">
+                    <path
+                        d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z" />
+                </svg>
+            </span>
+        </div>
+        <div class="col-4 form-group mb-2 pt-2">
+            <label>Status</label>
+            <input type="text" class="form-control">
+        </div>
+        <div class="col-4 form-group mb-2 pt-2">
+            <label>Date *</label>
+            <input type="date" class="form-control">
+        </div>
+        <div class="col-4 form-group mb-2 pt-2">
+            <label for="sel1">Time:</label>
+            <select class="form-control" id="sel1">
+                <option>6:00 a.m.</option>
+                <option>6:30 a.m.</option>
+                <option>7:00 a.m.</option>
+                <option>7:30 a.m.</option>
+            </select>
+        </div>
+        <div class="col-4 form-group mb-2 pt-2">
+            <label for="comment">Notes</label>
+            <textarea class="form-control" rows="5" id="comment"></textarea>
+        </div>
+        <div class="col-12 form-group mb-2 pt-2">
+            <div class="form-check">
+                <label class="form-check-label">
+                    <input type="checkbox" class="form-check-input" value="">Confirmed
+                </label>
+            </div>
+        </div>
+        <div class="col-12 px-1 py-3 border shadow d-flex justify-content-between mx-1 my-3">
+            <span class="font-weight-700 heading">Homeowner</span>
+            <span>
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                    class="bi bi-caret-down-fill" viewBox="0 0 16 16">
+                    <path
+                        d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z" />
+                </svg>
+            </span>
+        </div>
+        <div class="col-12 d-flex flex-column text-size-small align-items-start">
+            <span class="font-weight-700">Info</span>
+            <span>Surendra Patel</span>
+            <span>9660 Clancey Ave, Downey, California 90240</span>
+            <button class="btn btn-primary">Lead Record</button>
+        </div>
+        <div class="col-12 px-1 py-3 border shadow d-flex justify-content-between mx-1 my-3">
+            <span class="font-weight-700 heading">Admin</span>
+            <span>
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                    class="bi bi-caret-down-fill" viewBox="0 0 16 16">
+                    <path
+                        d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z" />
+                </svg>
+            </span>
+        </div>
+        <div class="col-12 form-group mb-2 pt-2">
+            <div class="form-check">
+                <label class="form-check-label">
+                    <input type="checkbox" class="form-check-input text-size-small" value="">Task - Include Attachment Field 
+                </label>
+            </div>
+        </div>
+        <div class="col-12 form-group mb-2 pt-2">
+            <div class="form-check">
+                <label class="form-check-label">
+                    <input type="checkbox" class="form-check-input text-size-small" value="">Mute Notifications 
+                </label>
+            </div>
+        </div>
+        <div class="col-4 form-group mb-2 pt-2">
+            <label for="sel1">Related Lead:</label>
+            <select class="form-control" id="sel1">
+                <option>Aaron Adams</option>
+                <option>Aaron Thompson</option>
+                <option>Adroan Licon</option>
+                <option>Ajon Efferson</option>
+            </select>
+        </div>
+        <div class="col-4 form-group mb-2 pt-2">
+            <label for="sel1">Related Group:</label>
+            <select class="form-control" id="sel1">
+                <option>Contact History</option>
+                <option>Customer Service</option>
+                <option>Electrical</option>
+                <option>Financing</option>
+            </select>
+        </div>
+        <div class="col-4"></div>
+        <div class = "mt-2 text-size-small" style = "font-weight: 600">Sales Proposal Link</div>
+        <div>
+            <a href = "https://solarcrm.quickbase.com/up/bkir8sd78/a/r34558/e191/v0/" class = "text-underline text-size-small" style = "color: blue;">https://solarcrm.quickbase.com/up/bkir8sd78/a/r34558/e191/v0/</a>
+        </div>
+        <div class = "mt-2" style = "font-weight: 600">Sales Proposal Link Email</div>
+        <div>
+            <a href = "https://solarcrm.quickbase.com/up/bkir8sd78/a/r34558/e191/v0/" class = "text-underline text-size-small" style = "color: blue;">https://solarcrm.quickbase.com/up/bkir8sd78/a/r34558/e191/v0/</a>
+        </div>
+        <div class = "mt-2" style = "font-weight: 600">Sales Proposal Text</div>
+        <div>up/bkir8sd78/a/r34558/e191/v0/</div>
+        <div class = "mt-2 text-size-small" style = "font-weight: 600">Employee - Organization Email</div>
+        <div>tania.gaitan@truepwr.io</div>
+        <div class = "mt-2" style = "font-weight: 600">Status (Lookup)</div>
+        <div>Scheduled</div>
+        <div class = "mt-2 text-size-small" style = "font-weight: 600">Recent Proposal URL</div>
+        <div class = "mt-2 text-size-small" style = "font-weight: 600">Lead Generator</div>
+        <div>Tania Gaitan</div>
+        <div class="col-12 form-group mb-2 pt-2">
+            <div class="form-check">
+                <label class="form-check-label">
+                    <input type="checkbox" class="form-check-input text-size-small" value="">Date Only  
+                </label>
+            </div>
+        </div>
+        <div class="col-12 form-group mb-2 pt-2">
+            <div class="form-check">
+                <label class="form-check-label">
+                    <input type="checkbox" class="form-check-input text-size-small" value="">Require Notes (Reason) 
+                </label>
+            </div>
+        </div>
+        <div class="col-12 form-group mb-2 pt-2">
+            <div class="form-check">
+                <label class="form-check-label">
+                    <input type="checkbox" class="form-check-input text-size-small" value="">Require Notes (Status) 
+                </label>
+            </div>
+        </div>
+        <div class="col-12 form-group mb-2 pt-2">
+            <div class="form-check">
+                <label class="form-check-label">
+                    <input type="checkbox" class="form-check-input text-size-small" value="">Require Notes
+                </label>
+            </div>
+        </div>
+        <div class = "mt-2 text-size-small" style = "font-weight: 600">Date/Time Created</div>
+        <div class = "mt-2 text-size-small" style = "font-weight: 600">Record Owner</div>
+        <div class = "mt-2 text-size-small" style = "font-weight: 600">Sales Event - Sales VP 1 - User</div>
+        <div class = "mt-2 text-size-small" style = "font-weight: 600">Sales Event - Sales VP 2 - User</div>
+        <div class = "mt-2 text-size-small" style = "font-weight: 600">Task & Status</div>
+        <div class = "text-size-small">Appointment - Scheduled</div>
+
+        <div class = "mt-2 text-size-small" style = "font-weight: 600"> Utility Bill 1 URL Expanded</div>
+        <button style="background-color: lightgrey;width: 12%; margin-left: 26px;">
+            View/Download File
+        </button>
+        <div class = "mt-2 text-size-small" style = "font-weight: 600"> Utility Bill 2 URL Expanded</div>
+        <button style="background-color: lightgrey;width: 12%; margin-left: 26px;">
+            View/Download File
+        </button>
+        <div class = "mt-2 text-size-small" style = "font-weight: 600">Utility Bill 1 Check</div>
+        <div class = "mt-2 text-size-small" style = "font-weight: 600">Utility Bill 2 Check</div>
+        <div class = "mt-2 text-size-small" style = "font-weight: 600">Link to Recent Sales Event</div>
+        <div class = "mt-2 text-size-small" style = "font-weight: 600">Link to Recent RFP Record</div>
+        <a href = "https://solarcrm.quickbase.com/db/brgdv2yyc%3Fa%3Ddr%26rid%3D0" class = "text-underline text-size-small" style = "color: blue;">https://solarcrm.quickbase.com/db/brgdv2yyc%3Fa%3Ddr%26rid%3D0</a>
+        <div class = "mt-2 text-size-small" style = "font-weight: 600">Recent Request for Proposal</div>
+        <div class = "mt-2 text-size-small" style = "font-weight: 600">Lead Generator - User</div>
+        <div class = "text-size-small" style = "color: blue;">Tania Gaitan</div>
+        <div class = "mt-2 text-size-small" style = "font-weight: 600">Activity Filter</div>
+        <div class = "text-size-small">Active</div>
+        <div class = "mt-2 text-size-small" style = "font-weight: 600">Sales Filter</div>
+        <div class = "text-size-small">Sales</div>
+        <div class = "mt-2 text-size-small" style = "font-weight: 600">Group & Task</div>
+        <div class = "text-size-small">Sales & Appointment &</div>
+        <div class = "mt-2 text-size-small" style = "font-weight: 600">Task - Related Group</div>
+        <div class = "text-size-small">8</div>
+        <div class = "mt-2 text-size-small" style = "font-weight: 600">Source - Provider</div>
+        <div class = "text-size-small">Employee</div>
+        <div class = "mt-2 text-size-small" style = "font-weight: 600">Last Modified By</div>
+        <div class = "mt-2 text-size-small" style = "font-weight: 600">Date Modified</div>
+
+        <div></div>
+        <div class="col-12 form-group mt-2 mb-2 pt-2">
+            <div class="form-check">
+                <label class="form-check-label">
+                    <input type="checkbox" class="form-check-input text-size-small" value="">Status - Start Step  
+                </label>
+            </div>
+        </div>
+        <div class="col-12 form-group mb-2 pt-2">
+            <div class="form-check">
+                <label class="form-check-label">
+                    <input type="checkbox" class="form-check-input text-size-small" value="">Status - In Progress Step
+                </label>
+            </div>
+        </div>
+        <div class="col-12 form-group mb-2 pt-2">
+            <div class="form-check">
+                <label class="form-check-label">
+                    <input type="checkbox" class="form-check-input text-size-small" value="">Status - Final Step 
+                </label>
+            </div>
+        </div>
+        <div class = "mt-2 text-size-small" style = "font-weight: 600">Lead - Call Step</div>
+        <div class = "text-size-small">Unscheduled</div>
+        <div class = "mt-2 text-size-small" style = "font-weight: 600">Call Step</div>
+        <input class="m-2 text-size-small" style = "width: 170px;" type = "text">
+        <div class="col-12 form-group mt-2 mb-2 pt-2">
+            <div class="form-check">
+                <label class="form-check-label">
+                    <input type="checkbox" class="form-check-input text-size-small" value="">No Status Call Record
+                </label>
+            </div>
+        </div>
+        <div class="col-12 form-group mb-2 pt-2">
+            <div class="form-check">
+                <label class="form-check-label">
+                    <input type="checkbox" class="form-check-input text-size-small" value="">Reset
+                </label>
+            </div>
+        </div>
+        <div class="col-12 form-group mb-2 pt-2">
+            <div class="form-check">
+                <label class="form-check-label">
+                    <input type="checkbox" class="form-check-input text-size-small" value="">Reset Descendent 
+                </label>
+            </div>
+        </div>
+        <div class="col-4 form-group mb-2 pt-2">
+            <label for="sel1">Setter:</label>
+            <select class="form-control" id="sel1">
+                <option>Aaron Adams</option>
+                <option>Aaron Thompson</option>
+                <option>Adroan Licon</option>
+                <option>Ajon Efferson</option>
+            </select>
+        </div>
+        <div class = "mt-2 text-size-small" style = "font-weight: 600">Current User</div>
+        <div class = "text-size-small">Marvin Coffman</div>
+        <div class = "mt-2 text-size-small" style = "font-weight: 600">Current User Numeric</div>
+        <div class = "mt-2 text-size-small" style = "font-weight: 600">Recent Sales Task - Related Employee</div>
+        <div class = "mt-2 text-size-small" style = "font-weight: 600">Date Created Override</div>
+        <input type="date" style="width: 170px;">
+
+
+
+        <div class = "mt-2 text-size-small" style = "font-weight: 600">Task Start Date & Time</div>
+
+        <div class = "mt-2 text-size-small" style = "font-weight: 600">Task End Date & Time</div>
+
+        <div class = "mt-2 text-size-small" style = "font-weight: 600"># of Calls</div>
+        <div class = "text-size-small">0</div>
+        <div class = "mt-2 text-size-small" style = "font-weight: 600"># of Inside Sales Events</div>
+        <div class = "text-size-small">0</div>
+        <div class = "mt-2 text-size-small" style = "font-weight: 600"># of Sales Events</div>
+        <div class = "text-size-small">0</div>
+        <div class = "mt-2 text-size-small" style = "font-weight: 600"># of Request for Proposal</div>
+        <div class = "text-size-small">0</div>
+        <div class = "mt-2 text-size-small" style = "font-weight: 600">Scheduled Call </div>
+        <div class = "mt-2 text-size-small" style = "font-weight: 600"># of Calls</div>
+        <div class = "text-size-small">0</div>
+        <div class = "mt-2 text-size-small" style = "font-weight: 600">Call Order (Inside Sales)</div>
+        <input class="m-2 text-size-small" style = "width: 170px;" type = "text">
+        <div class = "mt-2 text-size-small" style = "font-weight: 600">Inide Sales Event Order</div>
+        <input class="m-2 text-size-small" style = "width: 170px;" type = "text">
+        <div class = "mt-2 text-size-small" style = "font-weight: 600">Sales Event Order</div>
+        <input class="m-2 text-size-small" style = "width: 170px;" type = "text">
+        <div class = "mt-2 text-size-small" style = "font-weight: 600">Time Filter (Standard)</div>
+        <div class = "text-size-small">Yes</div>
+        <div class = "mt-2 text-size-small" style = "font-weight: 600">Task Start Date & Time</div>
+        <div class = "mt-2 text-size-small" style = "font-weight: 600">Task Start Date & Time Text</div>
+        <div class = "text-size-small">0-0- at</div>
+        <div class="col-12 form-group mb-2 pt-2">
+            <div class="form-check">
+                <label class="form-check-label">
+                    <input type="checkbox" class="form-check-input text-size-small" value="">Detail Override 
+                </label>
+            </div>
+        </div>
+        <div class = "mt-2 text-size-small" style = "font-weight: 600">Employee - User</div>
+        <div class = "text-size-small">Tania Gaitan</div>
+        <div class = "mt-2 text-size-small" style = "font-weight: 600">Lead Generator - User</div>
+        <div class = "text-size-small">Tania Gaitan</div>
+        <div class="col-12 form-group mb-2 pt-2">
+            <div class="form-check">
+                <label class="form-check-label">
+                    <input type="checkbox" class="form-check-input" value="">Purchased from Market
+                </label>
+            </div>
+        </div>
+
+
+        <div class = "mt-2 text-size-small" style = "font-weight: 600">Task - Resource(s) </div>
+        <div class = "text-size-small">Single</div>
+        
+        <div class = "mt-2 text-size-small" style = "font-weight: 600">Employee Company Filter </div>
+        <div class = "text-size-small">True Power</div>
+
+        <div class = "mt-2 text-size-small" style = "font-weight: 600">Task - # of Statuses (Scheduled) </div>
+        <div class = "text-size-small">1</div>
+    </div>
+    <div class = "my-5">
+        <button class = "btn btn-success">Save & Close</button>
+        <button class = "btn m-5" style="background-color: lightgray"`>Close</button>
+    </div>
+    <div class = "mt-5"></div>
+</div>
+
+
+
+
+
+
+  
+  
+
+
+
+
+

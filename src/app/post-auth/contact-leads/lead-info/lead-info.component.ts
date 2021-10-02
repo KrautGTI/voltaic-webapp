@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { GenericService } from '../../../service/generic.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
@@ -21,6 +21,7 @@ import { Location } from '@angular/common';
   styleUrls: ['./lead-info.component.scss']
 })
 export class LeadInfoComponent implements OnInit {
+  leadDetails:any;
   isSubmitClicked = false;
   public leadInfoForm: FormGroup = new FormGroup({});
   public label: { [key: string]: FormField } = LeadInfoLabels;
@@ -69,6 +70,8 @@ export class LeadInfoComponent implements OnInit {
       this.salesReps = data.message;
     });
     this.createForm();
+    if(this.action == 'view' || this.action == 'edit')
+      this.setFormControlValue();
   }
 
   changeProgressBar(status: string) {
@@ -80,6 +83,20 @@ export class LeadInfoComponent implements OnInit {
       }
       this.progressStatus.leadInfo = status;
       this.dataService.changeStatus(this.progressStatus);
+  }
+
+  private setFormControlValue(): void {
+    this.leadDetails = this.genericService.getLeadData();
+    console.log(this.leadDetails);
+    const controls = this.leadInfoForm.controls;
+    if (this.leadDetails) {
+      Object.keys(controls).forEach((control: string) => {
+        const value = this.leadDetails[control]
+          ? this.leadDetails[control]
+          : '';
+        controls[control].patchValue(value);
+      });
+    }
   }
 
   private createForm(): void {
@@ -142,7 +159,7 @@ export class LeadInfoComponent implements OnInit {
   editLeadInfo() {
     this.action = 'edit';
     this.changeProgressBar('active');
-    this.router.navigate(['post-auth/leads/lead-details/schedule-appointment'], {
+    this.router.navigate(['post-auth/leads/lead-details/lead-info'], {
       queryParams: { leadId: this.leadId, action: this.action }
     });
     // this.location.replaceState('post-auth/leads/lead-details/schedule-appointment?leadId=' + 

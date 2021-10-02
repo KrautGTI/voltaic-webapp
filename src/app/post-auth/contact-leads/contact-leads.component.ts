@@ -254,6 +254,11 @@ export class ContactLeadsComponent implements OnInit {
 
   onRowClick(event: any) {
     console.log(event.data.id);
+    this.rowData.forEach((ele: any) => {
+      if(ele.id == event.data.id) {
+        this.genericService.setLeadData(ele);
+      } 
+    });
     this.router.navigate(['post-auth/leads/lead-details/contact-info'], {
       queryParams: { leadId: event.data.id, action: 'view' }
     });

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { GenericService } from '../../../service/generic.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
@@ -20,7 +20,7 @@ import { DataService } from 'src/app/service/data.service';
   styleUrls: ['./schedule-appointment.component.scss']
 })
 export class ScheduleAppointmentComponent implements OnInit {
-
+ // @Input() leadDetails:any;
   public scheduleAppointmemtForm: FormGroup = new FormGroup({});
   public label: { [key: string]: FormField } = ScheduleAppointmentLabels;
   isSubmitClicked = false;

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { GenericService } from '../../../service/generic.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
@@ -33,6 +33,8 @@ export class ContactInfoComponent implements OnInit {
   action = '';
   sub: any;
   progressStatus:any;
+  leadDetails:any;
+  states:any;
 
   constructor(
     private genericService: GenericService,
@@ -53,7 +55,12 @@ export class ContactInfoComponent implements OnInit {
       //   this.changeProgressBar('active');
       // }
     });
+    this.genericService.getStates().subscribe((data: any) => {
+      this.states = data.message;
+    });
     this.createForm();
+    if(this.action == 'view' || this.action == 'edit')
+      this.setFormControlValue();
   }
 
   changeProgressBar(status: string) {
@@ -65,6 +72,20 @@ export class ContactInfoComponent implements OnInit {
       }
       this.progressStatus.contactInfo = status;
       this.dataService.changeStatus(this.progressStatus);
+  }
+
+  private setFormControlValue(): void {
+    this.leadDetails = this.genericService.getLeadData();
+    console.log(this.leadDetails);
+    const controls = this.contactInfoForm.controls;
+    if (this.leadDetails) {
+      Object.keys(controls).forEach((control: string) => {
+        const value = this.leadDetails[control]
+          ? this.leadDetails[control]
+          : '';
+        controls[control].patchValue(value);
+      });
+    }
   }
 
   private createForm(): void {
@@ -119,6 +140,7 @@ export class ContactInfoComponent implements OnInit {
           if(this.action == 'create' || this.action == 'edit') {
             this.changeProgressBar('completed');
           }
+          this.genericService.setSelectedState(this.contactInfoForm.controls.state.value);
           this.navigateToUtilityInfo();
         }
       });

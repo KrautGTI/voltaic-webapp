@@ -11,6 +11,8 @@ import { AuthService } from './auth.service';
 export class GenericService {
   private authServiceUrl = environment.apiBaseUrl;
   private isAdmin: boolean = false;
+  private leadDetails:any;
+  private stateId:any;
 
   constructor(
     private httpClient: HttpClient,
@@ -25,6 +27,22 @@ export class GenericService {
   public generateOTP(email: any) {
     const url = this.authServiceUrl + 'user/otpGen';
     return this.httpClient.post(url, email);
+  }
+
+  public setLeadData(leadDetails: any) {
+    this.leadDetails = leadDetails;
+  }
+
+  public getLeadData() {
+    return this.leadDetails;
+  }
+
+  public setSelectedState(stateId: any) {
+    this.stateId = stateId;
+  }
+
+  public getSelectedState() {
+    return this.stateId;
   }
 
   public setPassoword(resetForm: any) {
@@ -202,5 +220,15 @@ export class GenericService {
   public getFolders() {
     const url = this.authServiceUrl + 'folder/getFolders';
     return this.httpClient.post(url, null);
+  }
+
+  public getStates() {
+    const url = this.authServiceUrl + 'master/getStates';
+    return this.httpClient.get(url);
+  }
+
+  public getUtiliesByStates(data: any): any {
+    const url = this.authServiceUrl + 'master/getUtiliesByStates';
+    return this.httpClient.post(url, data);
   }
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { GenericService } from '../../../service/generic.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
@@ -22,14 +22,16 @@ import { Location } from '@angular/common';
 })
 export class UtilityInfoComponent implements OnInit {
 
+  leadDetails:any;
   public utilityInfoForm: FormGroup = new FormGroup({});
   isSubmitClicked = false;
   public label: { [key: string]: FormField } = UtilityInfoLabels;
-  utilityCompany = [];
   leadId = '';
   action = '';
   sub: any;
   progressStatus:any;
+  stateData:any;
+  utilityCompany:any = [];
   constructor(
     private genericService: GenericService,
     private route: ActivatedRoute,
@@ -50,7 +52,15 @@ export class UtilityInfoComponent implements OnInit {
         this.changeProgressBar('active');
       }
     });
+    let stateId = this.genericService.getSelectedState();
+    this.stateData = {stateId:stateId};
+    this.genericService.getUtiliesByStates(this.stateData).subscribe((data: any) => {
+      this.utilityCompany = data.message;
+    });
+    
     this.createForm();
+    if(this.action == 'view' || this.action == 'edit')
+      this.setFormControlValue();
   }
 
   changeProgressBar(status: string) {
@@ -62,6 +72,20 @@ export class UtilityInfoComponent implements OnInit {
       }
       this.progressStatus.utilityInfo = status;
       this.dataService.changeStatus(this.progressStatus);
+  }
+
+  private setFormControlValue(): void {
+    this.leadDetails = this.genericService.getLeadData();
+    console.log(this.leadDetails);
+    const controls = this.utilityInfoForm.controls;
+    if (this.leadDetails) {
+      Object.keys(controls).forEach((control: string) => {
+        const value = this.leadDetails[control]
+          ? this.leadDetails[control]
+          : '';
+        controls[control].patchValue(value);
+      });
+    }
   }
 
   private createForm(): void {

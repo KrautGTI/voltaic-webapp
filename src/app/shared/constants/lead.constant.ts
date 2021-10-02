@@ -3,7 +3,7 @@ import { ErrorType, FieldTypes, FormField } from '../models/util.model';
 export const ContactInfoLabels: { [key: string]: FormField } = {
   firstNamePrimary: {
     fieldLabel: 'First Name',
-    fieldName: 'Primary_Owner_1',
+    fieldName: 'first_name',
     placeholder: '',
     associatedfieldName: '',
     fieldType: FieldTypes.TEXT,
@@ -19,7 +19,7 @@ export const ContactInfoLabels: { [key: string]: FormField } = {
   },
   lastNamePrimary: {
     fieldLabel: 'Last Name',
-    fieldName: 'Last_Name_Primary',
+    fieldName: 'last_name',
     placeholder: '',
     associatedfieldName: '',
     fieldType: FieldTypes.TEXT,
@@ -30,7 +30,7 @@ export const ContactInfoLabels: { [key: string]: FormField } = {
   },
   phonePrimary: {
     fieldLabel: 'Phone',
-    fieldName: 'Phone_Primary',
+    fieldName: 'phone',
     placeholder: '',
     associatedfieldName: '',
     fieldType: FieldTypes.TEXT,
@@ -46,7 +46,7 @@ export const ContactInfoLabels: { [key: string]: FormField } = {
   },
   emailPrimary: {
     fieldLabel: 'Email',
-    fieldName: 'Email_Primary',
+    fieldName: 'email',
     placeholder: '',
     associatedfieldName: '',
     fieldType: FieldTypes.EMAIL,
@@ -121,7 +121,7 @@ export const ContactInfoLabels: { [key: string]: FormField } = {
 export const UtilityInfoLabels: { [key: string]: FormField } = {
     utilityCompany: {
         fieldLabel: 'Utility Company',
-        fieldName: 'Utility_Company',
+        fieldName: 'company',
         placeholder: '',
         associatedfieldName: '',
         fieldType: FieldTypes.SELECT,
@@ -156,7 +156,7 @@ export const UtilityInfoLabels: { [key: string]: FormField } = {
       },
       annualBill: {
         fieldLabel: 'Annual Bill ($)',
-        fieldName: 'Annual_Bill',
+        fieldName: 'annual_bill',
         placeholder: '',
         associatedfieldName: '',
         fieldType: FieldTypes.TEXT,
@@ -167,7 +167,7 @@ export const UtilityInfoLabels: { [key: string]: FormField } = {
       },
       annualUsage: {
         fieldLabel: 'Annual Usage (kWh)',
-        fieldName: 'Annual_Usage',
+        fieldName: 'annual_usage',
         placeholder: '',
         associatedfieldName: '',
         fieldType: FieldTypes.TEXT,
@@ -181,7 +181,7 @@ export const UtilityInfoLabels: { [key: string]: FormField } = {
 export const LeadInfoLabels: { [key: string]: FormField } = {
     leadSource: {
         fieldLabel: 'Lead Source',
-        fieldName: 'Lead_Source',
+        fieldName: 'master_lead_source_id',
         placeholder: '',
         associatedfieldName: '',
         fieldType: FieldTypes.SELECT,
@@ -194,7 +194,7 @@ export const LeadInfoLabels: { [key: string]: FormField } = {
     },
     leadGenerator: {
       fieldLabel: 'Lead Generator',
-      fieldName: 'Lead_Generator',
+      fieldName: 'master_lead_owner_id',
       placeholder: '',
       associatedfieldName: '',
       fieldType: FieldTypes.SELECT,
@@ -207,7 +207,7 @@ export const LeadInfoLabels: { [key: string]: FormField } = {
     },
     salesRep: {
       fieldLabel: 'Sales Rep',
-      fieldName: 'Sales_Rep',
+      fieldName: 'sales_rep_id',
       placeholder: '',
       associatedfieldName: '',
       fieldType: FieldTypes.SELECT,
@@ -220,7 +220,7 @@ export const LeadInfoLabels: { [key: string]: FormField } = {
     },
     primaryLanguage: {
       fieldLabel: 'Primary Language',
-      fieldName: 'Primary_Language',
+      fieldName: 'primary_lang',
       placeholder: '',
       associatedfieldName: '',
       fieldType: FieldTypes.SELECT,
@@ -233,7 +233,7 @@ export const LeadInfoLabels: { [key: string]: FormField } = {
     },
     homeType: {
       fieldLabel: 'Home Type',
-      fieldName: 'Home_Type',
+      fieldName: 'home_type',
       placeholder: '',
       associatedfieldName: '',
       fieldType: FieldTypes.SELECT,
@@ -246,7 +246,7 @@ export const LeadInfoLabels: { [key: string]: FormField } = {
     },
     hoa: {
       fieldLabel: 'HOA',
-      fieldName: 'HOA',
+      fieldName: 'hoa',
       placeholder: '',
       associatedfieldName: '',
       fieldType: FieldTypes.SELECT,
@@ -262,7 +262,7 @@ export const LeadInfoLabels: { [key: string]: FormField } = {
 export const ScheduleAppointmentLabels: { [key: string]: FormField } = {
   salesRep: {
     fieldLabel: 'Sales Rep',
-    fieldName: 'Sales_Rep',
+    fieldName: 'sales_rep_id',
     placeholder: '',
     associatedfieldName: '',
     fieldType: FieldTypes.SELECT,
@@ -275,7 +275,7 @@ export const ScheduleAppointmentLabels: { [key: string]: FormField } = {
   },
     date: {
         fieldLabel: 'Date',
-        fieldName: 'Date',
+        fieldName: 'appointment_date',
         placeholder: '',
         associatedfieldName: '',
         fieldType: FieldTypes.DATE,
@@ -286,7 +286,7 @@ export const ScheduleAppointmentLabels: { [key: string]: FormField } = {
       },
     time: {
         fieldLabel: 'Time',
-        fieldName: 'Time',
+        fieldName: 'appointment_time',
         placeholder: '',
         associatedfieldName: '',
         fieldType: FieldTypes.SELECT,

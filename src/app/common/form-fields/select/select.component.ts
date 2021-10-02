@@ -104,7 +104,7 @@ export class SelectComponent implements OnInit, OnChanges {
     }
     this.groupControl?.setValidators(validators);
     this.groupControl?.updateValueAndValidity();
-    this.setEditableStatus();
+   // this.setEditableStatus();
   }
 
   get groupControl(): AbstractControl | null {
@@ -117,18 +117,21 @@ export class SelectComponent implements OnInit, OnChanges {
     this.cstChange.emit(e.target.value);
   }
   public onClickEdit(): void {
+    // alert('2');
     if (!this.isEditable) {
       setTimeout(() => {
         this.inputRef?.nativeElement.focus();
       });
     }
-    this.isEditable = !this.isEditable;
+   // this.isEditable = !this.isEditable;
     this.setEditableStatus();
   }
   private setEditableStatus(): void {
     if (this.isEditable) {
+      // alert('3');
       this.groupControl?.enable();
     } else {
+      // alert('4');
       this.groupControl?.disable();
     }
   }

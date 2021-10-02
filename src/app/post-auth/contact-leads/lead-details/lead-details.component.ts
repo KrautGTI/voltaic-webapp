@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { DataService } from 'src/app/service/data.service';
+import { GenericService } from '../../../service/generic.service';
+import { NotificationService } from 'src/app/service/notification.service';
 
 @Component({
   selector: 'app-lead-details',
@@ -12,7 +14,9 @@ export class LeadDetailsComponent implements OnInit {
   action = '';
   sub: any;
   progressStatus:any;
-  constructor(private route: ActivatedRoute, private router: Router,private dataService: DataService,) { }
+  leadDetails:any;
+  constructor(private route: ActivatedRoute, private router: Router,private dataService: DataService,
+    private genericService: GenericService, private notificationService: NotificationService) { }
 
   ngOnInit(): void {
    this.sub = this.route.queryParams.subscribe((params) => {
@@ -22,7 +26,9 @@ export class LeadDetailsComponent implements OnInit {
       // this.router.navigate(['post-auth/leads/lead-details/contact-info'], {
       //   queryParams: { leadId: this.leadId, action: this.action }
       // });
+      
     });
+    
   }
 
   changeProgressBar() {

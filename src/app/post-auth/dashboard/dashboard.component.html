@@ -1,3 +1,78 @@
-<div class="d-flex">
+<!-- <div class="d-flex">
     <img src="../../../assets/images/5e62f6f4dad6467a6ba6a589_pie sample 3.jpeg" alt="" class="img-fluid">
+</div> -->
+<div class="row">
+  <div class="col-sm-12 padding-right-20">
+    <div class="card shadow rounded">
+      <div class="card-title-header datePicker">
+        <span class="font-bold font-18">Lead Genaration</span>
+      </div>
+      <div class="card-body">
+        <div style="display: flex;justify-content: center;">
+          <!-- <canvas baseChart 
+              [datasets]="barChartData"
+              [labels]="barChartLabels"
+              [options]="barChartOptions"
+              [plugins]="barChartPlugins"
+              [legend]="barChartLegend"
+              [chartType]="barChartType">
+            </canvas> -->
+          <ngx-charts-bar-vertical-stacked
+            [view]="view"
+            [scheme]="colorScheme"
+            [results]="chartData"
+            [gradient]="gradient"
+            [xAxis]="showXAxis"
+            [yAxis]="showYAxis"
+            [legend]="showLegend"
+            [showXAxisLabel]="showXAxisLabel"
+            [showYAxisLabel]="showYAxisLabel"
+            [xAxisLabel]="xAxisLabel"
+            [yAxisLabel]="yAxisLabel"
+            [animations]="animations"
+            (select)="onSelect($event)"
+          >
+          </ngx-charts-bar-vertical-stacked>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-sm-12 padding-right-20">
+    <div class="card shadow rounded">
+      <div class="card-title-header datePicker">
+        <span class="font-bold font-18">Active Project by Stage</span>
+      </div>
+      <div class="card-body">
+        <div style="display: flex;justify-content: center;">
+          <!-- <canvas baseChart 
+              [datasets]="barChartData"
+              [labels]="barChartLabels"
+              [options]="barChartOptions"
+              [plugins]="barChartPlugins"
+              [legend]="barChartLegend"
+              [chartType]="barChartType">
+            </canvas> -->
+          <ngx-charts-bar-vertical
+            [view]="viewBar"
+            [scheme]="colorSchemeBar"
+            [results]="chartDataBar"
+            [gradient]="gradient"
+            [xAxis]="showXAxis"
+            [yAxis]="showYAxis"
+            [legend]="showLegend"
+            [showXAxisLabel]="showXAxisLabel"
+            [showYAxisLabel]="showYAxisLabel"
+            [xAxisLabel]="xAxisLabelBar"
+            [yAxisLabel]="yAxisLabelBar"
+            [animations]="animations"
+            (select)="onSelectBar($event)"
+          >
+          </ngx-charts-bar-vertical>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

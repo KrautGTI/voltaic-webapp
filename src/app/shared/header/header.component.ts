@@ -88,6 +88,12 @@ export class HeaderComponent implements OnInit {
     if (this.router.url.includes('proposals')) {
       this.urlname = 'Proposals';
     }
+    if (this.router.url.includes('event')) {
+      this.urlname = 'Events';
+    }
+    if (this.router.url.includes('create-events')) {
+      this.urlname = 'Create Events';
+    }
   }
 
   logout() {

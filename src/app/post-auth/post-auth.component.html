@@ -52,6 +52,11 @@
                            <span class="plusImg"><img src="../../assets/images/plus-lg.svg"></span> Create Proposal
                         </button>
                     </div> 
+                    <div *ngIf="router.url.includes('events') && !router.url.includes('create-events')">
+                        <button class="btn btn-primary createBtn" type="submit" (click)="goToEvent()">
+                           <span class="plusImg"><img src="../../assets/images/plus-lg.svg"></span> Create Event
+                        </button>
+                    </div> 
                 </div> 
             </div>
             <div class="mainSection">

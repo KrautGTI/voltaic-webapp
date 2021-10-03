@@ -57,7 +57,7 @@ export const ContactInfoLabels: { [key: string]: FormField } = {
   },
   firstNameSecondary: {
     fieldLabel: 'First Name',
-    fieldName: 'Secondary_Owner_1',
+    fieldName: 'first_name_secondary',
     placeholder: '',
     associatedfieldName: '',
     fieldType: FieldTypes.TEXT,
@@ -68,7 +68,7 @@ export const ContactInfoLabels: { [key: string]: FormField } = {
   },
   lastNameSecondary: {
     fieldLabel: 'Last Name',
-    fieldName: 'Last_Name_Secondary',
+    fieldName: 'last_name_secondary',
     placeholder: '',
     associatedfieldName: '',
     fieldType: FieldTypes.TEXT,
@@ -79,7 +79,7 @@ export const ContactInfoLabels: { [key: string]: FormField } = {
   },
   phoneSecondary: {
     fieldLabel: 'Phone',
-    fieldName: 'Phone_Secondary',
+    fieldName: 'phone_secondary',
     placeholder: '',
     associatedfieldName: '',
     fieldType: FieldTypes.TEXT,
@@ -95,7 +95,7 @@ export const ContactInfoLabels: { [key: string]: FormField } = {
   },
   emailSecondary: {
     fieldLabel: 'Email',
-    fieldName: 'Email_Secondary',
+    fieldName: 'email_secondary',
     placeholder: '',
     associatedfieldName: '',
     fieldType: FieldTypes.EMAIL,
@@ -106,7 +106,7 @@ export const ContactInfoLabels: { [key: string]: FormField } = {
   },
   notes: {
     fieldLabel: 'Notes',
-    fieldName: 'Notes',
+    fieldName: 'notes',
     placeholder: '',
     associatedfieldName: '',
     fieldType: FieldTypes.TEXTAREA,
@@ -138,9 +138,9 @@ export const UtilityInfoLabels: { [key: string]: FormField } = {
         placeholder: '',
         associatedfieldName: '',
         fieldType: FieldTypes.FILE,
-        isEditable: false,
         isRequired: false,
         isDisabled: false,
+        isImage: true,
         errors: []
       },
       utilityBillTwo: {
@@ -149,9 +149,9 @@ export const UtilityInfoLabels: { [key: string]: FormField } = {
         placeholder: '',
         associatedfieldName: '',
         fieldType: FieldTypes.FILE,
-        isEditable: false,
         isRequired: false,
         isDisabled: false,
+        isImage: true,
         errors: []
       },
       annualBill: {

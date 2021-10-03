@@ -7,6 +7,8 @@ import { AbstractControl,
   FormGroup,
   ValidatorFn } from '@angular/forms';
 import Swal from 'sweetalert2';
+import { forkJoin, Observable, of, Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 import { FormField, UserDetailsModel } from 'src/app/shared/models/util.model';
 import { AuthService } from 'src/app/service/auth.service';
 import { NotificationService } from 'src/app/service/notification.service';
@@ -21,7 +23,7 @@ import { Location } from '@angular/common';
   styleUrls: ['./utility-info.component.scss']
 })
 export class UtilityInfoComponent implements OnInit {
-
+  private unsubscribe$: Subject<boolean> = new Subject();
   leadDetails:any;
   public utilityInfoForm: FormGroup = new FormGroup({});
   isSubmitClicked = false;
@@ -32,6 +34,8 @@ export class UtilityInfoComponent implements OnInit {
   progressStatus:any;
   stateData:any;
   utilityCompany:any = [];
+  utilityBill_1: any = "";
+  utilityBill_2: any = "";
   constructor(
     private genericService: GenericService,
     private route: ActivatedRoute,
@@ -46,8 +50,12 @@ export class UtilityInfoComponent implements OnInit {
 
   ngOnInit(): void {
     this.sub = this.route.queryParams.subscribe((params) => {
-      this.leadId = params.leadId;
       this.action = params.action;
+      if(this.action == 'create') {
+        this.leadId = '';
+      } else if(this.action == 'edit'){
+        this.leadId = params.leadId;
+      }
       if(this.action == 'create' || this.action == 'edit') {
         this.changeProgressBar('active');
       }
@@ -112,37 +120,56 @@ export class UtilityInfoComponent implements OnInit {
     return this.utilityInfoForm.get(name);
   }
 
-  submitUtilityInfo() {
+  public getImage(event: any, fieldName: any) {
+    if(fieldName == 'utility_bill_1')
+      this.utilityBill_1 = event;
+    if(fieldName == 'utility_bill_2')
+      this.utilityBill_2 = event;
+  }
+
+  public submitUtilityInfo() {
     this.isSubmitClicked = true;
     console.log(this.utilityInfoForm);
-    if (
-      this.utilityInfoForm.valid
-    ) {
-      Swal.fire({
-        text: 'Do You Want To Save Changes?',
-        icon: 'question',
-        confirmButtonColor: '#A239CA',
-        position: 'center',
-        confirmButtonText: 'Yes',
-        showConfirmButton: true,
-        showCancelButton: true,
-        cancelButtonText: 'No',
-      }).then((res) => {
-        if (res.isConfirmed) {
-          const utilityInfoData = {
-          };
-          console.log(utilityInfoData);
-          if(this.action == 'create' || this.action == 'edit') {
-            this.changeProgressBar('completed');
+    if (this.utilityInfoForm.valid) {
+        let saveData = { ...this.utilityInfoForm.value, id: this.leadId };
+        saveData['utility_bill_1'] = this.utilityBill_1;
+        saveData['utility_bill_2'] = this.utilityBill_2;
+        console.log('saveData=', saveData);
+        Swal.fire({
+          text: 'Do You Want To Save Changes?',
+          icon: 'question',
+          confirmButtonColor: '#A239CA',
+          position: 'center',
+          confirmButtonText: 'Yes',
+          showConfirmButton: true,
+          showCancelButton: true,
+          cancelButtonText: 'No',
+        }).then((res) => {
+          if (res.isConfirmed) {
+            if(this.action == 'create') {
+              this.genericService.addUtilityInfo(saveData).pipe(takeUntil(this.unsubscribe$)).subscribe((dataValue: any) => {
+                  this.navigateToLeadInfo();
+                }, (error: any) => {
+                  const errMsg = 'Unable To Save The Data';
+                  this.notificationService.error(errMsg);
+                });
+            } else if(this.action == 'edit') {
+              this.genericService.editUtilityInfo(saveData).pipe(takeUntil(this.unsubscribe$)).subscribe((dataValue: any) => {
+                this.navigateToLeadInfo();
+              }, (error: any) => {
+                const errMsg = 'Unable To Save The Data';
+                this.notificationService.error(errMsg);
+              });
+            }  
           }
-          this.navigateToLeadInfo();
-        }
-      });
+        });
     }
   }
 
   ngOnDestroy() {
     this.sub.unsubscribe();
+    this.unsubscribe$.next(true);
+    this.unsubscribe$.complete();
   }
 
   editUtilityInfo() {
@@ -150,12 +177,13 @@ export class UtilityInfoComponent implements OnInit {
     this.changeProgressBar('active');
     this.router.navigate(['post-auth/leads/lead-details/utility-info'], {
       queryParams: { leadId: this.leadId, action: this.action }
-    });
-    // this.location.replaceState('post-auth/leads/lead-details/utility-info?leadId=' + 
-    // this.leadId + '&action=' + this.action);   
+    }); 
   }
 
   navigateToLeadInfo() {
+    if(this.action == 'create' || this.action == 'edit') {
+      this.changeProgressBar('completed');
+    }
     if(this.action == 'create') {
       this.router.navigate(['post-auth/leads/lead-details/lead-info'], {
         queryParams: { action: this.action }

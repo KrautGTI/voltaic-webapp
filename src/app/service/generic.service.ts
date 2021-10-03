@@ -231,4 +231,55 @@ export class GenericService {
     const url = this.authServiceUrl + 'master/getUtiliesByStates';
     return this.httpClient.post(url, data);
   }
+
+  public getLeadsMaster() {
+    const url = this.authServiceUrl + 'master/getLeadsMaster';
+    return this.httpClient.get(url);
+  }
+
+  public getLeadsMasterById(leadId: any) {
+    const url = this.authServiceUrl + 'master/getLeadsMasterById/' + leadId;
+    return this.httpClient.get(url);
+  }
+
+  public addContactInfo(data: Folder): any {
+    const url = this.authServiceUrl + 'master/addLead/contactInfo';
+    return this.httpClient.post(url, data);
+  }
+
+  public addLeadInfo(data: Folder): any {
+    const url = this.authServiceUrl + 'master/addLead/leadInfo';
+    return this.httpClient.post(url, data);
+  }
+
+  public addUtilityInfo(data: Folder): any {
+    const url = this.authServiceUrl + 'master/addLead/utilityInfo';
+    return this.httpClient.post(url, data);
+  }
+
+  public addAppointment(data: Folder): any {
+    const url = this.authServiceUrl + 'master/addLead/scheduleAppointment';
+    return this.httpClient.post(url, data);
+  }
+
+  public editContactInfo(data: Folder): any {
+    const url = this.authServiceUrl + 'master/editLead/contactInfo';
+    return this.httpClient.post(url, data);
+  }
+
+  public editUtilityInfo(data: Folder): any {
+    const url = this.authServiceUrl + 'master/editLead/utilityInfo';
+    return this.httpClient.post(url, data);
+  }
+
+  public editLeadInfo(data: Folder): any {
+    const url = this.authServiceUrl + 'master/editLead/leadInfo';
+    return this.httpClient.post(url, data);
+  }
+
+  public editAppointment(data: Folder): any {
+    const url = this.authServiceUrl + 'master/editLead/scheduleAppointment';
+    return this.httpClient.post(url, data);
+  }
+
 }

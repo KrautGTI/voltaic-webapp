@@ -6,6 +6,8 @@ import { AbstractControl,
   FormBuilder,
   FormGroup,
   ValidatorFn } from '@angular/forms';
+import { forkJoin, Observable, of, Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 import Swal from 'sweetalert2';
 import { FormField, UserDetailsModel } from 'src/app/shared/models/util.model';
 import { AuthService } from 'src/app/service/auth.service';
@@ -22,6 +24,7 @@ import { DataService } from 'src/app/service/data.service';
   styleUrls: ['./contact-info.component.scss']
 })
 export class ContactInfoComponent implements OnInit {
+  private unsubscribe$: Subject<boolean> = new Subject();
   isSubmitClicked = false;
 
   public label: { [key: string]: FormField } = ContactInfoLabels;
@@ -117,12 +120,14 @@ export class ContactInfoComponent implements OnInit {
   public getControl(name: string): AbstractControl | null {
     return this.contactInfoForm.get(name);
   }
+
   submitContactInfo() {
     this.isSubmitClicked = true;
     console.log(this.contactInfoForm);
-    if (
-      this.contactInfoForm.valid
-    ) {
+    this.navigateToUtilityInfo();
+    if (this.contactInfoForm.valid) {
+      const saveData = { ...this.contactInfoForm.value };
+      console.log('saveData=', saveData);
       Swal.fire({
         text: 'Do You Want To Save Changes?',
         icon: 'question',
@@ -134,14 +139,21 @@ export class ContactInfoComponent implements OnInit {
         cancelButtonText: 'No',
       }).then((res) => {
         if (res.isConfirmed) {
-          const contactInfoData = {
-          };
-          console.log(contactInfoData);
-          if(this.action == 'create' || this.action == 'edit') {
-            this.changeProgressBar('completed');
-          }
-          this.genericService.setSelectedState(this.contactInfoForm.controls.state.value);
-          this.navigateToUtilityInfo();
+          if(this.action == 'create') {
+            this.genericService.addContactInfo(saveData).pipe(takeUntil(this.unsubscribe$)).subscribe((dataValue: any) => {
+                this.navigateToUtilityInfo();
+              }, (error: any) => {
+                const errMsg = 'Unable To Save The Data';
+                this.notificationService.error(errMsg);
+              });
+          } else if(this.action == 'edit') {
+            this.genericService.editContactInfo(saveData).pipe(takeUntil(this.unsubscribe$)).subscribe((dataValue: any) => {
+              this.navigateToUtilityInfo();
+            }, (error: any) => {
+              const errMsg = 'Unable To Save The Data';
+              this.notificationService.error(errMsg);
+            });
+          }  
         }
       });
     }
@@ -149,17 +161,21 @@ export class ContactInfoComponent implements OnInit {
   
   ngOnDestroy() {
     this.sub.unsubscribe();
+    this.unsubscribe$.next(true);
+    this.unsubscribe$.complete();
   }
   editContactInfo() {
-    this.action = 'edit';
-    // this.location.replaceState('post-auth/leads/lead-details/contact-info?leadId=' + 
-    // this.leadId + '&action=' + this.action);   
+    this.action = 'edit'; 
     this.changeProgressBar('active');
     this.router.navigate(['post-auth/leads/lead-details/contact-info'], {
       queryParams: { leadId: this.leadId, action: this.action }
     });
   }
   navigateToUtilityInfo() {
+    if(this.action == 'create' || this.action == 'edit') {
+      this.changeProgressBar('completed');
+    }
+    this.genericService.setSelectedState(this.contactInfoForm.controls.state.value);
     if(this.action == 'create') {
       this.router.navigate(['post-auth/leads/lead-details/utility-info'], {
         queryParams: { action: this.action }

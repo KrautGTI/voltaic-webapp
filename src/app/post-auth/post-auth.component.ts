@@ -130,11 +130,11 @@ export class PostAuthComponent implements OnInit, AfterViewInit {
   // }
 
 
-  goToCreateContact() {
+  public goToCreateContact() {
     this.router.navigate(['post-auth/contacts/create-contact']);
   }
 
-  goToCreateDeal() {
+  public goToCreateDeal() {
     this.router.navigate(['post-auth/deals/create-deal']);
   }
   public goToCreateAccount(): void {
@@ -151,6 +151,10 @@ export class PostAuthComponent implements OnInit, AfterViewInit {
     this.router.navigate(['post-auth/leads/lead-details/contact-info'], {
       queryParams: { action: action }
     });
+  }
+
+  public goToEvent(): void {
+    this.router.navigate(['post-auth/create-events']);
   }
 
   // ngOnDestroy() {

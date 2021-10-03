@@ -215,9 +215,6 @@ export class LeadsEventsComponent implements OnInit {
   sizeToFit() {
     this.gridApi?.sizeColumnsToFit();
   }
-  createNew() {
-    this.router.navigate(['post-auth/create-events'])
-  }
   onRowClick(event: any) {
     // console.log(event.data.id);
     // this.router.navigate(['post-auth/contact/details'], { queryParams: { contactId: event.data.id } });

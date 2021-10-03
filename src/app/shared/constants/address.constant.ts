@@ -3,7 +3,7 @@ import { ErrorType, FieldTypes, FormField } from '../models/util.model';
 export const AddressLabels: { [key: string]: FormField } = {
       address: {
         fieldLabel: 'Address',
-        fieldName: 'Address',
+        fieldName: 'address',
         placeholder: '',
         associatedfieldName: '',
         fieldType: FieldTypes.TEXT,
@@ -31,7 +31,7 @@ export const AddressLabels: { [key: string]: FormField } = {
       },
       street2: {
         fieldLabel: 'Street 2',
-        fieldName: 'Street_2',
+        fieldName: 'street_2',
         placeholder: '',
         associatedfieldName: '',
         fieldType: FieldTypes.TEXT,

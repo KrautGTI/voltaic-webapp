@@ -141,7 +141,8 @@ export class ContactInfoComponent implements OnInit {
         if (res.isConfirmed) {
           if(this.action == 'create') {
             this.genericService.addContactInfo(saveData).pipe(takeUntil(this.unsubscribe$)).subscribe((dataValue: any) => {
-                this.navigateToUtilityInfo();
+              this.genericService.setLeadId(dataValue.id);
+              this.navigateToUtilityInfo();
               }, (error: any) => {
                 const errMsg = 'Unable To Save The Data';
                 this.notificationService.error(errMsg);

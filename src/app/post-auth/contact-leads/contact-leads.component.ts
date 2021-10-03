@@ -140,7 +140,7 @@ export class ContactLeadsComponent implements OnInit {
       },
       {
         headerName: 'Lead Generator',
-        field: 'ownerName',
+        field: 'master_lead_owner_id',
         cellStyle: {
           color: '#212121',
           'font-size': '14px',
@@ -269,14 +269,14 @@ export class ContactLeadsComponent implements OnInit {
   onGridReady(params: any) {
     this.gridApi = params.api;
     this.gridColumnApi = params.columnApi;
-    this.genericService.getLeads().subscribe(
+    this.genericService.getLeadsMaster().subscribe(
       (userList: any) => {
         console.log(userList);
         if (
           userList?.message != 'Server Error' &&
           userList?.error?.name != 'TokenExpiredError'
         ) {
-          this.manageUserList = userList.message;
+          this.manageUserList = userList.data;
           this.rowData = this.manageUserList;
           this.sizeToFit();
         } else if (userList?.error?.name === 'TokenExpiredError') {

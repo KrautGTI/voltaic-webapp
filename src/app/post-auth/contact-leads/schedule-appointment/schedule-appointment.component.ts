@@ -48,7 +48,7 @@ export class ScheduleAppointmentComponent implements OnInit {
     this.sub = this.route.queryParams.subscribe((params) => {
       this.action = params.action;
       if(this.action == 'create') {
-        this.leadId = '';
+        this.leadId = this.genericService.getLeadId();
       } else if(this.action == 'edit'){
         this.leadId = params.leadId;
       }

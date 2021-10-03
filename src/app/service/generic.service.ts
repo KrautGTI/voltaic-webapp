@@ -13,6 +13,7 @@ export class GenericService {
   private isAdmin: boolean = false;
   private leadDetails:any;
   private stateId:any;
+  private leadId:any;
 
   constructor(
     private httpClient: HttpClient,
@@ -35,6 +36,14 @@ export class GenericService {
 
   public getLeadData() {
     return this.leadDetails;
+  }
+
+  public setLeadId(leadId: any) {
+    this.leadId = leadId;
+  }
+
+  public getLeadId() {
+    return this.leadId;
   }
 
   public setSelectedState(stateId: any) {

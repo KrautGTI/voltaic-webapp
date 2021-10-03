@@ -25,6 +25,7 @@
                                 [isEditable]="action == 'edit' || action == 'create'"
                                 [group]="utilityInfoForm"
                             ></app-select>
+                            <div class="customError" *ngIf="!matchCompany">Please change utility company according to state</div>
                         </div>
                     </div>
                     <div class="row">

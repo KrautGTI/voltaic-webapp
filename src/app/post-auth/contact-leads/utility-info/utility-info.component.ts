@@ -36,6 +36,7 @@ export class UtilityInfoComponent implements OnInit {
   utilityCompany:any = [];
   utilityBill_1: any = "";
   utilityBill_2: any = "";
+  matchCompany = true;
   constructor(
     private genericService: GenericService,
     private route: ActivatedRoute,
@@ -61,11 +62,13 @@ export class UtilityInfoComponent implements OnInit {
       }
     });
     let stateId = this.genericService.getSelectedState();
-    this.stateData = {stateId:stateId};
-    this.genericService.getUtiliesByStates(this.stateData).subscribe((data: any) => {
-      this.utilityCompany = data.message;
-    });
-    
+    if(stateId) {
+      this.stateData = {stateId:stateId};
+      console.log(this.stateData);
+      this.genericService.getUtiliesByStates(this.stateData).subscribe((data: any) => {
+        this.utilityCompany = data.message;
+      });
+    }
     this.createForm();
     if(this.action == 'view' || this.action == 'edit')
       this.setFormControlValue();
@@ -93,6 +96,18 @@ export class UtilityInfoComponent implements OnInit {
           : '';
         controls[control].patchValue(value);
       });
+      // if(this.utilityCompany.length > 0) {
+      //   this.utilityCompany.forEach((company:any) => {
+      //     if(company.name == this.leadDetails.company) {
+      //       this.matchCompany = true;
+      //       return;
+      //     }
+      //     this.matchCompany = false;
+      //   });
+      // }
+      if(this.utilityInfoForm.controls.company.value == '') {
+        this.matchCompany = false;
+      }
     }
   }
 

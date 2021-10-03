@@ -269,7 +269,7 @@ export class ContactLeadsComponent implements OnInit {
   onGridReady(params: any) {
     this.gridApi = params.api;
     this.gridColumnApi = params.columnApi;
-    this.genericService.getLeadsMaster().subscribe(
+    this.genericService.getLeads().subscribe(
       (userList: any) => {
         console.log(userList);
         if (

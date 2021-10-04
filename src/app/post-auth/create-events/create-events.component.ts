@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { GenericService } from '../../service/generic.service';
 
 @Component({
   selector: 'app-create-events',
@@ -7,9 +8,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CreateEventsComponent implements OnInit {
 
-  constructor() { }
+  constructor(private genericService: GenericService) { }
 
   ngOnInit(): void {
+    let leadDetails = this.genericService.getLeadData();
+    console.log(leadDetails);
   }
 
 }

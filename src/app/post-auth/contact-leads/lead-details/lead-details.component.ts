@@ -42,6 +42,7 @@ export class LeadDetailsComponent implements OnInit {
         this.progressStatus.contactInfo = 'completed';
         this.progressStatus.utilityInfo = 'completed';
         this.progressStatus.leadInfo = 'completed';
+        this.progressStatus.appointment = 'completed';
       } if(this.action == 'create') {
         this.progressStatus.contactInfo = 'active';
         this.progressStatus.utilityInfo = 'notVisited';

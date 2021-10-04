@@ -148,14 +148,14 @@ export class LeadInfoComponent implements OnInit {
       }).then((res) => {
         if (res.isConfirmed) {
           if(this.action == 'create') {
-            this.genericService.addLeadInfo(saveData).pipe(takeUntil(this.unsubscribe$)).subscribe((dataValue: any) => {
+            this.genericService.addLeadInfo(saveData).subscribe((dataValue: any) => {
                 this.navigateToScheduleAppointment();
               }, (error: any) => {
                 const errMsg = 'Unable To Save The Data';
                 this.notificationService.error(errMsg);
               });
           } else if(this.action == 'edit') {
-            this.genericService.editLeadInfo(saveData).pipe(takeUntil(this.unsubscribe$)).subscribe((dataValue: any) => {
+            this.genericService.editLeadInfo(saveData).subscribe((dataValue: any) => {
               this.navigateToScheduleAppointment();
             }, (error: any) => {
               const errMsg = 'Unable To Save The Data';
@@ -169,8 +169,8 @@ export class LeadInfoComponent implements OnInit {
 
   ngOnDestroy() {
     this.sub.unsubscribe();
-    this.unsubscribe$.next(true);
-    this.unsubscribe$.complete();
+    // this.unsubscribe$.next(true);
+    // this.unsubscribe$.complete();
   }
 
   editLeadInfo() {

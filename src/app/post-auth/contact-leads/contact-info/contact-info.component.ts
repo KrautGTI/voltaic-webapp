@@ -124,9 +124,12 @@ export class ContactInfoComponent implements OnInit {
   submitContactInfo() {
     this.isSubmitClicked = true;
     console.log(this.contactInfoForm);
-    this.navigateToUtilityInfo();
     if (this.contactInfoForm.valid) {
-      const saveData = { ...this.contactInfoForm.value };
+      let saveData:any = {};
+      if(this.action == 'create')
+        saveData = { ...this.contactInfoForm.value };
+      else
+        saveData = { ...this.contactInfoForm.value, id: this.leadId };
       console.log('saveData=', saveData);
       Swal.fire({
         text: 'Do You Want To Save Changes?',
@@ -140,15 +143,20 @@ export class ContactInfoComponent implements OnInit {
       }).then((res) => {
         if (res.isConfirmed) {
           if(this.action == 'create') {
-            this.genericService.addContactInfo(saveData).pipe(takeUntil(this.unsubscribe$)).subscribe((dataValue: any) => {
-              this.genericService.setLeadId(dataValue.id);
-              this.navigateToUtilityInfo();
-              }, (error: any) => {
+            this.genericService.addContactInfo(saveData).subscribe((dataValue: any) => {
+              if(dataValue.id && dataValue.id != '') {
+                this.genericService.setLeadId(dataValue.id);
+                this.navigateToUtilityInfo();
+              } else {
+                const errMsg = 'Unable To Save The Data';
+                this.notificationService.error(errMsg);
+              }
+            }, (error: any) => {
                 const errMsg = 'Unable To Save The Data';
                 this.notificationService.error(errMsg);
               });
           } else if(this.action == 'edit') {
-            this.genericService.editContactInfo(saveData).pipe(takeUntil(this.unsubscribe$)).subscribe((dataValue: any) => {
+            this.genericService.editContactInfo(saveData).subscribe((dataValue: any) => {
               this.navigateToUtilityInfo();
             }, (error: any) => {
               const errMsg = 'Unable To Save The Data';
@@ -162,8 +170,8 @@ export class ContactInfoComponent implements OnInit {
   
   ngOnDestroy() {
     this.sub.unsubscribe();
-    this.unsubscribe$.next(true);
-    this.unsubscribe$.complete();
+    // this.unsubscribe$.next(true);
+    // this.unsubscribe$.complete();
   }
   editContactInfo() {
     this.action = 'edit'; 

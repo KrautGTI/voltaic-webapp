@@ -119,14 +119,14 @@ export class ScheduleAppointmentComponent implements OnInit {
         }).then((res) => {
           if (res.isConfirmed) {
             if(this.action == 'create') {
-              this.genericService.addAppointment(saveData).pipe(takeUntil(this.unsubscribe$)).subscribe((dataValue: any) => {
+              this.genericService.addAppointment(saveData).subscribe((dataValue: any) => {
                   this.navigateToLeadList();
                 }, (error: any) => {
                   const errMsg = 'Unable To Save The Data';
                   this.notificationService.error(errMsg);
                 });
             } else if(this.action == 'edit') {
-              this.genericService.editAppointment(saveData).pipe(takeUntil(this.unsubscribe$)).subscribe((dataValue: any) => {
+              this.genericService.editAppointment(saveData).subscribe((dataValue: any) => {
                 this.navigateToLeadList();
               }, (error: any) => {
                 const errMsg = 'Unable To Save The Data';
@@ -139,8 +139,8 @@ export class ScheduleAppointmentComponent implements OnInit {
   }
   ngOnDestroy() {
     this.sub?.unsubscribe();
-    this.unsubscribe$.next(true);
-    this.unsubscribe$.complete();
+    // this.unsubscribe$.next(true);
+    // this.unsubscribe$.complete();
   }
 
   navigateToLeadList() {

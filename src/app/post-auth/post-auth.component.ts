@@ -153,9 +153,15 @@ export class PostAuthComponent implements OnInit, AfterViewInit {
     });
   }
 
-  public goToEvent(): void {
-    this.router.navigate(['post-auth/create-events']);
+  goToProject(action: string): void {
+    this.router.navigate(['post-auth/projects/project-details/contact-info'], {
+      queryParams: { action: action }
+    });
   }
+
+  // public goToEvent(): void {
+  //   this.router.navigate(['post-auth/create-events']);
+  // }
 
   // ngOnDestroy() {
   //   this.sub.unsubscribe();

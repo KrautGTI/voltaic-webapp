@@ -162,14 +162,14 @@ export class UtilityInfoComponent implements OnInit {
         }).then((res) => {
           if (res.isConfirmed) {
             if(this.action == 'create') {
-              this.genericService.addUtilityInfo(saveData).pipe(takeUntil(this.unsubscribe$)).subscribe((dataValue: any) => {
+              this.genericService.addUtilityInfo(saveData).subscribe((dataValue: any) => {
                   this.navigateToLeadInfo();
                 }, (error: any) => {
                   const errMsg = 'Unable To Save The Data';
                   this.notificationService.error(errMsg);
                 });
             } else if(this.action == 'edit') {
-              this.genericService.editUtilityInfo(saveData).pipe(takeUntil(this.unsubscribe$)).subscribe((dataValue: any) => {
+              this.genericService.editUtilityInfo(saveData).subscribe((dataValue: any) => {
                 this.navigateToLeadInfo();
               }, (error: any) => {
                 const errMsg = 'Unable To Save The Data';
@@ -183,8 +183,8 @@ export class UtilityInfoComponent implements OnInit {
 
   ngOnDestroy() {
     this.sub.unsubscribe();
-    this.unsubscribe$.next(true);
-    this.unsubscribe$.complete();
+    // this.unsubscribe$.next(true);
+    // this.unsubscribe$.complete();
   }
 
   editUtilityInfo() {

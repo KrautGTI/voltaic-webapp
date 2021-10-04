@@ -1,5 +1,6 @@
 <div class="container">
-    <div class="d-flex position-relative" [ngClass]="{'createProgressBar' : action == 'create'}">
+    <div class="d-flex position-relative createProgressBar">
+        <!-- [ngClass]="{'createProgressBar' : action == 'create'}" /* position-relative section */ -->
         <div class="d-flex justify-content-between mx-auto status-line-width position-absolute line-position">
             <div class="line-width"
                 [ngClass]="{'border-style': progressStatus.contactInfo !== 'completed','border-style-active': progressStatus.contactInfo == 'completed'}">
@@ -7,10 +8,13 @@
             <div class="line-width"
                 [ngClass]="{'border-style': progressStatus.utilityInfo !== 'completed','border-style-active': progressStatus.utilityInfo == 'completed'}">
             </div>
-            <ng-container *ngIf="action == 'create'">
+            <!-- <ng-container *ngIf="action == 'create'">
                 <div class="line-width" [ngClass]="{'border-style': progressStatus.leadInfo !== 'completed','border-style-active': progressStatus.leadInfo == 'completed'}">
                 </div>
-            </ng-container>
+            </ng-container> -->
+            <div class="line-width" 
+                [ngClass]="{'border-style': progressStatus.leadInfo !== 'completed','border-style-active': progressStatus.leadInfo == 'completed'}">
+            </div>
         </div>
     </div>
     <div class="d-flex justify-content-around">
@@ -56,6 +60,17 @@
             </div>
             <div class="py-2">
                 Schedule Appointment
+            </div>
+        </div>
+        <div class="d-flex flex-column status-width text-center" *ngIf="action == 'edit' || action == 'view'">
+            <div class="p-3 rounded-circle cursor-pointer d-flex justify-content-center align-items-center cicular-pogress mx-auto"
+                [ngClass]="{ 'bg-violet text-white': progressStatus.appointment == 'active' || progressStatus.appointment == 'completed', 'bg-white text-orange': progressStatus.appointment == 'notVisited'}"
+                (click)="navigateToAppointment()">
+                <span *ngIf="progressStatus.appointment !== 'completed'">4</span>
+                <span *ngIf="progressStatus.appointment == 'completed'">&#x2714;</span>
+            </div>
+            <div class="py-2">
+                Appointments
             </div>
         </div>
        

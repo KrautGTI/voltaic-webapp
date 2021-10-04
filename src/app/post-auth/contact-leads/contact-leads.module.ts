@@ -13,6 +13,7 @@ import { ProposalInfoComponent } from './proposal-info/proposal-info.component';
 import { AdminInfoComponent } from './admin-info/admin-info.component';
 import { ScheduleAppointmentComponent } from './schedule-appointment/schedule-appointment.component';
 import { FormFieldsModule } from 'src/app/common/form-fields/form-fields.module';
+import { AppointmentListComponent } from './appointment-list/appointment-list.component';
 
 
 @NgModule({
@@ -25,7 +26,8 @@ import { FormFieldsModule } from 'src/app/common/form-fields/form-fields.module'
     LeadInfoComponent,
     ProposalInfoComponent,
     AdminInfoComponent,
-    ScheduleAppointmentComponent
+    ScheduleAppointmentComponent,
+    AppointmentListComponent
   ],
   imports: [
     CommonModule, ContactLeadsRoutingModule, AgGridModule, ReactiveFormsModule, FormsModule, FormFieldsModule

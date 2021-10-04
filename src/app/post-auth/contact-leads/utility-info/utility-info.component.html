@@ -25,6 +25,7 @@
                                 [isEditable]="action == 'edit' || action == 'create'"
                                 [group]="utilityInfoForm"
                             ></app-select>
+                            <div class="customError" *ngIf="!matchCompany">Please change utility company according to state</div>
                         </div>
                     </div>
                     <div class="row">
@@ -36,6 +37,7 @@
                                 [fieldName]="label.utilityBillOne.fieldName"
                                 [errors]="label.utilityBillOne.errors"
                                 [group]="utilityInfoForm"
+                                (cstChange)="getImage($event, label.utilityBillOne.fieldName)"
                             ></app-file-upload>
                         </div>
                         <div class="col-md-6 mb-4">
@@ -46,6 +48,7 @@
                                 [fieldName]="label.utilityBillTwo.fieldName"
                                 [errors]="label.utilityBillTwo.errors"
                                 [group]="utilityInfoForm"
+                                (cstChange)="getImage($event, label.utilityBillTwo.fieldName)"
                             ></app-file-upload>
                         </div>
                         <div class="col-md-6 mb-4">

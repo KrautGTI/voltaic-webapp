@@ -75,7 +75,7 @@ export class DateComponent implements OnInit {
       const formatedDate = _moment(this.groupControl!.value, ['DD/MM/YYYY']);
       this.groupControl!.patchValue(formatedDate);
     }
-    this.setEditableStatus();
+    //this.setEditableStatus();
   }
 
   get groupControl(): AbstractControl | null {

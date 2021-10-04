@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { GenericService } from '../../../service/generic.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
@@ -7,6 +7,8 @@ import { AbstractControl,
   FormGroup,
   ValidatorFn } from '@angular/forms';
 import Swal from 'sweetalert2';
+import { forkJoin, Observable, of, Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 import { FormField, UserDetailsModel } from 'src/app/shared/models/util.model';
 import { AuthService } from 'src/app/service/auth.service';
 import { NotificationService } from 'src/app/service/notification.service';
@@ -20,7 +22,7 @@ import { DataService } from 'src/app/service/data.service';
   styleUrls: ['./schedule-appointment.component.scss']
 })
 export class ScheduleAppointmentComponent implements OnInit {
-
+  private unsubscribe$: Subject<boolean> = new Subject();
   public scheduleAppointmemtForm: FormGroup = new FormGroup({});
   public label: { [key: string]: FormField } = ScheduleAppointmentLabels;
   isSubmitClicked = false;
@@ -44,8 +46,12 @@ export class ScheduleAppointmentComponent implements OnInit {
 
   ngOnInit(): void {
     this.sub = this.route.queryParams.subscribe((params) => {
-      this.leadId = params.leadId;
       this.action = params.action;
+      if(this.action == 'create') {
+        this.leadId = this.genericService.getLeadId();
+      } else if(this.action == 'edit'){
+        this.leadId = params.leadId;
+      }
       if(this.action == 'create' || this.action == 'edit') {
         this.changeProgressBar('active');
       }
@@ -98,32 +104,49 @@ export class ScheduleAppointmentComponent implements OnInit {
   submitSceduleAppointmentInfo() {
     this.isSubmitClicked = true;
     console.log(this.scheduleAppointmemtForm);
-    if (
-      this.scheduleAppointmemtForm.valid
-    ) {
-      Swal.fire({
-        text: 'Do You Want To Save Changes?',
-        icon: 'question',
-        confirmButtonColor: '#A239CA',
-        position: 'center',
-        confirmButtonText: 'Yes',
-        showConfirmButton: true,
-        showCancelButton: true,
-        cancelButtonText: 'No',
-      }).then((res) => {
-        if (res.isConfirmed) {
-          const scheduleAppointmentData = {
-          };
-          console.log(scheduleAppointmentData);
-          if(this.action == 'create') {
-            this.changeProgressBar('completed');
+    if (this.scheduleAppointmemtForm.valid) {
+        const saveData = { ...this.scheduleAppointmemtForm.value, id: this.leadId };
+        console.log('saveData=', saveData);
+        Swal.fire({
+          text: 'Do You Want To Save Changes?',
+          icon: 'question',
+          confirmButtonColor: '#A239CA',
+          position: 'center',
+          confirmButtonText: 'Yes',
+          showConfirmButton: true,
+          showCancelButton: true,
+          cancelButtonText: 'No',
+        }).then((res) => {
+          if (res.isConfirmed) {
+            if(this.action == 'create') {
+              this.genericService.addAppointment(saveData).subscribe((dataValue: any) => {
+                  this.navigateToLeadList();
+                }, (error: any) => {
+                  const errMsg = 'Unable To Save The Data';
+                  this.notificationService.error(errMsg);
+                });
+            } else if(this.action == 'edit') {
+              this.genericService.editAppointment(saveData).subscribe((dataValue: any) => {
+                this.navigateToLeadList();
+              }, (error: any) => {
+                const errMsg = 'Unable To Save The Data';
+                this.notificationService.error(errMsg);
+              });
+            }  
           }
-          this.router.navigate(['post-auth/leads']);
-        }
-      });
+        });
     }
   }
   ngOnDestroy() {
     this.sub?.unsubscribe();
+    // this.unsubscribe$.next(true);
+    // this.unsubscribe$.complete();
+  }
+
+  navigateToLeadList() {
+    if(this.action == 'create') {
+      this.changeProgressBar('completed');
+    }
+    this.router.navigate(['post-auth/leads']);
   }
 }

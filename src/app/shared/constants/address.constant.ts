@@ -3,7 +3,7 @@ import { ErrorType, FieldTypes, FormField } from '../models/util.model';
 export const AddressLabels: { [key: string]: FormField } = {
       address: {
         fieldLabel: 'Address',
-        fieldName: 'Address',
+        fieldName: 'address',
         placeholder: '',
         associatedfieldName: '',
         fieldType: FieldTypes.TEXT,
@@ -17,7 +17,7 @@ export const AddressLabels: { [key: string]: FormField } = {
       },
       street1: {
         fieldLabel: 'Street 1',
-        fieldName: 'Street_1',
+        fieldName: 'street',
         placeholder: '',
         associatedfieldName: '',
         fieldType: FieldTypes.TEXT,
@@ -31,7 +31,7 @@ export const AddressLabels: { [key: string]: FormField } = {
       },
       street2: {
         fieldLabel: 'Street 2',
-        fieldName: 'Street_2',
+        fieldName: 'street_2',
         placeholder: '',
         associatedfieldName: '',
         fieldType: FieldTypes.TEXT,
@@ -42,7 +42,7 @@ export const AddressLabels: { [key: string]: FormField } = {
       },
       city: {
         fieldLabel: 'City',
-        fieldName: 'City',
+        fieldName: 'city',
         placeholder: '',
         associatedfieldName: '',
         fieldType: FieldTypes.TEXT,
@@ -56,7 +56,7 @@ export const AddressLabels: { [key: string]: FormField } = {
       },
       state: {
         fieldLabel: 'State/Region',
-        fieldName: 'State',
+        fieldName: 'state',
         placeholder: '',
         associatedfieldName: '',
         fieldType: FieldTypes.SELECT,
@@ -64,7 +64,7 @@ export const AddressLabels: { [key: string]: FormField } = {
         isRequired: true,
         isDisabled: false,
         options: [],
-        optionConfig: { labelKey: 'name', valueKey: 'name' },
+        optionConfig: { labelKey: 'name', valueKey: 'id' },
         errors: [{
             type: ErrorType.REQUIRED,
             message: 'This field is required.',
@@ -72,7 +72,7 @@ export const AddressLabels: { [key: string]: FormField } = {
       },
       postalCode: {
         fieldLabel: 'Postal Code',
-        fieldName: 'Postal_Code',
+        fieldName: 'zip_code',
         placeholder: '',
         associatedfieldName: '',
         fieldType: FieldTypes.TEXT,

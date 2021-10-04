@@ -34,6 +34,7 @@ export class ProgressBarComponent implements OnInit {
       this.progressStatus.contactInfo = 'active';
       this.progressStatus.utilityInfo = 'completed';
       this.progressStatus.leadInfo = 'completed';
+      this.progressStatus.appointment = 'completed';
       this.changeProgressBar();
     }
     // if(this.action == 'create') {
@@ -52,6 +53,7 @@ export class ProgressBarComponent implements OnInit {
       this.progressStatus.contactInfo = 'completed';
       this.progressStatus.utilityInfo = 'active';
       this.progressStatus.leadInfo = 'completed';
+      this.progressStatus.appointment = 'completed';
       this.changeProgressBar();
     }
     // if(this.action == 'create') {
@@ -70,6 +72,7 @@ export class ProgressBarComponent implements OnInit {
       this.progressStatus.contactInfo = 'completed';
       this.progressStatus.utilityInfo = 'completed';
       this.progressStatus.leadInfo = 'active';
+      this.progressStatus.appointment = 'completed';
       this.changeProgressBar();
     }
     // if(this.action == 'create') {
@@ -89,6 +92,31 @@ export class ProgressBarComponent implements OnInit {
     //     queryParams: { action: this.action }
     //   });
     // }
+  }
+  // navigateToCreateEvent() {
+  //   if(this.action == 'edit' || this.action == 'view'){
+  //     this.router.navigate(['post-auth/create-events'], {queryParams: { leadId: this.leadId, action: this.action } });
+  //   }
+  // }
+
+  navigateToAppointment() {
+    if(this.action == 'edit') {
+      this.progressStatus.contactInfo = 'completed';
+      this.progressStatus.utilityInfo = 'completed';
+      this.progressStatus.leadInfo = 'completed';
+      this.progressStatus.appointment = 'active';
+      this.changeProgressBar();
+    }
+    // if(this.action == 'create') {
+    //   this.router.navigate(['post-auth/leads/lead-details/lead-info'], {
+    //     queryParams: { action: this.action }
+    //   });
+    // } else 
+    if(this.action == 'edit' || this.action == 'view'){
+      this.router.navigate(['post-auth/leads/lead-details/appointment'], {
+        queryParams: { leadId: this.leadId, action: this.action }
+      });
+    }
   }
 
   changeProgressBar() {

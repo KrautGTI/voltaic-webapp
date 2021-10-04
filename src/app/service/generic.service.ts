@@ -11,6 +11,9 @@ import { AuthService } from './auth.service';
 export class GenericService {
   private authServiceUrl = environment.apiBaseUrl;
   private isAdmin: boolean = false;
+  private leadDetails:any;
+  private stateId:any;
+  private leadId:any;
 
   constructor(
     private httpClient: HttpClient,
@@ -25,6 +28,30 @@ export class GenericService {
   public generateOTP(email: any) {
     const url = this.authServiceUrl + 'user/otpGen';
     return this.httpClient.post(url, email);
+  }
+
+  public setLeadData(leadDetails: any) {
+    this.leadDetails = leadDetails;
+  }
+
+  public getLeadData() {
+    return this.leadDetails;
+  }
+
+  public setLeadId(leadId: any) {
+    this.leadId = leadId;
+  }
+
+  public getLeadId() {
+    return this.leadId;
+  }
+
+  public setSelectedState(stateId: any) {
+    this.stateId = stateId;
+  }
+
+  public getSelectedState() {
+    return this.stateId;
   }
 
   public setPassoword(resetForm: any) {
@@ -203,4 +230,65 @@ export class GenericService {
     const url = this.authServiceUrl + 'folder/getFolders';
     return this.httpClient.post(url, null);
   }
+
+  public getStates() {
+    const url = this.authServiceUrl + 'master/getStates';
+    return this.httpClient.get(url);
+  }
+
+  public getUtiliesByStates(data: any): any {
+    const url = this.authServiceUrl + 'master/getUtiliesByStates';
+    return this.httpClient.post(url, data);
+  }
+
+  public getLeadsMaster() {
+    const url = this.authServiceUrl + 'master/getLeadsMaster';
+    return this.httpClient.get(url);
+  }
+
+  public getLeadsMasterById(leadId: any) {
+    const url = this.authServiceUrl + 'master/getLeadsMasterById/' + leadId;
+    return this.httpClient.get(url);
+  }
+
+  public addContactInfo(data: Folder): any {
+    const url = this.authServiceUrl + 'master/addLead/contactInfo';
+    return this.httpClient.post(url, data);
+  }
+
+  public addLeadInfo(data: Folder): any {
+    const url = this.authServiceUrl + 'master/addLead/leadInfo';
+    return this.httpClient.post(url, data);
+  }
+
+  public addUtilityInfo(data: Folder): any {
+    const url = this.authServiceUrl + 'master/addLead/utilityInfo';
+    return this.httpClient.post(url, data);
+  }
+
+  public addAppointment(data: Folder): any {
+    const url = this.authServiceUrl + 'master/addLead/scheduleAppointment';
+    return this.httpClient.post(url, data);
+  }
+
+  public editContactInfo(data: Folder): any {
+    const url = this.authServiceUrl + 'master/editLead/contactInfo';
+    return this.httpClient.post(url, data);
+  }
+
+  public editUtilityInfo(data: Folder): any {
+    const url = this.authServiceUrl + 'master/editLead/utilityInfo';
+    return this.httpClient.post(url, data);
+  }
+
+  public editLeadInfo(data: Folder): any {
+    const url = this.authServiceUrl + 'master/editLead/leadInfo';
+    return this.httpClient.post(url, data);
+  }
+
+  public editAppointment(data: Folder): any {
+    const url = this.authServiceUrl + 'master/editLead/scheduleAppointment';
+    return this.httpClient.post(url, data);
+  }
+
 }

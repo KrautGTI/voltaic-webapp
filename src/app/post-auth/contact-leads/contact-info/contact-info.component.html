@@ -171,16 +171,16 @@
                             ></app-input>
                         </div>
                         <div class="col-md-6 mb-4">
-                            <app-input
-                                [type]="addrLabel.state.fieldType"
+                            <app-select
                                 [isRequired]="addrLabel.state.isRequired"
                                 [label]="addrLabel.state.fieldLabel"
                                 [fieldName]="addrLabel.state.fieldName"
-                                [placeholder]="addrLabel.state.placeholder"
+                                [options]="states"
+                                [optionConfig]="addrLabel.state.optionConfig"
                                 [errors]="addrLabel.state.errors"
                                 [isEditable]="action == 'edit' || action == 'create'"
                                 [group]="contactInfoForm"
-                            ></app-input>
+                            ></app-select>
                         </div>
                         <div class="col-md-6 mb-4">
                             <app-input

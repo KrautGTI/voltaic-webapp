@@ -1,0 +1,46 @@
+<div class="container-fluid" style="margin-top: 10px">
+    <div class="card shadow">
+        <div class="card-body sectionDetails">
+            <div class="d-flex justify-content-between editSection">
+                <div class="p-3 font-size-15rem font-weight-600 cardHeader">
+                    Appointment
+                </div>
+                <div *ngIf="action == 'view'">
+                    <button class="btn btn-primary createBtn" type="submit" (click)="navigateToCreateEvent()">
+                        <span class="plusImg"><img src="../../assets/images/plus-lg.svg"></span> Add Appointment
+                    </button>
+                </div>  
+            </div>
+            <div class="container-fluid" style="margin-top: 10px">
+                <ag-grid-angular
+                  #agGrid
+                  id="agGrid"
+                  class="ag-theme-balham"
+                  [modules]="modules" 
+                  [columnDefs]="columnDefs"
+                  [defaultColDef]="defaultColDef"
+                  [rowGroupPanelShow]="rowGroupPanelShow"
+                  [groupMultiAutoColumn]="true"
+                  [autoGroupColumnDef]="autoGroupColumnDef"
+                  [domLayout]="domLayout"
+                  (RowGroupOpened)="onRowGroupOpeneds($event)"
+                  [pivotPanelShow]="pivotPanelShow"
+                  [debug]="true"
+                  [rowSelection]="rowSelection"
+                  [enableBrowserTooltips]="true"
+                  [pagination]="true"
+                  [rowData]="rowData"
+                  [animateRows]="true"
+                  (gridReady)="onGridReady($event)"
+                  [paginationPageSize]="paginationPageSize"
+                  [paginationNumberFormatter]="paginationNumberFormatter"
+                  (cellClicked)="onRowClick($event)"
+                  [rowHeight]="rowHeight"
+              
+                ></ag-grid-angular>
+            </div>
+        </div>
+    </div>
+</div>
+
+

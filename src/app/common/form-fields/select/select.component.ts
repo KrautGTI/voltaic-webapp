@@ -94,6 +94,7 @@ export class SelectComponent implements OnInit, OnChanges {
         }
       }
     }
+    this.setEditableStatus();
   }
 
   ngOnInit(): void {
@@ -117,6 +118,7 @@ export class SelectComponent implements OnInit, OnChanges {
     this.cstChange.emit(e.target.value);
   }
   public onClickEdit(): void {
+    console.log('5')
     if (!this.isEditable) {
       setTimeout(() => {
         this.inputRef?.nativeElement.focus();

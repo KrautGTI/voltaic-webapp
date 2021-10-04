@@ -6,6 +6,7 @@ import { LeadDetailsComponent } from './lead-details/lead-details.component';
 import { LeadInfoComponent } from './lead-info/lead-info.component';
 import { ScheduleAppointmentComponent } from './schedule-appointment/schedule-appointment.component';
 import { UtilityInfoComponent } from './utility-info/utility-info.component';
+import { AppointmentListComponent } from './appointment-list/appointment-list.component';
 
 const routes: Routes = [
   {
@@ -19,7 +20,8 @@ const routes: Routes = [
       { path: 'contact-info', component:ContactInfoComponent },
       { path: 'utility-info', component:UtilityInfoComponent },
       { path: 'lead-info', component:LeadInfoComponent },
-      { path: 'schedule-appointment', component:ScheduleAppointmentComponent }
+      { path: 'schedule-appointment', component:ScheduleAppointmentComponent },
+      { path: 'appointment', component:AppointmentListComponent }
    ],
   }
 ];

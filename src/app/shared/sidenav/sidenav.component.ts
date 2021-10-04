@@ -23,6 +23,8 @@ export class SidenavComponent implements OnInit {
   isManageUserActive = this.router.url.includes('manage') ? true : false;
   isDealActive = this.router.url.includes('deals') ? true : false;
   isReportActive = this.router.url.includes('reports') ? true : false;
+  isEventActive = this.router.url.includes('events') ? true : false;
+  isProjectActive = this.router.url.includes('projects') ? true : false;
 
   constructor(public router: Router, private genericService: GenericService) {}
 
@@ -64,5 +66,7 @@ export class SidenavComponent implements OnInit {
     this.isManageUserActive = value == 'manage' ? true : false;
     this.isDealActive = value == 'deals' ? true : false;
     this.isReportActive = value == 'reports' ? true : false;
+    this.isEventActive = value == 'events' ? true : false;
+    this.isProjectActive = value == 'projects' ? true : false;
   }
 }

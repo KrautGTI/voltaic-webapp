@@ -1192,5 +1192,19 @@
   "hoa": [
     { "id": "No", "value": "No" },
     { "id": "Yes", "value": "Yes" }
+  ],
+  "salesType": [
+    { "id": "Cash/Loan", "value": "Cash/Loan" },
+    { "id": "PPA", "value": "PPA" }
+  ],
+  "paymentMethod": [
+    { "id": "Cash", "value": "Cash" },
+    { "id": "Loanpal", "value": "Loanpal" },
+    { "id": "Sunrun", "value": "Sunrun" },
+    { "id": "Dividend", "value": "Dividend" },
+    { "id": "Sungage", "value": "Sungage" },
+    { "id": "Sunlight", "value": "Sunlight" },
+    { "id": "Enium", "value": "Enium" },
+    { "id": "Solkraft", "value": "Solkraft" }
   ]
 }

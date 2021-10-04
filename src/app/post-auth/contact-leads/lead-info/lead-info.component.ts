@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { GenericService } from '../../../service/generic.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
@@ -7,6 +7,8 @@ import { AbstractControl,
   FormGroup,
   ValidatorFn } from '@angular/forms';
 import Swal from 'sweetalert2';
+import { forkJoin, Observable, of, Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 import { FormField, UserDetailsModel } from 'src/app/shared/models/util.model';
 import { AuthService } from 'src/app/service/auth.service';
 import { NotificationService } from 'src/app/service/notification.service';
@@ -21,6 +23,8 @@ import { Location } from '@angular/common';
   styleUrls: ['./lead-info.component.scss']
 })
 export class LeadInfoComponent implements OnInit {
+  private unsubscribe$: Subject<boolean> = new Subject();
+  leadDetails:any;
   isSubmitClicked = false;
   public leadInfoForm: FormGroup = new FormGroup({});
   public label: { [key: string]: FormField } = LeadInfoLabels;
@@ -49,8 +53,12 @@ export class LeadInfoComponent implements OnInit {
 
   ngOnInit(): void {
     this.sub = this.route.queryParams.subscribe((params) => {
-      this.leadId = params.leadId;
       this.action = params.action;
+      if(this.action == 'create') {
+        this.leadId = this.genericService.getLeadId();
+      } else if(this.action == 'edit'){
+        this.leadId = params.leadId;
+      }
       if(this.action == 'create' || this.action == 'edit') {
         this.changeProgressBar('active');
       }
@@ -69,6 +77,8 @@ export class LeadInfoComponent implements OnInit {
       this.salesReps = data.message;
     });
     this.createForm();
+    if(this.action == 'view' || this.action == 'edit')
+      this.setFormControlValue();
   }
 
   changeProgressBar(status: string) {
@@ -80,6 +90,20 @@ export class LeadInfoComponent implements OnInit {
       }
       this.progressStatus.leadInfo = status;
       this.dataService.changeStatus(this.progressStatus);
+  }
+
+  private setFormControlValue(): void {
+    this.leadDetails = this.genericService.getLeadData();
+    console.log(this.leadDetails);
+    const controls = this.leadInfoForm.controls;
+    if (this.leadDetails) {
+      Object.keys(controls).forEach((control: string) => {
+        const value = this.leadDetails[control]
+          ? this.leadDetails[control]
+          : '';
+        controls[control].patchValue(value);
+      });
+    }
   }
 
   private createForm(): void {
@@ -109,9 +133,9 @@ export class LeadInfoComponent implements OnInit {
   submitLeadInfo() {
     this.isSubmitClicked = true;
     console.log(this.leadInfoForm);
-    if (
-      this.leadInfoForm.valid
-    ) {
+    if (this.leadInfoForm.valid) {
+      const saveData = { ...this.leadInfoForm.value, id: this.leadId };
+      console.log('saveData=', saveData);
       Swal.fire({
         text: 'Do You Want To Save Changes?',
         icon: 'question',
@@ -123,13 +147,21 @@ export class LeadInfoComponent implements OnInit {
         cancelButtonText: 'No',
       }).then((res) => {
         if (res.isConfirmed) {
-          const leadInfoData = {
-          };
-          console.log(leadInfoData);
-          if(this.action == 'create' || this.action == 'edit') {
-            this.changeProgressBar('completed');
-          }
-          this.navigateToScheduleAppointment(); 
+          if(this.action == 'create') {
+            this.genericService.addLeadInfo(saveData).subscribe((dataValue: any) => {
+                this.navigateToScheduleAppointment();
+              }, (error: any) => {
+                const errMsg = 'Unable To Save The Data';
+                this.notificationService.error(errMsg);
+              });
+          } else if(this.action == 'edit') {
+            this.genericService.editLeadInfo(saveData).subscribe((dataValue: any) => {
+              this.navigateToScheduleAppointment();
+            }, (error: any) => {
+              const errMsg = 'Unable To Save The Data';
+              this.notificationService.error(errMsg);
+            });
+          }  
         }
       });
     }
@@ -137,19 +169,22 @@ export class LeadInfoComponent implements OnInit {
 
   ngOnDestroy() {
     this.sub.unsubscribe();
+    // this.unsubscribe$.next(true);
+    // this.unsubscribe$.complete();
   }
 
   editLeadInfo() {
     this.action = 'edit';
     this.changeProgressBar('active');
-    this.router.navigate(['post-auth/leads/lead-details/schedule-appointment'], {
+    this.router.navigate(['post-auth/leads/lead-details/lead-info'], {
       queryParams: { leadId: this.leadId, action: this.action }
     });
-    // this.location.replaceState('post-auth/leads/lead-details/schedule-appointment?leadId=' + 
-    // this.leadId + '&action=' + this.action);   
   }
 
   navigateToScheduleAppointment(){
+    if(this.action == 'create' || this.action == 'edit') {
+      this.changeProgressBar('completed');
+    }
     if(this.action == 'create') {
       this.router.navigate(['post-auth/leads/lead-details/schedule-appointment'], {
         queryParams: { action: this.action }

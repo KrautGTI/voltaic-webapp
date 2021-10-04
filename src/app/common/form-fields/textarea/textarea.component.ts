@@ -40,7 +40,7 @@ export class TextareaComponent implements OnInit {
     }
     this.groupControl?.setValidators(validators);
     this.groupControl?.updateValueAndValidity();
-    this.setEditableStatus();
+    //this.setEditableStatus();
   }
 
   get groupControl(): AbstractControl | null {

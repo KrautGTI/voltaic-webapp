@@ -5,18 +5,18 @@ import { ProjectsRoutingModule } from './projects-routing.module';
 import { AgGridModule } from 'ag-grid-angular';
 import { ReactiveFormsModule, FormsModule } from "@angular/forms";
 import { ProjectDetailsComponent } from './project-details/project-details.component';
-import { ContactInfoComponent } from './contact-info/contact-info.component';
 import { SaleInfoComponent } from './sale-info/sale-info.component';
 import { OtherInfoComponent } from './other-info/other-info.component';
+import { ContactProjectComponent } from './contact-project/contact-project.component';
 
 
 @NgModule({
   declarations: [
     ProjectsComponent,
     ProjectDetailsComponent,
-    ContactInfoComponent,
     SaleInfoComponent,
-    OtherInfoComponent
+    OtherInfoComponent,
+    ContactProjectComponent
   ],
   imports: [
     CommonModule, ProjectsRoutingModule, AgGridModule, ReactiveFormsModule, FormsModule

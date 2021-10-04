@@ -65,10 +65,9 @@ export class AppointmentListComponent implements OnInit {
     });
 
     this.columnDefs = [
-      { field: 'month', rowGroup: true, hide: true },
       {
-        headerName: 'Date',
-        field: 'date',
+        headerName: 'Event Task',
+        field: 'event_task',
         cellStyle: {
           color: '#212121',
           'font-size': '14px',
@@ -77,18 +76,8 @@ export class AppointmentListComponent implements OnInit {
         },
       },
       {
-        headerName: 'Time',
-        field: 'time',
-        cellStyle: {
-          color: '#212121',
-          'font-size': '14px',
-          height: '40px',
-          cursor: 'pointer',
-        },
-      },
-      {
-        headerName: 'Task',
-        field: 'task',
+        headerName: 'Assigned To',
+        field: 'assigned_to',
         cellStyle: {
           color: '#212121',
           'font-size': '14px',
@@ -107,88 +96,8 @@ export class AppointmentListComponent implements OnInit {
         },
       },
       {
-        headerName: 'Detail',
-        field: 'detail',
-        cellStyle: {
-          color: '#212121',
-          'font-size': '14px',
-          height: '40px',
-          cursor: 'pointer',
-        },
-      },
-      {
-        headerName: 'Homeowner/Customer',
-        field: 'homeOwner',
-        cellStyle: {
-          color: '#212121',
-          'font-size': '14px',
-          height: '40px',
-          cursor: 'pointer',
-        },
-      },
-      {
-        headerName: 'Address',
-        field: 'address',
-        cellStyle: {
-          color: '#212121',
-          'font-size': '14px',
-          height: '40px',
-          cursor: 'pointer',
-        },
-      },
-      {
-        headerName: 'Phone',
-        field: 'phone',
-        cellStyle: {
-          color: '#212121',
-          'font-size': '14px',
-          height: '40px',
-          cursor: 'pointer',
-        },
-      },
-      {
-        headerName: 'Employee',
-        field: 'employee',
-        cellStyle: {
-          color: '#212121',
-          'font-size': '14px',
-          height: '40px',
-          cursor: 'pointer',
-        },
-      },
-      {
-        headerName: 'Dealer',
-        field: 'dealer',
-        cellStyle: {
-          color: '#212121',
-          'font-size': '14px',
-          height: '40px',
-          cursor: 'pointer',
-        },
-      },
-      {
-        headerName: 'Source',
-        field: 'source',
-        cellStyle: {
-          color: '#212121',
-          'font-size': '14px',
-          height: '40px',
-          cursor: 'pointer',
-        },
-      },
-      {
-        headerName: 'Record Owner',
-        field: 'recordOwner',
-        cellStyle: {
-          color: '#212121',
-          'font-size': '14px',
-          height: '40px',
-          cursor: 'pointer',
-        },
-      },
-      {
-        headerName: 'Date Created',
-        field: 'dateCreated',
+        headerName: 'Date and Time',
+        field: 'date_time',
         cellStyle: {
           color: '#212121',
           'font-size': '14px',
@@ -247,84 +156,10 @@ export class AppointmentListComponent implements OnInit {
     this.gridColumnApi = params.columnApi;
     this.rowData = [
       {
-        month : "JUL 2021",
-        date : "01-07-2021",
-        time : "05:00 p.m.",
-        task : "Appointment",
+        event_task : "Appointment",
+        assigned_to : "Kanon Olivier",
         status : "Scheduled",
-        detail : "",
-        homeOwner : "Socorro & Jorge",
-        address : "5442 Pomeroy Circle, Las Vegas, Nevada 89142",
-        phone : "(949) 630-1451",
-        employee : "Dareon King",
-        dealer: "True Power",
-        source: "Door",
-        recordOwner: "David Duke",
-        dateCreated : "07-13-21 03:46 PM"
-      },
-      {
-        month : "JUL 2021",
-        date : "01-07-2021",
-        time : "05:00 p.m.",
-        task : "Appointment",
-        status : "Scheduled",
-        detail : "",
-        homeOwner : "Socorro & Jorge",
-        address : "5442 Pomeroy Circle, Las Vegas, Nevada 89142",
-        phone : "(949) 630-1451",
-        employee : "Dareon King",
-        dealer: "True Power",
-        source: "Door",
-        recordOwner: "David Duke",
-        dateCreated : "07-13-21 03:46 PM"
-      },
-      {
-        month : "NOV 2021",
-        date : "01-11-2021",
-        time : "05:00 p.m.",
-        task : "Appointment",
-        status : "Scheduled",
-        detail : "",
-        homeOwner : "Socorro & Jorge",
-        address : "5442 Pomeroy Circle, Las Vegas, Nevada 89142",
-        phone : "(949) 630-1451",
-        employee : "Dareon King",
-        dealer: "True Power",
-        source: "Door",
-        recordOwner: "David Duke",
-        dateCreated : "07-13-21 03:46 PM"
-      },
-      {
-        month : "SEP 2021",
-        date : "01-09-2021",
-        time : "05:00 p.m.",
-        task : "Appointment",
-        status : "Scheduled",
-        detail : "",
-        homeOwner : "Socorro & Jorge",
-        address : "5442 Pomeroy Circle, Las Vegas, Nevada 89142",
-        phone : "(949) 630-1451",
-        employee : "Dareon King",
-        dealer: "True Power",
-        source: "Door",
-        recordOwner: "David Duke",
-        dateCreated : "07-13-21 03:46 PM"
-      },
-      {
-        month : "AUG 2021",
-        date : "01-08-2021",
-        time : "05:00 p.m.",
-        task : "Appointment",
-        status : "Scheduled",
-        detail : "",
-        homeOwner : "Socorro & Jorge",
-        address : "5442 Pomeroy Circle, Las Vegas, Nevada 89142",
-        phone : "(949) 630-1451",
-        employee : "Dareon King",
-        dealer: "True Power",
-        source: "Door",
-        recordOwner: "David Duke",
-        dateCreated : "07-13-21 03:46 PM"
+        date_time : "10-06-2021 at 6:00 pm"
       }
     ]
     // this.genericService.getLeads().subscribe(

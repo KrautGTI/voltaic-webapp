@@ -198,6 +198,10 @@ export class GenericService {
     const url = this.authServiceUrl + 'deals/getDealsById';
     return this.httpClient.post(url, { dealId: dealid });
   }
+  public saveEvents(data: any) {
+    const url = this.authServiceUrl + 'event/saveUpdateEvent';
+    return this.httpClient.post(url, data);
+  }
 
   public getDealsFromContact(contactid: string) {
     const url = this.authServiceUrl + 'contacts/getDealsFromContact';

@@ -1,12 +1,130 @@
-<div class="container-fluid bg-white">
-    <div class="row">
-        <div class="col-4 form-group mb-2 pt-2">
-            <label>Task</label>
-            <select class="form-control" id="sel1">
-                <option>Appointment</option>
-            </select>
+<div class="container-fluid" style="margin-top: 10px">
+    <form [formGroup]="leadInfoForm">
+        <div class="card shadow">
+            <div class="card-body sectionDetails">
+                <div class="d-flex justify-content-between editSection">
+                    <div class="p-3 font-size-15rem font-weight-600 cardHeader">
+                        Create Event
+                    </div> 
+                </div>
+                <div class="col-12 pr-3">
+                    <div class="row">
+                        <div class="col-md-6 mb-4">
+                            <app-select
+                            [isRequired]="label.task.isRequired"
+                            [label]="label.task.fieldLabel"
+                            [fieldName]="label.task.fieldName"
+                            [options]="taskData"
+                            [optionConfig]="label.task.optionConfig"
+                            [isEditable]= "true"
+                            [errors]="label.task.errors"
+                            [group]="leadInfoForm"
+                        ></app-select>
+                        </div>
+                        <div class="col-md-6 mb-4">
+                            <app-select
+                            [isRequired]="label.assignedTo.isRequired"
+                            [label]="label.assignedTo.fieldLabel"
+                            [fieldName]="label.assignedTo.fieldName"
+                            [options]="assignedTo"
+                            [optionConfig]="label.assignedTo.optionConfig"
+                            [isEditable]= "true"
+                            [errors]="label.assignedTo.errors"
+                            [group]="leadInfoForm"
+                        ></app-select>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 px-1 py-3 border shadow d-flex justify-content-between mx-1 my-3">
+                    <span class="font-weight-700" style = "font-size: 20px;">Event Details</span>
+                    <span>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                            class="bi bi-caret-down-fill" viewBox="0 0 16 16">
+                            <path
+                                d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z" />
+                        </svg>
+                    </span>
+                </div>
+                <div class="col-12 pr-3">
+                    <div class="row">
+                        <div class="col-md-6 mb-4">
+                            <app-select
+                            [isRequired]="label.status.isRequired"
+                            [label]="label.status.fieldLabel"
+                            [fieldName]="label.status.fieldName"
+                            [options]="masterStatus"
+                            [optionConfig]="label.status.optionConfig"
+                            [isEditable]= "true"
+                            [errors]="label.status.errors"
+                            [group]="leadInfoForm"
+                        ></app-select>
+                        </div>
+                        <div class="col-md-3 mb-4">
+                            <app-date
+                            [isRequired]="label.date.isRequired"
+                            [label]="label.date.fieldLabel"
+                            [fieldName]="label.date.fieldName"
+                            [placeholder]="label.date.placeholder"
+                            [errors]="label.date.errors"
+                            [group]="leadInfoForm"
+                            ></app-date> 
+                        </div>
+                        <div class="col-md-3 mb-4">
+                            <app-select
+                            [isRequired]="label.time.isRequired"
+                            [label]="label.time.fieldLabel"
+                            [fieldName]="label.time.fieldName"
+                            [options]="masterData['Time']"
+                            [optionConfig]="label.time.optionConfig"
+                            [isEditable]= "true"
+                            [errors]="label.time.errors"
+                            [group]="leadInfoForm"
+                        ></app-select>
+                        </div>
+                    </div>
+                </div>
+                <div class = "col-12 pr-3">
+                    <div class = "row">
+                        <div class="col-md-12 mb-4">
+                            <app-textarea
+                                [type]="label.notes.fieldType"
+                                [isRequired]="label.notes.isRequired"
+                                [label]="label.notes.fieldLabel"
+                                [fieldName]="label.notes.fieldName"
+                                [placeholder]="label.notes.placeholder"
+                                [errors]="label.notes.errors"
+                                [isEditable]="true"
+                                [group]="leadInfoForm"
+                            ></app-textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 px-1 py-3 border shadow d-flex justify-content-between mx-1 my-3">
+                    <span class="font-weight-700" style = "font-size: 20px;">Homeowner</span>
+                    <span>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                            class="bi bi-caret-down-fill" viewBox="0 0 16 16">
+                            <path
+                                d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z" />
+                        </svg>
+                    </span>
+                </div>
+                <div *ngIf = "leadDetails" class = "m-2">
+                <div style = "font-weight: 700;">Info</div>
+                <div>{{leadDetails.first_name}} - {{leadDetails.last_name}}</div>
+                <div>{{leadDetails.street}}</div>
+                <div>{{leadDetails.phone}}</div>
+
+                <div class = "mt-2" style="font-weight: 700;">Lead Generator (Source)</div>
+                <div>{{leadDetails.master_lead_owner}} ( {{leadDetails.master_lead_source}} )</div>
         </div>
-        <div class="col-4 mb-2 pt-2">
+        <button
+            class="btn btn-primary createBtn"
+            type="submit"
+            (click)="saveDeal()">
+            Create
+        </button>
+        <!-- <div class="col-4 mb-2 pt-2">
             <label>Assigned To</label>
             <select class="form-control" id="sel1">
                 <option>Aaron Adams</option>
@@ -318,18 +436,5 @@
         <button class = "btn btn-success">Save & Close</button>
         <button class = "btn m-5" style="background-color: lightgray">Close</button>
     </div>
-    <div class = "mt-5"></div>
+    <div class = "mt-5"></div> -->
 </div>
-
-
-
-
-
-
-  
-  
-
-
-
-
-

@@ -12,6 +12,7 @@ export class GenericService {
   private authServiceUrl = environment.apiBaseUrl;
   private isAdmin: boolean = false;
   private leadDetails:any;
+  private appointmentDetails: any;
   private stateId:any;
   private leadId:any;
 
@@ -37,7 +38,13 @@ export class GenericService {
   public getLeadData() {
     return this.leadDetails;
   }
+  public setAppointmentData(appointmentDetails: any) {
+    this.appointmentDetails = appointmentDetails;
+  }
 
+  public getAppointmentData() {
+    return this.appointmentDetails;
+  }
   public setLeadId(leadId: any) {
     this.leadId = leadId;
   }

@@ -145,8 +145,14 @@ export class AppointmentListComponent implements OnInit {
     this.gridApi?.sizeColumnsToFit();
   }
   onRowClick(event: any) {
-    // console.log(event.data.id);
-    // this.router.navigate(['post-auth/contact/details'], { queryParams: { contactId: event.data.id } });
+    console.log(event.data.id);
+    this.rowData.forEach((ele: any) => {
+      if(ele.id == event.data.id) {
+        this.genericService.setAppointmentData(ele);
+      } 
+    });
+    this.action = 'edit';
+    this.navigateToCreateEvent();
   }
 
   onRowGroupOpeneds(params: any) {}
@@ -159,7 +165,7 @@ export class AppointmentListComponent implements OnInit {
         event_task : "Appointment",
         assigned_to : "Kanon Olivier",
         status : "Scheduled",
-        date_time : "10-06-2021 at 6:00 pm"
+        date_time : "10-06-2021 at 06:00 PM"
       }
     ]
     // this.genericService.getLeads().subscribe(

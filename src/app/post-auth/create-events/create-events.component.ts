@@ -8,6 +8,7 @@ import { FormField, UserDetailsModel } from 'src/app/shared/models/util.model';
 import { LeadInfoLabels } from 'src/app/shared/constants/lead.constant';
 import { CreateEvent } from 'src/app/shared/constants/event.constant';
 import { HttpClient } from '@angular/common/http';
+import { Router, ActivatedRoute } from '@angular/router';
 import { NotificationService } from 'src/app/service/notification.service';
 import Swal from 'sweetalert2';
 
@@ -23,7 +24,10 @@ export class CreateEventsComponent implements OnInit {
   masterData : any;
   masterDataTime : any;
   leadDetails : any;
+  appointmentDetails: any;
   masterStatus: any;
+  sub: any;
+  action: any;
 
   taskData = [{
     name : 'Appointment'
@@ -32,10 +36,16 @@ export class CreateEventsComponent implements OnInit {
   constructor(private genericService: GenericService,
     private httpClient: HttpClient,
     private notificationService: NotificationService,
+    private route: ActivatedRoute,
+    private router: Router,
     private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
     this.leadDetails = this.genericService.getLeadData();
+    this.appointmentDetails = this.genericService.getAppointmentData();
+    this.sub = this.route.queryParams.subscribe((params) => {
+      this.action = params.action;
+    });
     this.genericService.getLeadOwners().subscribe((data: any) => {
       this.assignedTo = data.message;
     });
@@ -51,46 +61,25 @@ export class CreateEventsComponent implements OnInit {
   private setFormControlValue(): void {
     this.leadDetails = this.genericService.getLeadData();
     console.log(this.leadDetails);
-    this.leadInfoForm.patchValue({
-      assignedTo: this.leadDetails.master_lead_owner,
-      task: 'Appointment'
-    })
-    // const controls = this.leadInfoForm.controls;
-
-    // if (this.leadDetails) {
-    //   Object.keys(controls).forEach((control: string) => {
-    //     const value = this.leadDetails[control]
-    //       ? this.leadDetails[control]
-    //       : '';
-    //     controls[control].patchValue(value);
-    //   });
-    // }
+    if (this.action == 'view') {
+      this.leadInfoForm.patchValue({
+        assignedTo: this.leadDetails.master_lead_owner,
+        task: 'Appointment',
+      })
+    } else {
+      let arr = this.appointmentDetails.date_time.split(" ");
+      this.leadInfoForm.patchValue({
+        assignedTo: this.appointmentDetails.assigned_to,
+        task: this.appointmentDetails.event_task,
+        notes: this.appointmentDetails.notes,
+        status: this.appointmentDetails.status,
+        date: arr[0],
+        time: arr[arr.length-2] + " " + arr[arr.length-1]
+      })
+      console.log('this.leadInfoForm', this.leadInfoForm);
+    }
+    
   }
-  // private setFormControlValue(): void {
-  //   this.leadDetails = this.genericService.getLeadData();
-  //   console.log(this.leadDetails);
-  //   const controls = this.utilityInfoForm.controls;
-  //   if (this.leadDetails) {
-  //     Object.keys(controls).forEach((control: string) => {
-  //       const value = this.leadDetails[control]
-  //         ? this.leadDetails[control]
-  //         : '';
-  //       controls[control].patchValue(value);
-  //     });
-  //     // if(this.utilityCompany.length > 0) {
-  //     //   this.utilityCompany.forEach((company:any) => {
-  //     //     if(company.name == this.leadDetails.company) {
-  //     //       this.matchCompany = true;
-  //     //       return;
-  //     //     }
-  //     //     this.matchCompany = false;
-  //     //   });
-  //     // }
-  //     if(this.utilityInfoForm.controls.company.value == '') {
-  //       this.matchCompany = false;
-  //     }
-  //   }
-  // }
   private createForm(): void {
     this.leadInfoForm = this.formBuilder.group({
     });
@@ -117,7 +106,14 @@ export class CreateEventsComponent implements OnInit {
   public saveDeal() {
     if (this.leadInfoForm.valid) {
       let saveData = { ...this.leadInfoForm.value};
-      saveData['operation'] = 'insert';
+      if (this.action = 'edit') {
+        saveData['operation'] = 'update';
+      } else {
+        saveData['operation'] = 'insert';
+      }
+      if (!saveData.notes) {
+        saveData.notes = "";
+      }
       saveData['leadId'] = this.leadDetails.master_lead_owner_id;
       console.log('saveData=', saveData);
       Swal.fire({
@@ -131,15 +127,38 @@ export class CreateEventsComponent implements OnInit {
         cancelButtonText: 'No',
       }).then((res) => {
         if (res.isConfirmed) {
-          window.alert('Saved Successfully');
           this.genericService.saveEvents(saveData).subscribe((dataValue: any) => {
-            window.alert('Appointment Saved Successfully');
+            Swal.fire({
+              text: 'Appointment Saved Successfully',
+              icon: 'info',
+              confirmButtonColor: '#A239CA',
+              position: 'center',
+              confirmButtonText: 'Continue',
+              showConfirmButton: true
+            }).then((res) => {
+              if (res.isConfirmed) {
+                this.router.navigate(['post-auth/leads']);
+              }
+            })
           }, (error: any) => {
             const errMsg = 'Unable To Save The Data';
             this.notificationService.error(errMsg);
           });
         }
       });
+  } else {
+      Swal.fire({
+        text: 'Appointment Saved Successfully',
+        icon: 'info',
+        confirmButtonColor: '#A239CA',
+        position: 'center',
+        confirmButtonText: 'Continue',
+        showConfirmButton: true
+      }).then((res) => {
+        if (res.isConfirmed) {
+          this.router.navigate(['post-auth/leads']);
+        }
+      })
   }
   }
 }

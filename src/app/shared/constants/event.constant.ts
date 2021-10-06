@@ -73,7 +73,7 @@ export const CreateEvent: { [key: string]: FormField } = {
         associatedfieldName: '',
         fieldType: FieldTypes.TEXTAREA,
         isEditable: false,
-        isRequired: false,
+        isRequired: true,
         isDisabled: false,
         errors: [],
       }

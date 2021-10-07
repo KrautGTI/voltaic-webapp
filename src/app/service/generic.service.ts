@@ -65,7 +65,10 @@ export class GenericService {
     const url = this.authServiceUrl + 'user/setPassword';
     return this.httpClient.post(url, resetForm);
   }
-
+  public loadEvents(payload: any) {
+    const url = this.authServiceUrl + 'event/getAllEvents ';
+    return this.httpClient.post(url, payload);
+  }
   public getJobReports() {
     const url = this.authServiceUrl + 'masterJob/masterJobs';
     return this.httpClient.post(url, '');

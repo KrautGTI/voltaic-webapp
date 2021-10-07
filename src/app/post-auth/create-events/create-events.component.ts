@@ -67,14 +67,13 @@ export class CreateEventsComponent implements OnInit {
         task: 'Appointment',
       })
     } else {
-      let arr = this.appointmentDetails.date_time.split(" ");
       this.leadInfoForm.patchValue({
-        assignedTo: this.appointmentDetails.assigned_to,
-        task: this.appointmentDetails.event_task,
+        assignedTo: this.appointmentDetails.assignedTo,
+        task: this.appointmentDetails.task,
         notes: this.appointmentDetails.notes,
         status: this.appointmentDetails.status,
-        date: arr[0],
-        time: arr[arr.length-2] + " " + arr[arr.length-1]
+        date: this.appointmentDetails.date,
+        time: this.appointmentDetails.time
       })
       console.log('this.leadInfoForm', this.leadInfoForm);
     }
@@ -106,11 +105,13 @@ export class CreateEventsComponent implements OnInit {
   public saveDeal() {
     if (this.leadInfoForm.valid) {
       let saveData = { ...this.leadInfoForm.value};
-      if (this.action = 'edit') {
+      if (this.action == 'edit') {
         saveData['operation'] = 'update';
+        saveData['eventId'] = this.appointmentDetails.eventId;
       } else {
         saveData['operation'] = 'insert';
       }
+      saveData['date'] = (saveData['date']).format("DD-MM-YYYY")
       if (!saveData.notes) {
         saveData.notes = "";
       }

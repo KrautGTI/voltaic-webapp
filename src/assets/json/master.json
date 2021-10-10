@@ -1206,5 +1206,55 @@
     { "id": "Sunlight", "value": "Sunlight" },
     { "id": "Enium", "value": "Enium" },
     { "id": "Solkraft", "value": "Solkraft" }
+  ],
+  "status": [
+    {
+      "id": "1",
+      "value": "Cancelled"
+    },
+    {
+      "id": "2",
+      "value": "Credit Decline"
+    },
+    {
+      "id": "3",
+      "value": "Disqualified"
+    },
+    {
+      "id": "4",
+      "value": "Duplicate"
+    },
+    {
+      "id": "5",
+      "value": "Incomplete"
+    },
+    {
+      "id": "6",
+      "value": "No Sale"
+    },
+    {
+      "id": "7",
+      "value": "No Show"
+    },
+    {
+      "id": "8",
+      "value": "One Legger"
+    },
+    {
+      "id": "9",
+      "value": "Reschedule"
+    },
+    {
+      "id": "10",
+      "value": "Scheduled"
+    },
+    {
+      "id": "11",
+      "value": "Sold"
+    },
+    {
+      "id": "12",
+      "value": "Unscheduled"
+    }
   ]
 }

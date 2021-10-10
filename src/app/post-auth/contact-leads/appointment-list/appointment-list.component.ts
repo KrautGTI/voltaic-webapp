@@ -67,7 +67,7 @@ export class AppointmentListComponent implements OnInit {
     this.columnDefs = [
       {
         headerName: 'Event Task',
-        field: 'event_task',
+        field: 'task',
         cellStyle: {
           color: '#212121',
           'font-size': '14px',
@@ -77,7 +77,7 @@ export class AppointmentListComponent implements OnInit {
       },
       {
         headerName: 'Assigned To',
-        field: 'assigned_to',
+        field: 'assignedTo',
         cellStyle: {
           color: '#212121',
           'font-size': '14px',
@@ -96,8 +96,18 @@ export class AppointmentListComponent implements OnInit {
         },
       },
       {
-        headerName: 'Date and Time',
-        field: 'date_time',
+        headerName: 'Date',
+        field: 'date',
+        cellStyle: {
+          color: '#212121',
+          'font-size': '14px',
+          height: '40px',
+          cursor: 'pointer',
+        },
+      },
+      {
+        headerName: 'Time',
+        field: 'time',
         cellStyle: {
           color: '#212121',
           'font-size': '14px',
@@ -105,6 +115,7 @@ export class AppointmentListComponent implements OnInit {
           cursor: 'pointer',
         },
       }
+
     ];
     this.defaultColDef = {
       sortable: true,
@@ -117,7 +128,6 @@ export class AppointmentListComponent implements OnInit {
       enablePivot: true,
       enableValue: true,
     };
-
     this.paginationPageSize = 15;
     this.rowSelection = 'single';
     this.paginationNumberFormatter = function (params: any) {
@@ -145,23 +155,40 @@ export class AppointmentListComponent implements OnInit {
     this.gridApi?.sizeColumnsToFit();
   }
   onRowClick(event: any) {
-    // console.log(event.data.id);
-    // this.router.navigate(['post-auth/contact/details'], { queryParams: { contactId: event.data.id } });
+    console.log(event.data.id);
+    this.rowData.forEach((ele: any) => {
+      if(ele.id == event.data.id) {
+        this.genericService.setAppointmentData(ele);
+      } 
+    });
+    this.action = 'edit';
+    this.navigateToCreateEvent();
   }
 
   onRowGroupOpeneds(params: any) {}
 
   onGridReady(params: any) {
+    let payload = { 
+      role : 'Admin'
+    }
     this.gridApi = params.api;
     this.gridColumnApi = params.columnApi;
-    this.rowData = [
-      {
-        event_task : "Appointment",
-        assigned_to : "Kanon Olivier",
-        status : "Scheduled",
-        date_time : "10-06-2021 at 6:00 pm"
-      }
-    ]
+    this.genericService.loadEvents(payload).subscribe(
+      (appointmentList: any) => {
+      this.rowData = appointmentList.message;
+      console.log(this.rowData)
+    }, (error: any) => {
+      const errMsg = 'Unable To Load The Data';
+      this.notificationService.error(errMsg);
+    });
+    // this.rowData = [
+    //   {
+    //     event_task : "Appointment",
+    //     assigned_to : "Kanon Olivier",
+    //     status : "Scheduled",
+    //     date_time : "10-06-2021 at 06:00 PM"
+    //   }
+    // ]
     // this.genericService.getLeads().subscribe(
     //   (userList: any) => {
     //     console.log(userList);

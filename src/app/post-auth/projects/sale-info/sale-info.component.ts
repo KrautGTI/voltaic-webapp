@@ -60,11 +60,11 @@ export class SaleInfoComponent implements OnInit {
         this.changeProgressBar('active');
       }
     });
-    this.httpClient.get('assets/json/master.json').subscribe((masterData) => {
-      this.masterData = masterData;
-      this.salesTypes = this.masterData.salesType;
-      this.paymentMethods = this.masterData.paymentMethod;
-    });
+    // this.httpClient.get('assets/json/master.json').subscribe((masterData) => {
+    //   this.masterData = masterData;
+    //   this.salesTypes = this.masterData.salesType;
+    //   this.paymentMethods = this.masterData.paymentMethod;
+    // });
     this.createForm();
     if(this.action == 'view' || this.action == 'edit')
       this.setFormControlValue();
@@ -125,39 +125,40 @@ export class SaleInfoComponent implements OnInit {
   public submitSaleInfo() {
     this.isSubmitClicked = true;
     console.log(this.saleInfoForm);
-    if (this.saleInfoForm.valid) {
-        const saveData = { ...this.saleInfoForm.value, id: this.projectId };
-        console.log('saveData=', saveData);
-        Swal.fire({
-          text: 'Do You Want To Save Changes?',
-          icon: 'question',
-          confirmButtonColor: '#A239CA',
-          position: 'center',
-          confirmButtonText: 'Yes',
-          showConfirmButton: true,
-          showCancelButton: true,
-          cancelButtonText: 'No',
-        }).then((res) => {
-          if (res.isConfirmed) {
-            // if(this.action == 'create') {
-            //   this.genericService.addSaleInfo(saveData).subscribe((dataValue: any) => {
-            //       this.navigateToOtherInfo();
-            //     }, (error: any) => {
-            //       const errMsg = 'Unable To Save The Data';
-            //       this.notificationService.error(errMsg);
-            //     });
-            // } else if(this.action == 'edit') {
-            //   this.genericService.editSaleInfo(saveData).subscribe((dataValue: any) => {
-            //     this.navigateToOtherInfo();
-            //   }, (error: any) => {
-            //     const errMsg = 'Unable To Save The Data';
-            //     this.notificationService.error(errMsg);
-            //   });
-            // }
-            this.navigateToOtherInfo();  
-          }
-        });
-    }
+    this.navigateToOtherInfo();  
+    // if (this.saleInfoForm.valid) {
+    //     const saveData = { ...this.saleInfoForm.value, id: this.projectId };
+    //     console.log('saveData=', saveData);
+    //     Swal.fire({
+    //       text: 'Do You Want To Save Changes?',
+    //       icon: 'question',
+    //       confirmButtonColor: '#A239CA',
+    //       position: 'center',
+    //       confirmButtonText: 'Yes',
+    //       showConfirmButton: true,
+    //       showCancelButton: true,
+    //       cancelButtonText: 'No',
+    //     }).then((res) => {
+    //       if (res.isConfirmed) {
+    //         // if(this.action == 'create') {
+    //         //   this.genericService.addSaleInfo(saveData).subscribe((dataValue: any) => {
+    //         //       this.navigateToOtherInfo();
+    //         //     }, (error: any) => {
+    //         //       const errMsg = 'Unable To Save The Data';
+    //         //       this.notificationService.error(errMsg);
+    //         //     });
+    //         // } else if(this.action == 'edit') {
+    //         //   this.genericService.editSaleInfo(saveData).subscribe((dataValue: any) => {
+    //         //     this.navigateToOtherInfo();
+    //         //   }, (error: any) => {
+    //         //     const errMsg = 'Unable To Save The Data';
+    //         //     this.notificationService.error(errMsg);
+    //         //   });
+    //         // }
+            
+    //       }
+    //     });
+    // }
   }
 
   ngOnDestroy() {

@@ -190,7 +190,24 @@ export class LeadInfoComponent implements OnInit {
         queryParams: { action: this.action }
       });
     } else if(this.action == 'edit') {
-      this.router.navigate(['post-auth/leads']);
+      this.router.navigate(['post-auth/leads/lead-details/appointment'], {
+        queryParams: { leadId: this.leadId, action: this.action }
+      });
+    }
+  }
+
+  navigateToLeadInfo() {
+    if(this.action == 'create' || this.action == 'edit') {
+      this.changeProgressBar('completed');
+    }
+    if(this.action == 'create') {
+      this.router.navigate(['post-auth/leads/lead-details/lead-info'], {
+        queryParams: { action: this.action }
+      });
+    } else if(this.action == 'edit'){
+      this.router.navigate(['post-auth/leads/lead-details/lead-info'], {
+        queryParams: { leadId: this.leadId, action: this.action }
+      });
     }
   }
 

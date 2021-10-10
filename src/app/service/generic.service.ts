@@ -14,6 +14,8 @@ export class GenericService {
   private leadDetails:any;
   private stateId:any;
   private leadId:any;
+  private stateIdProject:any;
+  private projectId:any;
 
   constructor(
     private httpClient: HttpClient,
@@ -46,12 +48,28 @@ export class GenericService {
     return this.leadId;
   }
 
+  public setProjectId(projectId: any) {
+    this.projectId = projectId;
+  }
+
+  public getProjectId() {
+    return this.projectId;
+  }
+
   public setSelectedState(stateId: any) {
     this.stateId = stateId;
   }
 
   public getSelectedState() {
     return this.stateId;
+  }
+
+  public setSelectedStateProject(stateId: any) {
+    this.stateIdProject = stateId;
+  }
+
+  public getSelectedStateProject() {
+    return this.stateIdProject;
   }
 
   public setPassoword(resetForm: any) {

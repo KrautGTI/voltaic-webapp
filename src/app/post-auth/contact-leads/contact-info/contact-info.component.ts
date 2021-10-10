@@ -184,7 +184,7 @@ export class ContactInfoComponent implements OnInit {
     if(this.action == 'create' || this.action == 'edit') {
       this.changeProgressBar('completed');
     }
-    this.genericService.setSelectedState(this.contactInfoForm.controls.state.value);
+    this.genericService.setSelectedState(this.contactInfoForm.controls.state_id.value);
     if(this.action == 'create') {
       this.router.navigate(['post-auth/leads/lead-details/utility-info'], {
         queryParams: { action: this.action }

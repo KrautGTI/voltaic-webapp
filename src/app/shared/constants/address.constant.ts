@@ -56,7 +56,7 @@ export const AddressLabels: { [key: string]: FormField } = {
       },
       state: {
         fieldLabel: 'State/Region',
-        fieldName: 'state',
+        fieldName: 'state_id',
         placeholder: '',
         associatedfieldName: '',
         fieldType: FieldTypes.SELECT,

@@ -130,7 +130,7 @@ export class ContactLeadsComponent implements OnInit {
       },
       {
         headerName: 'Lead Source',
-        field: 'master_lead_source_id',
+        field: 'master_lead_source',
         cellStyle: {
           color: '#212121',
           'font-size': '14px',
@@ -140,7 +140,7 @@ export class ContactLeadsComponent implements OnInit {
       },
       {
         headerName: 'Lead Generator',
-        field: 'master_lead_owner_id',
+        field: 'master_lead_owner',
         cellStyle: {
           color: '#212121',
           'font-size': '14px',
@@ -160,7 +160,7 @@ export class ContactLeadsComponent implements OnInit {
       },
       {
         headerName: 'Sales Rep',
-        field: 'sales_rep_id',
+        field: 'sales_rep',
         cellStyle: {
           color: '#212121',
           'font-size': '14px',

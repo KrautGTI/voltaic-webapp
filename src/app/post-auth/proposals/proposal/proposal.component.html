@@ -1,5 +1,13 @@
 <div class="container-fluid" style="margin-top: 10px">
   <form [formGroup]="proposalForm">
+    <div class="card shadow">
+      <div class="card-body sectionDetails">
+        <div class="d-flex justify-content-between editSection">
+          <div class="p-3 font-size-15rem font-weight-600 cardHeader">
+              Proposal Information
+          </div>
+      </div>
+      <div class="col-12 pr-3">
     <div class="row">
       <div class="col-md-6 mb-4">
         <app-select
@@ -39,5 +47,8 @@
         </div>
       </div>
     </div>
+    </div>
+    </div>
+  </div>
   </form>
 </div>

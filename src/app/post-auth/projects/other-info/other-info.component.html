@@ -1,1 +1,59 @@
-<p>other-info works!</p>
+<div class="container-fluid" style="margin-top: 10px">
+    <form [formGroup]="otherInfoForm">
+        <div class="card shadow">
+            <div class="card-body sectionDetails">
+                <div class="d-flex justify-content-between editSection">
+                    <div class="p-3 font-size-15rem font-weight-600 cardHeader">
+                        Other Information
+                    </div>
+                    <div *ngIf="action == 'view'">
+                        <button class="btn btn-primary createBtn" type="submit" (click)="editOtherInfo()">
+                            <span class="plusImg"><img src="../../assets/images/pencil-fill-white.svg"></span> Edit 
+                        </button>
+                    </div>  
+                </div>
+                <div class="col-12 pr-3">
+                    <div class="row">
+                        <div class="col-md-6 mb-4">
+                            <app-select
+                                [isRequired]="label.utilityCompany.isRequired"
+                                [label]="label.utilityCompany.fieldLabel"
+                                [fieldName]="label.utilityCompany.fieldName"
+                                [options]="utilityCompany"
+                                [optionConfig]="label.utilityCompany.optionConfig"
+                                [errors]="label.utilityCompany.errors"
+                                [isEditable]="action == 'edit' || action == 'create'"
+                                [group]="otherInfoForm"
+                            ></app-select>
+                            <div class="customError" *ngIf="!matchCompany">Please change utility company according to state</div>
+                        </div>
+                        <div class="col-md-6 mb-4">
+                            <app-select
+                                [isRequired]="label.hoa.isRequired"
+                                [label]="label.hoa.fieldLabel"
+                                [fieldName]="label.hoa.fieldName"
+                                [options]="hoa"
+                                [optionConfig]="label.hoa.optionConfig"
+                                [errors]="label.hoa.errors"
+                                [isEditable]="action == 'edit' || action == 'create'"
+                                [group]="otherInfoForm"
+                            ></app-select>
+                        </div>
+                    </div>
+                    <div class="row mb-4" *ngIf="action == 'create' || action == 'edit'">
+                        <div class="col-12 eachInfoDiv btnDiv">
+                          <div class="eachInfo">
+                            <app-btn-primary
+                              [btnName]="'Save & Next'"
+                              [disabled]="otherInfoForm.invalid"
+                              (btnClick)="submitOtherInfo()"
+                            ></app-btn-primary>
+                          </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+

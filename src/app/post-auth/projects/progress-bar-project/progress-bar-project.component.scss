@@ -1,0 +1,46 @@
+.cicular-pogress {
+    width: 35px;
+    height: 35px;
+    border: 5px solid #9362f3;
+    z-index: 99;
+}
+.status-width{
+    width:150px;
+}
+.bg-violet {
+    background-color:#9362f3;
+}
+.line-position {
+    top: 19px;
+    right:166px;
+    z-index: 0;
+}
+.status-line-width {
+    width:70%;
+}
+.line-width{
+    width: 50%;
+}
+.createProgressBar{
+    .line-position {
+        right:130px;
+    }
+    .status-line-width {
+        width:75%;
+    }
+    .line-width{
+        width: 34%;
+    }
+}
+@media (max-width: 480px) {
+    .line-position {
+        right: 55px !important;
+    }
+}
+
+.border-style{
+    border-top: 4px solid #e1e1e1;
+}
+.border-style-active{
+    border-top: 4px solid #bc9df9;
+}

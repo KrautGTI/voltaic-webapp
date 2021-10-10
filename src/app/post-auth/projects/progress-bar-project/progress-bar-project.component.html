@@ -1,0 +1,54 @@
+<div class="container">
+    <div class="d-flex position-relative">
+        <!-- [ngClass]="{'createProgressBar' : action == 'create'}" /* position-relative section */ -->
+        <div class="d-flex justify-content-between mx-auto status-line-width position-absolute line-position">
+            <div class="line-width"
+                [ngClass]="{'border-style': progressStatus.contactInfo !== 'completed','border-style-active': progressStatus.contactInfo == 'completed'}">
+            </div>
+            <div class="line-width"
+                [ngClass]="{'border-style': progressStatus.saleInfo !== 'completed','border-style-active': progressStatus.saleInfo == 'completed'}">
+            </div>
+            <!-- <div class="line-width" 
+                [ngClass]="{'border-style': progressStatus.otherInfo !== 'completed','border-style-active': progressStatus.otherInfo == 'completed'}">
+            </div> -->
+        </div>
+    </div>
+    <div class="d-flex justify-content-around">
+        <div class="d-flex flex-column status-width text-center">
+            <div class="p-3 rounded-circle cursor-pointer d-flex justify-content-center align-items-center cicular-pogress mx-auto"
+                [ngClass]="{ 'bg-violet text-white': progressStatus.contactInfo == 'active' || progressStatus.contactInfo == 'completed', 'bg-white text-orange': progressStatus.contactInfo == 'notVisited'}"
+                (click)="navigateToContactInfo()">
+                <span *ngIf="progressStatus.contactInfo !== 'completed'">1</span>
+                <span *ngIf="progressStatus.contactInfo == 'completed'">&#x2714;</span>
+            </div>
+            <div class="py-2">
+                Contact Info
+            </div>
+        </div>
+        <div class="d-flex flex-column status-width text-center">
+            <div class="p-3 rounded-circle cursor-pointer d-flex justify-content-center align-items-center cicular-pogress mx-auto"
+                [ngClass]="{ 'bg-violet text-white': progressStatus.saleInfo == 'active' || progressStatus.saleInfo == 'completed', 'bg-white text-orange': progressStatus.saleInfo == 'notVisited'}"
+                (click)="navigateToSaleInfo()">
+                <span *ngIf="progressStatus.saleInfo !== 'completed'">2</span>
+                <span *ngIf="progressStatus.saleInfo == 'completed'">&#x2714;</span>
+            </div>
+            <div class="py-2">
+                Sale Info
+            </div>
+        </div>
+        <div class="d-flex flex-column status-width text-center">
+            <div class="p-3 rounded-circle cursor-pointer d-flex justify-content-center align-items-center cicular-pogress mx-auto"
+                [ngClass]="{ 'bg-violet text-white': progressStatus.otherInfo == 'active' || progressStatus.otherInfo == 'completed', 'bg-white text-orange': progressStatus.otherInfo == 'notVisited'}"
+                (click)="navigateToOtherInfo()">
+                <span *ngIf="progressStatus.otherInfo !== 'completed'">3</span>
+                <span *ngIf="progressStatus.otherInfo == 'completed'">&#x2714;</span>
+            </div>
+            <div class="py-2">
+                Other Info
+            </div>
+        </div>
+       
+    </div>
+
+</div>
+

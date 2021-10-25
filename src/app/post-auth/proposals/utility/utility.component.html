@@ -1,1 +1,125 @@
-<p>utility works!</p>
+<div class="container-fluid" style="margin-top: 10px">
+    <form [formGroup]="utilityForm">
+      <div class="card shadow">
+        <div class="card-body sectionDetails">
+          <div class="d-flex justify-content-between editSection">
+            <div class="p-3 font-size-15rem font-weight-600 cardHeader">
+                Utility Information
+            </div>
+        </div>
+        <div class="col-12 pr-3">
+      <div class="row">
+        <div class="col-md-6 mb-4">
+          <app-select
+            [isRequired]="utilityLabels.utility.isRequired"
+            [label]="utilityLabels.utility.fieldLabel"
+            [fieldName]="utilityLabels.utility.fieldName"
+            [options]="utilities"
+            [optionConfig]="utilityLabels.utility.optionConfig"
+            [errors]="utilityLabels.utility.errors"
+            [group]="utilityForm"
+          ></app-select>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="p-3 font-size-15rem font-weight-600 cardHeader">
+            Account Owner
+          </div>
+        </div>
+        <div class="col-md-6 mb-4">
+          <app-checkbox
+            [label]="utilityLabels.accountOwner.fieldLabel"
+            [fieldName]="utilityLabels.accountOwner.fieldName"
+            [group]="utilityForm"
+          ></app-checkbox>
+        </div>
+        <div class="col-md-6 mb-4"></div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <!-- <app-home-owner [group]="homeOwnerGrp"></app-home-owner> -->
+          <div class="row" *ngIf="!accountOwner || !accountOwner.value">
+            <div class="col-md-4 mb-4">
+              <app-input
+                [type]="utilityLabels.firstName.fieldType"
+                [isRequired]="utilityLabels.firstName.isRequired"
+                [label]="utilityLabels.firstName.fieldLabel"
+                [fieldName]="utilityLabels.firstName.fieldName"
+                [placeholder]="utilityLabels.firstName.placeholder"
+                [errors]="utilityLabels.firstName.errors"
+                [group]="utilityForm"
+              ></app-input>
+            </div>
+            <div class="col-md-4 mb-4">
+              <app-input
+                [type]="utilityLabels.lastName.fieldType"
+                [isRequired]="utilityLabels.lastName.isRequired"
+                [label]="utilityLabels.lastName.fieldLabel"
+                [fieldName]="utilityLabels.lastName.fieldName"
+                [placeholder]="utilityLabels.lastName.placeholder"
+                [errors]="utilityLabels.lastName.errors"
+                [group]="utilityForm"
+              ></app-input>
+            </div>
+            <div class="col-md-4 mb-4">
+              <app-input-email
+                [type]="utilityLabels.email.fieldType"
+                [isRequired]="utilityLabels.email.isRequired"
+                [label]="utilityLabels.email.fieldLabel"
+                [fieldName]="utilityLabels.email.fieldName"
+                [placeholder]="utilityLabels.email.placeholder"
+                [errors]="utilityLabels.email.errors"
+                [group]="utilityForm"
+              ></app-input-email>
+            </div>
+          </div>
+          <!-- *ngIf="!accountOwner && accountOwner!.value" -->
+          <div class="row" >
+            <div class="col-md-12">
+              <div class="p-3 font-size-15rem font-weight-600 cardHeader">
+                Bill & Usage
+              </div>
+            </div>
+            <div class="col-md-6 mb-4">
+              <app-input
+                [type]="utilityLabels.annualBill.fieldType"
+                [isRequired]="utilityLabels.annualBill.isRequired"
+                [label]="utilityLabels.annualBill.fieldLabel"
+                [fieldName]="utilityLabels.annualBill.fieldName"
+                [placeholder]="utilityLabels.annualBill.placeholder"
+                [errors]="utilityLabels.annualBill.errors"
+                [group]="utilityForm"
+              ></app-input>
+            </div>
+            <div class="col-md-6 mb-4">
+              <app-input
+                [type]="utilityLabels.annualKwh.fieldType"
+                [isRequired]="utilityLabels.annualKwh.isRequired"
+                [label]="utilityLabels.annualKwh.fieldLabel"
+                [fieldName]="utilityLabels.annualKwh.fieldName"
+                [placeholder]="utilityLabels.annualKwh.placeholder"
+                [errors]="utilityLabels.annualKwh.errors"
+                [group]="utilityForm"
+              ></app-input>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row mb-4">
+        <div class="col-12 eachInfoDiv btnDiv">
+          <div class="eachInfo">
+            <app-btn-primary
+              [btnName]="'Save & Close'"
+              
+              (btnClick)="saveUtility()"
+            ></app-btn-primary>
+          </div>
+        </div>
+      </div>
+      </div>
+      </div>
+    </div>
+    </form>
+  </div>
+   

@@ -26,7 +26,6 @@ export class ProgressBarComponent implements OnInit {
       this.leadId = params.leadId;
       this.action = params.action;
     });
-  //this.subscription = this.dataService.currentData.subscribe(userData => this.userData = userData);
     this.subscription = this.dataService.currentPogressData.subscribe(progressStatus => this.progressStatus = progressStatus);
   }
   navigateToContactInfo() {
@@ -35,13 +34,9 @@ export class ProgressBarComponent implements OnInit {
       this.progressStatus.utilityInfo = 'completed';
       this.progressStatus.leadInfo = 'completed';
       this.progressStatus.appointment = 'completed';
+      this.progressStatus.proposal = 'completed';
       this.changeProgressBar();
-    }
-    // if(this.action == 'create') {
-    //   this.router.navigate(['post-auth/leads/lead-details/contact-info'], {
-    //     queryParams: { action: this.action }
-    //   });
-    // } else 
+    } 
     if(this.action == 'edit' || this.action == 'view'){
       this.router.navigate(['post-auth/leads/lead-details/contact-info'], {
         queryParams: { leadId: this.leadId, action: this.action }
@@ -54,13 +49,9 @@ export class ProgressBarComponent implements OnInit {
       this.progressStatus.utilityInfo = 'active';
       this.progressStatus.leadInfo = 'completed';
       this.progressStatus.appointment = 'completed';
+      this.progressStatus.proposal = 'completed';
       this.changeProgressBar();
     }
-    // if(this.action == 'create') {
-    //   this.router.navigate(['post-auth/leads/lead-details/utility-info'], {
-    //     queryParams: { action: this.action }
-    //   });
-    // } else 
     if(this.action == 'edit' || this.action == 'view'){
       this.router.navigate(['post-auth/leads/lead-details/utility-info'], {
         queryParams: { leadId: this.leadId, action: this.action }
@@ -73,13 +64,9 @@ export class ProgressBarComponent implements OnInit {
       this.progressStatus.utilityInfo = 'completed';
       this.progressStatus.leadInfo = 'active';
       this.progressStatus.appointment = 'completed';
+      this.progressStatus.proposal = 'completed';
       this.changeProgressBar();
     }
-    // if(this.action == 'create') {
-    //   this.router.navigate(['post-auth/leads/lead-details/lead-info'], {
-    //     queryParams: { action: this.action }
-    //   });
-    // } else 
     if(this.action == 'edit' || this.action == 'view'){
       this.router.navigate(['post-auth/leads/lead-details/lead-info'], {
         queryParams: { leadId: this.leadId, action: this.action }
@@ -87,45 +74,38 @@ export class ProgressBarComponent implements OnInit {
     }
   }
   navigateToScheduleAppointment(){
-    // if(this.action == 'create') {
-    //   this.router.navigate(['post-auth/leads/lead-details/schedule-appointment'], {
-    //     queryParams: { action: this.action }
-    //   });
-    // }
   }
-  // navigateToCreateEvent() {
-  //   if(this.action == 'edit' || this.action == 'view'){
-  //     this.router.navigate(['post-auth/create-events'], {queryParams: { leadId: this.leadId, action: this.action } });
-  //   }
-  // }
-
   navigateToAppointment() {
     if(this.action == 'edit') {
       this.progressStatus.contactInfo = 'completed';
       this.progressStatus.utilityInfo = 'completed';
       this.progressStatus.leadInfo = 'completed';
       this.progressStatus.appointment = 'active';
+      this.progressStatus.proposal = 'completed';
       this.changeProgressBar();
     }
-    // if(this.action == 'create') {
-    //   this.router.navigate(['post-auth/leads/lead-details/lead-info'], {
-    //     queryParams: { action: this.action }
-    //   });
-    // } else 
     if(this.action == 'edit' || this.action == 'view'){
       this.router.navigate(['post-auth/leads/lead-details/appointment'], {
         queryParams: { leadId: this.leadId, action: this.action }
       });
     }
   }
-
+  navigateToProposal() {
+    if(this.action == 'edit') {
+      this.progressStatus.contactInfo = 'completed';
+      this.progressStatus.utilityInfo = 'completed';
+      this.progressStatus.leadInfo = 'completed';
+      this.progressStatus.appointment = 'completed';
+      this.progressStatus.proposal = 'active';
+      this.changeProgressBar();
+    }
+    if(this.action == 'edit' || this.action == 'view'){
+      this.router.navigate(['post-auth/leads/lead-details/proposal-info'], {
+        queryParams: { leadId: this.leadId, action: this.action }
+      });
+    }
+  }
   changeProgressBar() {
-    // let progressdata = localStorage.getItem('userSessionProgressData');
-    //   if (progressdata) {
-    //     this.progressStatus = JSON.parse(progressdata);
-    //   } else {
-    //     this.dataService.currentPogressData.subscribe(progressStatus => this.progressStatus = progressStatus);
-    //   }
       this.dataService.changeStatus(this.progressStatus);
   }
 }

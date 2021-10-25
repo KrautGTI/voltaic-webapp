@@ -5,98 +5,66 @@ import {
   FormGroup,
   ValidatorFn,
 } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { Subject } from 'rxjs';
 import { AuthService } from 'src/app/service/auth.service';
 import { GenericService } from 'src/app/service/generic.service';
 import { NotificationService } from 'src/app/service/notification.service';
-import {
-  HomeOwnerLabels,
-  ProposalContainerLabels,
-} from 'src/app/shared/constants/proposal.constant';
-import { FormField } from 'src/app/shared/models/util.model';
 
 @Component({
   selector: 'app-proposal',
   templateUrl: './proposal.component.html',
   styleUrls: ['./proposal.component.scss'],
 })
-export class ProposalComponent implements OnInit, OnDestroy {
-  private unsubscribe$: Subject<boolean> = new Subject();
-  public proposalForm: FormGroup = new FormGroup({});
-  public proposalLabel: { [key: string]: FormField } = ProposalContainerLabels;
-  public homeOwnerLabel: { [key: string]: FormField } = HomeOwnerLabels;
-  public salesReps: { name: string; value: string }[] = [];
-
+export class ProposalComponent implements OnInit {
+  action: any;
+  leadId = '';
+  isUtility = false;
+  isContract = true;
+  isSolar = false;
   constructor(
     private fb: FormBuilder,
     private router: Router,
     private authService: AuthService,
     private genericService: GenericService,
-    private notificationService: NotificationService
+    private notificationService: NotificationService,
+    private route: ActivatedRoute,
   ) {}
 
   ngOnInit(): void {
-    this.createForm();
-  }
-  ngOnDestroy(): void {
-    this.unsubscribe$.next(true);
-    this.unsubscribe$.complete();
-  }
-  get proposalParentGrp(): FormGroup {
-    return this.proposalForm.get('proposalParentGrp') as FormGroup;
-  }
-  get homeOwnerGrp(): FormGroup {
-    return this.proposalForm.get('homeOwnerGrp') as FormGroup;
-  }
-  private createForm(): void {
-    const proposalParentGrp = this.fb.group({});
-    const homeOwnerGrp = this.fb.group({});
-    this.proposalForm = this.fb.group({
-      proposalParentGrp: proposalParentGrp,
-      homeOwnerGrp: homeOwnerGrp,
-    });
-    console.log(this.proposalForm);
-    Object.keys(this.proposalLabel).forEach((key: string) => {
-      const fieldName = this.proposalLabel[key].fieldName;
-      proposalParentGrp.addControl(
-        fieldName,
-        this.createControl(this.proposalLabel[key])
-      );
-      const associatedfieldName = this.proposalLabel[key].associatedfieldName;
-      if (associatedfieldName) {
-        proposalParentGrp.addControl(
-          associatedfieldName,
-          this.createControl(this.proposalLabel[key])
-        );
+    this.route.queryParams.subscribe((params) => {
+      this.action = params.action;
+      if(this.action == 'edit' || this.action == 'view') {
+        this.leadId = params.leadId;
       }
     });
-    Object.keys(this.homeOwnerLabel).forEach((key: string) => {
-      const fieldName = this.homeOwnerLabel[key].fieldName;
-      homeOwnerGrp.addControl(
-        fieldName,
-        this.createControl(this.homeOwnerLabel[key])
-      );
-      const associatedfieldName = this.homeOwnerLabel[key].associatedfieldName;
-      if (associatedfieldName) {
-        homeOwnerGrp.addControl(
-          associatedfieldName,
-          this.createControl(this.homeOwnerLabel[key])
-        );
-      }
-    });
-
-    console.log(this.proposalForm);
-  }
-  private createControl(field: FormField): any {
-    const validation: ValidatorFn[] = [];
-    const disabled = false;
-    const value = '';
-    return this.fb.control({ disabled, value }, validation);
   }
 
-  public getControl(name: string): AbstractControl | null {
-    return this.proposalForm.get(name);
+  goToContractInfo() {
+    this.isUtility = false;
+    this.isContract = true;
+    this.isSolar = false;
+    if(this.action == 'edit' || this.action == 'view') {
+      this.router.navigate(['post-auth/proposals/create-proposal/contract-proposal'], {queryParams: { leadId: this.leadId, action: this.action } });
+    }
   }
-  public saveProposal(): void {}
+  
+  goToUtilityInfo() {
+    this.isContract = false;
+    this.isUtility = true;
+    this.isSolar = false;
+    if(this.action == 'edit' || this.action == 'view') {
+      this.router.navigate(['post-auth/proposals/create-proposal/utility-proposal'], {queryParams: { leadId: this.leadId, action: this.action } });
+    }
+  }
+
+  goToSolarInfo() {
+    this.isContract = false;
+    this.isUtility = false;
+    this.isSolar = true;
+    if(this.action == 'edit' || this.action == 'view') {
+      this.router.navigate(['post-auth/proposals/create-proposal/solar-proposal'], {queryParams: { leadId: this.leadId, action: this.action } });
+    }
+  }
+
 }

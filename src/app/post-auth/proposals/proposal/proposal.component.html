@@ -1,54 +1,16 @@
-<div class="container-fluid" style="margin-top: 10px">
-  <form [formGroup]="proposalForm">
-    <div class="card shadow">
-      <div class="card-body sectionDetails">
-        <div class="d-flex justify-content-between editSection">
-          <div class="p-3 font-size-15rem font-weight-600 cardHeader">
-              Proposal Information
-          </div>
-      </div>
-      <div class="col-12 pr-3">
-    <div class="row">
-      <div class="col-md-6 mb-4">
-        <app-select
-          [isRequired]="proposalLabel.salesRep.isRequired"
-          [label]="proposalLabel.salesRep.fieldLabel"
-          [fieldName]="proposalLabel.salesRep.fieldName"
-          [options]="salesReps"
-          [optionConfig]="proposalLabel.salesRep.optionConfig"
-          [errors]="proposalLabel.salesRep.errors"
-          [group]="proposalParentGrp"
-        ></app-select>
-      </div>
-      <div class="col-md-6 mb-4">
-        <div class="row">
-          <div class="col-12 labelText">
-            {{ proposalLabel.leadGenerator.fieldLabel }}
-          </div>
-          <div class="col-12 labelValue">
-            {{ proposalParentGrp.get("Lead_Generator")!.value }}
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-12">
-        <app-home-owner [group]="homeOwnerGrp"></app-home-owner>
-      </div>
-    </div>
-    <div class="row mb-4">
-      <div class="col-12 eachInfoDiv btnDiv">
-        <div class="eachInfo">
-          <app-btn-primary
-            [btnName]="'Save & Close'"
-            [disabled]="proposalForm.invalid"
-            (btnClick)="saveProposal()"
-          ></app-btn-primary>
-        </div>
-      </div>
-    </div>
-    </div>
-    </div>
-  </div>
-  </form>
+<div class="col-md-12">
+<ul class="tabList">
+  <li (click)="goToContractInfo()" [ngClass]="{'active' : isContract}">
+    Contract Info
+  </li>
+  <li (click)="goToUtilityInfo()" [ngClass]="{'active' : isUtility}">
+    Utility Info
+  </li>
+  <li (click)="goToSolarInfo()" [ngClass]="{'active' : isSolar}">
+    Solar
+  </li>
+</ul>
 </div>
+
+<router-outlet></router-outlet>
+

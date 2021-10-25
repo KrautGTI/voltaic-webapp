@@ -1,1 +1,261 @@
-<p>contact-info works!</p>
+<div class="container-fluid" style="margin-top: 10px">
+    <form [formGroup]="proposalForm">
+      <div class="card shadow">
+        <div class="card-body sectionDetails">
+          <div class="d-flex justify-content-between editSection">
+            <div class="p-3 font-size-15rem font-weight-600 cardHeader">
+                Proposal Information
+            </div>
+        </div>
+        <div class="col-12 pr-3">
+      <div class="row">
+        <div class="col-md-4 mb-4">
+          <app-select
+            [isRequired]="proposalLabel.salesRep.isRequired"
+            [label]="proposalLabel.salesRep.fieldLabel"
+            [fieldName]="proposalLabel.salesRep.fieldName"
+            [options]="salesReps"
+            [optionConfig]="proposalLabel.salesRep.optionConfig"
+            [errors]="proposalLabel.salesRep.errors"
+            [group]="proposalParentGrp"
+          ></app-select>
+        </div>
+        <div class="col-md-4 mb-4">
+          <div class="row">
+            <div class="col-12 labelText">
+              {{ proposalLabel.leadGenerator.fieldLabel }}
+            </div>
+            <div class="col-12 labelValue">
+              {{ proposalParentGrp.get("master_lead_owner")!.value }}
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 mb-4">
+          <app-select
+            [isRequired]="proposalLabel.mentor.isRequired"
+            [label]="proposalLabel.mentor.fieldLabel"
+            [fieldName]="proposalLabel.mentor.fieldName"
+            [options]="mentors"
+            [optionConfig]="proposalLabel.mentor.optionConfig"
+            [errors]="proposalLabel.mentor.errors"
+            [group]="proposalParentGrp"
+          ></app-select>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <!-- <app-home-owner [group]="homeOwnerGrp"></app-home-owner> -->
+          <div class="row">
+            <div class="col-md-6 mb-4">
+              <app-input
+                [type]="label.firstName.fieldType"
+                [isRequired]="label.firstName.isRequired"
+                [label]="label.firstName.fieldLabel"
+                [fieldName]="label.firstName.fieldName"
+                [placeholder]="label.firstName.placeholder"
+                [errors]="label.firstName.errors"
+                [group]="homeOwnerGrp"
+              ></app-input>
+            </div>
+            <div class="col-md-6 mb-4">
+              <app-input
+                [type]="label.lastName.fieldType"
+                [isRequired]="label.lastName.isRequired"
+                [label]="label.lastName.fieldLabel"
+                [fieldName]="label.lastName.fieldName"
+                [placeholder]="label.lastName.placeholder"
+                [errors]="label.lastName.errors"
+                [group]="homeOwnerGrp"
+              ></app-input>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6 mb-4">
+              <app-input-email
+                [type]="label.email.fieldType"
+                [isRequired]="label.email.isRequired"
+                [label]="label.email.fieldLabel"
+                [fieldName]="label.email.fieldName"
+                [placeholder]="label.email.placeholder"
+                [errors]="label.email.errors"
+                [group]="homeOwnerGrp"
+              ></app-input-email>
+            </div>
+            <div class="col-md-6 mb-4">
+              <app-input
+                [type]="label.phone.fieldType"
+                [isRequired]="label.phone.isRequired"
+                [label]="label.phone.fieldLabel"
+                [fieldName]="label.phone.fieldName"
+                [placeholder]="label.phone.placeholder"
+                [errors]="label.phone.errors"
+                [group]="homeOwnerGrp"
+              ></app-input>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="row">
+                <div class="col-md-12 mb-4">
+                  <!-- <app-input-search
+                    [type]="label.address.fieldType"
+                    [isRequired]="label.address.isRequired"
+                    [label]="label.address.fieldLabel"
+                    [fieldName]="label.address.fieldName"
+                    [associatedfieldName]="label.address.associatedfieldName"
+                    [placeholder]="label.address.placeholder"
+                    [errors]="label.address.errors"
+                    [searchValues]="searchValues$"
+                    [optionConfig]="label.address.optionConfig"
+                    [group]="proposalParentGrp"
+                    (cstChange)="onChangeState($event)"
+                  ></app-input-search> -->
+                  <app-input
+                    [type]="label.address.fieldType"
+                    [isRequired]="label.address.isRequired"
+                    [label]="label.address.fieldLabel"
+                    [fieldName]="label.address.fieldName"
+                    [placeholder]="label.address.placeholder"
+                    [errors]="label.address.errors"
+                    [group]="homeOwnerGrp"
+                  ></app-input>
+                </div>
+                <div class="col-md-12 mb-4">
+                  <app-input
+                    [type]="label.street1.fieldType"
+                    [isRequired]="label.street1.isRequired"
+                    [label]="label.street1.fieldLabel"
+                    [fieldName]="label.street1.fieldName"
+                    [placeholder]="label.street1.placeholder"
+                    [errors]="label.street1.errors"
+                    [group]="homeOwnerGrp"
+                  ></app-input>
+                </div>
+                <div class="col-md-12 mb-4">
+                  <app-input
+                    [type]="label.street2.fieldType"
+                    [isRequired]="label.street2.isRequired"
+                    [label]="label.street2.fieldLabel"
+                    [fieldName]="label.street2.fieldName"
+                    [placeholder]="label.street2.placeholder"
+                    [errors]="label.street2.errors"
+                    [group]="homeOwnerGrp"
+                  ></app-input>
+                </div>
+                <div class="col-md-12 mb-4">
+                  <app-input
+                    [type]="label.city.fieldType"
+                    [isRequired]="label.city.isRequired"
+                    [label]="label.city.fieldLabel"
+                    [fieldName]="label.city.fieldName"
+                    [placeholder]="label.city.placeholder"
+                    [errors]="label.city.errors"
+                    [group]="homeOwnerGrp"
+                  ></app-input>
+                </div>
+                <div class="col-md-12 mb-4">
+                  <div class="row">
+                    <div class="col-md-6">
+                      <app-select
+                        [isRequired]="label.state.isRequired"
+                        [label]="label.state.fieldLabel"
+                        [fieldName]="label.state.fieldName"
+                        [options]="states"
+                        [optionConfig]="label.state.optionConfig"
+                        [errors]="label.state.errors"
+                        [group]="homeOwnerGrp"
+                      ></app-select>
+                    </div>
+                    <div class="col-md-6">
+                      <app-input
+                        [type]="label.postalCode.fieldType"
+                        [isRequired]="label.postalCode.isRequired"
+                        [label]="label.postalCode.fieldLabel"
+                        [fieldName]="label.postalCode.fieldName"
+                        [placeholder]="label.postalCode.placeholder"
+                        [errors]="label.postalCode.errors"
+                        [group]="homeOwnerGrp"
+                      ></app-input>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6"></div>
+          </div>
+          <div class="row">
+            <div class="col-md-6 mb-4">
+              <app-checkbox
+                [label]="label.addCoSigner.fieldLabel"
+                [fieldName]="label.addCoSigner.fieldName"
+                [group]="homeOwnerGrp"
+              ></app-checkbox>
+            </div>
+            <div class="col-md-6 mb-4"></div>
+          </div>
+          <div class="row" *ngIf="addCoSigner && addCoSigner!.value">
+            <div class="col-md-6 mb-4">
+              <app-input
+                [type]="label.coSignerFirstName.fieldType"
+                [isRequired]="label.coSignerFirstName.isRequired"
+                [label]="label.coSignerFirstName.fieldLabel"
+                [fieldName]="label.coSignerFirstName.fieldName"
+                [placeholder]="label.coSignerFirstName.placeholder"
+                [errors]="label.coSignerFirstName.errors"
+                [group]="homeOwnerGrp"
+              ></app-input>
+            </div>
+            <div class="col-md-6 mb-4">
+              <app-input
+                [type]="label.coSignerLastName.fieldType"
+                [isRequired]="label.coSignerLastName.isRequired"
+                [label]="label.coSignerLastName.fieldLabel"
+                [fieldName]="label.coSignerLastName.fieldName"
+                [placeholder]="label.coSignerLastName.placeholder"
+                [errors]="label.coSignerLastName.errors"
+                [group]="homeOwnerGrp"
+              ></app-input>
+            </div>
+          </div>
+          <div class="row" *ngIf="addCoSigner && addCoSigner!.value">
+            <div class="col-md-6 mb-4">
+              <app-input-email
+                [type]="label.coSignerEmail.fieldType"
+                [isRequired]="label.coSignerEmail.isRequired"
+                [label]="label.coSignerEmail.fieldLabel"
+                [fieldName]="label.coSignerEmail.fieldName"
+                [placeholder]="label.coSignerEmail.placeholder"
+                [errors]="label.coSignerEmail.errors"
+                [group]="homeOwnerGrp"
+              ></app-input-email>
+            </div>
+            <div class="col-md-6 mb-4">
+              <app-input
+                [type]="label.coSignerPhone.fieldType"
+                [isRequired]="label.coSignerPhone.isRequired"
+                [label]="label.coSignerPhone.fieldLabel"
+                [fieldName]="label.coSignerPhone.fieldName"
+                [placeholder]="label.coSignerPhone.placeholder"
+                [errors]="label.coSignerPhone.errors"
+                [group]="homeOwnerGrp"
+              ></app-input>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row mb-4">
+        <div class="col-12 eachInfoDiv btnDiv">
+          <div class="eachInfo">
+            <app-btn-primary
+              [btnName]="'Save & Close'"
+              
+              (btnClick)="saveProposal()"
+            ></app-btn-primary>
+          </div>
+        </div>
+      </div>
+      </div>
+      </div>
+    </div>
+    </form>
+  </div>

@@ -1,1 +1,149 @@
-<p>solar works!</p>
+<div class="container-fluid" style="margin-top: 10px">
+    <form [formGroup]="solarForm">
+      <div class="card shadow">
+        <div class="card-body sectionDetails">
+          <div class="d-flex justify-content-between editSection">
+            <div class="p-3 font-size-15rem font-weight-600 cardHeader">
+                Proposal
+            </div>
+        </div>
+        <div class="col-12 pr-3">
+      <div class="row">
+        <div class="col-md-6 mb-4">
+          <app-select
+            [isRequired]="solarLabels.proposalType.isRequired"
+            [label]="solarLabels.proposalType.fieldLabel"
+            [fieldName]="solarLabels.proposalType.fieldName"
+            [options]="proposalTypes"
+            [optionConfig]="solarLabels.proposalType.optionConfig"
+            [errors]="solarLabels.proposalType.errors"
+            [group]="solarForm"
+          ></app-select>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+            <div class="d-flex justify-content-between editSection">
+                <div class="p-3 font-size-15rem font-weight-600 cardHeader">
+                    Fulfillment
+                </div>
+            </div>
+          </div>
+        <div class="col-md-6 mb-4">
+          <app-select
+            [isRequired]="solarLabels.installer.isRequired"
+            [label]="solarLabels.installer.fieldLabel"
+            [fieldName]="solarLabels.installer.fieldName"
+            [options]="installers"
+            [optionConfig]="solarLabels.installer.optionConfig"
+            [errors]="solarLabels.installer.errors"
+            [group]="solarForm"
+          ></app-select>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+            <div class="d-flex justify-content-between editSection">
+                <div class="p-3 font-size-15rem font-weight-600 cardHeader">
+                    Products
+                </div>
+            </div>
+          </div>
+          <div class="col-md-6 mb-4">
+            <app-select
+              [isRequired]="solarLabels.panel.isRequired"
+              [label]="solarLabels.panel.fieldLabel"
+              [fieldName]="solarLabels.panel.fieldName"
+              [options]="arrays"
+              [optionConfig]="solarLabels.panel.optionConfig"
+              [errors]="solarLabels.panel.errors"
+              [group]="solarForm"
+            ></app-select>
+          </div>
+          <div class="col-md-6 mb-4"></div>
+        <div class="col-md-6 mb-4">
+          <app-select
+            [isRequired]="solarLabels.inverter.isRequired"
+            [label]="solarLabels.inverter.fieldLabel"
+            [fieldName]="solarLabels.inverter.fieldName"
+            [options]="arrays"
+            [optionConfig]="solarLabels.inverter.optionConfig"
+            [errors]="solarLabels.inverter.errors"
+            [group]="solarForm"
+          ></app-select>
+        </div>
+        
+        
+      </div>
+    
+      <div class="row">
+        <div class="col-md-12">
+            <div class="d-flex justify-content-between editSection">
+                <div class="p-3 font-size-15rem font-weight-600 cardHeader">
+                    Roof
+                </div>
+            </div>
+          </div>
+          <div class="col-md-6 mb-4">
+            <app-select
+              [isRequired]="solarLabels.roofType.isRequired"
+              [label]="solarLabels.roofType.fieldLabel"
+              [fieldName]="solarLabels.roofType.fieldName"
+              [options]="arrays"
+              [optionConfig]="solarLabels.roofType.optionConfig"
+              [errors]="solarLabels.roofType.errors"
+              [group]="solarForm"
+            ></app-select>
+          </div>
+          <div class="col-md-6 mb-4"></div>
+        <div class="col-md-6 mb-4">
+          <app-select
+            [isRequired]="solarLabels.homeType.isRequired"
+            [label]="solarLabels.homeType.fieldLabel"
+            [fieldName]="solarLabels.homeType.fieldName"
+            [options]="homeTypes"
+            [optionConfig]="solarLabels.homeType.optionConfig"
+            [errors]="solarLabels.homeType.errors"
+            [group]="solarForm"
+          ></app-select>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+            <div class="d-flex justify-content-between editSection">
+                <div class="p-3 font-size-15rem font-weight-600 cardHeader">
+                    System Size
+                </div>
+            </div>
+          </div>
+        <div class="col-md-6 mb-4">
+          <app-select
+            [isRequired]="solarLabels.panels.isRequired"
+            [label]="solarLabels.panels.fieldLabel"
+            [fieldName]="solarLabels.panels.fieldName"
+            [options]="systemSizes"
+            [optionConfig]="solarLabels.panels.optionConfig"
+            [errors]="solarLabels.panels.errors"
+            [group]="solarForm"
+          ></app-select>
+        </div>
+      </div>
+
+
+      <div class="row mb-4">
+        <div class="col-12 eachInfoDiv btnDiv">
+          <div class="eachInfo">
+            <app-btn-primary
+              [btnName]="'Save & Close'"
+              
+              (btnClick)="saveSolar()"
+            ></app-btn-primary>
+          </div>
+        </div>
+      </div>
+      </div>
+      </div>
+    </div>
+    </form>
+  </div>
+   

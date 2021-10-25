@@ -17,6 +17,7 @@ export class GenericService {
   private leadId:any;
   private stateIdProject:any;
   private projectId:any;
+  private proposalDetails:any;
 
   constructor(
     private httpClient: HttpClient,
@@ -47,6 +48,15 @@ export class GenericService {
   public getAppointmentData() {
     return this.appointmentDetails;
   }
+
+  public setProposalData(proposalDetails: any) {
+    this.proposalDetails = proposalDetails;
+  }
+
+  public getProposalData() {
+    return this.proposalDetails;
+  }
+
   public setLeadId(leadId: any) {
     this.leadId = leadId;
   }
@@ -321,6 +331,21 @@ export class GenericService {
   public editAppointment(data: Folder): any {
     const url = this.authServiceUrl + 'master/editLead/scheduleAppointment';
     return this.httpClient.post(url, data);
+  }
+
+  public addUpdateProposal(data: any): any {
+    const url = this.authServiceUrl + 'proposal/saveUpdateProposal';
+    return this.httpClient.post(url, data);
+  }
+
+  public getAllProposals(data: any) {
+    const url = this.authServiceUrl + 'proposal/getAllProposal';
+    return this.httpClient.post(url, data);
+  }
+
+  public getProposalByLead(leadId: string) {
+    const url = this.authServiceUrl + 'proposal/getProposalByLead/' + leadId;
+    return this.httpClient.get(url);
   }
 
 }

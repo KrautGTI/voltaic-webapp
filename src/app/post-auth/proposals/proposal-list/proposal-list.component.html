@@ -1,8 +1,37 @@
-<div class="container-fluid" style="margin-top: 10px">
+<!-- <div class="container-fluid" style="margin-top: 10px">
   <app-ui-table
     [tabData]="tabData"
     [columnDefsConfigs]="columnDefsConfigs"
     (gridReady)="onGridReady($event)"
     (rowClick)="onRowClick($event)"
   ></app-ui-table>
+</div> -->
+
+<div class="container-fluid" style="margin-top: 10px">
+  <ag-grid-angular
+    #agGrid
+    id="agGrid"
+    class="ag-theme-balham"
+    [modules]="modules" 
+    [columnDefs]="columnDefs"
+    [defaultColDef]="defaultColDef"
+    [rowGroupPanelShow]="rowGroupPanelShow"
+    [groupMultiAutoColumn]="true"
+    [autoGroupColumnDef]="autoGroupColumnDef"
+    [domLayout]="domLayout"
+    (RowGroupOpened)="onRowGroupOpeneds($event)"
+    [pivotPanelShow]="pivotPanelShow"
+    [debug]="true"
+    [rowSelection]="rowSelection"
+    [enableBrowserTooltips]="true"
+    [pagination]="true"
+    [rowData]="rowData"
+    [animateRows]="true"
+    (gridReady)="onGridReady($event)"
+    [paginationPageSize]="paginationPageSize"
+    [paginationNumberFormatter]="paginationNumberFormatter"
+    (cellClicked)="onRowClick($event)"
+    [rowHeight]="rowHeight"
+
+  ></ag-grid-angular>
 </div>

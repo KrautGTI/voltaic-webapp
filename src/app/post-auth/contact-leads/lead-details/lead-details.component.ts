@@ -23,10 +23,6 @@ export class LeadDetailsComponent implements OnInit {
       this.leadId = params.leadId;
       this.action = params.action;
       this.changeProgressBar();
-      // this.router.navigate(['post-auth/leads/lead-details/contact-info'], {
-      //   queryParams: { leadId: this.leadId, action: this.action }
-      // });
-      
     });
     
   }
@@ -43,11 +39,13 @@ export class LeadDetailsComponent implements OnInit {
         this.progressStatus.utilityInfo = 'completed';
         this.progressStatus.leadInfo = 'completed';
         this.progressStatus.appointment = 'completed';
+        this.progressStatus.proposal = 'completed';
       } if(this.action == 'create') {
         this.progressStatus.contactInfo = 'active';
         this.progressStatus.utilityInfo = 'notVisited';
         this.progressStatus.leadInfo = 'notVisited';
         this.progressStatus.appointment = 'notVisited';
+        this.progressStatus.proposal = 'notVisited';
       }
       this.dataService.changeStatus(this.progressStatus);
   }

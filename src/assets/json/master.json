@@ -1256,5 +1256,13 @@
       "id": "12",
       "value": "Unscheduled"
     }
+  ],
+  "proposalType": [
+    { "id": "Purchase", "value": "Purchase" },
+    { "id": "PPA", "value": "PPA" }
+  ],
+  "installers": [
+    { "id": "Bright Planet Solar", "value": "Bright Planet Solar" },
+    { "id": "Sunergy", "value": "Sunergy" }
   ]
 }

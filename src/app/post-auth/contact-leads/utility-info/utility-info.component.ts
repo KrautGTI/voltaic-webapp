@@ -37,6 +37,7 @@ export class UtilityInfoComponent implements OnInit {
   utilityBill_1: any = "";
   utilityBill_2: any = "";
   matchCompany = true;
+  billLink = '';
   constructor(
     private genericService: GenericService,
     private route: ActivatedRoute,
@@ -66,7 +67,8 @@ export class UtilityInfoComponent implements OnInit {
       this.stateData = {stateId:stateId};
       console.log(this.stateData);
       this.genericService.getUtiliesByStates(this.stateData).subscribe((data: any) => {
-        this.utilityCompany = data.message;
+        if(data.message != 'No Record Found.')
+          this.utilityCompany = data.message;
       });
     }
     this.createForm();
@@ -91,10 +93,12 @@ export class UtilityInfoComponent implements OnInit {
     const controls = this.utilityInfoForm.controls;
     if (this.leadDetails) {
       Object.keys(controls).forEach((control: string) => {
-        const value = this.leadDetails[control]
+        if(control != 'utility_bill_1' && control != 'utility_bill_2') { 
+          const value = this.leadDetails[control]
           ? this.leadDetails[control]
           : '';
-        controls[control].patchValue(value);
+          controls[control].patchValue(value);
+        }
       });
       // if(this.utilityCompany.length > 0) {
       //   this.utilityCompany.forEach((company:any) => {
@@ -124,6 +128,7 @@ export class UtilityInfoComponent implements OnInit {
    
     console.log(this.utilityInfoForm);
   }
+  
   private createControl(field: FormField): any {
     const validation: ValidatorFn[] = [];
     const disabled = false;
@@ -140,6 +145,21 @@ export class UtilityInfoComponent implements OnInit {
       this.utilityBill_1 = event;
     if(fieldName == 'utility_bill_2')
       this.utilityBill_2 = event;
+  }
+
+  downloadUtilityBill(billData: any){
+    console.log(billData)
+    if(billData != null && billData != '') {
+     // const source = `data:image/png;base64,${billData}`;
+      const source = `${billData}`;
+      const link = document.createElement("a");
+      link.href = source;
+      link.download = `${"Utility_Bill"}.png`;
+      this.billLink = link.href + '/' + link.download;
+      console.log('billLink');
+      console.log(this.billLink);
+      link.click();
+    }
   }
 
   public submitUtilityInfo() {

@@ -140,9 +140,9 @@ export class PostAuthComponent implements OnInit, AfterViewInit {
   public goToCreateAccount(): void {
     this.router.navigate(['post-auth/accounts/create-account']);
   }
-  public goToProposal(): void {
-    this.router.navigate(['post-auth/proposals/create-proposal']);
-  }
+  // public goToProposal(): void {
+  //   this.router.navigate(['post-auth/proposals/create-proposal']);
+  // }
   public goToCreateReport(): void {
     this.router.navigate(['post-auth/reports/create-report']);
   }

@@ -11,14 +11,22 @@ export class DataService {
     contactInfo: 'notVisited',
     utilityInfo: 'notVisited',
     leadInfo: 'notVisited',
-    appointment: 'notVisited'
-  })
+    appointment: 'notVisited',
+    proposal: 'notVisited'
+  });
   currentData = this.dataSource.asObservable();
   currentPogressData = this.progressDataSource.asObservable();
 
-  constructor() {
-   // localStorage.setItem("userSessionProgressData", JSON.stringify({this.progressDatSource}))
-  }
+  private dataSourceProject = new BehaviorSubject({});
+  private progressDataSourceProject = new BehaviorSubject({
+    contactInfo: 'notVisited',
+    saleInfo: 'notVisited',
+    otherInfo: 'notVisited'
+  })
+  currentDataProject = this.dataSourceProject.asObservable();
+  currentPogressDataProject = this.progressDataSourceProject.asObservable();
+
+  constructor() {}
 
   changeValue(data: any) {
     this.dataSource.next(data);
@@ -41,6 +49,16 @@ export class DataService {
       localStorage.setItem("userSessionProgressData", JSON.stringify(data));
     } else {
       localStorage.setItem("userSessionProgressData", JSON.stringify(data));
+    }
+  }
+  changeStatusProject(data: any) {
+    this.progressDataSourceProject.next(data);
+    let localStorageProgressValue = localStorage.getItem('userSessionProgressDataProject');
+    if (localStorageProgressValue) {
+      console.log(data);
+      localStorage.setItem("userSessionProgressDataProject", JSON.stringify(data));
+    } else {
+      localStorage.setItem("userSessionProgressDataProject", JSON.stringify(data));
     }
   }
 

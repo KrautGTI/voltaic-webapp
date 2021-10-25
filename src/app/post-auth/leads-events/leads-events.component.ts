@@ -45,7 +45,7 @@ export class LeadsEventsComponent implements OnInit {
 
   ngOnInit(): void {
     this.columnDefs = [
-      { field: 'month', rowGroup: true, hide: true },
+     // { field: 'month', rowGroup: true, hide: true },
       {
         headerName: 'Date',
         field: 'date',

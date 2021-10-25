@@ -8,6 +8,8 @@ import { ProjectDetailsComponent } from './project-details/project-details.compo
 import { SaleInfoComponent } from './sale-info/sale-info.component';
 import { OtherInfoComponent } from './other-info/other-info.component';
 import { ContactProjectComponent } from './contact-project/contact-project.component';
+import { ProgressBarProjectComponent } from './progress-bar-project/progress-bar-project.component';
+import { FormFieldsModule } from 'src/app/common/form-fields/form-fields.module';
 
 
 @NgModule({
@@ -16,10 +18,11 @@ import { ContactProjectComponent } from './contact-project/contact-project.compo
     ProjectDetailsComponent,
     SaleInfoComponent,
     OtherInfoComponent,
-    ContactProjectComponent
+    ContactProjectComponent,
+    ProgressBarProjectComponent
   ],
   imports: [
-    CommonModule, ProjectsRoutingModule, AgGridModule, ReactiveFormsModule, FormsModule
+    CommonModule, ProjectsRoutingModule, AgGridModule, ReactiveFormsModule, FormsModule, FormFieldsModule
   ]
 })
 export class ProjectsModule { }

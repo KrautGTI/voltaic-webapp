@@ -29,7 +29,7 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-6 mb-4">
+                        <div class="col-md-6 mb-4" *ngIf="action == 'edit' || action == 'create'">
                             <app-file-upload
                                 [type]="label.utilityBillOne.fieldType"
                                 [isRequired]="label.utilityBillOne.isRequired"
@@ -40,7 +40,13 @@
                                 (cstChange)="getImage($event, label.utilityBillOne.fieldName)"
                             ></app-file-upload>
                         </div>
-                        <div class="col-md-6 mb-4">
+                        <div class="col-md-6 mb-4" *ngIf="action == 'view'">
+                            <label class="form-label col-12" style="display: contents;">
+                                Utility Bill 1 :
+                            </label>
+                            <a *ngIf="leadDetails?.utility_bill_1" [href]="billLink" (click)="downloadUtilityBill(leadDetails?.utility_bill_1)">Utility_Bill.png</a> 
+                        </div>
+                        <div class="col-md-6 mb-4" *ngIf="action == 'edit' || action == 'create'">
                             <app-file-upload
                                 [type]="label.utilityBillTwo.fieldType"
                                 [isRequired]="label.utilityBillTwo.isRequired"
@@ -50,6 +56,12 @@
                                 [group]="utilityInfoForm"
                                 (cstChange)="getImage($event, label.utilityBillTwo.fieldName)"
                             ></app-file-upload>
+                        </div>
+                        <div class="col-md-6 mb-4" *ngIf="action == 'view'">
+                            <label class="form-label col-12" style="display: contents;">
+                                Utility Bill 2 :
+                            </label>
+                            <a *ngIf="leadDetails?.utility_bill_2" [href]="billLink" (click)="downloadUtilityBill(leadDetails?.utility_bill_2)">Utility_Bill.png</a> 
                         </div>
                         <div class="col-md-6 mb-4">
                             <app-input

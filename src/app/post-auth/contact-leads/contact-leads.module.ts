@@ -10,7 +10,7 @@ import { ContactInfoComponent } from './contact-info/contact-info.component';
 import { UtilityInfoComponent } from './utility-info/utility-info.component';
 import { LeadInfoComponent } from './lead-info/lead-info.component';
 import { ProposalInfoComponent } from './proposal-info/proposal-info.component';
-import { AdminInfoComponent } from './admin-info/admin-info.component';
+import { AdminInfoComponent } from './admin-info/admin-info.component'; 
 import { ScheduleAppointmentComponent } from './schedule-appointment/schedule-appointment.component';
 import { FormFieldsModule } from 'src/app/common/form-fields/form-fields.module';
 import { AppointmentListComponent } from './appointment-list/appointment-list.component';

@@ -47,11 +47,11 @@
                             <span class="plusImg"><img src="../../assets/images/plus-lg.svg"></span> Create Report
                         </button>
                     </div> 
-                    <div *ngIf="router.url.includes('proposals') && !router.url.includes('create-proposal')">
+                    <!-- <div *ngIf="router.url.includes('proposals') && !router.url.includes('create-proposal')">
                         <button class="btn btn-primary createBtn" type="submit" (click)="goToProposal()">
                            <span class="plusImg"><img src="../../assets/images/plus-lg.svg"></span> Create Proposal
                         </button>
-                    </div> 
+                    </div>  -->
                     <div *ngIf="router.url.includes('projects') && !router.url.includes('project-details')">
                         <button class="btn btn-primary createBtn" type="submit" (click)="goToProject('create')">
                            <span class="plusImg"><img src="../../assets/images/plus-lg.svg"></span> Create Project

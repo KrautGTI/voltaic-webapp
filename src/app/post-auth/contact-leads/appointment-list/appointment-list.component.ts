@@ -37,6 +37,7 @@ export class AppointmentListComponent implements OnInit {
   rowHeight: any;
   paginationNumberFormatter: any;
   sortingOrder: any;
+  userDetails: any;
 
   leadId = '';
   action = '';
@@ -52,6 +53,8 @@ export class AppointmentListComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    let userData = sessionStorage.getItem('user');
+    this.userDetails = userData ? JSON.parse(userData) : '';
     this.sub = this.route.queryParams.subscribe((params) => {
       this.action = params.action;
       if(this.action == 'create') {
@@ -169,7 +172,7 @@ export class AppointmentListComponent implements OnInit {
 
   onGridReady(params: any) {
     let payload = { 
-      role : 'Admin'
+      role : this.userDetails.user_role
     }
     this.gridApi = params.api;
     this.gridColumnApi = params.columnApi;

@@ -15,6 +15,9 @@ export class GenericService {
   private appointmentDetails: any;
   private stateId:any;
   private leadId:any;
+  private stateIdProject:any;
+  private projectId:any;
+  private proposalDetails:any;
 
   constructor(
     private httpClient: HttpClient,
@@ -45,6 +48,15 @@ export class GenericService {
   public getAppointmentData() {
     return this.appointmentDetails;
   }
+
+  public setProposalData(proposalDetails: any) {
+    this.proposalDetails = proposalDetails;
+  }
+
+  public getProposalData() {
+    return this.proposalDetails;
+  }
+
   public setLeadId(leadId: any) {
     this.leadId = leadId;
   }
@@ -53,12 +65,28 @@ export class GenericService {
     return this.leadId;
   }
 
+  public setProjectId(projectId: any) {
+    this.projectId = projectId;
+  }
+
+  public getProjectId() {
+    return this.projectId;
+  }
+
   public setSelectedState(stateId: any) {
     this.stateId = stateId;
   }
 
   public getSelectedState() {
     return this.stateId;
+  }
+
+  public setSelectedStateProject(stateId: any) {
+    this.stateIdProject = stateId;
+  }
+
+  public getSelectedStateProject() {
+    return this.stateIdProject;
   }
 
   public setPassoword(resetForm: any) {
@@ -303,6 +331,21 @@ export class GenericService {
   public editAppointment(data: Folder): any {
     const url = this.authServiceUrl + 'master/editLead/scheduleAppointment';
     return this.httpClient.post(url, data);
+  }
+
+  public addUpdateProposal(data: any): any {
+    const url = this.authServiceUrl + 'proposal/saveUpdateProposal';
+    return this.httpClient.post(url, data);
+  }
+
+  public getAllProposals(data: any) {
+    const url = this.authServiceUrl + 'proposal/getAllProposal';
+    return this.httpClient.post(url, data);
+  }
+
+  public getProposalByLead(leadId: string) {
+    const url = this.authServiceUrl + 'proposal/getProposalByLead/' + leadId;
+    return this.httpClient.get(url);
   }
 
 }

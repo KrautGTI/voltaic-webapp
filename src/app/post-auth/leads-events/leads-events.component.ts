@@ -36,6 +36,7 @@ export class LeadsEventsComponent implements OnInit {
   rowHeight: any;
   paginationNumberFormatter: any;
   sortingOrder: any;
+  userDetails: any;
 
   constructor(
     private genericService: GenericService,
@@ -88,7 +89,7 @@ export class LeadsEventsComponent implements OnInit {
       },
       {
         headerName: 'Detail',
-        field: 'detail',
+        field: 'details',
         cellStyle: {
           color: '#212121',
           'font-size': '14px',
@@ -98,7 +99,7 @@ export class LeadsEventsComponent implements OnInit {
       },
       {
         headerName: 'Homeowner/Customer',
-        field: 'homeOwner',
+        field: 'first_name',
         cellStyle: {
           color: '#212121',
           'font-size': '14px',
@@ -108,7 +109,7 @@ export class LeadsEventsComponent implements OnInit {
       },
       {
         headerName: 'Address',
-        field: 'address',
+        field: 'street',
         cellStyle: {
           color: '#212121',
           'font-size': '14px',
@@ -128,7 +129,7 @@ export class LeadsEventsComponent implements OnInit {
       },
       {
         headerName: 'Employee',
-        field: 'employee',
+        field: 'master_lead_owner',
         cellStyle: {
           color: '#212121',
           'font-size': '14px',
@@ -158,7 +159,7 @@ export class LeadsEventsComponent implements OnInit {
       },
       {
         headerName: 'Record Owner',
-        field: 'recordOwner',
+        field: 'master_lead_owner',
         cellStyle: {
           color: '#212121',
           'font-size': '14px',
@@ -168,7 +169,7 @@ export class LeadsEventsComponent implements OnInit {
       },
       {
         headerName: 'Date Created',
-        field: 'dateCreated',
+        field: 'createdDate',
         cellStyle: {
           color: '#212121',
           'font-size': '14px',
@@ -216,97 +217,53 @@ export class LeadsEventsComponent implements OnInit {
     this.gridApi?.sizeColumnsToFit();
   }
   onRowClick(event: any) {
-    // console.log(event.data.id);
-    // this.router.navigate(['post-auth/contact/details'], { queryParams: { contactId: event.data.id } });
+    console.log(event.data.id);
+    this.rowData.forEach((ele: any) => {
+      if(ele.id == event.data.id) {
+        this.genericService.setAppointmentData(ele);
+      } 
+    });
+    this.router.navigate(['post-auth/create-events'], {queryParams: { leadId: event.data.leadId, action: 'edit' } });    
   }
-
   onRowGroupOpeneds(params: any) {}
 
   onGridReady(params: any) {
+    let userData = sessionStorage.getItem('user');
+    this.userDetails = userData ? JSON.parse(userData) : '';
     this.gridApi = params.api;
     this.gridColumnApi = params.columnApi;
-    this.rowData = [
-      {
-        month : "JUL 2021",
-        date : "01-07-2021",
-        time : "05:00 p.m.",
-        task : "Appointment",
-        status : "Scheduled",
-        detail : "",
-        homeOwner : "Socorro & Jorge",
-        address : "5442 Pomeroy Circle, Las Vegas, Nevada 89142",
-        phone : "(949) 630-1451",
-        employee : "Dareon King",
-        dealer: "True Power",
-        source: "Door",
-        recordOwner: "David Duke",
-        dateCreated : "07-13-21 03:46 PM"
-      },
-      {
-        month : "JUL 2021",
-        date : "01-07-2021",
-        time : "05:00 p.m.",
-        task : "Appointment",
-        status : "Scheduled",
-        detail : "",
-        homeOwner : "Socorro & Jorge",
-        address : "5442 Pomeroy Circle, Las Vegas, Nevada 89142",
-        phone : "(949) 630-1451",
-        employee : "Dareon King",
-        dealer: "True Power",
-        source: "Door",
-        recordOwner: "David Duke",
-        dateCreated : "07-13-21 03:46 PM"
-      },
-      {
-        month : "NOV 2021",
-        date : "01-11-2021",
-        time : "05:00 p.m.",
-        task : "Appointment",
-        status : "Scheduled",
-        detail : "",
-        homeOwner : "Socorro & Jorge",
-        address : "5442 Pomeroy Circle, Las Vegas, Nevada 89142",
-        phone : "(949) 630-1451",
-        employee : "Dareon King",
-        dealer: "True Power",
-        source: "Door",
-        recordOwner: "David Duke",
-        dateCreated : "07-13-21 03:46 PM"
-      },
-      {
-        month : "SEP 2021",
-        date : "01-09-2021",
-        time : "05:00 p.m.",
-        task : "Appointment",
-        status : "Scheduled",
-        detail : "",
-        homeOwner : "Socorro & Jorge",
-        address : "5442 Pomeroy Circle, Las Vegas, Nevada 89142",
-        phone : "(949) 630-1451",
-        employee : "Dareon King",
-        dealer: "True Power",
-        source: "Door",
-        recordOwner: "David Duke",
-        dateCreated : "07-13-21 03:46 PM"
-      },
-      {
-        month : "AUG 2021",
-        date : "01-08-2021",
-        time : "05:00 p.m.",
-        task : "Appointment",
-        status : "Scheduled",
-        detail : "",
-        homeOwner : "Socorro & Jorge",
-        address : "5442 Pomeroy Circle, Las Vegas, Nevada 89142",
-        phone : "(949) 630-1451",
-        employee : "Dareon King",
-        dealer: "True Power",
-        source: "Door",
-        recordOwner: "David Duke",
-        dateCreated : "07-13-21 03:46 PM"
-      }
-    ]
+    let payload = { 
+      role : this.userDetails.user_role
+    }
+    this.gridApi = params.api;
+    this.gridColumnApi = params.columnApi;
+    this.genericService.loadEvents(payload).subscribe(
+      (appointmentList: any) => {
+      this.rowData = appointmentList.message;
+      console.log(this.rowData)
+    }, (error: any) => {
+      const errMsg = 'Unable To Load The Data';
+      this.notificationService.error(errMsg);
+    });
+    // this.rowData = [
+    //   {
+    //     month : "JUL 2021",
+    //     date : "01-07-2021",
+    //     time : "05:00 p.m.",
+    //     task : "Appointment",
+    //     status : "Scheduled",
+    //     detail : "",
+    //     homeOwner : "Socorro & Jorge",
+    //     address : "5442 Pomeroy Circle, Las Vegas, Nevada 89142",
+    //     phone : "(949) 630-1451",
+    //     employee : "Dareon King",
+    //     dealer: "True Power",
+    //     source: "Door",
+    //     recordOwner: "David Duke",
+    //     dateCreated : "07-13-21 03:46 PM"
+    //   },
+    //   
+    // ]
     // this.genericService.getLeads().subscribe(
     //   (userList: any) => {
     //     console.log(userList);
